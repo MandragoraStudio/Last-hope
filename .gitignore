@@ -3,5 +3,5 @@ build
 dist
 *.pyc
 *.DS_Store
-manifest.mf
 build.xml
+manifest.mf
