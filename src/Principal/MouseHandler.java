@@ -21,25 +21,7 @@ public class MouseHandler {
 
 
     public MouseHandler(Lienzo l){
-        l.getFrame().addMouseListener( new MouseAdapter() {
-	public void mousePressed(MouseEvent e){
-	MouseHandler.mousePressed(e);
-	}
-	public void mouseClicked(MouseEvent e){
-	MouseHandler.mouseClicked(e);
-	}
-	public void mouseReleased(MouseEvent e){
-	MouseHandler.mouseReleased(e);
-	}
-	public void mouseEntered(MouseEvent e){
-	MouseHandler.mouseEntered(e);
-	}
-	public void mouseExited(MouseEvent e){
-	MouseHandler.mouseExited(e);
-	}
-
-	});
-        l.getPanel().addMouseListener( new MouseAdapter() {
+        l.addMouseListener( new MouseAdapter() {
 	public void mousePressed(MouseEvent e){
 	MouseHandler.mousePressed(e);
 	}
