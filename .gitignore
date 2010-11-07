@@ -1,0 +1,7 @@
+nbproject
+build
+dist
+*.pyc
+*.DS_Store
+build.xml
+manifest.mf
