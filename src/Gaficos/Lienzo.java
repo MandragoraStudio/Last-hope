@@ -20,16 +20,23 @@ import javax.swing.JPanel;
  */
 public class Lienzo extends Canvas {
     public BufferStrategy strategy;
-    public Lienzo(int width, int height){
-        JFrame frame = new JFrame("Last Hope");
+    JFrame frame;
+    JPanel panel;
+    public JPanel getPanel() {
+        return panel;
+    }
 
-        JPanel panel = (JPanel) frame.getContentPane();
+    public Lienzo(int width, int height){
+        frame = new JFrame("Last Hope");
+
+        panel = (JPanel) frame.getContentPane();
         frame.addWindowListener(new WindowAdapter(){
             @Override
                   public void windowClosing(WindowEvent we){
                     System.exit(0);
                   }
                 });
+        frame.setLayout(null);
         panel.setPreferredSize(new Dimension(width,height));
         panel.setLayout(null);
 
@@ -43,8 +50,12 @@ public class Lienzo extends Canvas {
 
         createBufferStrategy(2);
         strategy = this.getBufferStrategy();
-    }
 
+
+    }
+public JFrame getFrame(){
+    return frame;
+}
     @Override
     public void paint(Graphics g)
     {
