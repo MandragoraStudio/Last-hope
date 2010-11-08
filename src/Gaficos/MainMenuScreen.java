@@ -10,6 +10,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
@@ -21,14 +23,20 @@ Actor Fondo;
 List<Boton> botones;
 
     public void cargarModelos() {
-        Fondo = new Fondo("imagenes/fondo.png");
-        botones=new ArrayList<Boton>();
-        Image img=null;
-        try{
-            img = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro.png"));
-        }catch(Exception e){}
-        
-        botones.add(new Boton(img,img,"boton",100,100,img.getWidth(null),img.getHeight(null)));
+        try {
+            Fondo = new Fondo("imagenes/fondo.png");
+            botones = new ArrayList<Boton>();
+            Image img = null;
+            Image img2 = null;
+            try {
+                img = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro.png"));
+                img2 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro2.png"));
+            } catch (Exception e) {
+            }
+            botones.add(new Boton(img, img2, "boton", 100, 100, img.getWidth(null), img.getHeight(null)));
+        } catch (Exception ex) {
+            Logger.getLogger(MainMenuScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void update() {
