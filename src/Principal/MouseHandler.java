@@ -57,21 +57,36 @@ public class MouseHandler {
     }
 
     private static void mousePressed(MouseEvent e) {
-        pulsado=true;
+        pulsado = true;
         x=e.getX();
         y=e.getY();
     }
 
     private static void mouseClicked(MouseEvent e) {
+        x=e.getX();
+        y=e.getY();
     }
 
     private static void mouseReleased(MouseEvent e) {
-        pulsado=false;
+        pulsado = false;
         x=e.getX();
         y=e.getY();
     }
 
     private static void mouseEntered(MouseEvent e) {
     }
+
+    public static void setPulsado(boolean pulsado) {
+        MouseHandler.pulsado = pulsado;
+    }
+
+    public static void setX(int x) {
+        MouseHandler.x = x;
+    }
+
+    public static void setY(int y) {
+        MouseHandler.y = y;
+    }
+
 
 }

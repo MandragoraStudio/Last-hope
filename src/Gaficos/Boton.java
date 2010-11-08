@@ -34,13 +34,12 @@ public class Boton {
     }
     public void update(){
         if(MouseHandler.isPulsado()){
-            if(MouseHandler.getX()>x&&MouseHandler.getX()<x+width&&MouseHandler.getY()>y&&MouseHandler.getY()<y+height){
+            if(!pulsado && MouseHandler.getX()>x&&MouseHandler.getX()<x+width&&MouseHandler.getY()>y&&MouseHandler.getY()<y+height){
                pulsado=true;
+               this.presionado();
+
             }
         }else{
-            if(MouseHandler.getX()>x&&MouseHandler.getX()<x+width&&MouseHandler.getY()>y&&MouseHandler.getY()<y+height){
-                this.presionado();
-            }
             pulsado=false;
         }
     }
