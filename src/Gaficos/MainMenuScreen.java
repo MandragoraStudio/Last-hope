@@ -24,18 +24,26 @@ List<Boton> botones;
         Fondo = new Fondo("imagenes/fondo.png");
         botones=new ArrayList<Boton>();
         Image img=null;
-        Image img2=null;
         try{
             img = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro.png"));
-            img2 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro2.png"));
         }catch(Exception e){}
         
-        botones.add(new Boton(img,img2,"boton",100,100,img.getHeight(null),img.getWidth(null)));
+        botones.add(new Boton(img,img,"boton",100,100,img.getWidth(null),img.getHeight(null)));
     }
 
     public void update() {
-        for(Boton b: this.botones){
+        for(Boton b:botones){
             b.update();
+        }
+        String comando;
+        for(Boton b:botones){
+            if(b.ejecutar){
+                comando=b.getNombre();
+                if(comando.equals("boton")){
+                    System.out.println("PROOOOOEEEEZZ");
+                }
+                b.ejecutar=false;
+            }
         }
     }
 
