@@ -32,7 +32,19 @@ List<Boton> botones;
     }
 
     public void update() {
-
+        for(Boton b:botones){
+            b.update();
+        }
+        String comando;
+        for(Boton b:botones){
+            if(b.ejecutar){
+                comando=b.getNombre();
+                if(comando.equals("boton")){
+                    System.out.println("PROOOOOEEEEZZ");
+                }
+                b.ejecutar=false;
+            }
+        }
     }
 
     public void draw(Graphics2D g) {

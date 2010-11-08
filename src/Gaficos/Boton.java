@@ -18,8 +18,9 @@ public class Boton {
     String nombre;
     int x,y,height,width;
     boolean pulsado;
+    public boolean ejecutar;
 
-    public Boton(Image up, Image down, String nombre, int x, int y, int height, int width) {
+    public Boton(Image up, Image down, String nombre, int x, int y, int width, int height) {
         this.up = up;
         this.down = down;
         this.nombre = nombre;
@@ -30,8 +31,10 @@ public class Boton {
     }
 
     public void draw(Graphics2D g){
-        g.drawImage(pulsado?down:up, x, y,null);
+        Image im = pulsado?down:up;
+        g.drawImage(im, x, y,width,height,null);
     }
+
     public void update(){
         if(MouseHandler.isPulsado()){
             if(MouseHandler.getX()>x&&MouseHandler.getX()<x+width&&MouseHandler.getY()>y&&MouseHandler.getY()<y+height){
@@ -39,14 +42,20 @@ public class Boton {
             }
         }else{
             if(MouseHandler.getX()>x&&MouseHandler.getX()<x+width&&MouseHandler.getY()>y&&MouseHandler.getY()<y+height){
-                this.presionado();
+                if(pulsado){
+                    this.presionado();
+                }
             }
             pulsado=false;
         }
     }
 
     public void presionado(){
-        System.out.println("funciono");
+        ejecutar=true;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
 
