@@ -20,7 +20,9 @@ public class Boton {
     boolean pulsado;
     public boolean ejecutar;
 
-    public Boton(Image up, Image down, String nombre, int x, int y, int width, int height) {
+    public Boton(Image up, Image down, String nombre, int x, int y, int width, int height) throws Exception {
+        if(up.getWidth(null)!=down.getWidth(null)||up.getHeight(null)!=down.getHeight(null))
+            throw new Exception("Ambas imagenes deben tener el mismo tamaño");
         this.up = up;
         this.down = down;
         this.nombre = nombre;
