@@ -26,34 +26,30 @@ List<Boton> botones;
         try {
             Fondo = new Fondo("imagenes/fondo.png");
             botones = new ArrayList<Boton>();
-            Image img = null;
-            Image img2 = null;
-            try {
-                img = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro.png"));
-                img2 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro2.png"));
-            } catch (Exception e) {
-            }
-            botones.add(new Boton(img, img2, "boton", 100, 100, img.getWidth(null), img.getHeight(null)));
+            
+            
+            //Aqui se crean todos los botones
+            cargarBotones();
         } catch (Exception ex) {
             Logger.getLogger(MainMenuScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    private void cargarBotones() throws Exception{
+        Image img = null;
+        Image img2 = null;
+        try {
+                img = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro.png"));
+                img2 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro2.png"));
+            } catch (Exception e) {
+            }
+        botones.add(new Boton(img, img2, "TRY", 100, 100, img.getWidth(null), img.getHeight(null)));
+        botones.add(new Boton(img, img2, "start", 200, 360, img.getWidth(null), img.getHeight(null)));
+    }
     public void update() {
         for(Boton b:botones){
             b.update();
         }
-        //esto pa boton update
-        String comando;
-        for(Boton b:botones){
-            if(b.ejecutar){
-                comando=b.getNombre();
-                if(comando.equals("boton")){
-                    System.out.println("PROOOOOEEEEZZ");
-                }
-                b.ejecutar=false;
-            }
-        }
+        
     }
 
     public void draw(Graphics2D g) {

@@ -8,12 +8,15 @@ package Gaficos;
 import Principal.MouseHandler;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Thanar
  */
 public class Boton {
+    List<IObservador> observadores;
     Image up,down;
     String nombre;
     int x,y,height,width;
@@ -30,6 +33,14 @@ public class Boton {
         this.y = y;
         this.height = height;
         this.width = width;
+        observadores = new ArrayList<IObservador>();
+        new ObservadorMenu(this);
+    }
+    public void Atach(IObservador ob){
+        observadores.add(ob);
+    }
+    public void Detach(IObservador ob){
+        observadores.remove(ob);
     }
 
     public void draw(Graphics2D g){
@@ -53,7 +64,9 @@ public class Boton {
     }
 
     public void presionado(){
-        ejecutar=true;
+        for(IObservador ob : observadores){
+            ob.update(nombre);
+        }
     }
 
     public String getNombre() {

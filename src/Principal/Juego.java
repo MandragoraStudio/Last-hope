@@ -30,8 +30,8 @@ public class Juego {
     Graphics2D pincel;
     static final int WIDTH = 1024;
     static final int HEIGHT = 600;
-    public static Map<String,IScreen> screens;
-    IScreen CurrentScreen;
+    private static Map<String,IScreen> screens;
+    private static IScreen currentScreen;
     List<Actor> actores;
     Actor fondo;
     MouseHandler manejadorRaton;
@@ -53,7 +53,7 @@ public class Juego {
     private void cargarPantallas(){
         screens.put("Menu", new MainMenuScreen());
         screens.put("Game", new GamePlayScreen());
-        CurrentScreen= screens.get("Menu");
+        currentScreen= screens.get("Menu");
     }
     public void runGame(){
         startTime=System.currentTimeMillis();
@@ -78,13 +78,18 @@ public class Juego {
         }
     }
     public void update(){
-        CurrentScreen.update();
+        currentScreen.update();
     }
     public void draw(){
         pincel.setColor(Color.GREEN);
         pincel.fillRect(0,0,WIDTH,HEIGHT);
-        CurrentScreen.draw(pincel);
+        currentScreen.draw(pincel);
         imagen.strategy.show();
+    }
+
+    public static void changeScreen(String screen){
+
+        currentScreen= screens.get(screen);
     }
 
 }
