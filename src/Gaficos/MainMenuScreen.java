@@ -43,6 +43,7 @@ List<Boton> botones;
         for(Boton b:botones){
             b.update();
         }
+        //esto pa boton update
         String comando;
         for(Boton b:botones){
             if(b.ejecutar){
@@ -58,6 +59,7 @@ List<Boton> botones;
     public void draw(Graphics2D g) {
         Fondo.draw(g);
         for(Boton b:botones){
+            //esto pa boton update
             b.draw(g);
         }
     }
