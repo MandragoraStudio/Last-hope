@@ -30,5 +30,6 @@ public class Ventana_Mapa implements IVentana {
     }
 
     public void cargar() {
+
     }
 }

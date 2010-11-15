@@ -19,6 +19,9 @@ public class GamePlayScreen implements IScreen{
         mapa = new Ventana_Mapa(750,500);
         panel = new Ventana_Panel(274,500);
         informacion = new Ventana_Informacion(1024,100);
+        mapa.cargar();
+        panel.cargar();
+        informacion.cargar();
     }
 
     public void update() {
