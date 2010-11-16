@@ -6,6 +6,7 @@
 package Gaficos;
 
 import Mapa.Ventana_Mapa;
+import Navegador.Ventana_Panel;
 import java.awt.Graphics2D;
 
 /**

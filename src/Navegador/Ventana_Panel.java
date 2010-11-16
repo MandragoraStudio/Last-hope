@@ -3,18 +3,22 @@
  * and open the template in the editor.
  */
 
-package Gaficos;
+package Navegador;
 
+import Gaficos.IVentana;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.util.List;
 
 /**
  *
  * @author Thanar
  */
 public class Ventana_Panel implements IVentana {
-private int WIDTH;
+    private int WIDTH;
     private int HEIGHT;
+    private List <Image> im;
 
     public Ventana_Panel(int WIDTH, int HEIGHT) {
         this.WIDTH = WIDTH;
@@ -33,6 +37,7 @@ private int WIDTH;
     }
 
     public void cargar() {
+
     }
 
 }
