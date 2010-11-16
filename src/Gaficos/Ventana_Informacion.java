@@ -26,6 +26,8 @@ public class Ventana_Informacion implements IVentana {
         g.translate(0, 500);
         g.setColor(Color.YELLOW);
         g.fillRect(0, 0, WIDTH, HEIGHT);
+        //codigo de la ventana a partir de aqui
+        
         //devuelve el origen de coordenadas a su posicion original
         g.translate(0, -500);
     }
