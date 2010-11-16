@@ -41,11 +41,9 @@ public class Ventana_Panel implements IVentana {
         for(Pestaña p: pestañas){
             p.draw(g);
         }
-
-        fondoActual.draw(g);
         fondoActual.setX(750);
         fondoActual.setY(35);
-
+        fondoActual.draw(g);
     }
 
     public void update() {

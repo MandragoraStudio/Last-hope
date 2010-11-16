@@ -4,9 +4,6 @@
  */
 package Navegador;
 
-
-import Principal.Juego;
-
 /**
  *
  * @author Thanar
