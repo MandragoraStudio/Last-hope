@@ -16,14 +16,18 @@ public class Ventana_Mapa implements IVentana {
 
     private int WIDTH;
     private int HEIGHT;
+    private int x;
+    private int y;
     private int casillaHeight;
     private int casillaWidth;
     Mapa map;
 
-    public Ventana_Mapa(int WIDTH, int HEIGHT) {
+    public Ventana_Mapa(int WIDTH, int HEIGHT, int x, int y) {
         //los parametros magicos
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
+        this.x=x;
+        this.y=y;
     }
 
     public void draw(Graphics2D g) {
