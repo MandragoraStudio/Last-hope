@@ -13,10 +13,10 @@ import java.awt.Image;
  * @author Thanar
  */
 public abstract class Actor {
-    private Image imagen;
-    private int x;
-    private int y;
-    private int z;
+    protected Image imagen;
+    protected int x;
+    protected int y;
+    protected int z;
 
     public int getZ() {
         return z;

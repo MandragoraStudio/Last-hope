@@ -17,7 +17,7 @@ public class Fondo extends Actor {
         try{
             super.setImagen(ImageIO.read(this.getClass().getClassLoader().getResource(url)));
         }catch(Exception e){
-
+            
         }
     }
     @Override

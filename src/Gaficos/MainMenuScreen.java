@@ -55,7 +55,6 @@ List<Boton> botones;
     public void draw(Graphics2D g) {
         Fondo.draw(g);
         for(Boton b:botones){
-            //esto pa boton update
             b.draw(g);
         }
     }

@@ -41,7 +41,6 @@ public class Juego {
         imagen = new Lienzo(WIDTH, HEIGHT);
         pincel = (Graphics2D) imagen.strategy.getDrawGraphics();
         actores = new ArrayList<Actor>();
-        fondo = new Fondo("imagenes/fondo.png");
         screens= new HashMap<String,IScreen>();
         cargarPantallas();
 
