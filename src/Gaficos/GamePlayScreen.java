@@ -5,6 +5,7 @@
 
 package Gaficos;
 
+import Navegador.Ventana_Panel;
 import java.awt.Graphics2D;
 
 /**
