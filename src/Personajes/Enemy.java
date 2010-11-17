@@ -4,7 +4,6 @@
  */
 
 package Personajes;
-
 /**
  *
  * @author Jose
@@ -14,6 +13,9 @@ public class Enemy extends Actor{
     private float velocidad;
     private float vida;
     private int peso;
+    private int Posx;
+    private int PosY;
+
 
     public Enemy(int id, float velocidad, float vida, int peso) {
         this.id = id;
@@ -24,7 +26,6 @@ public class Enemy extends Actor{
 
     @Override
     public void update() {
-
     }
 
 
