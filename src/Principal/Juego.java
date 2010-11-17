@@ -5,11 +5,11 @@
 
 package Principal;
 
-import Gaficos.Fondo;
-import Gaficos.GamePlayScreen;
-import Gaficos.IScreen;
-import Gaficos.Lienzo;
-import Gaficos.MainMenuScreen;
+import Graficos.Fondo;
+import Graficos.GamePlayScreen;
+import Graficos.IScreen;
+import Graficos.Lienzo;
+import Graficos.MainMenuScreen;
 import Personajes.Actor;
 import java.awt.Color;
 import java.awt.Graphics2D;

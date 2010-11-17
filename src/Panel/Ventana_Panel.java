@@ -3,11 +3,10 @@
  * and open the template in the editor.
  */
 
-package Navegador;
+package Panel;
 
 
-import Gaficos.Fondo;
-import Gaficos.IVentana;
+import Graficos.IVentana;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -26,8 +25,8 @@ public class Ventana_Panel implements IVentana {
     private int HEIGHT;
     private int x;
     private int y;
-    private static Map <String, Fondo>fondo;
-    private static Fondo fondoActual;
+    private static Map <String, Contenido>fondo;
+    private static Contenido fondoActual;
     private List<Pestaña> pestañas;
 
     public Ventana_Panel(int WIDTH, int HEIGHT, int x, int y) {
@@ -37,8 +36,8 @@ public class Ventana_Panel implements IVentana {
         this.x=x;
         this.y=y;
         this.pestañas=new ArrayList();
-        fondo=new HashMap<String,Fondo>();
-        fondoActual= new Fondo("imagenes/fondoTorres.png");
+        fondo=new HashMap<String,Contenido>();
+        fondoActual= new Contenido("imagenes/fondoTorres.png");
     }
 
     public void draw(Graphics2D g) {
@@ -65,16 +64,18 @@ public class Ventana_Panel implements IVentana {
                 img = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/torres.png"));
                 img2 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/editor.png"));
                 img3 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/traps.png"));
+
+                pestañas.add(new Pestaña(img, img, "torres", x, y, (WIDTH/3), img.getHeight(null)));
+                pestañas.add(new Pestaña(img2, img2, "editor", x+(WIDTH/3), y, (WIDTH/3), img.getHeight(null)));
+                pestañas.add(new Pestaña(img3, img3, "trap", x+((WIDTH/3)*2), y, (WIDTH/3), img.getHeight(null)));
             } catch (Exception e) {
             }
-        pestañas.add(new Pestaña(img, "torres", x, y, img.getWidth(null), img.getHeight(null)));
-        pestañas.add(new Pestaña(img2, "editor", x+91, y, img.getWidth(null), img.getHeight(null)));
-        pestañas.add(new Pestaña(img3, "trap", x+182, y, img.getWidth(null), img.getHeight(null)));
+        
 
         try {
-            fondo.put("fondoTorres", new Fondo("imagenes/fondoTorres.png"));
-            fondo.put("fondoEditor", new Fondo("imagenes/fondoEditor.png"));
-            fondo.put("fondoTraps", new Fondo("imagenes/fondoTraps.png"));
+            fondo.put("fondoTorres", new Contenido("imagenes/fondoTorres.png"));
+            fondo.put("fondoEditor", new Contenido("imagenes/fondoEditor.png"));
+            fondo.put("fondoTraps", new Contenido("imagenes/fondoTraps.png"));
             } catch (Exception e) {
             }
         

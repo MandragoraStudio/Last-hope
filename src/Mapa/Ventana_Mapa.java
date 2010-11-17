@@ -4,7 +4,7 @@
  */
 package Mapa;
 
-import Gaficos.IVentana;
+import Graficos.IVentana;
 import java.awt.Color;
 import java.awt.Graphics2D;
 

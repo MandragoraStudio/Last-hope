@@ -3,12 +3,12 @@
  * and open the template in the editor.
  */
 
-package Navegador;
+package Graficos;
 
 /**
  *
- * @author Jose
+ * @author Thanar
  */
-public interface IObservadorNav {
+public interface IObservador {
     public void update(String comando);
 }

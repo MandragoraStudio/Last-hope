@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package Gaficos;
+package Graficos;
 
 import java.awt.Canvas;
 import java.awt.Dimension;

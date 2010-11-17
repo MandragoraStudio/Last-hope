@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package Gaficos;
+package Graficos;
 
 import Personajes.Actor;
 import java.awt.Graphics2D;
