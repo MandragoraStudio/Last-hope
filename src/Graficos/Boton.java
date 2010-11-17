@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package Gaficos;
+package Graficos;
 
 import Principal.MouseHandler;
 import java.awt.Graphics2D;
@@ -34,7 +34,7 @@ public class Boton {
         this.height = height;
         this.width = width;
         observadores = new ArrayList<IObservador>();
-        new ObservadorMenu(this);
+        new Observador(this);
     }
     public void Atach(IObservador ob){
         observadores.add(ob);
@@ -71,6 +71,70 @@ public class Boton {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public Image getDown() {
+        return down;
+    }
+
+    public void setDown(Image down) {
+        this.down = down;
+    }
+
+    public boolean isEjecutar() {
+        return ejecutar;
+    }
+
+    public void setEjecutar(boolean ejecutar) {
+        this.ejecutar = ejecutar;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public boolean isPulsado() {
+        return pulsado;
+    }
+
+    public void setPulsado(boolean pulsado) {
+        this.pulsado = pulsado;
+    }
+
+    public Image getUp() {
+        return up;
+    }
+
+    public void setUp(Image up) {
+        this.up = up;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
 

@@ -5,7 +5,7 @@
 
 package Principal;
 
-import Gaficos.Lienzo;
+import Graficos.Lienzo;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 

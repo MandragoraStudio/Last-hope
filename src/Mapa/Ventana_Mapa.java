@@ -4,10 +4,10 @@
  */
 package Mapa;
 
-import Gaficos.IVentana;
 import Personajes.Actor;
 import Personajes.Enemy;
 import Personajes.Tower;
+import Graficos.IVentana;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -21,16 +21,20 @@ public class Ventana_Mapa implements IVentana {
 
     private int WIDTH;
     private int HEIGHT;
+    private int x;
+    private int y;
     private int casillaHeight;
     private int casillaWidth;
     Mapa map;
     List<Actor> actores;
 
-    public Ventana_Mapa(int WIDTH, int HEIGHT) {
+    public Ventana_Mapa(int WIDTH, int HEIGHT, int x, int y) {
         //los parametros magicos
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
         actores = new ArrayList<Actor>();
+        this.x=x;
+        this.y=y;
     }
 
     public void draw(Graphics2D g) {
