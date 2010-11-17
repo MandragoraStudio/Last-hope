@@ -5,8 +5,13 @@
 package Mapa;
 
 import Gaficos.IVentana;
+import Personajes.Actor;
+import Personajes.Enemy;
+import Personajes.Tower;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,11 +24,13 @@ public class Ventana_Mapa implements IVentana {
     private int casillaHeight;
     private int casillaWidth;
     Mapa map;
+    List<Actor> actores;
 
     public Ventana_Mapa(int WIDTH, int HEIGHT) {
         //los parametros magicos
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
+        actores = new ArrayList<Actor>();
     }
 
     public void draw(Graphics2D g) {
@@ -33,38 +40,52 @@ public class Ventana_Mapa implements IVentana {
         //pinto las casillas de hierba con color hierba...
         //lo suyo seria una imagencilla... pero por ahora no tengo
         for(int i =0; i < map.getMapa().length;i++ ){
-            for (int j=0;j<map.getMapa().length;j++){
+            for (int j=0;j<map.getMapa()[0].length;j++){
                 g.setColor(Color.green);
+                
                 if(map.getMapa()[i][j]>0)
                     g.fillRect(j*casillaWidth,i*casillaHeight,  casillaWidth, casillaHeight);
             }
         }
         //ahora pintariamos unas torres...
         //y ahora pintamos unos enemiguillos...
+        for(Actor a : actores){
+            a.draw(g);
+        }
         //pintamos los proyectiles ahora?
 
     }
 
+    public void addEnemy(Enemy e){
+        actores.add(e);
+    }
+    public void addTower(Tower t){
+        actores.add(t);
+    }
+
     public void update() {
+        for(Actor a : actores){
+            a.update();
+        }
     }
 
     public void cargar() {
         //matriz del mapa
         int[][] mapa=
         {
-            {0,1,1,1,1,1,1,1,1,1},
-            {0,1,1,0,0,0,1,1,1,1},
-            {0,0,1,0,1,0,1,1,1,1},
-            {1,0,0,0,1,0,1,1,1,1},
-            {1,1,1,1,1,0,1,0,0,0},
-            {1,1,1,1,1,0,1,0,1,1},
-            {1,1,1,1,1,0,1,0,1,1},
-            {1,1,1,1,1,0,0,0,1,1},
-            {1,1,1,1,1,1,1,1,1,1},
-            {1,1,1,1,1,1,1,1,1,1}
+            {0,0,0,0,1,1,1,1,1,1,1,1,1},
+            {1,1,1,0,1,1,0,0,0,1,1,1,1},
+            {1,1,1,0,0,1,0,1,0,1,1,1,1},
+            {1,1,1,1,0,0,0,1,0,1,1,1,1},
+            {1,1,1,1,1,1,1,1,0,1,0,0,0},
+            {1,1,1,1,1,1,1,1,0,1,0,1,1},
+            {1,1,1,1,1,1,1,1,0,1,0,1,1},
+            {1,1,1,1,1,1,1,1,0,0,0,1,1},
+            {1,1,1,1,1,1,1,1,1,1,1,1,1},
+            {1,1,1,1,1,1,1,1,1,1,1,1,1}
         };
         //calculo el tamaño de las casillas
-        casillaHeight = HEIGHT / mapa[0].length;
+        casillaHeight = HEIGHT / mapa.length;
         casillaWidth = WIDTH / mapa[0].length;
         //y ya tenemos mapa!!!! ^^ ^^
         map = new Mapa(mapa);
