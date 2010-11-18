@@ -26,11 +26,24 @@ public class ContenidoTorres extends Contenido{
             this.getBotones().add(new Boton(up, up, nombre, this.calculaX(), this.calculaY(), width, height));
         }
     }
+    @Override
+    public void draw(Graphics2D g){
+        g.drawImage(this.getImagen(), this.getX(), this.getY(), null);
 
+        for(Boton b: this.getBotones()){
+            b.draw(g);
+            g.drawString(b.getNombre(), b.getX(), b.getY()+b.getHeight()+12);
+        }
+    }
     @Override
     public int calculaX() {
         int pos = 0;
-        pos = this.getX() + 31;
+        int modulo = this.getBotones().size() % 3;
+        if (this.getBotones().size() == 0) {
+            pos = this.getX() + 31;
+        } else {
+            pos = super.getX() + (modulo * 81) + 31;
+        }
         return pos;
     }
 

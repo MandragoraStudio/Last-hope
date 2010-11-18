@@ -80,15 +80,18 @@ public class Ventana_Panel implements IVentana {
             Image img5 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/atributos.png"));
             //cargamos los botones del contenido 1
             c.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
+            c.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
+            c.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
+            c.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
             //cargamos los botones del contenido 2
-            c2.addBotonPorDefecto(img5, "Torre", img5.getWidth(null), img5.getHeight(null));
-            c2.addBotonPorDefecto(img5, "Torre", img5.getWidth(null), img5.getHeight(null));
-            c2.addBotonPorDefecto(img5, "Torre", img5.getWidth(null), img5.getHeight(null));
+            c2.addBotonPorDefecto(img5, "Atributo", img5.getWidth(null), img5.getHeight(null));
+            c2.addBotonPorDefecto(img5, "Atributo", img5.getWidth(null), img5.getHeight(null));
+            c2.addBotonPorDefecto(img5, "Atributo", img5.getWidth(null), img5.getHeight(null));
             //cargamos los botones del contenido 3
-            c3.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
-            c3.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
-            c3.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
-            c3.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
+            c3.addBotonPorDefecto(img4, "Trampa", img4.getWidth(null), img4.getHeight(null));
+            c3.addBotonPorDefecto(img4, "Trampa", img4.getWidth(null), img4.getHeight(null));
+            c3.addBotonPorDefecto(img4, "Trampa", img4.getWidth(null), img4.getHeight(null));
+            c3.addBotonPorDefecto(img4, "Trampa", img4.getWidth(null), img4.getHeight(null));
             //metemos los contenidos en la lista de fondos
             fondo.put("fondoTorres", c);
             fondo.put("fondoEditor", c2);

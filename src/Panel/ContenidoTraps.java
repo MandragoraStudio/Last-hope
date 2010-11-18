@@ -2,20 +2,29 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Panel;
 
 import Graficos.Boton;
-import java.awt.Image;
+import java.awt.Graphics2D;
 
 /**
  *
  * @author Jose
  */
-public class ContenidoTraps extends Contenido{
+public class ContenidoTraps extends Contenido {
 
     public ContenidoTraps(String url, int x, int y) {
         super(url, x, y);
+    }
+
+    @Override
+    public void draw(Graphics2D g) {
+        g.drawImage(this.getImagen(), this.getX(), this.getY(), null);
+
+        for (Boton b : this.getBotones()) {
+            b.draw(g);
+            g.drawString(b.getNombre(), b.getX(), b.getY() + b.getHeight() + 12);
+        }
     }
 
     @Override
@@ -41,5 +50,4 @@ public class ContenidoTraps extends Contenido{
         }
         return pos;
     }
-
 }
