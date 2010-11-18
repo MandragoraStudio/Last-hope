@@ -71,12 +71,29 @@ public class Ventana_Panel implements IVentana {
         
 
         try {
-            Contenido c=new Contenido("imagenes/fondoTorres.png", this.x, this.y+35);
-            Contenido c2=new Contenido("imagenes/fondoEditor.png", this.x, this.y+35);
-            Contenido c3=new Contenido("imagenes/fondoTraps.png", this.x, this.y+35);
+            //cargamos los contenidos de las pestañas
+            Contenido c=new ContenidoTorres("imagenes/fondoTorres.png", this.x, this.y+35);
+            Contenido c2=new ContenidoEditor("imagenes/fondoEditor.png", this.x, this.y+35);
+            Contenido c3=new ContenidoTraps("imagenes/fondoTraps.png", this.x, this.y+35);
+            //cargamos las imagenes de los botones
+            Image img4 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/torrePanel.png"));
+            Image img5 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/atributos.png"));
+            //cargamos los botones del contenido 1
+            c.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
+            //cargamos los botones del contenido 2
+            c2.addBotonPorDefecto(img5, "Torre", img5.getWidth(null), img5.getHeight(null));
+            c2.addBotonPorDefecto(img5, "Torre", img5.getWidth(null), img5.getHeight(null));
+            c2.addBotonPorDefecto(img5, "Torre", img5.getWidth(null), img5.getHeight(null));
+            //cargamos los botones del contenido 3
+            c3.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
+            c3.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
+            c3.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
+            c3.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
+            //metemos los contenidos en la lista de fondos
             fondo.put("fondoTorres", c);
             fondo.put("fondoEditor", c2);
             fondo.put("fondoTraps", c3);
+            //establecemos el fondo actual
             fondoActual=fondo.get("fondoTorres");
             } catch (Exception e) {
             }
