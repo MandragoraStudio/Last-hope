@@ -24,6 +24,7 @@ public class Ventana_Informacion implements IVentana {
         this.HEIGHT = HEIGHT;
         this.x=x;
         this.y=y;
+        this.cargar();
     }
 
     public void draw(Graphics2D g) {

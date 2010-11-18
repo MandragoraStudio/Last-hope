@@ -37,15 +37,13 @@ public class Ventana_Panel implements IVentana {
         this.y=y;
         this.pestañas=new ArrayList();
         fondo=new HashMap<String,Contenido>();
-        fondoActual= new Contenido("imagenes/fondoTorres.png");
+        this.cargar();
     }
 
     public void draw(Graphics2D g) {
         for(Pestaña p: pestañas){
             p.draw(g);
         }
-        fondoActual.setX(x);
-        fondoActual.setY(y+35);
         fondoActual.draw(g);
     }
 
@@ -73,9 +71,13 @@ public class Ventana_Panel implements IVentana {
         
 
         try {
-            fondo.put("fondoTorres", new Contenido("imagenes/fondoTorres.png"));
-            fondo.put("fondoEditor", new Contenido("imagenes/fondoEditor.png"));
-            fondo.put("fondoTraps", new Contenido("imagenes/fondoTraps.png"));
+            Contenido c=new Contenido("imagenes/fondoTorres.png", this.x, this.y+35);
+            Contenido c2=new Contenido("imagenes/fondoEditor.png", this.x, this.y+35);
+            Contenido c3=new Contenido("imagenes/fondoTraps.png", this.x, this.y+35);
+            fondo.put("fondoTorres", c);
+            fondo.put("fondoEditor", c2);
+            fondo.put("fondoTraps", c3);
+            fondoActual=fondo.get("fondoTorres");
             } catch (Exception e) {
             }
         

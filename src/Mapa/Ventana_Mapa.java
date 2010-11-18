@@ -35,6 +35,7 @@ public class Ventana_Mapa implements IVentana {
         actores = new ArrayList<Actor>();
         this.x=x;
         this.y=y;
+        this.cargar();
     }
 
     public void draw(Graphics2D g) {
