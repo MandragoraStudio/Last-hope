@@ -21,7 +21,7 @@ public class ContenidoEditor extends Contenido {
     public void draw(Graphics2D g) {
         g.drawImage(this.getImagen(), this.getX(), this.getY(), null);
 
-        for (Boton b : this.getBotones()) {
+        for (Boton b : this.getBotonesPorDefecto()) {
             b.draw(g);
             g.drawString(b.getNombre(), b.getX(), b.getY() + 12);
         }
@@ -35,7 +35,7 @@ public class ContenidoEditor extends Contenido {
 
     @Override
     public int calculaY() {
-        int pos = this.getY() + (this.getBotones().size() * 31) + 10;
+        int pos = this.getY() + (this.getBotonesPorDefecto().size() * 31) + 45;
         return pos;
     }
 }

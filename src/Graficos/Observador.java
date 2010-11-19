@@ -21,16 +21,19 @@ public class Observador implements IObservador {
     public void update(String comando) {
         if(comando.equals("start")){
             Juego.changeScreen("Game");
-        }else if (comando.equals("TRY")) {
-            System.out.println("PROOOOOEEEEZZ");
+        }else if (comando.equals("exit")) {
+            System.exit(0);
         }
-        if(comando.equals("torres")){
+        else if(comando.equals("Menu")){
+            Juego.changeScreen("Menu");
+        }
+        else if(comando.equals("torres")){
             Ventana_Panel.cambiaFondo("fondoTorres");
         }
-        if(comando.equals("editor")){
+        else if(comando.equals("editor")){
             Ventana_Panel.cambiaFondo("fondoEditor");
         }
-        if(comando.equals("trap")){
+        else if(comando.equals("trap")){
             Ventana_Panel.cambiaFondo("fondoTraps");
         }
     }

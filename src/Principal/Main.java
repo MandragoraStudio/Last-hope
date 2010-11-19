@@ -14,7 +14,6 @@ import java.awt.Canvas;
 public class Main {
 
     public static void main(String[] args) {
-        // metodo estatico estupido, hacemos le objeto juego y lo arrancamos
         Juego juego = new Juego();
         juego.runGame();
     }

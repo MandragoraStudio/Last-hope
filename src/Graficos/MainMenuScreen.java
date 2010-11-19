@@ -42,8 +42,8 @@ List<Boton> botones;
                 img2 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro2.png"));
             } catch (Exception e) {
             }
-        botones.add(new Boton(img, img2, "TRY", 100, 100, img.getWidth(null), img.getHeight(null)));
-        botones.add(new Boton(img, img2, "start", 200, 360, img.getWidth(null), img.getHeight(null)));
+        botones.add(new Boton(img, img2, "start", 100, 100, img.getWidth(null), img.getHeight(null)));
+        botones.add(new Boton(img, img2, "exit", 800, 450, img.getWidth(null), img.getHeight(null)));
     }
     public void update() {
         for(Boton b:botones){
