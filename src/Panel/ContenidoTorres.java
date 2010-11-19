@@ -20,10 +20,10 @@ public class ContenidoTorres extends Contenido{
     }
     
     @Override
-    public void addBotonPorDefecto(Image up, String nombre) throws Exception{
+    public void addBotonPorDefecto(Boton b) throws Exception{
         if(this.getBotonesPorDefecto().size()<12){
             
-            this.getBotonesPorDefecto().add(new Boton(up, up, nombre, this.calculaX(), this.calculaY(), up.getWidth(null), up.getHeight(null)));
+            this.getBotonesPorDefecto().add(b);
         }
     }
     @Override

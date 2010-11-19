@@ -7,6 +7,7 @@ package Panel;
 
 
 import Graficos.IVentana;
+import Personajes.Tower;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -84,7 +85,8 @@ public class Ventana_Panel implements IVentana {
             Image img6 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro.png"));
             Image img7 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro2.png"));
             //cargamos los botones del contenido 1
-            c.addBotonPorDefecto(img4, "Torre");
+            Tower t = new Tower(0, 5, 2, 2, 6, 3, 0, 34, img4);
+            c.addBotonPorDefecto(new BotonCreadorTorre(img4, img4, "creaTorre", c.calculaX(), c.calculaY(), img4.getWidth(null), img4.getHeight(null), t));
             c.addBotonPorDefecto(img4, "Torre");
             c.addBotonPorDefecto(img4, "Torre");
             c.addBotonPorDefecto(img4, "Torre");

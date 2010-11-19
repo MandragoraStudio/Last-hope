@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Graficos;
+package Observador;
 
+import Graficos.Boton;
+import Panel.BotonCreadorTorre;
 import Panel.Ventana_Panel;
 import Principal.Juego;
 
@@ -34,6 +36,12 @@ public class Observador implements IObservador {
             Ventana_Panel.cambiaFondo("fondoEditor");
         }
         else if(comando.equals("trap")){
+            Ventana_Panel.cambiaFondo("fondoTraps");
+        }
+        else if(comando.equals("creaTorre")){
+            BotonCreadorTorre.creaTorre();
+        }
+        else if(comando.equals("creaTrap")){
             Ventana_Panel.cambiaFondo("fondoTraps");
         }
     }

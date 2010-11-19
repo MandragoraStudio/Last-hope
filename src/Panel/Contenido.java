@@ -75,6 +75,9 @@ public class Contenido extends Fondo {
     public void addBotonPorDefecto(Image up, String nombre) throws Exception{
         this.getBotonesPorDefecto().add(new Boton(up, up, nombre, this.calculaX(), this.calculaY(), up.getWidth(null), up.getHeight(null)));
     }
+    public void addBotonPorDefecto(Boton b) throws Exception{
+        this.getBotonesPorDefecto().add(b);
+    }
     public int calculaX() {
         int pos = 0;
         
