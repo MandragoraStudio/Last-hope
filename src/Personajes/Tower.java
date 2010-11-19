@@ -5,6 +5,8 @@
 
 package Personajes;
 
+import UtilMath.Vector2D;
+
 /**
  *
  * @author Jose
@@ -19,8 +21,9 @@ public class Tower extends Actor{
     private float tRecarga;
     private float dañoPasivo;
     private float coste;
+    private Vector2D posicion;
 
-    public Tower(int id, float ataque, int area, float ralentizacion, float ultimoDisparo, float tRecarga, float dañoPasivo, float coste) {
+    public Tower(int id, float ataque, int area, float ralentizacion, float ultimoDisparo, float tRecarga, float dañoPasivo, float coste, Vector2D posicion) {
         this.id = id;
         this.ataque = ataque;
         this.area = area;
@@ -29,7 +32,9 @@ public class Tower extends Actor{
         this.tRecarga = tRecarga;
         this.dañoPasivo = dañoPasivo;
         this.coste = coste;
+        this.posicion = posicion;
     }
+    
 
     @Override
     public void update() {

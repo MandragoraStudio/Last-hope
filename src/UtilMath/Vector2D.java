@@ -1,13 +1,12 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * al fin tengo una clase Vector2D... aunque me la tenga que implementar yo solo
  */
 
 package UtilMath;
 
 /**
  *
- * @author Equipo
+ * @author Thanar
  */
 public class Vector2D {
     public float x;
@@ -38,11 +37,27 @@ public class Vector2D {
         dev = x*x+y*y;
         return Math.sqrt(dev);
     }
-    public Vector2D normalize(){
+
+    // devuelve un vector de igual direccion pero modulo 1
+    public Vector2D unitario(){
         Vector2D dev;
         double mod = this.modulo();
         dev= new Vector2D((float)(x/mod),(float)(y/mod));
         return dev;
+    }
+
+    public Vector2D add(Vector2D v){
+        return new Vector2D(x+v.x,y+v.y);
+    }
+    public Vector2D subs(Vector2D v){
+        return new Vector2D(x-v.x,y-v.y);
+    }
+    //multiplicar por escalar
+    public Vector2D mult(float n){
+        return new Vector2D(x*n,y*n);
+    }
+    public Vector2D mult(int n){
+        return new Vector2D(x*n,y*n);
     }
 
 }
