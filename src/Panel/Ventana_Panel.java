@@ -41,13 +41,16 @@ public class Ventana_Panel implements IVentana {
     }
 
     public void draw(Graphics2D g) {
+        fondoActual.draw(g);
+
         for(Pestaña p: pestañas){
             p.draw(g);
         }
-        fondoActual.draw(g);
     }
 
     public void update() {
+        fondoActual.update();
+        
         for(Pestaña p: pestañas){
             p.update();
         }
@@ -72,23 +75,29 @@ public class Ventana_Panel implements IVentana {
 
         try {
             //cargamos los contenidos de las pestañas
-            Contenido c=new ContenidoTorres("imagenes/fondoTorres.png", this.x, this.y+35);
-            Contenido c2=new ContenidoEditor("imagenes/fondoEditor.png", this.x, this.y+35);
-            Contenido c3=new ContenidoTraps("imagenes/fondoTraps.png", this.x, this.y+35);
+            Contenido c=new ContenidoTorres("imagenes/fondoTorres.png", this.x, this.y);
+            Contenido c2=new ContenidoEditor("imagenes/fondoEditor.png", this.x, this.y);
+            Contenido c3=new ContenidoTraps("imagenes/fondoTraps.png", this.x, this.y);
             //cargamos las imagenes de los botones
             Image img4 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/torrePanel.png"));
             Image img5 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/atributos.png"));
+            Image img6 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro.png"));
+            Image img7 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro2.png"));
             //cargamos los botones del contenido 1
-            c.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
+            c.addBotonPorDefecto(img4, "Torre");
+            c.addBotonPorDefecto(img4, "Torre");
+            c.addBotonPorDefecto(img4, "Torre");
+            c.addBotonPorDefecto(img4, "Torre");
+            c.addBoton(img6, img7, "Menu", c.getImagen().getWidth(null)-img6.getWidth(null), c.getImagen().getHeight(null)-img6.getHeight(null));
             //cargamos los botones del contenido 2
-            c2.addBotonPorDefecto(img5, "Torre", img5.getWidth(null), img5.getHeight(null));
-            c2.addBotonPorDefecto(img5, "Torre", img5.getWidth(null), img5.getHeight(null));
-            c2.addBotonPorDefecto(img5, "Torre", img5.getWidth(null), img5.getHeight(null));
+            c2.addBotonPorDefecto(img5, "Atributo");
+            c2.addBotonPorDefecto(img5, "Atributo");
+            c2.addBotonPorDefecto(img5, "Atributo");
             //cargamos los botones del contenido 3
-            c3.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
-            c3.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
-            c3.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
-            c3.addBotonPorDefecto(img4, "Torre", img4.getWidth(null), img4.getHeight(null));
+            c3.addBotonPorDefecto(img4, "Trampa");
+            c3.addBotonPorDefecto(img4, "Trampa");
+            c3.addBotonPorDefecto(img4, "Trampa");
+            c3.addBotonPorDefecto(img4, "Trampa");
             //metemos los contenidos en la lista de fondos
             fondo.put("fondoTorres", c);
             fondo.put("fondoEditor", c2);

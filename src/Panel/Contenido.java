@@ -17,40 +17,63 @@ import java.util.List;
  */
 public class Contenido extends Fondo {
 
+    private List<Boton> botonesPorDefecto;
     private List<Boton> botones;
 
     public Contenido(String url, int x, int y) {
         super(url);
+        this.botonesPorDefecto = new ArrayList();
         this.botones = new ArrayList();
         this.x=x;
         this.y=y;
     }
 
     @Override
+    public void update() {
+        for(Boton b: this.getBotonesPorDefecto()){
+            b.update();
+        }
+        for(Boton b: this.getBotones()){
+            b.update();
+        }
+    }
+
+
+
+    @Override
     public void draw(Graphics2D g){
         g.drawImage(this.getImagen(), this.getX(), this.getY(), null);
 
+        for(Boton b: this.getBotonesPorDefecto()){
+            b.draw(g);
+        }
         for(Boton b: this.getBotones()){
             b.draw(g);
         }
 
+
+    }
+
+    public List<Boton> getBotonesPorDefecto() {
+        return botonesPorDefecto;
+    }
+
+    public void setBotonesPorDefecto(List<Boton> botonesPorDefecto) {
+        this.botonesPorDefecto = botonesPorDefecto;
     }
 
     public List<Boton> getBotones() {
         return botones;
     }
 
-    public void setBotones(List<Boton> botones) {
-        this.botones = botones;
-    }
     //addBoton añadirá un boton en la posicion relativa pasada por argumento
-    public void addBoton(Image up, String nombre, int x, int y, int width, int height) throws Exception{
-        this.getBotones().add(new Boton(up, up, nombre, this.getX()+x, this.getY()+y, width, height));
+    public void addBoton(Image up, Image down, String nombre, int x, int y) throws Exception{
+        this.getBotones().add(new Boton(up, down, nombre, this.getX()+x, this.getY()+y, up.getWidth(null), up.getHeight(null)));
     }
     //addBotonPorDefecto añadirá un botón según el orden en que tienen que estar los botones por defecto
     //dependiendo del contenido en el que estemos
-    public void addBotonPorDefecto(Image up, String nombre, int width, int height) throws Exception{
-        this.getBotones().add(new Boton(up, up, nombre, this.calculaX(), this.calculaY(), width, height));
+    public void addBotonPorDefecto(Image up, String nombre) throws Exception{
+        this.getBotonesPorDefecto().add(new Boton(up, up, nombre, this.calculaX(), this.calculaY(), up.getWidth(null), up.getHeight(null)));
     }
     public int calculaX() {
         int pos = 0;
