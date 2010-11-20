@@ -7,6 +7,8 @@ package Personajes;
 
 import java.awt.Image;
 import UtilMath.Vector2D;
+import java.awt.Color;
+import java.awt.Graphics2D;
 
 
 /**
@@ -46,6 +48,24 @@ public class Tower extends Actor{
     @Override
     public void update() {
         
+    }
+
+    @Override
+    public void draw(Graphics2D g){
+        g.drawImage(imagen, (int)posicion.x, (int)posicion.y, null);
+        
+        Color c = g.getColor();
+        g.setColor(Color.black);
+        g.drawString("aqui va una torre", posicion.x, posicion.y);
+        g.setColor(c);
+    }
+
+    public Vector2D getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(Vector2D posicion) {
+        this.posicion = posicion;
     }
 
     public void dispara(){

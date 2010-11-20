@@ -6,6 +6,7 @@
 package Panel;
 
 import Graficos.Boton;
+import Mapa.Ventana_Mapa;
 import Personajes.Tower;
 import java.awt.Image;
 
@@ -31,6 +32,8 @@ public class BotonCreadorTorre extends Boton{
     }
 
     public static void creaTorre(){
+        Ventana_Mapa.construir=true;
+        Ventana_Mapa.torre=BotonCreadorTorre.t;
         System.out.println("ID: " +BotonCreadorTorre.t.getId());
         System.out.println("Ataque: " +BotonCreadorTorre.t.getAtaque());
         System.out.println("Area: " +BotonCreadorTorre.t.getArea());

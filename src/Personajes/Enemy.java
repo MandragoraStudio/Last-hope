@@ -33,7 +33,7 @@ public class Enemy extends Actor{
 
     @Override
     public void update() {
-        posicion= posicion.add(direccion.mult(velocidad));
+        posicion= posicion.add(direccion.unitario().mult(velocidad));
     }
 
 

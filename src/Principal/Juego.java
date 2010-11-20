@@ -73,7 +73,9 @@ public class Juego {
         for(IScreen s:screens.values()){
             try{
             s.cargarModelos();
-            }catch(Exception e){}
+            }catch(Exception e){
+            e.printStackTrace();
+            }
         }
     }
     public void update(){
