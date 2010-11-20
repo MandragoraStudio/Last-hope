@@ -21,7 +21,7 @@ public Observador_Mapa(Ventana_Mapa m){
             int y = MouseHandler.getY();
             //if(mapa.casillaValidaTorre(mapa.getCasilla(x,y))){
                 mapa.torre.setPosicion(mapa.getCoordenadaCasilla(x, y));
-                mapa.addTower(mapa.torre);
+                mapa.addTower(mapa.torre.clone());
                 mapa.torre=null;
                 mapa.construir=false;
             //}

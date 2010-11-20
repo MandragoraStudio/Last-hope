@@ -72,6 +72,14 @@ public class Tower extends Actor{
 
     }
 
+    public Tower clone(){
+        Tower dev;
+        Vector2D posicion = new Vector2D (this.posicion.x,this.posicion.y);
+        Image ima = im;
+        dev= new Tower(id, ataque, area, ralentizacion, ultimoDisparo, tRecarga, dañoPasivo, coste, posicion, ima);
+        return dev;
+    }
+
     public boolean isEnemigoATiro(){
         return false;
     }
