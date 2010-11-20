@@ -5,6 +5,7 @@
 
 package Personajes;
 
+import Mapa.Ventana_Mapa;
 import java.awt.Image;
 import UtilMath.Vector2D;
 import java.awt.Color;
@@ -52,11 +53,14 @@ public class Tower extends Actor{
 
     @Override
     public void draw(Graphics2D g){
+        Color c = g.getColor();
+        g.setColor(Color.PINK);
+        g.fillRect((int)posicion.x, (int)posicion.y, Ventana_Mapa.casillaWidth, Ventana_Mapa.casillaHeight);
         g.drawImage(imagen, (int)posicion.x, (int)posicion.y, null);
         
-        Color c = g.getColor();
+        
         g.setColor(Color.black);
-        g.drawString("aqui va una torre", posicion.x, posicion.y);
+        g.drawString("aqui va una torre", posicion.x, posicion.y+Ventana_Mapa.casillaHeight/2);
         g.setColor(c);
     }
 

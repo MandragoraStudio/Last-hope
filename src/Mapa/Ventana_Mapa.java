@@ -27,8 +27,8 @@ public class Ventana_Mapa implements IVentana {
     private int HEIGHT;
     private int x;
     private int y;
-    private int casillaHeight;
-    private int casillaWidth;
+    public static int casillaHeight;
+    public static int casillaWidth;
     Mapa map;
     List<Actor> actores;
     public static boolean construir = false;
