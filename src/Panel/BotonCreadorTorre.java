@@ -33,17 +33,6 @@ public class BotonCreadorTorre extends Boton{
 
     public static void creaTorre(){
         Ventana_Mapa.construir=true;
-        Ventana_Mapa.torre=BotonCreadorTorre.t;
-        System.out.println("ID: " +BotonCreadorTorre.t.getId());
-        System.out.println("Ataque: " +BotonCreadorTorre.t.getAtaque());
-        System.out.println("Area: " +BotonCreadorTorre.t.getArea());
-        System.out.println("ralentizacion: " +BotonCreadorTorre.t.getRalentizacion());
-        System.out.println("ultimoDisparo: " +BotonCreadorTorre.t.getUltimoDisparo());
-        System.out.println("tRecarga: " +BotonCreadorTorre.t.gettRecarga());
-        System.out.println("dañoPasivo: " +BotonCreadorTorre.t.getDañoPasivo());
-        System.out.println("coste: " +BotonCreadorTorre.t.getCoste());
-        System.out.println("im: " +BotonCreadorTorre.t.getIm());
-        
-        
+        Ventana_Mapa.torre=BotonCreadorTorre.t;        
     }
 }

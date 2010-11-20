@@ -6,7 +6,6 @@
 package Panel;
 
 import Graficos.Boton;
-import Personajes.Tower;
 import Personajes.Trap;
 import java.awt.Image;
 
