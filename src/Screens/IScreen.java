@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package Graficos;
+package Screens;
 
 import java.awt.Graphics2D;
 

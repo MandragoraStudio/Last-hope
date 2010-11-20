@@ -7,7 +7,7 @@ package Panel;
 
 
 import Graficos.IVentana;
-import Personajes.Tower;
+import Personajes.Trap;
 import Principal.MouseHandler;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
@@ -87,21 +87,14 @@ public class Ventana_Panel implements IVentana {
             Image img6 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro.png"));
             Image img7 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro2.png"));
             //cargamos los botones del contenido 1
-            Tower t = new Tower(0, 5, 2, 2, 6, 3, 0, 34, new Vector2D(MouseHandler.getX(), MouseHandler.getY()), img4);
-            c.addBotonPorDefecto(new BotonCreadorTorre(img4, img4, "creaTorre", c.calculaX(), c.calculaY(), img4.getWidth(null), img4.getHeight(null), t));
-            c.addBotonPorDefecto(img4, "Torre");
-            c.addBotonPorDefecto(img4, "Torre");
-            c.addBotonPorDefecto(img4, "Torre");
             c.addBoton(img6, img7, "Menu", c.getImagen().getWidth(null)-img6.getWidth(null), c.getImagen().getHeight(null)-img6.getHeight(null));
             //cargamos los botones del contenido 2
             c2.addBotonPorDefecto(img5, "Atributo");
             c2.addBotonPorDefecto(img5, "Atributo");
             c2.addBotonPorDefecto(img5, "Atributo");
+            c2.addBoton(img6, img7, "creaBotonCreador", c2.getImagen().getWidth(null)-img6.getWidth(null), c2.getImagen().getHeight(null)-img6.getHeight(null));
             //cargamos los botones del contenido 3
-            c3.addBotonPorDefecto(img4, "Trampa");
-            c3.addBotonPorDefecto(img4, "Trampa");
-            c3.addBotonPorDefecto(img4, "Trampa");
-            c3.addBotonPorDefecto(img4, "Trampa");
+            c3.addBotonPorDefecto(new BotonCreadorTrap(img4, img4, "creaTrap", c3.calculaX(), c3.calculaY(), img4.getWidth(null), img4.getHeight(null), new Trap(0, 5, 2, 3, 0, 34, new Vector2D(MouseHandler.getX(), MouseHandler.getY()), img4)));
             //metemos los contenidos en la lista de fondos
             fondo.put("fondoTorres", c);
             fondo.put("fondoEditor", c2);
@@ -116,5 +109,11 @@ public class Ventana_Panel implements IVentana {
     public static void cambiaFondo(String nombre){
         Ventana_Panel.fondoActual=Ventana_Panel.fondo.get(nombre);
     }
+
+    public static Map<String, Contenido> getFondo() {
+        return fondo;
+    }
+
+
 
 }

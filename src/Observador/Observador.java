@@ -6,6 +6,8 @@ package Observador;
 
 import Graficos.Boton;
 import Panel.BotonCreadorTorre;
+import Panel.BotonCreadorTrap;
+import Panel.ContenidoEditor;
 import Panel.Ventana_Panel;
 import Principal.Juego;
 
@@ -42,7 +44,10 @@ public class Observador implements IObservador {
             BotonCreadorTorre.creaTorre();
         }
         else if(comando.equals("creaTrap")){
-            Ventana_Panel.cambiaFondo("fondoTraps");
+            BotonCreadorTrap.creaTrap();
+        }
+        else if(comando.equals("creaBotonCreador")){
+            ContenidoEditor.creaBotonCreador();
         }
     }
 }

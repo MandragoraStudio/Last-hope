@@ -6,10 +6,10 @@
 package Principal;
 
 import Graficos.Fondo;
-import Graficos.GamePlayScreen;
-import Graficos.IScreen;
+import Screens.GamePlayScreen;
+import Screens.IScreen;
 import Graficos.Lienzo;
-import Graficos.MainMenuScreen;
+import Screens.MainMenuScreen;
 import Personajes.Actor;
 import java.awt.Color;
 import java.awt.Graphics2D;

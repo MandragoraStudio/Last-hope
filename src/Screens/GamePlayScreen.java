@@ -3,8 +3,10 @@
  * and open the template in the editor.
  */
 
-package Graficos;
+package Screens;
 
+import Graficos.IVentana;
+import Graficos.Ventana_Informacion;
 import Mapa.Ventana_Mapa;
 import Panel.Ventana_Panel;
 import java.awt.Graphics2D;

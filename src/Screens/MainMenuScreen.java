@@ -3,8 +3,10 @@
  * and open the template in the editor.
  */
 
-package Graficos;
+package Screens;
 
+import Graficos.Boton;
+import Graficos.Fondo;
 import Personajes.Actor;
 import java.awt.Graphics2D;
 import java.awt.Image;
