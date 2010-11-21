@@ -36,6 +36,10 @@ public abstract class Enemy extends Actor {
         this.posicion = posicion;
     }
 
+    public int getCasilla() {
+        return casilla;
+    }
+
     @Override
     public void draw(Graphics2D g) {
         try {
