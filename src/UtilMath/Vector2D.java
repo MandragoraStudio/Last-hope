@@ -87,9 +87,9 @@ public class Vector2D {
     public float getAngle() {
         float dev = 0;
         dev = (float) Math.atan2(x, y);
-        if (x < 0) {
+        /*if (x < 0) {
             dev = -dev;
-        }
+        }*/
         return dev;
     }
 }
