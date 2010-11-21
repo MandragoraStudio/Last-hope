@@ -57,9 +57,10 @@ public class Tower extends Actor{
         g.fillRect((int)posicion.x, (int)posicion.y, Ventana_Mapa.casillaWidth, Ventana_Mapa.casillaHeight);
         g.drawImage(imagen, (int)posicion.x, (int)posicion.y, null);
         
-        
-        g.setColor(Color.black);
-        g.drawString("aqui va una torre", posicion.x, posicion.y+Ventana_Mapa.casillaHeight/2);
+        //g.setColor(Color.black);
+        //g.drawString("aqui va una torre", posicion.x, posicion.y+Ventana_Mapa.casillaHeight/2);
+
+
         g.setColor(c);
     }
 
