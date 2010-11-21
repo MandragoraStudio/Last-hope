@@ -18,11 +18,11 @@ public class BotonCreadorTrap extends Boton{
     private static Trap t;
 
     public BotonCreadorTrap(Image up, Image down, String nombre, int x, int y, int width, int height) throws Exception {
-        super(up, down, nombre, x, y, width, height);
+        super(up, nombre, x, y, width, height);
     }
 
     public BotonCreadorTrap(Image up, Image down, String nombre, int x, int y, int width, int height, Trap t) throws Exception {
-        super(up, down, nombre, x, y, width, height);
+        super(up, nombre, x, y, width, height);
         BotonCreadorTrap.t=t;
     }
 

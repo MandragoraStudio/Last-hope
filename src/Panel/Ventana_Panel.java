@@ -69,10 +69,11 @@ public class Ventana_Panel implements IVentana {
                 img2 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/editor.png"));
                 img3 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/traps.png"));
 
-                pestañas.add(new Pestaña(img, img, "torres", x, y, (WIDTH/3), img.getHeight(null)));
-                pestañas.add(new Pestaña(img2, img2, "editor", x+(WIDTH/3), y, (WIDTH/3), img.getHeight(null)));
-                pestañas.add(new Pestaña(img3, img3, "trap", x+((WIDTH/3)*2), y, (WIDTH/3), img.getHeight(null)));
+                pestañas.add(new Pestaña(img, "torres", x, y, (WIDTH/3), img.getHeight(null)));
+                pestañas.add(new Pestaña(img2, "editor", x+(WIDTH/3), y, (WIDTH/3), img.getHeight(null)));
+                pestañas.add(new Pestaña(img3, "trap", x+((WIDTH/3)*2), y, (WIDTH/3), img.getHeight(null)));
             } catch (Exception e) {
+                System.out.println(e.getStackTrace());
             }
         
 

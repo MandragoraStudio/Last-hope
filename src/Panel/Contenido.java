@@ -5,6 +5,7 @@
 package Panel;
 
 import Graficos.Boton;
+import Graficos.BotonGeneral;
 import Graficos.Fondo;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
@@ -67,12 +68,14 @@ public class Contenido extends Fondo {
 
     //addBoton añadirá un boton en la posicion relativa pasada por argumento
     public void addBoton(Image up, Image down, String nombre, int x, int y) throws Exception{
-        this.getBotones().add(new Boton(up, down, nombre, (int)posicion.x+x, (int)posicion.y+y, up.getWidth(null), up.getHeight(null)));
+
+        this.getBotones().add(new BotonGeneral(up, down, nombre, (int)posicion.x+x, (int)posicion.y+y, up.getWidth(null), up.getHeight(null)));
+
     }
     //addBotonPorDefecto añadirá un botón según el orden en que tienen que estar los botones por defecto
     //dependiendo del contenido en el que estemos
     public void addBotonPorDefecto(Image up, String nombre) throws Exception{
-        this.getBotonesPorDefecto().add(new Boton(up, up, nombre, this.calculaX(), this.calculaY(), up.getWidth(null), up.getHeight(null)));
+        this.getBotonesPorDefecto().add(new Boton(up, nombre, this.calculaX(), this.calculaY(), up.getWidth(null), up.getHeight(null)));
     }
     public void addBotonPorDefecto(Boton b) throws Exception{
         this.getBotonesPorDefecto().add(b);
