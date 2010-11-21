@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Graficos;
+package Informacion;
 
+import Graficos.IVentana;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -27,6 +28,11 @@ public class Ventana_Informacion implements IVentana {
         this.cargar();
     }
 
+  
+
+    public void update() {
+    }
+
     public void draw(Graphics2D g) {
         //cambia el origen de coordenadas
         g.translate(0, 500);
@@ -37,10 +43,6 @@ public class Ventana_Informacion implements IVentana {
         //devuelve el origen de coordenadas a su posicion original
         g.translate(0, -500);
     }
-
-    public void update() {
-    }
-
     public void cargar() {
     }
 }
