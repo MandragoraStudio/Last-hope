@@ -6,7 +6,9 @@ package Informacion;
 
 import Graficos.IVentana;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
+import sun.font.Font2D;
 
 /**
  *
@@ -34,14 +36,18 @@ public class Ventana_Informacion implements IVentana {
     }
 
     public void draw(Graphics2D g) {
-        //cambia el origen de coordenadas
-        g.translate(0, 500);
+        
         g.setColor(Color.YELLOW);
-        g.fillRect(0, 0, WIDTH, HEIGHT);
+        g.fillRect(x, y, WIDTH, HEIGHT);
+        g.setColor(Color.GRAY);
+        g.fillRect(x,y, 100+x,HEIGHT);
+        g.fillRect(WIDTH-150,y, WIDTH,HEIGHT);
+        g.setColor(Color.WHITE);
+        g.setFont( new Font( "SansSerif", Font.BOLD, 12 ) );
+        g.drawString("Puntuacion", x+20, y+20);
+
         //codigo de la ventana a partir de aqui
         
-        //devuelve el origen de coordenadas a su posicion original
-        g.translate(0, -500);
     }
     public void cargar() {
     }
