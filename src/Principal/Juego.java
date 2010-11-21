@@ -32,6 +32,7 @@ public class Juego {
     static final int HEIGHT = 600;
     private static Map<String,IScreen> screens;
     private static IScreen currentScreen;
+    public static Jugador jugador;
     List<Actor> actores;
     Actor fondo;
     MouseHandler manejadorRaton;
@@ -42,6 +43,7 @@ public class Juego {
         pincel = (Graphics2D) imagen.strategy.getDrawGraphics();
         actores = new ArrayList<Actor>();
         screens= new HashMap<String,IScreen>();
+        jugador = new Jugador(true);
         cargarPantallas();
 
 
