@@ -41,6 +41,7 @@ public class Lienzo extends Canvas {
 
     public Lienzo(int width, int height){
         frame = new JFrame("Last Hope");
+        frame.setIconImage(Lienzo.cargarImagen("imagenes/mounstrillo.png"));
 
         panel = (JPanel) frame.getContentPane();
         frame.addWindowListener(new WindowAdapter(){
@@ -49,6 +50,7 @@ public class Lienzo extends Canvas {
                     System.exit(0);
                   }
                 });
+        frame.setResizable(false);
         frame.setLayout(null);
         panel.setPreferredSize(new Dimension(width,height));
         panel.setLayout(null);
@@ -58,7 +60,6 @@ public class Lienzo extends Canvas {
         setIgnoreRepaint(true);
 
         frame.pack();
-        frame.setResizable(false);
         frame.setVisible(true);
 
         createBufferStrategy(2);

@@ -4,6 +4,7 @@
  */
 package Mapa;
 
+import Enemigos.EBasico;
 import Personajes.Actor;
 import Personajes.Enemy;
 import Personajes.Tower;
@@ -30,7 +31,7 @@ public class Ventana_Mapa implements IVentana {
     public static int casillaHeight;
     public static int casillaWidth;
     public static Mapa map;
-    List<Actor> actores;
+    public static List<Actor> actores;
     public static boolean construir = false;
     public static Tower torre = null;
     List<IObservador> observadores;
@@ -173,7 +174,7 @@ public class Ventana_Mapa implements IVentana {
 
     public void sendWave(int n) {
         for (int i = 0; i < 10; i++) {
-            addEnemy(new Enemy(i, 2, 100, 30, new Vector2D(10, -Ventana_Mapa.casillaWidth*i), "imagenes/mounstrillo.png"));
+            addEnemy(new EBasico(1,new Vector2D(10, -Ventana_Mapa.casillaWidth*i)));
         }
     }
 }

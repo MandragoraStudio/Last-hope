@@ -21,20 +21,22 @@ public class Tower extends Actor{
     private int id;
     private float ataque;
     private int area;
+    private float alcance;
     private float ralentizacion;
-    private float ultimoDisparo;
-    private float tRecarga;
+    private long ultimoDisparo;
+    private long tRecarga;
     private float dañoPasivo;
     private float coste;
     private Image im;
 
-    public Tower(int id, float ataque, int area, float ralentizacion, float ultimoDisparo, float tRecarga, float dañoPasivo, float coste, Vector2D posicion, Image im) {
+    public Tower(int id, float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, float coste, Vector2D posicion, Image im) {
         super(null,posicion);
         this.id = id;
         this.ataque = ataque;
         this.area = area;
+        this.alcance=alcance;
         this.ralentizacion = ralentizacion;
-        this.ultimoDisparo = ultimoDisparo;
+        this.ultimoDisparo = System.currentTimeMillis();
         this.tRecarga = tRecarga;
         this.dañoPasivo = dañoPasivo;
         this.coste = coste;
@@ -47,7 +49,24 @@ public class Tower extends Actor{
 
     @Override
     public void update() {
-        
+        if(enemigoATiro()&&isCargada()){
+
+        }
+    }
+    public boolean enemigoATiro(){
+        boolean dev=false;
+        for(Actor a:Ventana_Mapa.actores){
+            if(a.posicion.subs(posicion).modulo()<alcance){
+                dev=true;
+                break;
+            }
+        }
+        return dev;
+    }
+    public boolean isCargada(){
+        boolean dev;
+        dev=System.currentTimeMillis()- ultimoDisparo>tRecarga;
+        return dev;
     }
 
     @Override
@@ -84,12 +103,6 @@ public class Tower extends Actor{
         return dev;
     }
 
-    public boolean isEnemigoATiro(){
-        return false;
-    }
-    public boolean isReadyToFire(){
-        return false;
-    }
     public void rotarTorre(int x, int y){
 
     }
@@ -154,7 +167,7 @@ public class Tower extends Actor{
         return tRecarga;
     }
 
-    public void settRecarga(float tRecarga) {
+    public void settRecarga(long tRecarga) {
         this.tRecarga = tRecarga;
     }
 
@@ -162,9 +175,9 @@ public class Tower extends Actor{
         return ultimoDisparo;
     }
 
-    public void setUltimoDisparo(float ultimoDisparo) {
+   /* public void setUltimoDisparo(long ultimoDisparo) {
         this.ultimoDisparo = ultimoDisparo;
-    }
+    }*/
 
 
 }

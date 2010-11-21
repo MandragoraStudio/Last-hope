@@ -14,21 +14,25 @@ import java.awt.geom.AffineTransform;
  *
  * @author Jose
  */
-public class Enemy extends Actor {
+public abstract class Enemy extends Actor {
 
     private int id;
     private float velocidad;
+    private float armadura;
+    private float regeneracion;
     private Vector2D direccion = Vector2D.uno;
     private float vida;
-    private int peso;
+    private int dano;
     private int casilla;
 
-    public Enemy(int id, float velocidad, float vida, int peso, Vector2D posicion, String imagen) {
+    public Enemy(int id, float velocidad, float vida, int dano, float armadura,float regeneracion, Vector2D posicion, String imagen) {
         super(Lienzo.cargarImagen(imagen), posicion);
         this.id = id;
         this.velocidad = velocidad;
         this.vida = vida;
-        this.peso = peso;
+        this.dano = dano;
+        this.armadura=armadura;
+        this.regeneracion=regeneracion;
         this.posicion = posicion;
     }
 
@@ -37,7 +41,7 @@ public class Enemy extends Actor {
         try {
             AffineTransform at = new AffineTransform();
             AffineTransform temp = g.getTransform();
-            at.rotate(-direccion.getAngle() + Math.toRadians(180), posicion.x + 2, posicion.y + 2);
+            at.rotate(-direccion.getAngle() + Math.toRadians(180), posicion.x + imagen.getWidth(null)/2, posicion.y + imagen.getHeight(null)/2);
             //at.rotate(Math.toRadians(315), posicion.x+2, posicion.y+2);
             g.setTransform(at);
             g.drawImage(imagen, (int) posicion.x, (int) posicion.y, null);
