@@ -23,8 +23,8 @@ public class ContenidoEditor extends Contenido {
 
     private static Image img4;
 
-    public ContenidoEditor(String url, int x, int y) {
-        super(url, x, y);
+    public ContenidoEditor(String url, Vector2D posicion) {
+        super(url, posicion);
         try {
             img4 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/torrePanel.png"));
         } catch (IOException ex) {
@@ -34,7 +34,7 @@ public class ContenidoEditor extends Contenido {
 
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(this.getImagen(), this.getX(), this.getY(), null);
+        g.drawImage(this.getImagen(), (int)posicion.x, (int)posicion.y, null);
 
         for (Boton b : this.getBotonesPorDefecto()) {
             b.draw(g);
@@ -47,13 +47,13 @@ public class ContenidoEditor extends Contenido {
 
     @Override
     public int calculaX() {
-        int pos = this.getX() + 10;
+        int pos = (int)posicion.x + 10;
         return pos;
     }
 
     @Override
     public int calculaY() {
-        int pos = this.getY() + (this.getBotonesPorDefecto().size() * 31) + 45;
+        int pos = (int)posicion.y + (this.getBotonesPorDefecto().size() * 31) + 45;
         return pos;
     }
 

@@ -8,6 +8,7 @@ package Screens;
 import Graficos.Boton;
 import Graficos.Fondo;
 import Personajes.Actor;
+import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -26,13 +27,14 @@ List<Boton> botones;
 
     public void cargarModelos() {
         try {
-            Fondo = new Fondo("imagenes/fondo.png");
+            Fondo = new Fondo("imagenes/fondo.png",Vector2D.zero);
             botones = new ArrayList<Boton>();
             
             
             //Aqui se crean todos los botones
             cargarBotones();
         } catch (Exception ex) {
+            ex.printStackTrace();
             Logger.getLogger(MainMenuScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -43,6 +45,7 @@ List<Boton> botones;
                 img = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro.png"));
                 img2 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro2.png"));
             } catch (Exception e) {
+                e.printStackTrace();
             }
         botones.add(new Boton(img, img2, "start", 100, 100, img.getWidth(null), img.getHeight(null)));
         botones.add(new Boton(img, img2, "exit", 800, 450, img.getWidth(null), img.getHeight(null)));

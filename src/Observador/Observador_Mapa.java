@@ -19,12 +19,12 @@ public Observador_Mapa(Ventana_Mapa m){
         if(mapa.construir){
             int x = MouseHandler.getX();
             int y = MouseHandler.getY();
-            //if(mapa.casillaValidaTorre(mapa.getCasilla(x,y))){
+            if(mapa.casillaValidaTorre(mapa.getCasilla(x,y))){
                 mapa.torre.setPosicion(mapa.getCoordenadaCasilla(x, y));
                 mapa.addTower(mapa.torre.clone());
                 mapa.torre=null;
                 mapa.construir=false;
-            //}
+            }
         }
     }
 

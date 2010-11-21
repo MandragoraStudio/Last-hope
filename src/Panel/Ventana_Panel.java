@@ -78,9 +78,9 @@ public class Ventana_Panel implements IVentana {
 
         try {
             //cargamos los contenidos de las pestañas
-            Contenido c=new ContenidoTorres("imagenes/fondoTorres.png", this.x, this.y);
-            Contenido c2=new ContenidoEditor("imagenes/fondoEditor.png", this.x, this.y);
-            Contenido c3=new ContenidoTraps("imagenes/fondoTraps.png", this.x, this.y);
+            Contenido c=new ContenidoTorres("imagenes/fondoTorres.png", new Vector2D(this.x, this.y));
+            Contenido c2=new ContenidoEditor("imagenes/fondoEditor.png", new Vector2D(this.x, this.y));
+            Contenido c3=new ContenidoTraps("imagenes/fondoTraps.png", new Vector2D(this.x, this.y));
             //cargamos las imagenes de los botones
             Image img4 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/torrePanel.png"));
             Image img5 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/atributos.png"));

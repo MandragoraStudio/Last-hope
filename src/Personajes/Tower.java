@@ -27,9 +27,9 @@ public class Tower extends Actor{
     private float dañoPasivo;
     private float coste;
     private Image im;
-    private Vector2D posicion;
 
     public Tower(int id, float ataque, int area, float ralentizacion, float ultimoDisparo, float tRecarga, float dañoPasivo, float coste, Vector2D posicion, Image im) {
+        super(null,posicion);
         this.id = id;
         this.ataque = ataque;
         this.area = area;
@@ -41,7 +41,6 @@ public class Tower extends Actor{
 
         this.im = im;
 
-        this.posicion = posicion;
 
     }
     

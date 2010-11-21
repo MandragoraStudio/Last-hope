@@ -5,12 +5,15 @@
 
 package Graficos;
 
+import UtilMath.Vector2D;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -24,6 +27,16 @@ public class Lienzo extends Canvas {
     JPanel panel;
     public JPanel getPanel() {
         return panel;
+    }
+
+    public static Image cargarImagen(String url){
+        Image i = null;
+        try{
+            i= ImageIO.read((new Vector2D(0,0)).getClass().getClassLoader().getResource(url));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return i;
     }
 
     public Lienzo(int width, int height){

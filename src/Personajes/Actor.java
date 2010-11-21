@@ -5,6 +5,7 @@
 
 package Personajes;
 
+import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
@@ -14,17 +15,21 @@ import java.awt.Image;
  */
 public abstract class Actor {
     protected Image imagen;
-    protected int x;
-    protected int y;
-    protected int z;
+    public Vector2D posicion = new Vector2D(0,0);
 
-    public int getZ() {
-        return z;
+    public Actor(Image im,Vector2D posicion){
+        imagen=im;
+        this.posicion=posicion;
     }
 
-    public void setZ(int z) {
-        this.z = z;
+    public Vector2D getPosicion() {
+        return posicion;
     }
+
+    public void setPosicion(Vector2D posicion) {
+        this.posicion = posicion;
+    }
+
 
     public Image getImagen() {
         return imagen;
@@ -34,25 +39,14 @@ public abstract class Actor {
         this.imagen = imagen;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
 
 
-    public void draw(Graphics2D g){
-        g.drawImage(imagen, x, y, null);
+    public void draw(Graphics2D g) {
+        try {
+            g.drawImage(imagen, (int) posicion.x, (int) posicion.y, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public abstract void update();
