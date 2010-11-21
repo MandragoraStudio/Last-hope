@@ -8,7 +8,6 @@ import Personajes.Actor;
 import Personajes.Enemy;
 import Personajes.Tower;
 import Graficos.IVentana;
-import Graficos.Lienzo;
 import Observador.IObservador;
 import Observador.Observador_Mapa;
 import Principal.MouseHandler;
@@ -166,7 +165,7 @@ public class Ventana_Mapa implements IVentana {
 
         g.drawString(torre == null ? "no hay torre" : "si hay torre", 10, 10);
         g.drawString(construir ? "construir" : "no construir", 10, 30);
-        g.drawString("hay " + actores.size() + " torres", 10, 50);
+        g.drawString("hay " + actores.size() + " actores", 10, 50);
 
 
         g.setColor(c);
@@ -174,7 +173,7 @@ public class Ventana_Mapa implements IVentana {
 
     public void sendWave(int n) {
         for (int i = 0; i < 10; i++) {
-            addEnemy(new Enemy(i, 2, 100, 30, new Vector2D(10, 10), "imagenes/mounstrillo.png"));
+            addEnemy(new Enemy(i, 2, 100, 30, new Vector2D(10, -Ventana_Mapa.casillaWidth*i), "imagenes/mounstrillo.png"));
         }
     }
 }

@@ -46,7 +46,7 @@ public class Mapa {
                         y = 0;
                         x = -1;
                     }
-                    if (casillaActual.x + x < 0 || casillaActual.y + y < 0 || casillaActual.x + x > mapa.length || casillaActual.y + y > mapa[0].length) {
+                    if (casillaActual.x + x < 0 || casillaActual.y + y < 0 || casillaActual.y + y >= mapa.length || casillaActual.x + x >= mapa[0].length) {
                         continue;
                     }
                     if (mapa[(int) casillaActual.y + y][(int) casillaActual.x + x] == 0 && !casillaAnterior.equals(new Vector2D(casillaActual.x + x, casillaActual.y + y))) {
@@ -58,7 +58,7 @@ public class Mapa {
                         break;
                     }
                 }
-                if (!casillaActual.equals(casillaSiguiente)) {
+                if (sigue) {
                     break;
                 }
             }

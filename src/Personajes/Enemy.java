@@ -52,6 +52,10 @@ public class Enemy extends Actor {
         if(Ventana_Mapa.getCasilla((int)posicion.x, (int)posicion.y).equals(Ventana_Mapa.map.camino.get(casilla)) ){
               casilla++;
         }
+        if(casilla>=Ventana_Mapa.map.camino.size()){
+            casilla=0;
+            posicion=new Vector2D(-Ventana_Mapa.casillaWidth,-Ventana_Mapa.casillaHeight);
+        }
         Vector2D destino = Ventana_Mapa.map.camino.get(casilla);
         //direccion=posicion.subs(Ventana_Mapa.getCoordenadaCentro((int)destino.x,(int)destino.y));
         direccion=Ventana_Mapa.getCoordenadaCentro((int)destino.x,(int)destino.y).subs(posicion);
