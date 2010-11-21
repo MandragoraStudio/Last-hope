@@ -54,7 +54,7 @@ public class Tower extends Actor{
     @Override
     public void draw(Graphics2D g){
         Color c = g.getColor();
-        g.setColor(Color.PINK);
+        g.setColor(new Color(0.7f,0.5f,0.5f,0.8f));
         g.fillRect((int)posicion.x, (int)posicion.y, Ventana_Mapa.casillaWidth, Ventana_Mapa.casillaHeight);
         g.drawImage(imagen, (int)posicion.x, (int)posicion.y, null);
         
