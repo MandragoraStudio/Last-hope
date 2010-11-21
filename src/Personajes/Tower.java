@@ -10,6 +10,8 @@ import java.awt.Image;
 import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.LinkedList;
+import java.util.List;
 
 
 /**
@@ -50,18 +52,45 @@ public class Tower extends Actor{
     @Override
     public void update() {
         if(enemigoATiro()&&isCargada()){
-
+            ataca(eligeEnemigo(enemigosATiro()));
         }
+    }
+    public void ataca(Enemy e){
+        
+    }
+    public List<Enemy> enemigosATiro(){
+        List<Enemy> dev=new LinkedList<Enemy>();
+        for(Actor a : Ventana_Mapa.actores){
+            if(a instanceof Enemy){
+                Enemy e = (Enemy)a;
+                if(estaAlAlcance(e.posicion)){
+                    dev.add(e);
+                }
+            }
+        }
+        return dev;
+    }
+    public Enemy eligeEnemigo(List<Enemy> enemigos){
+        Enemy dev = enemigos.get(0);
+        for(Enemy e: enemigos){
+            if(e.getCasilla()>dev.getCasilla()){
+                dev=e;
+            }
+        }
+        return dev;
     }
     public boolean enemigoATiro(){
         boolean dev=false;
         for(Actor a:Ventana_Mapa.actores){
-            if(a.posicion.subs(posicion).modulo()<alcance){
+            if(estaAlAlcance(a.posicion)){
                 dev=true;
                 break;
             }
         }
         return dev;
+    }
+    public boolean estaAlAlcance(Vector2D destino){
+        return destino.subs(posicion).modulo()<alcance;
     }
     public boolean isCargada(){
         boolean dev;
