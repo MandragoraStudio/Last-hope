@@ -5,10 +5,11 @@
 package Informacion;
 
 import Graficos.IVentana;
+import Graficos.Lienzo;
+import Principal.Juego;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import sun.font.Font2D;
 
 /**
  *
@@ -30,7 +31,10 @@ public class Ventana_Informacion implements IVentana {
         this.cargar();
     }
 
-  
+    public void cargar() {
+       Lienzo.cargarImagen("a");
+    }
+
 
     public void update() {
     }
@@ -45,10 +49,12 @@ public class Ventana_Informacion implements IVentana {
         g.setColor(Color.WHITE);
         g.setFont( new Font( "SansSerif", Font.BOLD, 12 ) );
         g.drawString("Puntuacion", x+20, y+20);
+        g.drawString(""+Juego.jugador.getPuntuacion(), x+20, y+35);
+        g.drawString("Vida", x+20, y+55);
+        g.drawString(""+Juego.jugador.getVida()+"/"+Juego.jugador.getVidaMax(), x+20, y+70);
 
         //codigo de la ventana a partir de aqui
         
     }
-    public void cargar() {
-    }
+
 }
