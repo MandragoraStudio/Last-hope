@@ -14,8 +14,8 @@ import java.awt.Image;
  */
 public class Pestaña extends Boton{
 
-    public Pestaña(Image up, Image down, String nombre, int x, int y, int width, int height) throws Exception {
-        super(up, down, nombre, x, y, width, height);
+    public Pestaña(Image up, String nombre, int x, int y, int width, int height) throws Exception {
+        super(up, nombre, x, y, width, height);
     }
 
 }

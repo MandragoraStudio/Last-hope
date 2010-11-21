@@ -6,6 +6,7 @@
 package Screens;
 
 import Graficos.Boton;
+import Graficos.BotonGeneral;
 import Graficos.Fondo;
 import Personajes.Actor;
 import java.awt.Graphics2D;
@@ -44,8 +45,8 @@ List<Boton> botones;
                 img2 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro2.png"));
             } catch (Exception e) {
             }
-        botones.add(new Boton(img, img2, "start", 100, 100, img.getWidth(null), img.getHeight(null)));
-        botones.add(new Boton(img, img2, "exit", 800, 450, img.getWidth(null), img.getHeight(null)));
+        botones.add(new BotonGeneral(img, img2, "start", 100, 100, img.getWidth(null), img.getHeight(null)));
+        botones.add(new BotonGeneral(img, img2, "exit", 800, 450, img.getWidth(null), img.getHeight(null)));
     }
     public void update() {
         for(Boton b:botones){

@@ -19,11 +19,11 @@ public class BotonCreadorTorre extends Boton{
     private static Tower t;
 
     public BotonCreadorTorre(Image up, Image down, String nombre, int x, int y, int width, int height) throws Exception {
-        super(up, down, nombre, x, y, width, height);
+        super(up, nombre, x, y, width, height);
     }
 
     public BotonCreadorTorre(Image up, Image down, String nombre, int x, int y, int width, int height, Tower t) throws Exception {
-        super(up, down, nombre, x, y, width, height);
+        super(up, nombre, x, y, width, height);
         BotonCreadorTorre.t=t;
     }
 
