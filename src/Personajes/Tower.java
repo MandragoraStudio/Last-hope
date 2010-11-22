@@ -52,6 +52,7 @@ public class Tower extends Actor {
 
     @Override
     public void update() {
+        boton.update();
         if (enemigoATiro() && isCargada()) {
             ataca(eligeEnemigo(enemigosATiro()));
         }

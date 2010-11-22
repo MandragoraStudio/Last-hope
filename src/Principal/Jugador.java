@@ -87,6 +87,10 @@ public class Jugador implements IJugador {
         this.puntuacion = puntuacion;
     }
 
+    public void agregaPuntos(int n){
+        puntuacion+=n;
+    }
+
     public Integer getVida() {
         return vida;
     }

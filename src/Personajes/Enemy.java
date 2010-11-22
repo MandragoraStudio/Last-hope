@@ -94,10 +94,12 @@ public abstract class Enemy extends Actor {
 
     @Override
     public void update() {
+        boton.update();
         if(vida<0){
             //aqui el enemigo muere!!!
                 Ventana_Mapa.eliminaActor(this);
                 Ventana_Mapa.agregar.add(new Splash(posicion));
+                Juego.jugador.agregaPuntos(this.dano);
             }
         if(Ventana_Mapa.getCasilla((int)posicion.x, (int)posicion.y).equals(Ventana_Mapa.map.camino.get(casilla)) ){
               casilla++;

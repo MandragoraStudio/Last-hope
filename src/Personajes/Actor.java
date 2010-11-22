@@ -5,6 +5,8 @@
 
 package Personajes;
 
+import Graficos.Abotonador;
+import Graficos.Lienzo;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -16,18 +18,24 @@ import java.awt.Image;
 public abstract class Actor {
     protected Image imagen;
     public Vector2D posicion = new Vector2D(0,0);
+    Abotonador boton;
 
     public Actor(Image im,Vector2D posicion){
+        if(im!=null){
         imagen=im;
+        }else{
+            imagen=Lienzo.cargarImagen("imagenes/torrePanel.png");
+        }
         this.posicion=posicion;
+        try{
+        boton=new Abotonador("Actor", imagen.getHeight(null), imagen.getWidth(null), this);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public Vector2D getPosicion() {
         return posicion;
-    }
-
-    public void setPosicion(Vector2D posicion) {
-        this.posicion = posicion;
     }
 
 
@@ -37,6 +45,8 @@ public abstract class Actor {
 
     public void setImagen(Image imagen) {
         this.imagen = imagen;
+        boton.setHeight(imagen.getHeight(null));
+        boton.setWidth(imagen.getWidth(null));
     }
 
 
