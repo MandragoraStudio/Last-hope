@@ -6,6 +6,7 @@ package Personajes;
 
 import Graficos.Lienzo;
 import Mapa.Ventana_Mapa;
+import Principal.Juego;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -104,6 +105,7 @@ public abstract class Enemy extends Actor {
         if(casilla>=Ventana_Mapa.map.camino.size()){
             casilla=0;
             posicion=new Vector2D(-Ventana_Mapa.casillaWidth,-Ventana_Mapa.casillaHeight);
+            Juego.jugador.restaVida(dano);
         }
         Vector2D destino = Ventana_Mapa.map.camino.get(casilla);
         //direccion=posicion.subs(Ventana_Mapa.getCoordenadaCentro((int)destino.x,(int)destino.y));

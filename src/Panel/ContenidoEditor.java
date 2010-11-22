@@ -11,6 +11,8 @@ import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -59,7 +61,9 @@ public class ContenidoEditor extends Contenido {
 
     public static void creaBotonCreador() {
         try {
-            Tower t = new Tower(0, 5, 2, 500, 6, 1000, 0, 34, new Vector2D(MouseHandler.getX(), MouseHandler.getY()), img4);
+             Map<String,Integer> coste=new HashMap<String,Integer>();
+            coste.put("rodio", 20);
+            Tower t = new Tower(0, 5, 2, 500, 6, 1000, 0, coste, new Vector2D(MouseHandler.getX(), MouseHandler.getY()), img4);
             Ventana_Panel.getFondo().get("fondoTorres").addBotonPorDefecto(new BotonCreadorTorre(img4, img4, "creaTorre", Ventana_Panel.getFondo().get("fondoTorres").calculaX(), Ventana_Panel.getFondo().get("fondoTorres").calculaY(), img4.getWidth(null), img4.getHeight(null), t));
         } catch (Exception ex) {
             Logger.getLogger(ContenidoEditor.class.getName()).log(Level.SEVERE, null, ex);

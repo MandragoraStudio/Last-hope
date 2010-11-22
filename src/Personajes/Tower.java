@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -26,12 +27,12 @@ public class Tower extends Actor {
     private long ultimoDisparo;
     private long tRecarga;
     private float dañoPasivo;
-    private float coste;
     private Image im;
     private int atacando = 0;
     private Enemy objetivo;
+    private Map<String,Integer> coste;
 
-    public Tower(int id, float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, float coste, Vector2D posicion, Image im) {
+    public Tower(int id, float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Vector2D posicion, Image im) {
         super(null, posicion);
         this.id = id;
         this.ataque = ataque;
@@ -61,7 +62,7 @@ public class Tower extends Actor {
         if (e == null) {
             return;
         }
-        atacando = 10;
+        atacando = 5;
         objetivo = e;
         if (ataque > 0) {
             float d = ataque - e.getArmadura();
@@ -129,8 +130,9 @@ public class Tower extends Actor {
         g.setColor(new Color(0.7f, 0.5f, 0.5f, 0.8f));
         g.fillRect((int) posicion.x, (int) posicion.y, Ventana_Mapa.casillaWidth, Ventana_Mapa.casillaHeight);
         g.drawImage(imagen, (int) posicion.x, (int) posicion.y, null);
-        if (atacando > 0) {
+        if (atacando > 0&&estaAlAlcance(objetivo.posicion)) {
             g.setColor(Color.red);
+
             g.drawLine((int) objetivo.posicion.x + objetivo.getImagen().getWidth(null) / 2, (int) objetivo.posicion.y + objetivo.getImagen().getHeight(null) / 2, (int) posicion.x + Ventana_Mapa.casillaWidth / 2, (int) posicion.y + Ventana_Mapa.casillaHeight / 2);
             atacando--;
         }
@@ -180,13 +182,11 @@ public class Tower extends Actor {
         this.ataque = ataque;
     }
 
-    public float getCoste() {
+    public Map<String, Integer> getCoste() {
         return coste;
     }
 
-    public void setCoste(float coste) {
-        this.coste = coste;
-    }
+    
 
     public float getDañoPasivo() {
         return dañoPasivo;

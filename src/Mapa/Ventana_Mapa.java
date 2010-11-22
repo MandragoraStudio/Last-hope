@@ -122,7 +122,6 @@ public class Ventana_Mapa implements IVentana {
         //pintamos los proyectiles ahora?
 
         //aqui datos de debug
-
         pintaDatosDebug(g);
 
     }
@@ -201,8 +200,8 @@ public class Ventana_Mapa implements IVentana {
     }
 
     public void sendWave(int n) {
-        for (int i = 0; i < 10; i++) {
-            addEnemy(new EBasico(1,new Vector2D(10, -Ventana_Mapa.casillaWidth*i)));
+        for (int i = 0; i < 20; i++) {
+            addEnemy(new EBasico(n,new Vector2D(10, (int)(-Ventana_Mapa.casillaWidth*1.3*i))));
         }
     }
 }
