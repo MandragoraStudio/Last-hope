@@ -10,6 +10,7 @@ import Principal.Juego;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Image;
 
 /**
  *
@@ -21,6 +22,10 @@ public class Ventana_Informacion implements IVentana {
     private int HEIGHT;
     private int x;
     private int y;
+    private Image infIzq;
+    private Image infCtr;
+    private Image infDr;
+
     
     public Ventana_Informacion(int WIDTH, int HEIGHT, int x, int y) {
         //los parametros magicos
@@ -32,7 +37,9 @@ public class Ventana_Informacion implements IVentana {
     }
 
     public void cargar() {
-//       Lienzo.cargarImagen("a");
+       infIzq = Lienzo.cargarImagen("imagenes/informacionIzq.png");
+       infCtr = Lienzo.cargarImagen("imagenes/informacionCtr.png");
+       infDr = Lienzo.cargarImagen("imagenes/informacionDr.png");
     }
 
 
@@ -40,20 +47,23 @@ public class Ventana_Informacion implements IVentana {
     }
 
     public void draw(Graphics2D g) {
-        
-        g.setColor(Color.YELLOW);
-        g.fillRect(x, y, WIDTH, HEIGHT);
-        g.setColor(Color.GRAY);
-        g.fillRect(x,y, 100+x,HEIGHT);
-        g.fillRect(WIDTH-150,y, WIDTH,HEIGHT);
-        g.setColor(Color.WHITE);
-        g.setFont( new Font( "SansSerif", Font.BOLD, 12 ) );
-        g.drawString("Puntuacion", x+20, y+20);
-        g.drawString(""+Juego.jugador.getPuntuacion(), x+20, y+35);
-        g.drawString("Vida", x+20, y+55);
-        g.drawString(""+Juego.jugador.getVida()+"/"+Juego.jugador.getVidaMax(), x+20, y+70);
 
-        //codigo de la ventana a partir de aqui
+        //Cambiamos el tipo de letra
+        g.setFont( new Font( "SansSerif", Font.BOLD, 12 ) );
+        //Barra informacion imagenes de fondo
+        g.drawImage(infIzq, x, y,null);
+        g.drawImage(infCtr, x+100, y,null);
+        g.drawImage(infDr, WIDTH-150, y,null);
+        //Barra informacion Izquierda
+        g.setColor(Color.WHITE);
+        g.drawString("Puntuacion", x+25, y+20);
+        g.drawString("Vida", x+25, y+60);
+        g.setColor(Color.BLACK);
+        g.drawString(""+Juego.jugador.getPuntuacion(), x+35, y+40);
+        g.drawString(""+Juego.jugador.getVida()+"/"+Juego.jugador.getVidaMax(), x+32, y+78);
+        //Barra informacion Centro (Atributos)
+
+        //Barra informacion derecha (Informacion)
         
     }
 
