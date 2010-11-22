@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Personajes;
 
 import Mapa.Ventana_Mapa;
@@ -13,12 +12,11 @@ import java.awt.Graphics2D;
 import java.util.LinkedList;
 import java.util.List;
 
-
 /**
  *
  * @author Jose
  */
-public class Tower extends Actor{
+public class Tower extends Actor {
 
     private int id;
     private float ataque;
@@ -30,13 +28,16 @@ public class Tower extends Actor{
     private float dañoPasivo;
     private float coste;
     private Image im;
+    private int atacando = 0;
+    private Enemy objetivo;
 
     public Tower(int id, float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, float coste, Vector2D posicion, Image im) {
-        super(null,posicion);
+        super(null, posicion);
         this.id = id;
         this.ataque = ataque;
         this.area = area;
-        this.alcance=alcance;
+        //this.alcance=alcance;
+        this.alcance = 200;
         this.ralentizacion = ralentizacion;
         this.ultimoDisparo = System.currentTimeMillis();
         this.tRecarga = tRecarga;
@@ -47,65 +48,94 @@ public class Tower extends Actor{
 
 
     }
-    
 
     @Override
     public void update() {
-        if(enemigoATiro()&&isCargada()){
+        if (enemigoATiro() && isCargada()) {
             ataca(eligeEnemigo(enemigosATiro()));
         }
+
     }
-    public void ataca(Enemy e){
-        
+
+    public void ataca(Enemy e) {
+        if (e == null) {
+            return;
+        }
+        atacando = 10;
+        objetivo = e;
+        if (ataque > 0) {
+            float d = ataque - e.getArmadura();
+            if (d < 1) {
+                d = 1;
+            }
+            e.quitaVida(d);
+
+        }
+        ultimoDisparo = System.currentTimeMillis();
     }
-    public List<Enemy> enemigosATiro(){
-        List<Enemy> dev=new LinkedList<Enemy>();
-        for(Actor a : Ventana_Mapa.actores){
-            if(a instanceof Enemy){
-                Enemy e = (Enemy)a;
-                if(estaAlAlcance(e.posicion)){
+
+    public List<Enemy> enemigosATiro() {
+        List<Enemy> dev = new LinkedList<Enemy>();
+        for (Actor a : Ventana_Mapa.actores) {
+            if (a instanceof Enemy) {
+                Enemy e = (Enemy) a;
+                if (estaAlAlcance(e.posicion)) {
                     dev.add(e);
                 }
             }
         }
         return dev;
     }
-    public Enemy eligeEnemigo(List<Enemy> enemigos){
-        Enemy dev = enemigos.get(0);
-        for(Enemy e: enemigos){
-            if(e.getCasilla()>dev.getCasilla()){
-                dev=e;
+
+    public Enemy eligeEnemigo(List<Enemy> enemigos) {
+        Enemy dev = null;
+        if (enemigos.size() > 0) {
+            dev = enemigos.get(0);
+        }
+        for (Enemy e : enemigos) {
+            if (e.getCasilla() > dev.getCasilla()) {
+                dev = e;
             }
         }
         return dev;
     }
-    public boolean enemigoATiro(){
-        boolean dev=false;
-        for(Actor a:Ventana_Mapa.actores){
-            if(estaAlAlcance(a.posicion)){
-                dev=true;
-                break;
+
+    public boolean enemigoATiro() {
+        boolean dev = false;
+        for (Actor a : Ventana_Mapa.actores) {
+            if (a instanceof Enemy) {
+                if (estaAlAlcance(a.posicion)) {
+                    dev = true;
+                    break;
+                }
             }
         }
         return dev;
     }
-    public boolean estaAlAlcance(Vector2D destino){
-        return destino.subs(posicion).modulo()<alcance;
+
+    public boolean estaAlAlcance(Vector2D destino) {
+        return destino.subs(posicion).modulo() < alcance;
     }
-    public boolean isCargada(){
+
+    public boolean isCargada() {
         boolean dev;
-        dev=System.currentTimeMillis()- ultimoDisparo>tRecarga;
+        dev = System.currentTimeMillis() - ultimoDisparo > tRecarga;
         return dev;
     }
 
     @Override
-    public void draw(Graphics2D g){
+    public void draw(Graphics2D g) {
         Color c = g.getColor();
-        g.setColor(new Color(0.7f,0.5f,0.5f,0.8f));
-        g.fillRect((int)posicion.x, (int)posicion.y, Ventana_Mapa.casillaWidth, Ventana_Mapa.casillaHeight);
-        g.drawImage(imagen, (int)posicion.x, (int)posicion.y, null);
-        
-        //g.setColor(Color.black);
+        g.setColor(new Color(0.7f, 0.5f, 0.5f, 0.8f));
+        g.fillRect((int) posicion.x, (int) posicion.y, Ventana_Mapa.casillaWidth, Ventana_Mapa.casillaHeight);
+        g.drawImage(imagen, (int) posicion.x, (int) posicion.y, null);
+        if (atacando > 0) {
+            g.setColor(Color.red);
+            g.drawLine((int) objetivo.posicion.x + objetivo.getImagen().getWidth(null) / 2, (int) objetivo.posicion.y + objetivo.getImagen().getHeight(null) / 2, (int) posicion.x + Ventana_Mapa.casillaWidth / 2, (int) posicion.y + Ventana_Mapa.casillaHeight / 2);
+            atacando--;
+        }
+        g.setColor(Color.black);
+        //g.drawString("trecarga " + tRecarga, posicion.x, posicion.y + Ventana_Mapa.casillaHeight / 2);
         //g.drawString("aqui va una torre", posicion.x, posicion.y+Ventana_Mapa.casillaHeight/2);
 
 
@@ -120,20 +150,18 @@ public class Tower extends Actor{
         this.posicion = posicion;
     }
 
-    public void dispara(){
-
+    public void dispara() {
     }
 
-    public Tower clone(){
+    public Tower clone() {
         Tower dev;
-        Vector2D posicion = new Vector2D (this.posicion.x,this.posicion.y);
+        Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
         Image ima = im;
-        dev= new Tower(id, ataque, area, ralentizacion, ultimoDisparo, tRecarga, dañoPasivo, coste, posicion, ima);
+        dev = new Tower(id, ataque, area, ralentizacion, ultimoDisparo, tRecarga, dañoPasivo, coste, posicion, ima);
         return dev;
     }
 
-    public void rotarTorre(int x, int y){
-
+    public void rotarTorre(int x, int y) {
     }
 
     public int getArea() {
@@ -204,9 +232,7 @@ public class Tower extends Actor{
         return ultimoDisparo;
     }
 
-   /* public void setUltimoDisparo(long ultimoDisparo) {
-        this.ultimoDisparo = ultimoDisparo;
+    /* public void setUltimoDisparo(long ultimoDisparo) {
+    this.ultimoDisparo = ultimoDisparo;
     }*/
-
-
 }

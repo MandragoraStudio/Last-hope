@@ -11,11 +11,13 @@ import Personajes.Tower;
 import Graficos.IVentana;
 import Observador.IObservador;
 import Observador.Observador_Mapa;
+import Personajes.Splash;
 import Principal.MouseHandler;
 import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -32,6 +34,8 @@ public class Ventana_Mapa implements IVentana {
     public static int casillaWidth;
     public static Mapa map;
     public static List<Actor> actores;
+    public static List<Actor> eliminar;
+    public static List<Actor> agregar;
     public static boolean construir = false;
     public static Tower torre = null;
     List<IObservador> observadores;
@@ -41,6 +45,8 @@ public class Ventana_Mapa implements IVentana {
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
         actores = new ArrayList<Actor>();
+        eliminar = new LinkedList<Actor>();
+        agregar = new LinkedList<Actor>();
         this.x = x;
         this.y = y;
         this.cargar();
@@ -50,6 +56,10 @@ public class Ventana_Mapa implements IVentana {
 
     public void attach(IObservador o) {
         observadores.add(o);
+    }
+
+    public static void eliminaActor(Actor a){
+        eliminar.add(a);
     }
 
     public static Vector2D getCasilla(int x1, int y1) {
@@ -65,6 +75,9 @@ public class Ventana_Mapa implements IVentana {
     }
     public static Vector2D getCoordenadaCentro(int x, int y) {
         return new Vector2D(x * casillaWidth + casillaWidth/2, y * casillaHeight + casillaHeight /2);
+    }
+    public static Vector2D getCoordenadaCentro(Vector2D posicion) {
+        return new Vector2D(posicion.x * casillaWidth + casillaWidth/2, posicion.y * casillaHeight + casillaHeight /2);
     }
 
     public boolean casillaValidaTorre(Vector2D casilla) {
@@ -95,10 +108,16 @@ public class Ventana_Mapa implements IVentana {
             }
         }
 
+        // cosas del suelo
+        for (Actor a : actores) {
+            if((a instanceof Splash))
+                a.draw(g);
+        }
         //ahora pintariamos unas torres...
         //y ahora pintamos unos enemiguillos...
         for (Actor a : actores) {
-            a.draw(g);
+            if(!(a instanceof Splash))
+                a.draw(g);
         }
         //pintamos los proyectiles ahora?
 
@@ -117,9 +136,18 @@ public class Ventana_Mapa implements IVentana {
     }
 
     public void update() {
+        for(Actor a : agregar){
+            actores.add(a);
+        }
+        agregar.clear();
         for (Actor a : actores) {
             a.update();
         }
+        for(Actor a : eliminar){
+            if(actores.contains(a))
+                actores.remove(a);
+        }
+        eliminar.clear();
         if (isPulsado()) {
             for (IObservador o : observadores) {
                 o.update("");

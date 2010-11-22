@@ -25,6 +25,42 @@ public abstract class Enemy extends Actor {
     private int dano;
     private int casilla;
 
+    public float getArmadura() {
+        return armadura;
+    }
+
+    public void quitaVida(float n){
+        vida-=n;
+    }
+
+    public int getDano() {
+        return dano;
+    }
+
+    public Vector2D getDireccion() {
+        return direccion;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public float getRegeneracion() {
+        return regeneracion;
+    }
+
+    public float getVelocidad() {
+        return velocidad;
+    }
+
+    public float getVida() {
+        return vida;
+    }
+
+    public void setVida(float vida) {
+        this.vida = vida;
+    }
+
     public Enemy(int id, float velocidad, float vida, int dano, float armadura,float regeneracion, Vector2D posicion, String imagen) {
         super(Lienzo.cargarImagen(imagen), posicion);
         this.id = id;
@@ -57,6 +93,11 @@ public abstract class Enemy extends Actor {
 
     @Override
     public void update() {
+        if(vida<0){
+            //aqui el enemigo muere!!!
+                Ventana_Mapa.eliminaActor(this);
+                Ventana_Mapa.agregar.add(new Splash(posicion));
+            }
         if(Ventana_Mapa.getCasilla((int)posicion.x, (int)posicion.y).equals(Ventana_Mapa.map.camino.get(casilla)) ){
               casilla++;
         }

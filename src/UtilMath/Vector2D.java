@@ -92,4 +92,8 @@ public class Vector2D {
         }*/
         return dev;
     }
+
+    public float getAngle(Vector2D v){
+        return Math.abs(getAngle()-v.getAngle());
+    }
 }

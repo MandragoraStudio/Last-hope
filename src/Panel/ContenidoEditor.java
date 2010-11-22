@@ -59,7 +59,7 @@ public class ContenidoEditor extends Contenido {
 
     public static void creaBotonCreador() {
         try {
-            Tower t = new Tower(0, 5, 2, 2, 6, 3, 0, 34, new Vector2D(MouseHandler.getX(), MouseHandler.getY()), img4);
+            Tower t = new Tower(0, 5, 2, 500, 6, 1000, 0, 34, new Vector2D(MouseHandler.getX(), MouseHandler.getY()), img4);
             Ventana_Panel.getFondo().get("fondoTorres").addBotonPorDefecto(new BotonCreadorTorre(img4, img4, "creaTorre", Ventana_Panel.getFondo().get("fondoTorres").calculaX(), Ventana_Panel.getFondo().get("fondoTorres").calculaY(), img4.getWidth(null), img4.getHeight(null), t));
         } catch (Exception ex) {
             Logger.getLogger(ContenidoEditor.class.getName()).log(Level.SEVERE, null, ex);
