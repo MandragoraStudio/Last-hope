@@ -54,6 +54,10 @@ public abstract class Enemy extends Actor {
         return velocidad;
     }
 
+    public void setVelocidad(float velocidad) {
+        this.velocidad = velocidad;
+    }
+
     public float getVida() {
         return vida;
     }

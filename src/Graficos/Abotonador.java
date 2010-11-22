@@ -13,7 +13,7 @@ import java.awt.Graphics2D;
  * @author Antonio Garcia
  */
 public class Abotonador extends Boton {
-    private Actor sujeto;
+    public Actor sujeto;
     public Abotonador(String nombre,  int width, int height, Actor sujeto) throws Exception {
         super(null, nombre,(int)sujeto.posicion.x,(int)sujeto.posicion.y,  width,  height);
         this.sujeto=sujeto;

@@ -3,7 +3,7 @@
 package Observador;
 
 import Graficos.Abotonador;
-import Personajes.Actor;
+import Personajes.Enemy;
 
 /**
  *
@@ -17,6 +17,10 @@ public class Observador_Abotonados implements IObservador{
     }
     public void update(String comando) {
         System.out.println("funciono!!!!!");
+        if(sujeto.sujeto instanceof Enemy){
+            Enemy e = (Enemy)sujeto.sujeto;
+            e.setVelocidad(e.getVelocidad()*1.5f);
+        }
     }
 
 
