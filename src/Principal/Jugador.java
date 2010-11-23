@@ -117,7 +117,7 @@ public class Jugador implements IJugador {
         recursos.put("cromo",recursos.get("cromo")-(r.containsKey("cromo")?r.get("cromo"):0));
     }
     
-    public boolean suficientesRecursos(Map<String,Integer> r){
+    public static boolean suficientesRecursos(Map<String,Integer> r){
         boolean dev = true;
         //TODO: un metodo que devuelva true si hay suficientes recursos y false en caso contrario
         return dev;

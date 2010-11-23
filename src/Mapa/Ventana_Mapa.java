@@ -12,7 +12,7 @@ import Graficos.IVentana;
 import Observador.IObservador;
 import Observador.Observador_Mapa;
 import Personajes.Splash;
-import Principal.MouseHandler;
+import Handlers.MouseHandler;
 import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Graphics2D;

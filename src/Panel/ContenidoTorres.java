@@ -8,6 +8,10 @@ package Panel;
 import Graficos.Boton;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -17,7 +21,16 @@ public class ContenidoTorres extends Contenido{
     
     public ContenidoTorres(String url, Vector2D posicion){
         super(url, posicion);
-    }
+        Image img6;
+        try {
+            img6 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro.png"));
+            Image img7 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro2.png"));
+            addBoton(img6, img7, "Menu", getImagen().getWidth(null)-img6.getWidth(null), getImagen().getHeight(null)-img6.getHeight(null));
+
+        } catch (Exception ex) {
+            Logger.getLogger(ContenidoTorres.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         }
     
     @Override
     public void addBotonPorDefecto(Boton b) throws Exception{

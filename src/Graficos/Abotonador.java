@@ -4,7 +4,7 @@ package Graficos;
 
 import Observador.Observador_Abotonados;
 import Personajes.Actor;
-import Principal.MouseHandler;
+import Handlers.MouseHandler;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 

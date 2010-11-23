@@ -19,7 +19,6 @@ import java.util.Map;
  */
 public class Tower extends Actor {
 
-    private int id;
     private float ataque;
     private int area;
     private float alcance;
@@ -32,9 +31,8 @@ public class Tower extends Actor {
     private Enemy objetivo;
     private Map<String,Integer> coste;
 
-    public Tower(int id, float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Vector2D posicion, Image im) {
+    public Tower(float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Vector2D posicion, Image im) {
         super(null, posicion);
-        this.id = id;
         this.ataque = ataque;
         this.area = area;
         //this.alcance=alcance;
@@ -44,8 +42,23 @@ public class Tower extends Actor {
         this.tRecarga = tRecarga;
         this.dañoPasivo = dañoPasivo;
         this.coste = coste;
-
         this.im = im;
+
+
+    }
+    //constructor de prueba, borrar cuando acaben las pruebas (by jose)
+    public Tower(float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Image im) {
+        super(null, new Vector2D(0, 0));
+        this.ataque = ataque;
+        this.area = area;
+        this.alcance=alcance;
+        this.alcance = 200;
+        this.ralentizacion = ralentizacion;
+        this.ultimoDisparo = System.currentTimeMillis();
+        this.tRecarga = tRecarga;
+        this.dañoPasivo = dañoPasivo;
+        this.im = im;
+        this.coste=coste;
 
 
     }
@@ -160,7 +173,7 @@ public class Tower extends Actor {
         Tower dev;
         Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
         Image ima = im;
-        dev = new Tower(id, ataque, area, ralentizacion, ultimoDisparo, tRecarga, dañoPasivo, coste, posicion, ima);
+        dev = new Tower(ataque, area, ralentizacion, ultimoDisparo, tRecarga, dañoPasivo, coste, posicion, ima);
         return dev;
     }
 
@@ -195,14 +208,6 @@ public class Tower extends Actor {
 
     public void setDañoPasivo(float dañoPasivo) {
         this.dañoPasivo = dañoPasivo;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Image getIm() {

@@ -5,7 +5,7 @@
 
 package Principal;
 
-import Graficos.Fondo;
+import Handlers.MouseHandler;
 import Screens.GamePlayScreen;
 import Screens.IScreen;
 import Graficos.Lienzo;

@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package Principal;
+package Handlers;
 
 import Graficos.Lienzo;
 import java.awt.event.MouseAdapter;

@@ -8,7 +8,7 @@ package Panel;
 
 import Graficos.IVentana;
 import Personajes.Trap;
-import Principal.MouseHandler;
+import Handlers.MouseHandler;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -84,16 +84,6 @@ public class Ventana_Panel implements IVentana {
             Contenido c3=new ContenidoTraps("imagenes/fondoTraps.png", new Vector2D(this.x, this.y));
             //cargamos las imagenes de los botones
             Image img4 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/torrePanel.png"));
-            Image img5 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/atributos.png"));
-            Image img6 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro.png"));
-            Image img7 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro2.png"));
-            //cargamos los botones del contenido 1
-            c.addBoton(img6, img7, "Menu", c.getImagen().getWidth(null)-img6.getWidth(null), c.getImagen().getHeight(null)-img6.getHeight(null));
-            //cargamos los botones del contenido 2
-            c2.addBotonPorDefecto(img5, "Atributo");
-            c2.addBotonPorDefecto(img5, "Atributo");
-            c2.addBotonPorDefecto(img5, "Atributo");
-            c2.addBoton(img6, img7, "creaBotonCreador", c2.getImagen().getWidth(null)-img6.getWidth(null), c2.getImagen().getHeight(null)-img6.getHeight(null));
             //cargamos los botones del contenido 3
             c3.addBotonPorDefecto(new BotonCreadorTrap(img4, img4, "creaTrap", c3.calculaX(), c3.calculaY(), img4.getWidth(null), img4.getHeight(null), new Trap(0, 5, 2, 3, 0, 34, new Vector2D(MouseHandler.getX(), MouseHandler.getY()), img4)));
             //metemos los contenidos en la lista de fondos
@@ -103,6 +93,7 @@ public class Ventana_Panel implements IVentana {
             //establecemos el fondo actual
             fondoActual=fondo.get("fondoTorres");
             } catch (Exception e) {
+                System.out.println(e.getStackTrace());
             }
         
     }

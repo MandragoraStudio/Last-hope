@@ -4,7 +4,7 @@ package Observador;
 
 import Mapa.Ventana_Mapa;
 import Principal.Juego;
-import Principal.MouseHandler;
+import Handlers.MouseHandler;
 
 /**
  *

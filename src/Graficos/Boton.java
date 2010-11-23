@@ -6,7 +6,7 @@ package Graficos;
 
 import Observador.IObservador;
 import Observador.Observador;
-import Principal.MouseHandler;
+import Handlers.MouseHandler;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;

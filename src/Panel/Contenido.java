@@ -50,8 +50,6 @@ public class Contenido extends Fondo {
         for(Boton b: this.getBotones()){
             b.draw(g);
         }
-
-
     }
 
     public List<Boton> getBotonesPorDefecto() {

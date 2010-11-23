@@ -10,12 +10,16 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -23,8 +27,9 @@ import javax.swing.JPanel;
  */
 public class Lienzo extends Canvas {
     public BufferStrategy strategy;
-    JFrame frame;
-    JPanel panel;
+    public JFrame frame;
+    public JPanel panel;
+    private JTextField texto;
     public JPanel getPanel() {
         return panel;
     }
@@ -58,7 +63,6 @@ public class Lienzo extends Canvas {
         setBounds(0,0,width,height);
         panel.add(this);
         setIgnoreRepaint(true);
-
         frame.pack();
         frame.setVisible(true);
 
