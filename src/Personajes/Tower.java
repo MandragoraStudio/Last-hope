@@ -59,8 +59,6 @@ public class Tower extends Actor {
         this.dañoPasivo = dañoPasivo;
         this.im = im;
         this.coste=coste;
-
-
     }
 
     @Override
