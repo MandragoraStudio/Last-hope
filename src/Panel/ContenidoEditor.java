@@ -55,7 +55,7 @@ public class ContenidoEditor extends Contenido {
         addBotonPorDefecto(fondo, "Penetración");
         addBoton(img6, img7, "creaBotonCreador", getImagen().getWidth(null) - img6.getWidth(null), getImagen().getHeight(null) - img6.getHeight(null));
 
-        atributos.put("Nombre", " ");
+        atributos.put("Nombre", "-Nombre aqui-");
         atributos.put("Daño", "0");
         atributos.put("Rango", "0");
         atributos.put("Área de daño", "0");
