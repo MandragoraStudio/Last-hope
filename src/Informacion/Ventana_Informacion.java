@@ -4,9 +4,14 @@
  */
 package Informacion;
 
+import Enemigos.EBasico;
 import Graficos.IVentana;
 import Graficos.Lienzo;
+import Personajes.Actor;
+import Personajes.Enemy;
+import Personajes.Tower;
 import Principal.Juego;
+import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -25,6 +30,10 @@ public class Ventana_Informacion implements IVentana {
     private Image infIzq;
     private Image infCtr;
     private Image infDr;
+
+    //private Actor ac;
+    //creado de prueba
+    private Actor ac=new EBasico(1, Vector2D.zero);
 
     
     public Ventana_Informacion(int WIDTH, int HEIGHT, int x, int y) {
@@ -46,6 +55,10 @@ public class Ventana_Informacion implements IVentana {
     public void update() {
     }
 
+    public void obserbaActor(Actor ac){
+        this.ac=ac;
+    }
+
     public void draw(Graphics2D g) {
 
         //Cambiamos el tipo de letra
@@ -62,9 +75,35 @@ public class Ventana_Informacion implements IVentana {
         g.drawString(""+Juego.jugador.getPuntuacion(), x+35, y+40);
         g.drawString(""+Juego.jugador.getVida()+"/"+Juego.jugador.getVidaMax(), x+32, y+78);
         //Barra informacion Centro (Atributos)
-
+        g.drawString("Uranio",x+150, y+40);
+        g.drawString(""+Juego.jugador.getRecursos().get("uranio"), x+150, y+70);
+        g.drawString("Rodio",x+250, y+40);
+        g.drawString(""+Juego.jugador.getRecursos().get("rodio"), x+250, y+70);
+        g.drawString("Grafeno",x+350, y+40);
+        g.drawString(""+Juego.jugador.getRecursos().get("grafeno"), x+350, y+70);
+        g.drawString("Radio",x+450, y+40);
+        g.drawString(""+Juego.jugador.getRecursos().get("radio"), x+450, y+70);
+        g.drawString("Cromo",x+550, y+40);
+        g.drawString(""+Juego.jugador.getRecursos().get("cromo"), x+550, y+70);
+        g.drawString("Energia",x+650, y+40);
+        g.drawString(""+Juego.jugador.getEnergia()+"/"+Juego.jugador.getEnergiaMax(), x+650, y+70);
+        g.drawString("Oleada",x+750, y+40);
+        g.drawString("??", x+750, y+70);
         //Barra informacion derecha (Informacion)
-        
+        if(ac!=null){
+         g.drawImage(ac.getImagen(), x+967, y+40,null);
+         if(ac instanceof Enemy){
+            Enemy e =(Enemy)ac;
+            g.drawString("Vida: "+e.getVida(), x+870, y+40);
+            g.drawString("Armadura: "+e.getArmadura(), x+870, y+60);
+            g.drawString("Daño: "+e.getDano(), x+870, y+80);
+         }else if (ac instanceof Tower){
+            Tower t = (Tower)ac;
+            g.drawString("Ataque: "+t.getAtaque(), x+900, y+40);
+            g.drawString("Alcanze: "+t.getArea(), x+900, y+60);
+            g.drawString("Velocidad: ??", x+900, y+70);
+         }
+        }
     }
 
 }
