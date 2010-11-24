@@ -33,7 +33,7 @@ public class Ventana_Informacion implements IVentana {
 
     //private Actor ac;
     //creado de prueba
-    private Actor ac=new EBasico(1, Vector2D.zero);
+    public static Actor ac=null;
 
     
     public Ventana_Informacion(int WIDTH, int HEIGHT, int x, int y) {
@@ -90,7 +90,12 @@ public class Ventana_Informacion implements IVentana {
         g.drawString("Oleada",x+750, y+40);
         g.drawString("??", x+750, y+70);
         //Barra informacion derecha (Informacion)
-        if(ac!=null){
+        if(ac==null){
+            //TODO
+            //esto hay que cambiarlo por una informacion vacia por defecto!!
+
+            ac=new EBasico(1, Vector2D.zero);
+        }
          g.drawImage(ac.getImagen(), x+967, y+40,null);
          if(ac instanceof Enemy){
             Enemy e =(Enemy)ac;
@@ -103,7 +108,7 @@ public class Ventana_Informacion implements IVentana {
             g.drawString("Alcanze: "+t.getArea(), x+900, y+60);
             g.drawString("Velocidad: ??", x+900, y+70);
          }
-        }
+        
     }
 
 }

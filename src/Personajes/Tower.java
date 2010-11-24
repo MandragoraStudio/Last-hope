@@ -33,13 +33,15 @@ public class Tower extends Actor {
 
     public Tower(float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Vector2D posicion, Image im) {
         super(null, posicion);
-        this.ataque = ataque;
+        //this.ataque = ataque;
+        this.ataque=20;
         this.area = area;
         //this.alcance=alcance;
         this.alcance = 200;
         this.ralentizacion = ralentizacion;
         this.ultimoDisparo = System.currentTimeMillis();
-        this.tRecarga = tRecarga;
+        //this.tRecarga = tRecarga;
+        this.tRecarga=3000;
         this.dañoPasivo = dañoPasivo;
         this.coste = coste;
         this.im = im;

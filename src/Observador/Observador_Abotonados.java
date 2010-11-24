@@ -3,6 +3,7 @@
 package Observador;
 
 import Graficos.Abotonador;
+import Informacion.Ventana_Informacion;
 import Personajes.Enemy;
 
 /**
@@ -16,10 +17,9 @@ public class Observador_Abotonados implements IObservador{
         sujeto.Atach(this);
     }
     public void update(String comando) {
-        System.out.println("funciono!!!!!");
         if(sujeto.sujeto instanceof Enemy){
             Enemy e = (Enemy)sujeto.sujeto;
-            e.setVelocidad(e.getVelocidad()*1.5f);
+            Ventana_Informacion.ac=e;
         }
     }
 
