@@ -20,7 +20,7 @@ import java.util.Map;
 public class Tower extends Actor {
 
     private float ataque;
-    private int area;
+    private float area;
     private float alcance;
     private float ralentizacion;
     private long ultimoDisparo;
@@ -32,7 +32,7 @@ public class Tower extends Actor {
     private Enemy objetivo;
     private Map<String,Integer> coste;
 
-    public Tower(float ataque, float penetracion, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Vector2D posicion, Image im) {
+    public Tower(float ataque, float penetracion, float area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Vector2D posicion, Image im) {
         super(null, posicion);
         this.ataque = ataque;
         this.penetracion = penetracion;
@@ -44,23 +44,7 @@ public class Tower extends Actor {
         this.dañoPasivo = dañoPasivo;
         this.coste = coste;
         this.im = im;
-
-
     }
-    //constructor de prueba, borrar cuando acaben las pruebas (by jose)
-    public Tower(float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Image im) {
-        super(null, new Vector2D(0, 0));
-        this.ataque = ataque;
-        this.area = area;
-        this.alcance=alcance;
-        this.ralentizacion = ralentizacion;
-        this.ultimoDisparo = System.currentTimeMillis();
-        this.tRecarga = tRecarga;
-        this.dañoPasivo = dañoPasivo;
-        this.im = im;
-        this.coste=coste;
-    }
-
     @Override
     public void update() {
         boton.update();
@@ -178,11 +162,11 @@ public class Tower extends Actor {
     public void rotarTorre(int x, int y) {
     }
 
-    public int getArea() {
+    public float getArea() {
         return area;
     }
 
-    public void setArea(int area) {
+    public void setArea(float area) {
         this.area = area;
     }
 
