@@ -24,6 +24,7 @@ public class Tower extends Actor {
     private float alcance;
     private float ralentizacion;
     private long ultimoDisparo;
+    private float penetracion;
     private long tRecarga;
     private float dañoPasivo;
     private Image im;
@@ -31,17 +32,15 @@ public class Tower extends Actor {
     private Enemy objetivo;
     private Map<String,Integer> coste;
 
-    public Tower(float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Vector2D posicion, Image im) {
+    public Tower(float ataque, float penetracion, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Vector2D posicion, Image im) {
         super(null, posicion);
-        //this.ataque = ataque;
-        this.ataque=20;
+        this.ataque = ataque;
+        this.penetracion = penetracion;
         this.area = area;
-        //this.alcance=alcance;
-        this.alcance = 200;
+        this.alcance=alcance;
         this.ralentizacion = ralentizacion;
         this.ultimoDisparo = System.currentTimeMillis();
-        //this.tRecarga = tRecarga;
-        this.tRecarga=3000;
+        this.tRecarga = tRecarga;
         this.dañoPasivo = dañoPasivo;
         this.coste = coste;
         this.im = im;
@@ -49,19 +48,18 @@ public class Tower extends Actor {
 
     }
     //constructor de prueba, borrar cuando acaben las pruebas (by jose)
-    public Tower(float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Image im) {
+    /*public Tower(float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Image im) {
         super(null, new Vector2D(0, 0));
         this.ataque = ataque;
         this.area = area;
         this.alcance=alcance;
-        this.alcance = 200;
         this.ralentizacion = ralentizacion;
         this.ultimoDisparo = System.currentTimeMillis();
         this.tRecarga = tRecarga;
         this.dañoPasivo = dañoPasivo;
         this.im = im;
         this.coste=coste;
-    }
+    }*/
 
     @Override
     public void update() {
@@ -79,7 +77,7 @@ public class Tower extends Actor {
         atacando = 5;
         objetivo = e;
         if (ataque > 0) {
-            float d = ataque - e.getArmadura();
+            float d = ataque - Math.max(0,e.getArmadura()-this.penetracion);
             if (d < 1) {
                 d = 1;
             }
@@ -173,7 +171,7 @@ public class Tower extends Actor {
         Tower dev;
         Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
         Image ima = im;
-        dev = new Tower(ataque, area, ralentizacion, ultimoDisparo, tRecarga, dañoPasivo, coste, posicion, ima);
+        dev = new Tower(ataque,penetracion, area, ralentizacion, ultimoDisparo, tRecarga, dañoPasivo, coste, posicion, ima);
         return dev;
     }
 

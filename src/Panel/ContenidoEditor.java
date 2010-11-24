@@ -109,9 +109,11 @@ public class ContenidoEditor extends Contenido {
                 Juego.jugador.restaRecursos(costeInvestigacion);
                 Ventana_Panel.getFondo().get("fondoTorres").addBotonPorDefecto(new BotonCreadorTorre(img4, img4, ContenidoEditor.getAtributos().get("Nombre"), Ventana_Panel.getFondo().get("fondoTorres").calculaX(), Ventana_Panel.getFondo().get("fondoTorres").calculaY(), img4.getWidth(null), img4.getHeight(null),
                         new Tower(Float.parseFloat(ContenidoEditor.getAtributos().get("Daño")),
+                        Float.parseFloat(ContenidoEditor.getAtributos().get("Penetración")),
                         Integer.parseInt(ContenidoEditor.getAtributos().get("Rango")), Float.parseFloat(ContenidoEditor.getAtributos().get("Área de daño")),
                         Float.parseFloat(ContenidoEditor.getAtributos().get("Congelación")), Long.parseLong(ContenidoEditor.getAtributos().get("Recarga")),
-                        Float.parseFloat(ContenidoEditor.getAtributos().get("Veneno")), calculaCosteProduccion(), img4)));
+                        
+                        Float.parseFloat(ContenidoEditor.getAtributos().get("Veneno")), calculaCosteProduccion(),null, img4)));
             }
         } catch (Exception ex) {
             Logger.getLogger(ContenidoEditor.class.getName()).log(Level.SEVERE, null, ex);
