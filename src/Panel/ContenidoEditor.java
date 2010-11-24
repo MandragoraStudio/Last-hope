@@ -26,6 +26,7 @@ public class ContenidoEditor extends Contenido {
     private Image fondo;
     private static Image img4;
     private static Map<String, String> atributos;
+    private static Map<String, Integer> costeInvestigacion = new HashMap<String, Integer>();
 
     public ContenidoEditor(String url, Vector2D posicion) {
         super(url, posicion);
@@ -33,6 +34,7 @@ public class ContenidoEditor extends Contenido {
             fondo = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/atributos.png"));
             img4 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/torrePanel.png"));
             atributos = new HashMap();
+            costeInvestigacion = new HashMap<String, Integer>();
             this.cargar();
         } catch (Exception ex) {
             Logger.getLogger(ContenidoEditor.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,7 +57,7 @@ public class ContenidoEditor extends Contenido {
         addBotonPorDefecto(fondo, "Penetración");
         addBoton(img6, img7, "creaBotonCreador", getImagen().getWidth(null) - img6.getWidth(null), getImagen().getHeight(null) - img6.getHeight(null));
 
-        atributos.put("Nombre", " ");
+        atributos.put("Nombre", "-Nombre aqui-");
         atributos.put("Daño", "0");
         atributos.put("Rango", "0");
         atributos.put("Área de daño", "0");
@@ -101,24 +103,62 @@ public class ContenidoEditor extends Contenido {
     }
 
     public static void creaBotonCreador() {
-        Map coste = calculaCoste();
+        calculaCosteInvestigacion();
         try {
-            if (Jugador.suficientesRecursos(coste)) {
-                Juego.jugador.restaRecursos(coste);
+            if (Jugador.suficientesRecursos(costeInvestigacion)) {
+                Juego.jugador.restaRecursos(costeInvestigacion);
                 Ventana_Panel.getFondo().get("fondoTorres").addBotonPorDefecto(new BotonCreadorTorre(img4, img4, ContenidoEditor.getAtributos().get("Nombre"), Ventana_Panel.getFondo().get("fondoTorres").calculaX(), Ventana_Panel.getFondo().get("fondoTorres").calculaY(), img4.getWidth(null), img4.getHeight(null),
-                new Tower(Float.parseFloat(ContenidoEditor.getAtributos().get("Daño")),
-                Integer.parseInt(ContenidoEditor.getAtributos().get("Rango")), Float.parseFloat(ContenidoEditor.getAtributos().get("Área de daño")),
-                Float.parseFloat(ContenidoEditor.getAtributos().get("Congelación")), Long.parseLong(ContenidoEditor.getAtributos().get("Recarga")),
-                Float.parseFloat(ContenidoEditor.getAtributos().get("Veneno")), coste, img4)));
+                        new Tower(Float.parseFloat(ContenidoEditor.getAtributos().get("Daño")),
+                        Integer.parseInt(ContenidoEditor.getAtributos().get("Rango")), Float.parseFloat(ContenidoEditor.getAtributos().get("Área de daño")),
+                        Float.parseFloat(ContenidoEditor.getAtributos().get("Congelación")), Long.parseLong(ContenidoEditor.getAtributos().get("Recarga")),
+                        Float.parseFloat(ContenidoEditor.getAtributos().get("Veneno")), calculaCosteProduccion(), img4)));
             }
         } catch (Exception ex) {
             Logger.getLogger(ContenidoEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public static Map<String, Integer> calculaCoste(){
-        Map<String, Integer> coste = new HashMap<String, Integer>();
-        coste.put("rodio", 20);
-        return coste;
+
+    public static void calculaCosteInvestigacion(){
+
+        int c;
+        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Fuego")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 10;
+        costeInvestigacion.put("uranio", c);
+        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Área de daño")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 10;
+        costeInvestigacion.put("rodio", c);
+
+        c = Integer.parseInt(ContenidoEditor.atributos.get("Recarga")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 10;
+        costeInvestigacion.put("grafeno", c);
+
+        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Congelación")) * 10;
+        costeInvestigacion.put("radio", c);
+
+        c = Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Veneno")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Penetración")) * 10;
+        costeInvestigacion.put("cromo", c);
+
+        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Fuego")) * 10;
+        costeInvestigacion.put("energia", c);
+
+    }
+    public static Map<String, Integer> calculaCosteProduccion() {
+        Map<String, Integer> costeProduccion = new HashMap<String, Integer>();
+        int c;
+        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Fuego")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 2;
+        costeProduccion.put("uranio", c);
+        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Área de daño")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 2;
+        costeProduccion.put("rodio", c);
+
+        c = Integer.parseInt(ContenidoEditor.atributos.get("Recarga")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 2;
+        costeProduccion.put("grafeno", c);
+
+        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Congelación")) * 2;
+        costeProduccion.put("radio", c);
+
+        c = Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Veneno")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Penetración")) * 2;
+        costeProduccion.put("cromo", c);
+
+        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Fuego")) * 2;
+        costeProduccion.put("energia", c);
+        return costeProduccion;
     }
     public static void inicializaAtributo(String atributo, String nivel) {
         ContenidoEditor.atributos.put(atributo, nivel);

@@ -115,6 +115,7 @@ public class Jugador implements IJugador {
         recursos.put("grafeno",recursos.get("grafeno")-(r.containsKey("grafeno")?r.get("grafeno"):0));
         recursos.put("radio",recursos.get("radio")-(r.containsKey("radio")?r.get("radio"):0));
         recursos.put("cromo",recursos.get("cromo")-(r.containsKey("cromo")?r.get("cromo"):0));
+        this.energia-=r.get("energia");
     }
     
     public static boolean suficientesRecursos(Map<String,Integer> r){
