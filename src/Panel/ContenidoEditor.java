@@ -121,7 +121,7 @@ public class ContenidoEditor extends Contenido {
     }
 
     public static void calculaCosteInvestigacion(){
-
+    //TODO: aqui hay errores, hay valores que se parsean como enteros cuando en realidad serian float, y aun asi, hay que depurarlo, porque no deben saltar excepciones si el jugador mete , por ejemplo "hola" donde va el daño
         int c;
         c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Fuego")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 10;
         costeInvestigacion.put("uranio", c);

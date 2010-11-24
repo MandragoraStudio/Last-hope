@@ -91,8 +91,7 @@ public class Ventana_Informacion implements IVentana {
         g.drawString("??", x+750, y+70);
         //Barra informacion derecha (Informacion)
         if(ac==null){
-            //TODO
-            //esto hay que cambiarlo por una informacion vacia por defecto!!
+            //TODO: esto hay que cambiarlo por una informacion vacia por defecto!!
 
             ac=new EBasico(1, Vector2D.zero);
         }
