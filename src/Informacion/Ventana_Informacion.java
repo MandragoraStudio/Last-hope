@@ -30,6 +30,7 @@ public class Ventana_Informacion implements IVentana {
     private Image infIzq;
     private Image infCtr;
     private Image infDr;
+    Image brillo;
 
     //private Actor ac;
     //creado de prueba
@@ -42,6 +43,7 @@ public class Ventana_Informacion implements IVentana {
         this.HEIGHT = HEIGHT;
         this.x=x;
         this.y=y;
+
         this.cargar();
     }
 
@@ -49,6 +51,7 @@ public class Ventana_Informacion implements IVentana {
        infIzq = Lienzo.cargarImagen("imagenes/informacionIzq.png");
        infCtr = Lienzo.cargarImagen("imagenes/informacionCtr.png");
        infDr = Lienzo.cargarImagen("imagenes/informacionDr.png");
+       brillo = Lienzo.cargarImagen("imagenes/brillo.png");
     }
 
 
@@ -93,7 +96,7 @@ public class Ventana_Informacion implements IVentana {
         if(ac==null){
             //TODO: esto hay que cambiarlo por una informacion vacia por defecto!!
 
-            ac=new EBasico(1, Vector2D.zero);
+            ac=new EBasico(1, new Vector2D(-100,-100));
         }
          g.drawImage(ac.getImagen(), x+967, y+40,null);
          if(ac instanceof Enemy){
@@ -101,6 +104,9 @@ public class Ventana_Informacion implements IVentana {
             g.drawString("Vida: "+e.getVida(), x+870, y+40);
             g.drawString("Armadura: "+e.getArmadura(), x+870, y+60);
             g.drawString("Daño: "+e.getDano(), x+870, y+80);
+            //brillo al bicho
+            //TODO: remarcar el bicho elegido
+            g.drawImage(brillo,(int)ac.posicion.x-5, (int)ac.posicion.y-5,null);
          }else if (ac instanceof Tower){
             Tower t = (Tower)ac;
             g.drawString("Ataque: "+t.getAtaque(), x+900, y+40);
