@@ -7,8 +7,7 @@ package Panel;
 
 
 import Graficos.IVentana;
-import Personajes.Trap;
-import Handlers.MouseHandler;
+import Graficos.Lienzo;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.imageio.ImageIO;
 
 
 /**
@@ -28,7 +26,7 @@ public class Ventana_Panel implements IVentana {
     private int HEIGHT;
     private int x;
     private int y;
-    private static Map <String, Contenido>fondo;
+    private static Map <String, Contenido> contenidos;
     private static Contenido fondoActual;
     private List<Pestaña> pestañas;
 
@@ -39,7 +37,7 @@ public class Ventana_Panel implements IVentana {
         this.x=x;
         this.y=y;
         this.pestañas=new ArrayList();
-        fondo=new HashMap<String,Contenido>();
+        contenidos=new HashMap<String,Contenido>();
         this.cargar();
     }
 
@@ -65,9 +63,9 @@ public class Ventana_Panel implements IVentana {
         Image img3 = null;
 
         try {
-                img = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/torres.png"));
-                img2 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/editor.png"));
-                img3 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/traps.png"));
+                img = Lienzo.cargarImagen("imagenes/torres.png");
+                img2 = Lienzo.cargarImagen("imagenes/editor.png");
+                img3 = Lienzo.cargarImagen("imagenes/traps.png");
 
                 pestañas.add(new Pestaña(img, "torres", x, y, (WIDTH/3), img.getHeight(null)));
                 pestañas.add(new Pestaña(img2, "editor", x+(WIDTH/3), y, (WIDTH/3), img.getHeight(null)));
@@ -82,16 +80,12 @@ public class Ventana_Panel implements IVentana {
             Contenido c=new ContenidoTorres("imagenes/fondoTorres.png", new Vector2D(this.x, this.y));
             Contenido c2=new ContenidoEditor("imagenes/fondoEditor.png", new Vector2D(this.x, this.y));
             Contenido c3=new ContenidoTraps("imagenes/fondoTraps.png", new Vector2D(this.x, this.y));
-            //cargamos las imagenes de los botones
-            Image img4 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/torrePanel.png"));
-            //cargamos los botones del contenido 3
-            c3.addBotonPorDefecto(new BotonCreadorTrap(img4, img4, "creaTrap", c3.calculaX(), c3.calculaY(), img4.getWidth(null), img4.getHeight(null), new Trap(0, 5, 2, 3, 0, 34, new Vector2D(MouseHandler.getX(), MouseHandler.getY()), img4)));
             //metemos los contenidos en la lista de fondos
-            fondo.put("fondoTorres", c);
-            fondo.put("fondoEditor", c2);
-            fondo.put("fondoTraps", c3);
+            contenidos.put("fondoTorres", c);
+            contenidos.put("fondoEditor", c2);
+            contenidos.put("fondoTraps", c3);
             //establecemos el fondo actual
-            fondoActual=fondo.get("fondoTorres");
+            fondoActual=contenidos.get("fondoTorres");
             } catch (Exception e) {
                 System.out.println(e.getStackTrace());
             }
@@ -99,11 +93,11 @@ public class Ventana_Panel implements IVentana {
     }
 
     public static void cambiaFondo(String nombre){
-        Ventana_Panel.fondoActual=Ventana_Panel.fondo.get(nombre);
+        Ventana_Panel.fondoActual=Ventana_Panel.contenidos.get(nombre);
     }
 
     public static Map<String, Contenido> getFondo() {
-        return fondo;
+        return contenidos;
     }
 
 

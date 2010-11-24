@@ -72,7 +72,7 @@ public class Contenido extends Fondo {
     }
     //addBotonPorDefecto añadirá un botón según el orden en que tienen que estar los botones por defecto
     //dependiendo del contenido en el que estemos
-    public void addBotonPorDefecto(Image up, String nombre) throws Exception{
+    public void addBotonPorDefecto(Image up, String nombre){
         this.getBotonesPorDefecto().add(new Boton(up, nombre, this.calculaX(), this.calculaY(), up.getWidth(null), up.getHeight(null)));
     }
     public void addBotonPorDefecto(Boton b) throws Exception{

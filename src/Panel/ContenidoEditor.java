@@ -5,6 +5,7 @@
 package Panel;
 
 import Graficos.Boton;
+import Graficos.Lienzo;
 import Personajes.Tower;
 import Principal.Juego;
 import Principal.Jugador;
@@ -12,6 +13,7 @@ import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,18 +25,17 @@ import javax.imageio.ImageIO;
  */
 public class ContenidoEditor extends Contenido {
 
-    private Image fondo;
-    private static Image img4;
+    Image img1;
+    Image img2;
+    static Image img3;
+    private Image fondoAtributos;
+    private static String imagenTorre;
     private static Map<String, String> atributos;
-    private static Map<String, Integer> costeInvestigacion = new HashMap<String, Integer>();
 
     public ContenidoEditor(String url, Vector2D posicion) {
         super(url, posicion);
         try {
-            fondo = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/atributos.png"));
-            img4 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/torrePanel.png"));
-            atributos = new HashMap();
-            costeInvestigacion = new HashMap<String, Integer>();
+
             this.cargar();
         } catch (Exception ex) {
             Logger.getLogger(ContenidoEditor.class.getName()).log(Level.SEVERE, null, ex);
@@ -43,19 +44,34 @@ public class ContenidoEditor extends Contenido {
     }
 
     public void cargar() throws Exception {
-        Image img6 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro.png"));
-        Image img7 = ImageIO.read(this.getClass().getClassLoader().getResource("imagenes/imagenpro2.png"));
+        fondoAtributos = Lienzo.cargarImagen("imagenes/atributos.png");
+        atributos = new LinkedHashMap();
 
-        addBotonPorDefecto(fondo, "Nombre");
-        addBotonPorDefecto(fondo, "Daño");
-        addBotonPorDefecto(fondo, "Rango");
-        addBotonPorDefecto(fondo, "Área de daño");
-        addBotonPorDefecto(fondo, "Congelación");
-        addBotonPorDefecto(fondo, "Fuego");
-        addBotonPorDefecto(fondo, "Veneno");
-        addBotonPorDefecto(fondo, "Recarga");
-        addBotonPorDefecto(fondo, "Penetración");
-        addBoton(img6, img7, "creaBotonCreador", getImagen().getWidth(null) - img6.getWidth(null), getImagen().getHeight(null) - img6.getHeight(null));
+        img1 = Lienzo.cargarImagen("imagenes/torrePanel.png");
+        img2 = Lienzo.cargarImagen("imagenes/torrePanel2.png");
+        img3 = Lienzo.cargarImagen("imagenes/torrePanel3.png");
+        Image img4 = Lienzo.cargarImagen("imagenes/imagenpro.png");
+        Image img5 = Lienzo.cargarImagen("imagenes/imagenpro2.png");
+        Image img6 = Lienzo.cargarImagen("imagenes/insertador.png");
+        imagenTorre = "imagenes/torrePanel.png";
+
+        addBotonPorDefecto(fondoAtributos, "Nombre");
+        addBotonPorDefecto(fondoAtributos, "Daño");
+        addBotonPorDefecto(fondoAtributos, "Rango");
+        addBotonPorDefecto(fondoAtributos, "Área de daño");
+        addBotonPorDefecto(fondoAtributos, "Congelación");
+        addBotonPorDefecto(fondoAtributos, "Fuego");
+        addBotonPorDefecto(fondoAtributos, "Veneno");
+        addBotonPorDefecto(fondoAtributos, "Recarga");
+        addBotonPorDefecto(fondoAtributos, "Penetración");
+
+        addBoton(img1, img1, "cambiaImagen", 20, 320);
+        addBoton(img2, img2, "cambiaImagen2", 120, 320);
+        addBoton(img3, img3, "cambiaImagen3", 220, 320);
+        addBoton(img6, img6, "cambiaImagenPorTeclado", 20, 390);
+
+
+        addBoton(img4, img5, "creaBotonCreador", getImagen().getWidth(null) - img4.getWidth(null), getImagen().getHeight(null) - img4.getHeight(null));
 
         atributos.put("Nombre", "-Nombre aqui-");
         atributos.put("Daño", "0");
@@ -76,24 +92,21 @@ public class ContenidoEditor extends Contenido {
             b.draw(g);
             g.drawString(b.getNombre(), b.getX(), b.getY() + 12);
         }
-        for (Boton b : this.getBotones()) {
+        for (Boton b : getBotones()) {
             b.draw(g);
         }
-        g.drawString(atributos.get("Nombre").toString(), 900, 60);
-        g.drawString(atributos.get("Daño").toString(), 900, 96);
-        g.drawString(atributos.get("Rango").toString(), 900, 126);
-        g.drawString(atributos.get("Área de daño").toString(), 900, 156);
-        g.drawString(atributos.get("Congelación").toString(), 900, 186);
-        g.drawString(atributos.get("Fuego").toString(), 900, 216);
-        g.drawString(atributos.get("Veneno").toString(), 900, 246);
-        g.drawString(atributos.get("Recarga").toString(), 900, 276);
-        g.drawString(atributos.get("Penetración").toString(), 900, 306);
+        int x = 900, y = 60;
+        for (String element : atributos.values()) {
+            g.drawString(element, x, y);
+            y += 30;
+        }
     }
 
     @Override
     public int calculaX() {
         int pos = (int) posicion.x + 10;
         return pos;
+
     }
 
     @Override
@@ -103,44 +116,22 @@ public class ContenidoEditor extends Contenido {
     }
 
     public static void creaBotonCreador() {
-        calculaCosteInvestigacion();
         try {
-            if (Jugador.suficientesRecursos(costeInvestigacion)) {
-                Juego.jugador.restaRecursos(costeInvestigacion);
-                Ventana_Panel.getFondo().get("fondoTorres").addBotonPorDefecto(new BotonCreadorTorre(img4, img4, ContenidoEditor.getAtributos().get("Nombre"), Ventana_Panel.getFondo().get("fondoTorres").calculaX(), Ventana_Panel.getFondo().get("fondoTorres").calculaY(), img4.getWidth(null), img4.getHeight(null),
-                        new Tower(Float.parseFloat(ContenidoEditor.getAtributos().get("Daño")),
-                        Integer.parseInt(ContenidoEditor.getAtributos().get("Rango")), Float.parseFloat(ContenidoEditor.getAtributos().get("Área de daño")),
-                        Float.parseFloat(ContenidoEditor.getAtributos().get("Congelación")), Long.parseLong(ContenidoEditor.getAtributos().get("Recarga")),
-                        Float.parseFloat(ContenidoEditor.getAtributos().get("Veneno")), calculaCosteProduccion(), img4)));
-            }
+            Image im = Lienzo.cargarImagen(imagenTorre);
+            Ventana_Panel.getFondo().get("fondoTorres").addBotonPorDefecto(new BotonCreadorTorre(im, im, ContenidoEditor.getAtributos().get("Nombre"), Ventana_Panel.getFondo().get("fondoTorres").calculaX(), Ventana_Panel.getFondo().get("fondoTorres").calculaY(), im.getWidth(null), im.getHeight(null),
+                    new Tower(Float.parseFloat(ContenidoEditor.getAtributos().get("Daño")),
+                    Integer.parseInt(ContenidoEditor.getAtributos().get("Rango")), Float.parseFloat(ContenidoEditor.getAtributos().get("Área de daño")),
+                    Float.parseFloat(ContenidoEditor.getAtributos().get("Congelación")), Long.parseLong(ContenidoEditor.getAtributos().get("Recarga")),
+                    Float.parseFloat(ContenidoEditor.getAtributos().get("Veneno")), calculaCosteProduccion(), im)));
         } catch (Exception ex) {
             Logger.getLogger(ContenidoEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public static void calculaCosteInvestigacion(){
-
-        int c;
-        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Fuego")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 10;
-        costeInvestigacion.put("uranio", c);
-        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Área de daño")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 10;
-        costeInvestigacion.put("rodio", c);
-
-        c = Integer.parseInt(ContenidoEditor.atributos.get("Recarga")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 10;
-        costeInvestigacion.put("grafeno", c);
-
-        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Congelación")) * 10;
-        costeInvestigacion.put("radio", c);
-
-        c = Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Veneno")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Penetración")) * 10;
-        costeInvestigacion.put("cromo", c);
-
-        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 10 + Integer.parseInt(ContenidoEditor.atributos.get("Fuego")) * 10;
-        costeInvestigacion.put("energia", c);
-
-    }
     public static Map<String, Integer> calculaCosteProduccion() {
         Map<String, Integer> costeProduccion = new HashMap<String, Integer>();
+
+
         int c;
         c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Fuego")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 2;
         costeProduccion.put("uranio", c);
@@ -158,12 +149,27 @@ public class ContenidoEditor extends Contenido {
 
         c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Fuego")) * 2;
         costeProduccion.put("energia", c);
+
+
         return costeProduccion;
+
+
     }
+
     public static void inicializaAtributo(String atributo, String nivel) {
         ContenidoEditor.atributos.put(atributo, nivel);
+
+
     }
+
     public static Map<String, String> getAtributos() {
         return atributos;
+
+
+    }
+
+    public static void cambiaImagen(String cad) {
+        imagenTorre = cad;
+
     }
 }

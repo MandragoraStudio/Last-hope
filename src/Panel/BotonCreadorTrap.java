@@ -38,7 +38,5 @@ public class BotonCreadorTrap extends Boton{
         System.out.println("dañoPasivo: " +BotonCreadorTrap.t.getDañoPasivo());
         System.out.println("coste: " +BotonCreadorTrap.t.getCoste());
         System.out.println("im: " +BotonCreadorTrap.t.getIm());
-
-
     }
 }

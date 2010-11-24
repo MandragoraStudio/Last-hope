@@ -6,17 +6,32 @@ package Panel;
 
 
 import Graficos.Boton;
+import Graficos.Lienzo;
+import Handlers.MouseHandler;
+import Personajes.Trap;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Jose
  */
 public class ContenidoTraps extends Contenido {
+    Image img4;
 
     public ContenidoTraps(String url, Vector2D posicion) {
         super(url, posicion);
+        try {
+            img4 = Lienzo.cargarImagen("imagenes/torrePanel.png");
+            //cargamos los botones del contenido 3
+            addBotonPorDefecto(new BotonCreadorTrap(img4, img4, "creaTrap", calculaX(), calculaY(), img4.getWidth(null), img4.getHeight(null), new Trap(0, 5, 2, 3, 0, 34, new Vector2D(MouseHandler.getX(), MouseHandler.getY()), img4)));
+        } catch (Exception ex) {
+            Logger.getLogger(ContenidoTraps.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override

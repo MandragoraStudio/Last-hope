@@ -25,7 +25,7 @@ public class Boton {
     boolean pulsado;
     public boolean ejecutar;
 
-    public Boton(Image up, String nombre, int x, int y, int width, int height) throws Exception {
+    public Boton(Image up, String nombre, int x, int y, int width, int height){
         this.up = up;
         this.nombre = nombre;
         this.x = x;
