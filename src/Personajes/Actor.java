@@ -21,6 +21,9 @@ public abstract class Actor {
     Abotonador boton;
 
     public Actor(Image im,Vector2D posicion){
+        if (posicion==null){
+            posicion=Vector2D.zero;
+        }
         if(im!=null){
         imagen=im;
         }else{
