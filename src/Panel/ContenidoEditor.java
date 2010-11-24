@@ -7,8 +7,6 @@ package Panel;
 import Graficos.Boton;
 import Graficos.Lienzo;
 import Personajes.Tower;
-import Principal.Juego;
-import Principal.Jugador;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -17,7 +15,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
 /**
  *

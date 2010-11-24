@@ -48,7 +48,7 @@ public class Tower extends Actor {
 
     }
     //constructor de prueba, borrar cuando acaben las pruebas (by jose)
-    /*public Tower(float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Image im) {
+    public Tower(float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Image im) {
         super(null, new Vector2D(0, 0));
         this.ataque = ataque;
         this.area = area;
@@ -59,7 +59,7 @@ public class Tower extends Actor {
         this.dañoPasivo = dañoPasivo;
         this.im = im;
         this.coste=coste;
-    }*/
+    }
 
     @Override
     public void update() {
