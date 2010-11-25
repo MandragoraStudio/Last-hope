@@ -110,8 +110,8 @@ public class Ventana_Informacion implements IVentana {
          }else if (ac instanceof Tower){
             Tower t = (Tower)ac;
             g.drawString("Ataque: "+t.getAtaque(), x+900, y+40);
-            g.drawString("Alcance: "+t.getAlcance(), x+900, y+60);
-            g.drawString("Velocidad: ??", x+900, y+70);
+            g.drawString("Alcanze: "+t.getRango(), x+900, y+60);
+            g.drawString("Velocidad: "+t.getRecarga(), x+900, y+70);
          }
         
     }

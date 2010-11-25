@@ -13,6 +13,7 @@ public class Vector2D {
     public float y;
     public static final Vector2D zero = new Vector2D(0, 0);
     public static final Vector2D uno = new Vector2D(1, 1);
+    public static final Vector2D fuera= new Vector2D(-1000,-1000);
 
     public Vector2D(float x, float y) {
         this.x = x;
