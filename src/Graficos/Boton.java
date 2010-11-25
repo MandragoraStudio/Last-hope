@@ -24,7 +24,6 @@ public class Boton {
     int x, y, height, width; // posicion (x,y) y dimensiones (height, width)
     boolean pulsado; // variable que controla si el boton esta pulsado o no
 
-
     public Boton(Image up, String nombre, int x, int y, int width, int height){
         //inicializacion de los atributos
         this.up = up;
