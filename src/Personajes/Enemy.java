@@ -19,6 +19,10 @@ public abstract class Enemy extends Actor {
 
     private int id;
     private float velocidad;
+    private float modVelocidad;
+    private float tModVelocidad;
+    private float fuerzaVeneno;
+    private float tVeneno;
     private float armadura;
     private float regeneracion;
     private Vector2D direccion = Vector2D.uno;
@@ -26,6 +30,10 @@ public abstract class Enemy extends Actor {
     private int dano;
     private int casilla;
 
+    public void envenenar(float fuerza, float tiempo){
+        fuerzaVeneno=fuerza;
+        tVeneno=tiempo;
+    }
     public float getArmadura() {
         return armadura;
     }
@@ -75,6 +83,8 @@ public abstract class Enemy extends Actor {
         this.armadura=armadura;
         this.regeneracion=regeneracion;
         this.posicion = posicion;
+        this.modVelocidad=1;
+        this.tModVelocidad=0;
     }
 
     public int getCasilla() {
@@ -95,9 +105,13 @@ public abstract class Enemy extends Actor {
             e.printStackTrace();
         }
     }
-
+    public void congelar(float ralentizar, float tiempo){
+        this.modVelocidad=ralentizar;
+        tModVelocidad=tiempo;
+    }
     @Override
     public void update() {
+
         boton.update();
         if(vida<0){
             //aqui el enemigo muere!!!
@@ -113,9 +127,18 @@ public abstract class Enemy extends Actor {
             posicion=new Vector2D(-Ventana_Mapa.casillaWidth,-Ventana_Mapa.casillaHeight);
             Juego.jugador.restaVida(dano);
         }
+        if(tModVelocidad<0){
+            modVelocidad=1;
+        }else{
+            tModVelocidad--;
+        }
+        if(fuerzaVeneno>0&&tVeneno>0){
+            vida-=fuerzaVeneno;
+            tVeneno--;
+        }
         Vector2D destino = Ventana_Mapa.map.camino.get(casilla);
         //direccion=posicion.subs(Ventana_Mapa.getCoordenadaCentro((int)destino.x,(int)destino.y));
         direccion=Ventana_Mapa.getCoordenadaCentro((int)destino.x,(int)destino.y).subs(posicion);
-        posicion = posicion.add(direccion.unitario().mult(velocidad));
+        posicion = posicion.add(direccion.unitario().mult(velocidad*modVelocidad));
     }
 }

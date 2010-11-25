@@ -113,6 +113,7 @@ public class Ventana_Informacion implements IVentana {
             }
          }else if (ac instanceof Tower){
             Tower t = (Tower)ac;
+            //TODO: un casting a entero a las variables? no creo que al jugador le interese el 9º decimal
             g.drawString("Ataque: "+t.getAtaque(), x+900, y+40);
             g.drawString("Alcanze: "+t.getRango(), x+900, y+60);
             g.drawString("Velocidad: "+t.getRecarga(), x+900, y+70);

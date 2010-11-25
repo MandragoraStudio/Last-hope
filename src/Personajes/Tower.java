@@ -70,6 +70,12 @@ public class Tower extends Actor {
             e.quitaVida(d);
 
         }
+        if(congelacion>0){
+            e.congelar(10/(congelacion+10), 45);
+        }
+        if(veneno>0){
+            e.envenenar(veneno/60, 60);
+        }
         ultimoDisparo = System.currentTimeMillis();
     }
 
