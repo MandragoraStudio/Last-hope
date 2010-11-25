@@ -34,7 +34,7 @@ public class Boton {
         this.width = width;
         observadores = new ArrayList<IObservador>();
         //añadimos un observador
-        Atach(new Observador(this));
+        new Observador(this);
     }
     //metodo para añadir un observador
     public void Atach(IObservador ob) {
