@@ -41,6 +41,10 @@ public abstract class Actor {
         return posicion;
     }
 
+    public void setPosicion(Vector2D posicion) {
+        this.posicion = posicion;
+    }
+
 
     public Image getImagen() {
         return imagen;

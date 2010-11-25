@@ -20,35 +20,39 @@ import java.util.Map;
 public class Tower extends Actor {
 
     private float ataque;
-    private int area;
-    private float alcance;
-    private float ralentizacion;
-    private long ultimoDisparo;
+    private float areaDeAtaque;
+    private float rango;
+    private float congelacion;
     private float penetracion;
-    private long tRecarga;
-    private float dañoPasivo;
+    private float fuego;
+    private long recarga;
+    private float veneno;
     private Image im;
     private int atacando = 0;
+    private long ultimoDisparo;
     private Enemy objetivo;
     private Map<String,Integer> coste;
 
-    public Tower(float ataque, float penetracion, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Vector2D posicion, Image im) {
-        super(null, posicion);
+    public Tower( float ataque, float areaDeAtaque, float rango, float congelacion, float penetracion, float fuego, long recarga, float veneno,  Map<String, Integer> coste,Vector2D posicion,Image ima) {
+        super(ima,posicion);
         this.ataque = ataque;
+        this.areaDeAtaque = areaDeAtaque;
+        this.rango = rango;
+        this.congelacion = congelacion;
         this.penetracion = penetracion;
-        this.area = area;
-        this.alcance=alcance;
-        this.ralentizacion = ralentizacion;
-        this.ultimoDisparo = System.currentTimeMillis();
-        this.tRecarga = tRecarga;
-        this.dañoPasivo = dañoPasivo;
+        this.fuego = fuego;
+        this.recarga = recarga;
+        this.veneno = veneno;
+        this.im = ima;
         this.coste = coste;
-        this.im = im;
-
-
+        ultimoDisparo=System.currentTimeMillis();
     }
+
+    
+
+  
     //constructor de prueba, borrar cuando acaben las pruebas (by jose)
-    public Tower(float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Image im) {
+    /*public Tower(float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Image im) {
         super(null, new Vector2D(0, 0));
         this.ataque = ataque;
         this.area = area;
@@ -59,7 +63,7 @@ public class Tower extends Actor {
         this.dañoPasivo = dañoPasivo;
         this.im = im;
         this.coste=coste;
-    }
+    }*/
 
     @Override
     public void update() {
@@ -127,12 +131,12 @@ public class Tower extends Actor {
     }
 
     public boolean estaAlAlcance(Vector2D destino) {
-        return destino.subs(posicion).modulo() < alcance;
+        return destino.subs(posicion).modulo() < rango;
     }
 
     public boolean isCargada() {
         boolean dev;
-        dev = System.currentTimeMillis() - ultimoDisparo > tRecarga;
+        dev = System.currentTimeMillis() - ultimoDisparo > recarga;
         return dev;
     }
 
@@ -156,13 +160,95 @@ public class Tower extends Actor {
         g.setColor(c);
     }
 
-    public Vector2D getPosicion() {
-        return posicion;
+    public float getAreaDeAtaque() {
+        return areaDeAtaque;
     }
 
-    public void setPosicion(Vector2D posicion) {
-        this.posicion = posicion;
+    public float getAtaque() {
+        return ataque;
     }
+
+    public float getCongelacion() {
+        return congelacion;
+    }
+
+    public Map<String, Integer> getCoste() {
+        return coste;
+    }
+
+    public float getFuego() {
+        return fuego;
+    }
+
+    public Image getIm() {
+        return im;
+    }
+
+    public Enemy getObjetivo() {
+        return objetivo;
+    }
+
+    public float getPenetracion() {
+        return penetracion;
+    }
+
+    public float getRango() {
+        return rango;
+    }
+
+    public long getRecarga() {
+        return recarga;
+    }
+
+    public long getUltimoDisparo() {
+        return ultimoDisparo;
+    }
+
+    public float getVeneno() {
+        return veneno;
+    }
+
+    public void setAreaDeAtaque(float areaDeAtaque) {
+        this.areaDeAtaque = areaDeAtaque;
+    }
+
+    public void setAtaque(float ataque) {
+        this.ataque = ataque;
+    }
+
+    public void setCongelacion(float congelacion) {
+        this.congelacion = congelacion;
+    }
+
+    public void setFuego(float fuego) {
+        this.fuego = fuego;
+    }
+
+    public void setIm(Image im) {
+        this.im = im;
+    }
+
+    public void setObjetivo(Enemy objetivo) {
+        this.objetivo = objetivo;
+    }
+
+    public void setPenetracion(float penetracion) {
+        this.penetracion = penetracion;
+    }
+
+    public void setRango(float rango) {
+        this.rango = rango;
+    }
+
+    public void setRecarga(long recarga) {
+        this.recarga = recarga;
+    }
+
+    public void setVeneno(float veneno) {
+        this.veneno = veneno;
+    }
+
+
 
     public void dispara() {
     }
@@ -171,70 +257,14 @@ public class Tower extends Actor {
         Tower dev;
         Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
         Image ima = im;
-        dev = new Tower(ataque,penetracion, area, ralentizacion, ultimoDisparo, tRecarga, dañoPasivo, coste, posicion, ima);
+        dev = new Tower( ataque,  areaDeAtaque,  rango, congelacion,  penetracion, fuego,  recarga, veneno,   coste,posicion,ima);
         return dev;
     }
 
     public void rotarTorre(int x, int y) {
     }
 
-    public int getArea() {
-        return area;
-    }
-
-    public void setArea(int area) {
-        this.area = area;
-    }
-
-    public float getAtaque() {
-        return ataque;
-    }
-
-    public void setAtaque(float ataque) {
-        this.ataque = ataque;
-    }
-
-    public Map<String, Integer> getCoste() {
-        return coste;
-    }
-
     
-
-    public float getDañoPasivo() {
-        return dañoPasivo;
-    }
-
-    public void setDañoPasivo(float dañoPasivo) {
-        this.dañoPasivo = dañoPasivo;
-    }
-
-    public Image getIm() {
-        return im;
-    }
-
-    public void setIm(Image im) {
-        this.im = im;
-    }
-
-    public float getRalentizacion() {
-        return ralentizacion;
-    }
-
-    public void setRalentizacion(float ralentizacion) {
-        this.ralentizacion = ralentizacion;
-    }
-
-    public float gettRecarga() {
-        return tRecarga;
-    }
-
-    public void settRecarga(long tRecarga) {
-        this.tRecarga = tRecarga;
-    }
-
-    public float getUltimoDisparo() {
-        return ultimoDisparo;
-    }
 
     /* public void setUltimoDisparo(long ultimoDisparo) {
     this.ultimoDisparo = ultimoDisparo;
