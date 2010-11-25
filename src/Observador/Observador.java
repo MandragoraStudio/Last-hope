@@ -20,14 +20,15 @@ import javax.swing.JOptionPane;
  */
 public class Observador implements IObservador {
 
-    private Boton boton;
+    private Boton boton; //boton al que observa
 
     public Observador(Boton b) {
-        boton = b;
-        boton.Atach(this);
+        boton = b;//inicializa el boton
+        boton.Atach(this); //le añadimos al boton el observador
     }
 
     public void update(String comando) {
+        //switch de string
         if (comando.equals("start")) {
             Juego.changeScreen("Game");
         } else if (comando.equals("exit")) {

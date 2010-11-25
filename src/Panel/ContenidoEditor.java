@@ -22,17 +22,16 @@ import java.util.logging.Logger;
  */
 public class ContenidoEditor extends Contenido {
 
-    Image img1;
-    Image img2;
-    static Image img3;
-    private Image fondoAtributos;
-    private static String imagenTorre;
-    private static Map<String, String> atributos;
+    Image img1; //opc1 de imagen al crear el diseño de una torre
+    Image img2; //opc2 de imagen al crear el diseño de una torre
+    Image img3; //opc3 de imagen al crear el diseño de una torre
+    private Image fondoAtributos; // imagen de los botones de los atributos de una torre
+    private static String imagenTorre; // url de la imagen que usaremos para crear la torre
+    private static Map<String, String> atributos; // valor de los atributos de la torre diseñada
 
     public ContenidoEditor(String url, Vector2D posicion) {
         super(url, posicion);
         try {
-
             this.cargar();
         } catch (Exception ex) {
             Logger.getLogger(ContenidoEditor.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,17 +40,21 @@ public class ContenidoEditor extends Contenido {
     }
 
     public void cargar() throws Exception {
+        //cargamos la imagen de los botones de los atributos
         fondoAtributos = Lienzo.cargarImagen("imagenes/atributos.png");
+        //inicializamos el map de atributos con un linkedHashMap para que guarde el orden en el que
+        //introducimos los atributos
         atributos = new LinkedHashMap();
-
+        //cargamos las imagenes
         img1 = Lienzo.cargarImagen("imagenes/torrePanel.png");
         img2 = Lienzo.cargarImagen("imagenes/torrePanel2.png");
         img3 = Lienzo.cargarImagen("imagenes/torrePanel3.png");
         Image img4 = Lienzo.cargarImagen("imagenes/imagenpro.png");
         Image img5 = Lienzo.cargarImagen("imagenes/imagenpro2.png");
         Image img6 = Lienzo.cargarImagen("imagenes/insertador.png");
+        //inicializamos la imagen de la torre
         imagenTorre = "imagenes/torrePanel.png";
-
+        // añadimos los botones de los atributos
         addBotonPorDefecto(fondoAtributos, "Nombre");
         addBotonPorDefecto(fondoAtributos, "Daño");
         addBotonPorDefecto(fondoAtributos, "Rango");
@@ -61,15 +64,15 @@ public class ContenidoEditor extends Contenido {
         addBotonPorDefecto(fondoAtributos, "Veneno");
         addBotonPorDefecto(fondoAtributos, "Recarga");
         addBotonPorDefecto(fondoAtributos, "Penetración");
-
+        // añadimos los botones que seleccionan la imagen para la torre
         addBoton(img1, img1, "cambiaImagen", 20, 320);
         addBoton(img2, img2, "cambiaImagen2", 120, 320);
         addBoton(img3, img3, "cambiaImagen3", 220, 320);
         addBoton(img6, img6, "cambiaImagenPorTeclado", 20, 390);
 
-
+        //añadimos el boton que crea botones en el contenidoTorres para que creen las torres
         addBoton(img4, img5, "creaBotonCreador", getImagen().getWidth(null) - img4.getWidth(null), getImagen().getHeight(null) - img4.getHeight(null));
-
+        //inicializamos los atributos
         atributos.put("Nombre", "-Nombre aqui-");
         atributos.put("Daño", "0");
         atributos.put("Rango", "0");

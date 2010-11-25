@@ -23,6 +23,7 @@ public class ContenidoTorres extends Contenido{
         super(url, posicion);
         Image img6;
         try {
+            //cargamos el boton que lleva al menu
             img6 = Lienzo.cargarImagen("imagenes/imagenpro.png");
             Image img7 = Lienzo.cargarImagen("imagenes/imagenpro2.png");
             addBoton(img6, img7, "Menu", getImagen().getWidth(null)-img6.getWidth(null), getImagen().getHeight(null)-img6.getHeight(null));
@@ -33,6 +34,7 @@ public class ContenidoTorres extends Contenido{
          }
     
     @Override
+    //sobreescribimos el metodo para asegurarnos de que solo se creen 12 botones como máximo
     public void addBotonPorDefecto(Boton b) throws Exception{
         if(this.getBotonesPorDefecto().size()<12){
             
@@ -41,17 +43,20 @@ public class ContenidoTorres extends Contenido{
     }
     @Override
     public void draw(Graphics2D g){
+        //dibujamos el fondo
         g.drawImage(this.getImagen(), (int)posicion.x, (int)posicion.y, null);
-
+        // dibujamos los botones por defecto (los que crean torres)
         for(Boton b: this.getBotonesPorDefecto()){
             b.draw(g);
             g.drawString(b.getNombre(), b.getX(), b.getY()+b.getHeight()+12);
         }
+        //dibujamos el resto de botones
         for(Boton b: this.getBotones()){
             b.draw(g);
         }
     }
     @Override
+    //metodo que calcula la posicion X del proximo boton por defecto
     public int calculaX() {
         int pos = 0;
         int modulo = this.getBotonesPorDefecto().size() % 3;
@@ -64,6 +69,7 @@ public class ContenidoTorres extends Contenido{
     }
 
     @Override
+    //metodo que calcula la posicion Y del proximo boton por defecto
     public int calculaY() {
         int pos = 0;
         int cociente = this.getBotonesPorDefecto().size() / 3;
