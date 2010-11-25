@@ -116,6 +116,7 @@ public class ContenidoEditor extends Contenido {
         try {
             Image im = Lienzo.cargarImagen(imagenTorre);
             Ventana_Panel.getFondo().get("fondoTorres").addBotonPorDefecto(new BotonCreadorTorre(im, im, ContenidoEditor.getAtributos().get("Nombre"), Ventana_Panel.getFondo().get("fondoTorres").calculaX(), Ventana_Panel.getFondo().get("fondoTorres").calculaY(), im.getWidth(null), im.getHeight(null),
+
                     new Tower(Float.parseFloat(ContenidoEditor.getAtributos().get("Daño")),
                     Float.parseFloat(ContenidoEditor.getAtributos().get("Área de daño")),
                     Integer.parseInt(ContenidoEditor.getAtributos().get("Rango")),

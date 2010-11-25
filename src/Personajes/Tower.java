@@ -47,24 +47,6 @@ public class Tower extends Actor {
         this.coste = coste;
         ultimoDisparo=System.currentTimeMillis();
     }
-
-    
-
-  
-    //constructor de prueba, borrar cuando acaben las pruebas (by jose)
-    /*public Tower(float ataque, int area, float alcance, float ralentizacion, long tRecarga, float dañoPasivo, Map<String,Integer> coste, Image im) {
-        super(null, new Vector2D(0, 0));
-        this.ataque = ataque;
-        this.area = area;
-        this.alcance=alcance;
-        this.ralentizacion = ralentizacion;
-        this.ultimoDisparo = System.currentTimeMillis();
-        this.tRecarga = tRecarga;
-        this.dañoPasivo = dañoPasivo;
-        this.im = im;
-        this.coste=coste;
-    }*/
-
     @Override
     public void update() {
         boton.update();
@@ -175,7 +157,6 @@ public class Tower extends Actor {
     public Map<String, Integer> getCoste() {
         return coste;
     }
-
     public float getFuego() {
         return fuego;
     }
@@ -247,7 +228,6 @@ public class Tower extends Actor {
     public void setVeneno(float veneno) {
         this.veneno = veneno;
     }
-
 
 
     public void dispara() {
