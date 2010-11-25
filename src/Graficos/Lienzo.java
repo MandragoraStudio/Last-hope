@@ -10,14 +10,11 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -26,10 +23,10 @@ import javax.swing.JTextField;
  * @author Thanar
  */
 public class Lienzo extends Canvas {
-    public BufferStrategy strategy;
-    public JFrame frame;
-    public JPanel panel;
-    private JTextField texto;
+    //adoptamos la estrategia del doble buffer para que no se vean los saltos
+    public BufferStrategy strategy; 
+    public JFrame frame; //ventana sobre la que pintaremos
+    public JPanel panel; // subcontenido de la ventana
     public JPanel getPanel() {
         return panel;
     }
