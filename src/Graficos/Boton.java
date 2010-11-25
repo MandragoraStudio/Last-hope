@@ -18,14 +18,15 @@ import java.util.List;
  */
 public class Boton {
 
-    List<IObservador> observadores;
-    Image up;
-    String nombre;
-    int x, y, height, width;
-    boolean pulsado;
-    public boolean ejecutar;
+    List<IObservador> observadores; // lista de observadores que va a tener el boton
+    Image up; // imagen del boton
+    String nombre; // nombre o identificador del boton
+    int x, y, height, width; // posicion (x,y) y dimensiones (height, width)
+    boolean pulsado; // variable que controla si el boton esta pulsado o no
+
 
     public Boton(Image up, String nombre, int x, int y, int width, int height){
+        //inicializacion de los atributos
         this.up = up;
         this.nombre = nombre;
         this.x = x;
@@ -33,27 +34,30 @@ public class Boton {
         this.height = height;
         this.width = width;
         observadores = new ArrayList<IObservador>();
-        new Observador(this);
+        //añadimos un observador
+        Atach(new Observador(this));
     }
-
+    //metodo para añadir un observador
     public void Atach(IObservador ob) {
         observadores.add(ob);
     }
-
+    //metodo para eliminar un observador
     public void Detach(IObservador ob) {
         observadores.remove(ob);
     }
-
+    //metodo para dibujar el boton en pantalla
     public void draw(Graphics2D g) {
         g.drawImage(up, x, y, width, height, null);
     }
-
+    //update de boton para controlar la logica de boton
     public void update() {
+        //miramos si se ha clicado el raton y si lo ha hecho dentro de los margenes de nuestro boton
         if (MouseHandler.isPulsado()) {
             if (MouseHandler.getX() > x && MouseHandler.getX() < x + width && MouseHandler.getY() > y && MouseHandler.getY() < y + height) {
                 pulsado = true;
             }
         } else {
+            //si se ha levantado el clic del raton encima de nuestro boton y habia sido pulsado de antes, entonces se ha presionado
             if (MouseHandler.getX() > x && MouseHandler.getX() < x + width && MouseHandler.getY() > y && MouseHandler.getY() < y + height) {
                 if (pulsado) {
                     this.presionado();
@@ -64,6 +68,7 @@ public class Boton {
     }
 
     public void presionado() {
+        // avisamos a nuestros observadores de que ha habido un cambio y deben actuar
         for (IObservador ob : observadores) {
             ob.update(nombre);
         }
@@ -71,14 +76,6 @@ public class Boton {
 
     public String getNombre() {
         return nombre;
-    }
-
-    public boolean isEjecutar() {
-        return ejecutar;
-    }
-
-    public void setEjecutar(boolean ejecutar) {
-        this.ejecutar = ejecutar;
     }
 
     public int getHeight() {
