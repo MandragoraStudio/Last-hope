@@ -117,7 +117,7 @@ public class ContenidoEditor extends Contenido {
             Image im = Lienzo.cargarImagen(imagenTorre);
             Ventana_Panel.getFondo().get("fondoTorres").addBotonPorDefecto(new BotonCreadorTorre(im, im, ContenidoEditor.getAtributos().get("Nombre"), Ventana_Panel.getFondo().get("fondoTorres").calculaX(), Ventana_Panel.getFondo().get("fondoTorres").calculaY(), im.getWidth(null), im.getHeight(null),
                     new Tower(Float.parseFloat(ContenidoEditor.getAtributos().get("Daño")), Float.parseFloat(ContenidoEditor.getAtributos().get("Penetración")),
-                    Float.parseFloat(ContenidoEditor.getAtributos().get("Rango")), Float.parseFloat(ContenidoEditor.getAtributos().get("Área de daño")),
+                    Float.parseFloat(ContenidoEditor.getAtributos().get("Área de daño")), Float.parseFloat(ContenidoEditor.getAtributos().get("Rango")),
                     Float.parseFloat(ContenidoEditor.getAtributos().get("Congelación")), Long.parseLong(ContenidoEditor.getAtributos().get("Recarga")),
                     Float.parseFloat(ContenidoEditor.getAtributos().get("Veneno")), calculaCosteProduccion(), Vector2D.zero, im)));
         } catch (Exception ex) {
