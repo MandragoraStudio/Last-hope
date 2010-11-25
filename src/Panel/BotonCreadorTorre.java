@@ -15,9 +15,10 @@ import java.awt.Image;
  */
 public class BotonCreadorTorre extends BotonGeneral {
 
-    private static Tower t;
+    private static Tower t; //torre que va a crear cuando se pulse el boton
 
     public BotonCreadorTorre(Image up, Image down, String nombre, int x, int y, int width, int height, Tower to) throws Exception {
+        //inicializamos atributos
         super(up, down, nombre, x, y, width, height);
         BotonCreadorTorre.t = to;
     }

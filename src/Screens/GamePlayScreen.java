@@ -16,22 +16,25 @@ import java.awt.Graphics2D;
  * @author Thanar
  */
 public class GamePlayScreen implements IScreen{
-    IVentana mapa;
-    IVentana panel;
-    IVentana informacion;
+    IVentana mapa; // sub ventana de mapa
+    IVentana panel; // sub ventana de panel de navegacion
+    IVentana informacion; // sub ventana del panel de informacion
     public void cargarModelos() {
+        //inicializamos las sub ventanas con sus coordenadas y sus dimensiones
         mapa = new Ventana_Mapa(750,500, 0, 0);
         panel = new Ventana_Panel(274,500, 750, 0);
         informacion = new Ventana_Informacion(1024,100, 0, 500);
     }
 
     public void update() {
+        //actualizamos todas las subventanas
         mapa.update();
         panel.update();
         informacion.update();
     }
 
     public void draw(Graphics2D g) {
+        //dibujamos todas las subventanas
         mapa.draw(g);
         panel.draw(g);
         informacion.draw(g);

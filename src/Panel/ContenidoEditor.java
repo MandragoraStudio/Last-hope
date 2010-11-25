@@ -86,15 +86,18 @@ public class ContenidoEditor extends Contenido {
 
     @Override
     public void draw(Graphics2D g) {
+        //dibujamos el fondo
         g.drawImage(this.getImagen(), (int) posicion.x, (int) posicion.y, null);
-
+        // dibujamos los botones por defecto
         for (Boton b : this.getBotonesPorDefecto()) {
             b.draw(g);
             g.drawString(b.getNombre(), b.getX(), b.getY() + 12);
         }
+        //dibujamos el resto de botones
         for (Boton b : getBotones()) {
             b.draw(g);
         }
+        // dibujamos los valores actuales de los atributos
         int x = 900, y = 60;
         for (String element : atributos.values()) {
             g.drawString(element, x, y);
@@ -103,6 +106,7 @@ public class ContenidoEditor extends Contenido {
     }
 
     @Override
+    //calcula la posicion X para un boton por defecto
     public int calculaX() {
         int pos = (int) posicion.x + 10;
         return pos;
@@ -110,16 +114,19 @@ public class ContenidoEditor extends Contenido {
     }
 
     @Override
+    //calcula la posicion Y para un boton por defecto
     public int calculaY() {
         int pos = (int) posicion.y + (this.getBotonesPorDefecto().size() * 31) + 45;
         return pos;
     }
-
+    // crea un boton en Contenido Torres para que ese boton pueda crear torres
     public static void creaBotonCreador() {
         try {
+            //cargamos la imagen que tenemos en imagen torre
             Image im = Lienzo.cargarImagen(imagenTorre);
+            //creamos el boton en cointenido torres para que pueda crear una torre
             Ventana_Panel.getFondo().get("fondoTorres").addBotonPorDefecto(new BotonCreadorTorre(im, im, ContenidoEditor.getAtributos().get("Nombre"), Ventana_Panel.getFondo().get("fondoTorres").calculaX(), Ventana_Panel.getFondo().get("fondoTorres").calculaY(), im.getWidth(null), im.getHeight(null),
-
+                    //le pasamos la torre segun los atributos que hemos recogido en este contenido
                     new Tower(Float.parseFloat(ContenidoEditor.getAtributos().get("Daño")),
                     Float.parseFloat(ContenidoEditor.getAtributos().get("Área de daño")),
                     Integer.parseInt(ContenidoEditor.getAtributos().get("Rango")),
@@ -135,7 +142,7 @@ public class ContenidoEditor extends Contenido {
             Logger.getLogger(ContenidoEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    // metodo que calcula el coste que va a suponer crear esta torre en el mapa
     public static Map<String, Integer> calculaCosteProduccion() {
         Map<String, Integer> costeProduccion = new HashMap<String, Integer>();
 
