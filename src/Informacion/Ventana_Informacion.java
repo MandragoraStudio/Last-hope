@@ -107,6 +107,9 @@ public class Ventana_Informacion implements IVentana {
             //brillo al bicho
             //TODO: remarcar el bicho elegido
             g.drawImage(brillo,(int)ac.posicion.x-5, (int)ac.posicion.y-5,null);
+            if(e.getVida()<0){
+                ac=null;
+            }
          }else if (ac instanceof Tower){
             Tower t = (Tower)ac;
             g.drawString("Ataque: "+t.getAtaque(), x+900, y+40);
