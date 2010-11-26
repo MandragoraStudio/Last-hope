@@ -23,16 +23,25 @@ public abstract class Enemy extends Actor {
     private float tModVelocidad;
     private float fuerzaVeneno;
     private float tVeneno;
+    private float fuerzaFuego;
+    private float tFuego;
     private float armadura;
     private float regeneracion;
+    private float tNoRegenerar;
     private Vector2D direccion = Vector2D.uno;
     private float vida;
+    private float maxVida;
     private int dano;
     private int casilla;
 
     public void envenenar(float fuerza, float tiempo){
         fuerzaVeneno=fuerza;
         tVeneno=tiempo;
+    }
+    public void quemar(float fuerza, float tiempo){
+        fuerzaFuego=fuerza;
+        tFuego=tiempo;
+        tNoRegenerar=4*tiempo;
     }
     public float getArmadura() {
         return armadura;
@@ -79,12 +88,14 @@ public abstract class Enemy extends Actor {
         this.id = id;
         this.velocidad = velocidad;
         this.vida = vida;
+        this.maxVida=vida;
         this.dano = dano;
         this.armadura=armadura;
         this.regeneracion=regeneracion;
         this.posicion = posicion;
         this.modVelocidad=1;
         this.tModVelocidad=0;
+        this.tNoRegenerar=-1;
     }
 
     public int getCasilla() {
@@ -135,6 +146,15 @@ public abstract class Enemy extends Actor {
         if(fuerzaVeneno>0&&tVeneno>0){
             vida-=fuerzaVeneno;
             tVeneno--;
+        }
+        if(tNoRegenerar<0){
+            if(vida+this.regeneracion<maxVida){
+                vida+=regeneracion;
+            }else{
+                vida=maxVida;
+            }
+        }else{
+            tNoRegenerar--;
         }
         Vector2D destino = Ventana_Mapa.map.camino.get(casilla);
         direccion=Ventana_Mapa.getCoordenadaCentro((int)destino.x,(int)destino.y).subs(posicion);

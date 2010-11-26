@@ -57,6 +57,7 @@ public class Vector2D {
     public double modulo() {
         float dev = 0;
         dev = x * x + y * y;
+        dev=Math.abs(dev);
         return Math.sqrt(dev);
     }
 
