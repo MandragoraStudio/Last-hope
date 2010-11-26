@@ -250,9 +250,4 @@ public class Tower extends Actor {
     public void rotarTorre(int x, int y) {
     }
 
-    
-
-    /* public void setUltimoDisparo(long ultimoDisparo) {
-    this.ultimoDisparo = ultimoDisparo;
-    }*/
 }

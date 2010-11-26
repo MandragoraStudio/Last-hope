@@ -97,7 +97,7 @@ public abstract class Enemy extends Actor {
             AffineTransform at = new AffineTransform();
             AffineTransform temp = g.getTransform();
             at.rotate(-direccion.getAngle() + Math.toRadians(180), posicion.x + imagen.getWidth(null)/2, posicion.y + imagen.getHeight(null)/2);
-            //at.rotate(Math.toRadians(315), posicion.x+2, posicion.y+2);
+            
             g.setTransform(at);
             g.drawImage(imagen, (int) posicion.x, (int) posicion.y, null);
             g.setTransform(temp);
@@ -137,7 +137,6 @@ public abstract class Enemy extends Actor {
             tVeneno--;
         }
         Vector2D destino = Ventana_Mapa.map.camino.get(casilla);
-        //direccion=posicion.subs(Ventana_Mapa.getCoordenadaCentro((int)destino.x,(int)destino.y));
         direccion=Ventana_Mapa.getCoordenadaCentro((int)destino.x,(int)destino.y).subs(posicion);
         posicion = posicion.add(direccion.unitario().mult(velocidad*modVelocidad));
     }

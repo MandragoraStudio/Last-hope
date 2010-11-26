@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Mapa;
 
 import UtilMath.Vector2D;
@@ -26,6 +23,7 @@ public class Mapa {
         return mapa;
     }
 
+    //este metodo analiza el array bidimensional que es el mapa y te devuelve una lista con las casillas que forman el camino
     public Vector<Vector2D> analizaMapa() {
         Vector<Vector2D> dev = new Vector<Vector2D>();
         Vector2D casillaAnterior = new Vector2D(0, 0);
