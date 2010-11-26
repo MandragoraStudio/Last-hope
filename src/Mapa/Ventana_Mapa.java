@@ -210,7 +210,7 @@ public class Ventana_Mapa implements IVentana {
         sendWave(1);
     }
 
-    //pintemos algunos datos utiles para nosotros que desarrollmos!! (si, claro, utiles)
+    //pintemos algunos datos utiles para nosotros que desarrollamos!! (si, claro, utiles)
     private void pintaDatosDebug(Graphics2D g) {
         Color c = g.getColor();
         g.setColor(Color.black);

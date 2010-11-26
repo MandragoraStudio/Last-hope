@@ -101,9 +101,9 @@ public class Ventana_Informacion implements IVentana {
          g.drawImage(ac.getImagen(), x+967, y+40,null);
          if(ac instanceof Enemy){
             Enemy e =(Enemy)ac;
-            g.drawString("Vida: "+e.getVida(), x+870, y+40);
-            g.drawString("Armadura: "+e.getArmadura(), x+870, y+60);
-            g.drawString("Daño: "+e.getDano(), x+870, y+80);
+            g.drawString("Vida: "+(int)e.getVida(), x+875, y+40);
+            g.drawString("Armadura: "+e.getArmadura(), x+875, y+60);
+            g.drawString("Daño: "+e.getDano(), x+875, y+80);
             //brillo al bicho
             //TODO: remarcar el bicho elegido
             g.drawImage(brillo,(int)ac.posicion.x-5, (int)ac.posicion.y-5,null);
@@ -113,10 +113,9 @@ public class Ventana_Informacion implements IVentana {
             }
          }else if (ac instanceof Tower){
             Tower t = (Tower)ac;
-            //TODO: un casting a entero a las variables? no creo que al jugador le interese el 9º decimal
-            g.drawString("Ataque: "+t.getAtaque(), x+900, y+40);
-            g.drawString("Alcanze: "+t.getRango(), x+900, y+60);
-            g.drawString("Velocidad: "+t.getRecarga(), x+900, y+70);
+            g.drawString("Ataque: "+(int)t.getAtaque(), x+875, y+40);
+            g.drawString("Alcance: "+(int)t.getRango(), x+875, y+60);
+            g.drawString("Velocidad: "+(int)t.getRecarga(), x+875, y+70);
          }
         
     }
