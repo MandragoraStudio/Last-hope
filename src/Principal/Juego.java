@@ -81,6 +81,7 @@ public class Juego {
     public void update(){
         currentScreen.update();
     }
+
     public void draw(){
         pincel.setColor(Color.GREEN);
         pincel.fillRect(0,0,WIDTH,HEIGHT);
