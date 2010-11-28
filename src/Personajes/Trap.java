@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Personajes;
 
 import UtilMath.Vector2D;
@@ -12,7 +11,7 @@ import java.awt.Image;
  *
  * @author Jose
  */
-public class Trap extends Actor{
+public class Trap extends Actor {
 
     private int id;
     private float ataque;
@@ -21,9 +20,9 @@ public class Trap extends Actor{
     private float dañoPasivo;
     private float coste;
     private Image im;
-    private Vector2D posicion;
 
     public Trap(int id, float ataque, int area, float ralentizacion, float dañoPasivo, float coste, Vector2D posicion, Image im) {
+        super(null, posicion);
         this.id = id;
         this.ataque = ataque;
         this.area = area;
@@ -33,28 +32,25 @@ public class Trap extends Actor{
 
         this.im = im;
 
-        this.posicion = posicion;
 
     }
-
 
     @Override
     public void update() {
-
     }
 
-    public void dispara(){
-
+    public void dispara() {
     }
 
-    public boolean isEnemigoATiro(){
+    public boolean isEnemigoATiro() {
         return false;
     }
-    public boolean isReadyToFire(){
+
+    public boolean isReadyToFire() {
         return false;
     }
-    public void rotarTorre(int x, int y){
 
+    public void rotarTorre(int x, int y) {
     }
 
     public int getArea() {
@@ -112,6 +108,4 @@ public class Trap extends Actor{
     public void setRalentizacion(float ralentizacion) {
         this.ralentizacion = ralentizacion;
     }
-
 }
-

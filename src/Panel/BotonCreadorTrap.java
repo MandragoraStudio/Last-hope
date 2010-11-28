@@ -15,8 +15,8 @@ import java.awt.Image;
  */
 public class BotonCreadorTrap extends Boton{
 
-    private static Trap t;
-
+    private static Trap t; // trampa que vamos a crear cuando pulsemos el boton
+    //constructor de prueba hasta que se implementen las habilidades especiales
     public BotonCreadorTrap(Image up, Image down, String nombre, int x, int y, int width, int height) throws Exception {
         super(up, nombre, x, y, width, height);
     }
@@ -38,7 +38,5 @@ public class BotonCreadorTrap extends Boton{
         System.out.println("dañoPasivo: " +BotonCreadorTrap.t.getDañoPasivo());
         System.out.println("coste: " +BotonCreadorTrap.t.getCoste());
         System.out.println("im: " +BotonCreadorTrap.t.getIm());
-
-
     }
 }

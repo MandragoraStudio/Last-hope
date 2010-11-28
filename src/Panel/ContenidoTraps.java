@@ -6,17 +6,32 @@ package Panel;
 
 
 import Graficos.Boton;
+import Graficos.Lienzo;
+import Handlers.MouseHandler;
+import Personajes.Trap;
+import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Jose
  */
 public class ContenidoTraps extends Contenido {
+    Image img4;
 
-    public ContenidoTraps(String url, int x, int y) {
-        super(url, x, y);
+    public ContenidoTraps(String url, Vector2D posicion) {
+        super(url, posicion);
+        try {
+            img4 = Lienzo.cargarImagen("imagenes/torrePanel.png");
+            //cargamos los botones del contenido 3
+            addBotonPorDefecto(new BotonCreadorTrap(img4, img4, "creaTrap", calculaX(), calculaY(), img4.getWidth(null), img4.getHeight(null), new Trap(0, 5, 2, 3, 0, 34, new Vector2D(MouseHandler.getX(), MouseHandler.getY()), img4)));
+        } catch (Exception ex) {
+            Logger.getLogger(ContenidoTraps.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override
@@ -28,7 +43,7 @@ public class ContenidoTraps extends Contenido {
     }
     @Override
     public void draw(Graphics2D g) {
-        g.drawImage(this.getImagen(), this.getX(), this.getY(), null);
+        g.drawImage(this.getImagen(), (int)posicion.x, (int)posicion.y, null);
 
         for (Boton b : this.getBotonesPorDefecto()) {
             b.draw(g);
@@ -41,9 +56,9 @@ public class ContenidoTraps extends Contenido {
         int pos = 0;
         int modulo = this.getBotonesPorDefecto().size() % 3;
         if (this.getBotonesPorDefecto().size() == 0) {
-            pos = this.getX() + 31;
+            pos = (int)posicion.x + 31;
         } else {
-            pos = super.getX() + (modulo * 81) + 31;
+            pos =(int)posicion.x + (modulo * 81) + 31;
         }
         return pos;
     }
@@ -53,9 +68,9 @@ public class ContenidoTraps extends Contenido {
         int pos = 0;
         int cociente = this.getBotonesPorDefecto().size() / 3;
         if (this.getBotonesPorDefecto().size() == 0) {
-            pos = this.getY() + 66;
+            pos = (int)posicion.y + 66;
         } else {
-            pos = this.getY() + (cociente * 81) + 66;
+            pos = (int)posicion.y + (cociente * 81) + 66;
         }
         return pos;
     }
