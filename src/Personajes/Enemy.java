@@ -120,6 +120,15 @@ public abstract class Enemy extends Actor {
         this.modVelocidad=ralentizar;
         tModVelocidad=tiempo;
     }
+
+    public Vector2D centro(){
+        float x = posicion.x;
+        float y = posicion.y;
+        x +=this.imagen.getWidth(null)/2;
+        y+=this.imagen.getHeight(null)/2;
+        return new Vector2D(x,y);
+    }
+
     @Override
     public void update() {
 
@@ -130,7 +139,7 @@ public abstract class Enemy extends Actor {
                 Ventana_Mapa.agregar.add(new Splash(posicion));
                 Juego.jugador.agregaPuntos(this.dano);
             }
-        if(Ventana_Mapa.getCasilla((int)posicion.x, (int)posicion.y).equals(Ventana_Mapa.map.camino.get(casilla)) ){
+        if( this.centro().subs(Ventana_Mapa.getCoordenadaCentro(Ventana_Mapa.map.camino.get(casilla))).modulo()< this.velocidad ){
               casilla++;
         }
         if(casilla>=Ventana_Mapa.map.camino.size()){
@@ -157,7 +166,7 @@ public abstract class Enemy extends Actor {
             tNoRegenerar--;
         }
         Vector2D destino = Ventana_Mapa.map.camino.get(casilla);
-        direccion=Ventana_Mapa.getCoordenadaCentro((int)destino.x,(int)destino.y).subs(posicion);
+        direccion=Ventana_Mapa.getCoordenadaCentro((int)destino.x,(int)destino.y).subs(centro());
         posicion = posicion.add(direccion.unitario().mult(velocidad*modVelocidad));
     }
 }
