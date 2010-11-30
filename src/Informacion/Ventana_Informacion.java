@@ -32,7 +32,7 @@ public class Ventana_Informacion implements IVentana {
     }
 
     public void cargar() {
-       Lienzo.cargarImagen("a");
+//       Lienzo.cargarImagen("a");
     }
 
 
