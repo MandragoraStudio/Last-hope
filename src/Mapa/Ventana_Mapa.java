@@ -9,6 +9,7 @@ import Personajes.Actor;
 import Personajes.Enemy;
 import Personajes.Tower;
 import Graficos.IVentana;
+import Graficos.Lienzo;
 import Observador.IObservador;
 import Observador.Observador_Mapa;
 import Personajes.Splash;
@@ -16,6 +17,7 @@ import Handlers.MouseHandler;
 import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,8 +43,10 @@ public class Ventana_Mapa implements IVentana {
     List<IObservador> observadores;
     int nivel = 2;
     public static boolean pausa = false;
+    private Image imagenCamino;
+    private Image imagenHierba;
 
-    public Ventana_Mapa(int WIDTH, int HEIGHT, int x, int y) {
+    public Ventana_Mapa(int WIDTH, int HEIGHT, int x, int y, String imagenCamino, String imagenHierba) {
         //los parametros magicos
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
@@ -53,6 +57,12 @@ public class Ventana_Mapa implements IVentana {
         this.y = y;
         this.cargar();
         observadores = new ArrayList<IObservador>();
+        if (imagenCamino != null) {
+            this.imagenCamino = Lienzo.cargarImagen(imagenCamino);
+        }
+        if (imagenHierba != null) {
+            this.imagenHierba = Lienzo.cargarImagen(imagenHierba);
+        }
         new Observador_Mapa(this);
     }
 
@@ -113,6 +123,11 @@ public class Ventana_Mapa implements IVentana {
 
                 if (map.getMapa()[i][j] > 0) {
                     g.fillRect(j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight);
+                    g.drawImage(imagenHierba, j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight, null);
+                }else{
+                    if(imagenCamino!=null){
+                        g.drawImage(imagenCamino, j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight, null);
+                    }
                 }
             }
         }
