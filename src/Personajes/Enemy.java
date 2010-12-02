@@ -124,7 +124,7 @@ public abstract class Enemy extends Actor {
         if(vida<0){
             //aqui el enemigo muere!!!
                 Ventana_Mapa.eliminaActor(this);
-                Ventana_Mapa.agregar.add(new Splash(posicion));
+                Ventana_Mapa.agregar.add(new Splash(this.centro()));
                 Juego.jugador.agregaPuntos(this.dano);
             }
         if( this.centro().subs(Ventana_Mapa.getCoordenadaCentro(Ventana_Mapa.map.camino.get(casilla))).modulo()<= this.velocidad ){
