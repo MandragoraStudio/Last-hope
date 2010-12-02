@@ -6,6 +6,7 @@ package Observador;
 
 import Graficos.Boton;
 import Graficos.Lienzo;
+import Mapa.Ventana_Mapa;
 import Panel.BotonCreadorTorre;
 import Panel.BotonCreadorTrap;
 import Panel.ContenidoEditor;
@@ -35,6 +36,10 @@ public class Observador implements IObservador {
             System.exit(0);
         } else if (comando.equals("Menu")) {
             Juego.changeScreen("Menu");
+        } else if (comando.equals("Pausa")) {
+            Ventana_Mapa.pausa=true;
+        } else if (comando.equals("Play")) {
+            Ventana_Mapa.pausa=false;
         } else if (comando.equals("torres")) {
             Ventana_Panel.cambiaFondo("fondoTorres");
         } else if (comando.equals("editor")) {

@@ -5,8 +5,6 @@
 
 package Principal;
 
-import java.awt.Canvas;
-
 /**
  *
  * @author Thanar

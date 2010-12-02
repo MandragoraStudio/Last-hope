@@ -23,10 +23,6 @@ public class BotonCreadorTorre extends BotonGeneral {
         BotonCreadorTorre.t = to;
     }
 
-    public void setTorre(Tower t) {
-        BotonCreadorTorre.t = t;
-    }
-
     public static void creaTorre() {
         Ventana_Mapa.construir = true;
         Ventana_Mapa.torre = BotonCreadorTorre.t;
