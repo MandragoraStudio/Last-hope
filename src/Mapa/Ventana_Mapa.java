@@ -39,7 +39,8 @@ public class Ventana_Mapa implements IVentana {
     public static boolean construir = false;
     public static Tower torre = null;
     List<IObservador> observadores;
-    int nivel =2;
+    int nivel = 2;
+    public static boolean pausa = false;
 
     public Ventana_Mapa(int WIDTH, int HEIGHT, int x, int y) {
         //los parametros magicos
@@ -59,7 +60,7 @@ public class Ventana_Mapa implements IVentana {
         observadores.add(o);
     }
 
-    public static void eliminaActor(Actor a){
+    public static void eliminaActor(Actor a) {
         eliminar.add(a);
     }
 
@@ -79,12 +80,12 @@ public class Ventana_Mapa implements IVentana {
 
     //te da las coordenadas del centro de una casilla dada
     public static Vector2D getCoordenadaCentro(int x, int y) {
-        return new Vector2D(x * casillaWidth + casillaWidth/2, y * casillaHeight + casillaHeight /2);
+        return new Vector2D(x * casillaWidth + casillaWidth / 2, y * casillaHeight + casillaHeight / 2);
     }
 
     //similar al anterior, recibe un vector
     public static Vector2D getCoordenadaCentro(Vector2D posicion) {
-        return new Vector2D(posicion.x * casillaWidth + casillaWidth/2, posicion.y * casillaHeight + casillaHeight /2);
+        return new Vector2D(posicion.x * casillaWidth + casillaWidth / 2, posicion.y * casillaHeight + casillaHeight / 2);
     }
 
     //comprobamos si la casilla dada por las coordenadas del vector es valida para construir
@@ -118,14 +119,16 @@ public class Ventana_Mapa implements IVentana {
 
         // cosas del suelo
         for (Actor a : actores) {
-            if((a instanceof Splash))
+            if ((a instanceof Splash)) {
                 a.draw(g);
+            }
         }
         //ahora pintariamos unas torres...
         //y ahora pintamos unos enemiguillos...
         for (Actor a : actores) {
-            if(!(a instanceof Splash))
+            if (!(a instanceof Splash)) {
                 a.draw(g);
+            }
         }
         //pintamos los proyectiles ahora?
 
@@ -143,23 +146,26 @@ public class Ventana_Mapa implements IVentana {
     }
 
     public void update() {
-        for(Actor a : agregar){
-            actores.add(a);
-        }
-        agregar.clear();
-        for (Actor a : actores) {
-            a.update();
-        }
-        for(Actor a : eliminar){
-            if(actores.contains(a))
-                actores.remove(a);
+        if (!pausa) {
+            for (Actor a : agregar) {
+                actores.add(a);
+            }
+            agregar.clear();
+            for (Actor a : actores) {
+                a.update();
+            }
+            for (Actor a : eliminar) {
+                if (actores.contains(a)) {
+                    actores.remove(a);
+                }
+            }
+            eliminar.clear();
         }
 
         //si no quedan enemigos... algo habra uqe hacer ;-)
-        if(numeroEnemigos()==0){
+        if (numeroEnemigos() == 0) {
             sendWave(nivel++);
         }
-        eliminar.clear();
         if (isPulsado()) {
             for (IObservador o : observadores) {
                 o.update("");
@@ -168,10 +174,10 @@ public class Ventana_Mapa implements IVentana {
     }
 
     //devuelve el numero de enemigos en pantalla
-    public int numeroEnemigos(){
-        int dev=0;
-        for(Actor a : actores){
-            if(a instanceof Enemy){
+    public int numeroEnemigos() {
+        int dev = 0;
+        for (Actor a : actores) {
+            if (a instanceof Enemy) {
                 dev++;
             }
         }
@@ -227,7 +233,7 @@ public class Ventana_Mapa implements IVentana {
     //pues eso, manda una oleada
     public void sendWave(int n) {
         for (int i = 0; i < 20; i++) {
-            addEnemy(new EBasico(n,new Vector2D(10, (int)(-Ventana_Mapa.casillaWidth*1.3*i))));
+            addEnemy(new EBasico(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
         }
     }
 }
