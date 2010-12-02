@@ -80,12 +80,12 @@ public class Ventana_Mapa implements IVentana {
 
     //te da las coordenadas del centro de una casilla dada
     public static Vector2D getCoordenadaCentro(int x, int y) {
-        return new Vector2D(x * casillaWidth + casillaWidth / 2, y * casillaHeight + casillaHeight / 2);
+        return new Vector2D(x * casillaWidth + casillaWidth / 2.0f, y * casillaHeight + casillaHeight / 2.0f);
     }
 
     //similar al anterior, recibe un vector
     public static Vector2D getCoordenadaCentro(Vector2D posicion) {
-        return new Vector2D(posicion.x * casillaWidth + casillaWidth / 2, posicion.y * casillaHeight + casillaHeight / 2);
+        return new Vector2D(posicion.x * casillaWidth + casillaWidth / 2.0f, posicion.y * casillaHeight + casillaHeight / 2.0f);
     }
 
     //comprobamos si la casilla dada por las coordenadas del vector es valida para construir
