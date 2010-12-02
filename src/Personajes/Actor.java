@@ -21,9 +21,9 @@ public abstract class Actor {
     private Image imagen;
     public Vector2D posicion = new Vector2D(0, 0);
     Abotonador boton;
-    float interval;
+    float interval=300;
     float elapsedTime;
-    int currentFrame;
+    int currentFrame=0;
     int numFrames;
     int width;
     int height;
@@ -90,8 +90,10 @@ public abstract class Actor {
 
     public void setImagen(Image imagen) {
         this.imagen = imagen;
-        boton.setHeight(imagen.getHeight(null));
-        boton.setWidth(imagen.getWidth(null));
+        height = imagen.getHeight(null);
+        width=imagen.getWidth(null);
+        boton.setHeight(height);
+        boton.setWidth(width);
     }
 
     public void draw(Graphics2D g) {
@@ -123,6 +125,7 @@ public abstract class Actor {
         elapsedTime += Globals.elapsedTime;
         if (elapsedTime > interval) {
             this.currentFrame++;
+            elapsedTime=0;
         }
         if (currentFrame >= numFrames) {
             currentFrame = 0;
