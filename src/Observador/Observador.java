@@ -46,8 +46,6 @@ public class Observador implements IObservador {
             Ventana_Panel.cambiaFondo("fondoEditor");
         } else if (comando.equals("trap")) {
             Ventana_Panel.cambiaFondo("fondoTraps");
-        } else if (comando.equals(ContenidoEditor.getAtributos().get("Nombre"))) {
-            BotonCreadorTorre.creaTorre();
         } else if (comando.equals("creaTrap")) {
             BotonCreadorTrap.creaTrap();
         } else if (comando.equals("creaBotonCreador")) {

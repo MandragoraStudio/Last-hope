@@ -16,17 +16,17 @@ import java.awt.Image;
  */
 public class BotonCreadorTorre extends BotonGeneral {
 
-    private static Tower t; //torre que va a crear cuando se pulse el boton
+    private Tower t; //torre que va a crear cuando se pulse el boton
 
     public BotonCreadorTorre(Image up, Image down, String nombre, int x, int y, int width, int height, Tower to) throws Exception {
         //inicializamos atributos
         super(up, down, nombre, x, y, width, height);
-        BotonCreadorTorre.t = to;
+        this.t = to;
         new Observador_Creador(this);
     }
 
-    public static void creaTorre() {
+    public void creaTorre() {
         Ventana_Mapa.construir = true;
-        Ventana_Mapa.torre = BotonCreadorTorre.t;
+        Ventana_Mapa.torre = this.t;
     }
 }
