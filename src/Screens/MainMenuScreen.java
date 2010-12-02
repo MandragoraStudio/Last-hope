@@ -23,12 +23,12 @@ import java.util.logging.Logger;
  * @author Thanar
  */
 public class MainMenuScreen implements IScreen {
-Actor Fondo; // el fondo del menu
+Actor fondo; // el fondo del menu
 List<Boton> botones; // botones del menu
 
     public void cargarModelos() {
         try {
-            Fondo = new Fondo("imagenes/fondo.png",Vector2D.zero);
+            fondo = new Fondo("imagenes/fondo.png",Vector2D.zero);
             botones = new ArrayList<Boton>();
             
             
@@ -63,7 +63,7 @@ List<Boton> botones; // botones del menu
 
     public void draw(Graphics2D g) {
         //dibujamos el fondo
-        Fondo.draw(g);
+        fondo.draw(g);
         //dibujamos todos los botones
         for(Boton b:botones){
             b.draw(g);

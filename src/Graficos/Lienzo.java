@@ -12,6 +12,8 @@ import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
+import java.util.HashMap;
+import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,6 +28,7 @@ public class Lienzo extends Canvas {
     public BufferStrategy strategy;
     public JFrame frame; //ventana sobre la que pintaremos
     public JPanel panel; // subcontenido de la ventana
+    private static Map<String, Image> imagenes;
 
     public Lienzo(int width, int height) {
         //le ponemos un titulo a la ventana y la creamos
@@ -74,12 +77,21 @@ public class Lienzo extends Canvas {
         return panel;
     }
     //metodo que utilizaremos para abstraernos de la carga de las imagenes
+
     public static Image cargarImagen(String url) {
         Image i = null;
-        try {
-            i = ImageIO.read((new Vector2D(0, 0)).getClass().getClassLoader().getResource(url));
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (imagenes == null) {
+            imagenes = new HashMap<String, Image>();
+        }
+        if (imagenes.containsKey(url)) {
+            i = imagenes.get(url);
+        } else {
+            try {
+                i = ImageIO.read((new Vector2D(0, 0)).getClass().getClassLoader().getResource(url));
+                imagenes.put(url, i);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return i;
     }
