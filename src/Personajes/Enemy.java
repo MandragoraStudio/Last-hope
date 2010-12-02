@@ -162,6 +162,6 @@ public abstract class Enemy extends Actor {
         destino = Ventana_Mapa.map.camino.get(casilla);
         direccion=Ventana_Mapa.getCoordenadaCentro((int)destino.x,(int)destino.y).subs(centro());
         this.posicion = posicion.add(direccion.unitario().mult(velocidad*modVelocidad));
-        rotation=direccion.getAngle();
+        rotation=direccion.getAngle()+(float)Math.toRadians(180);
     }
 }

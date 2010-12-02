@@ -61,7 +61,7 @@ public class Tower extends Actor {
         }
         if (objetivo != null) {
             if (this.estaAlAlcance(objetivo.posicion)) {
-                rotation = objetivo.posicion.subs(posicion).getAngle();
+                rotation = posicion.subs(objetivo.posicion).getAngle();
 
 
             }
