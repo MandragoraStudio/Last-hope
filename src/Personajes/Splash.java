@@ -14,7 +14,7 @@ public class Splash extends Actor{
 
     private static Image imagen=null;
     public Splash(Vector2D posicion){
-        super(imagen,posicion);
+        super(imagen,posicion,20);
         if(imagen==null){
             imagen=Lienzo.cargarImagen("imagenes/splash.png");
         }

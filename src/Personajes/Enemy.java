@@ -33,6 +33,7 @@ public abstract class Enemy extends Actor {
     private float maxVida;
     private int dano;
     private int casilla;
+    Vector2D destino;
 
     public void envenenar(float fuerza, float tiempo){
         fuerzaVeneno=fuerza;
@@ -83,8 +84,8 @@ public abstract class Enemy extends Actor {
         this.vida = vida;
     }
 
-    public Enemy(int id, float velocidad, float vida, int dano, float armadura,float regeneracion, Vector2D posicion, String imagen) {
-        super(Lienzo.cargarImagen(imagen), posicion);
+    public Enemy(int id, float velocidad, float vida, int dano, float armadura,float regeneracion, Vector2D posicion, String imagen,int width) {
+        super(Lienzo.cargarImagen(imagen), posicion,width);
         this.id = id;
         this.velocidad = velocidad;
         this.vida = vida;
@@ -102,20 +103,7 @@ public abstract class Enemy extends Actor {
         return casilla;
     }
 
-    @Override
-    public void draw(Graphics2D g) {
-        try {
-            AffineTransform at = new AffineTransform();
-            AffineTransform temp = g.getTransform();
-            at.rotate(-direccion.getAngle() + Math.toRadians(180), posicion.x + imagen.getWidth(null)/2, posicion.y + imagen.getHeight(null)/2);
-            
-            g.setTransform(at);
-            g.drawImage(imagen, (int) posicion.x, (int) posicion.y, null);
-            g.setTransform(temp);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+   
     public void congelar(float ralentizar, float tiempo){
         this.modVelocidad=ralentizar;
         tModVelocidad=tiempo;
@@ -124,8 +112,8 @@ public abstract class Enemy extends Actor {
     public Vector2D centro(){
         float x = posicion.x;
         float y = posicion.y;
-        x +=this.imagen.getWidth(null)/2;
-        y+=this.imagen.getHeight(null)/2;
+        x +=this.width/2.0f;
+        y+=this.height/2.0f;
         return new Vector2D(x,y);
     }
 
@@ -136,10 +124,11 @@ public abstract class Enemy extends Actor {
         if(vida<0){
             //aqui el enemigo muere!!!
                 Ventana_Mapa.eliminaActor(this);
-                Ventana_Mapa.agregar.add(new Splash(posicion));
+                Ventana_Mapa.agregar.add(new Splash(this.centro()));
                 Juego.jugador.agregaPuntos(this.dano);
             }
-        if( this.centro().subs(Ventana_Mapa.getCoordenadaCentro(Ventana_Mapa.map.camino.get(casilla))).modulo()< this.velocidad ){
+        if( this.centro().subs(Ventana_Mapa.getCoordenadaCentro(Ventana_Mapa.map.camino.get(casilla))).modulo()<= this.velocidad ){
+              
               casilla++;
         }
         if(casilla>=Ventana_Mapa.map.camino.size()){
@@ -148,25 +137,31 @@ public abstract class Enemy extends Actor {
             Juego.jugador.restaVida(dano);
         }
         if(tModVelocidad<0){
+            //aqui ya no me ralentizo
             modVelocidad=1;
         }else{
+            //seguramente este ralentizado
             tModVelocidad--;
         }
         if(fuerzaVeneno>0&&tVeneno>0){
+            //estoy envenenado
             vida-=fuerzaVeneno;
             tVeneno--;
         }
         if(tNoRegenerar<0){
+            //me puedo regenerar
             if(vida+this.regeneracion<maxVida){
                 vida+=regeneracion;
             }else{
                 vida=maxVida;
             }
         }else{
+            //no me puedo regenear
             tNoRegenerar--;
         }
-        Vector2D destino = Ventana_Mapa.map.camino.get(casilla);
+        destino = Ventana_Mapa.map.camino.get(casilla);
         direccion=Ventana_Mapa.getCoordenadaCentro((int)destino.x,(int)destino.y).subs(centro());
-        posicion = posicion.add(direccion.unitario().mult(velocidad*modVelocidad));
+        this.posicion = posicion.add(direccion.unitario().mult(velocidad*modVelocidad));
+        rotation=direccion.getAngle();
     }
 }

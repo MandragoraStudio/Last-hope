@@ -5,6 +5,7 @@
 package Personajes;
 
 import Mapa.Ventana_Mapa;
+import Principal.Globals;
 import java.awt.Image;
 import UtilMath.Vector2D;
 import java.awt.Color;
@@ -29,7 +30,7 @@ public class Tower extends Actor {
     private float veneno;
     private Image im;
     private int atacando = 0;
-    private long ultimoDisparo;
+    private long tRestante;
     private Enemy objetivo;
     private Map<String, Integer> coste;
 
@@ -45,16 +46,27 @@ public class Tower extends Actor {
         this.veneno = veneno;
         this.im = ima;
         this.coste = coste;
-        ultimoDisparo = System.currentTimeMillis();
+        tRestante = 0;
     }
 
     @Override
     public void update() {
         boton.update();
+        if (tRestante >= 0) {
+            tRestante -= Globals.elapsedTime;
+            
+        }
         if (enemigoATiro() && isCargada()) {
             ataca(eligeEnemigo(enemigosATiro()), true);
         }
+        if (objetivo != null) {
+            if (this.estaAlAlcance(objetivo.posicion)) {
+                rotation = objetivo.posicion.subs(posicion).getAngle();
 
+
+            }
+            
+        }
     }
 
     public void ataca(Enemy e, boolean extenderAtaque) {
@@ -85,7 +97,7 @@ public class Tower extends Actor {
                 ataca(enemigo, false);
             }
         }
-        ultimoDisparo = System.currentTimeMillis();
+        tRestante = this.recarga;
 
     }
 
@@ -108,7 +120,7 @@ public class Tower extends Actor {
             if (a instanceof Enemy) {
                 Enemy obj = (Enemy) a;
                 if (!obj.equals(e)) {
-                    if (e.posicion.subs(obj.posicion).modulo()<this.areaDeAtaque) {
+                    if (e.posicion.subs(obj.posicion).modulo() < this.areaDeAtaque) {
                         dev.add(obj);
                     }
                 }
@@ -149,16 +161,16 @@ public class Tower extends Actor {
 
     public boolean isCargada() {
         boolean dev;
-        dev = System.currentTimeMillis() - ultimoDisparo > recarga;
+        dev = tRestante < 0;
         return dev;
     }
 
     @Override
     public void draw(Graphics2D g) {
+        super.draw(g);
         Color c = g.getColor();
         g.setColor(new Color(0.7f, 0.5f, 0.5f, 0.8f));
-        g.fillRect((int) posicion.x, (int) posicion.y, Ventana_Mapa.casillaWidth, Ventana_Mapa.casillaHeight);
-        g.drawImage(imagen, (int) posicion.x, (int) posicion.y, null);
+        //g.fillRect((int) posicion.x, (int) posicion.y, Ventana_Mapa.casillaWidth, Ventana_Mapa.casillaHeight);
         if (atacando > 0 && estaAlAlcance(objetivo.posicion)) {
             g.setColor(Color.red);
 
@@ -211,10 +223,6 @@ public class Tower extends Actor {
 
     public long getRecarga() {
         return recarga;
-    }
-
-    public long getUltimoDisparo() {
-        return ultimoDisparo;
     }
 
     public float getVeneno() {
