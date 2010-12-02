@@ -124,4 +124,13 @@ public class Boton {
     public void setY(int y) {
         this.y = y;
     }
+
+    public List<IObservador> getObservadores() {
+        return observadores;
+    }
+
+    public void setObservadores(List<IObservador> observadores) {
+        this.observadores = observadores;
+    }
+
 }

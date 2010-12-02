@@ -6,6 +6,7 @@ package Panel;
 
 import Graficos.BotonGeneral;
 import Mapa.Ventana_Mapa;
+import Observador.Observador_Creador;
 import Personajes.Tower;
 import java.awt.Image;
 
@@ -21,6 +22,7 @@ public class BotonCreadorTorre extends BotonGeneral {
         //inicializamos atributos
         super(up, down, nombre, x, y, width, height);
         BotonCreadorTorre.t = to;
+        new Observador_Creador(this);
     }
 
     public static void creaTorre() {

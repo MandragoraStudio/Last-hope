@@ -52,9 +52,12 @@ public class ContenidoTorres extends Contenido{
             coste.put("radio", 0);
             coste.put("cromo", 20);
             coste.put("energia", 60);
-            addBotonPorDefecto(new BotonCreadorTorre(img1, img1, "Torreta", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(20, 0, 50, 0, 0, 0, 12, 0, coste, Vector2D.fuera, img1)));
-            addBotonPorDefecto(new BotonCreadorTorre(img2, img2, "Teminator", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(30, 10, 70, 5, 3, 2, 30, 0, coste, Vector2D.fuera, img2)));
-            addBotonPorDefecto(new BotonCreadorTorre(img3, img3, "Frio y Veneno", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(2, 15, 100, 50, 0, 0, 50, 30, coste, Vector2D.fuera, img3)));
+            BotonCreadorTorre b1 = new BotonCreadorTorre(img1, img1, "Torreta", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(20, 0, 50, 0, 0, 0, 12, 0, coste, Vector2D.fuera, img1));
+            addBotonPorDefecto(b1);
+            BotonCreadorTorre b2 = new BotonCreadorTorre(img2, img2, "Teminator", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(30, 10, 70, 5, 3, 2, 30, 0, coste, Vector2D.fuera, img2));
+            addBotonPorDefecto(b2);
+            BotonCreadorTorre b3 = new BotonCreadorTorre(img3, img3, "Frio y Veneno", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(2, 15, 100, 50, 0, 0, 50, 30, coste, Vector2D.fuera, img3));
+            addBotonPorDefecto(b3);
     }
     @Override
     //sobreescribimos el metodo para asegurarnos de que solo se creen 12 botones como máximo
