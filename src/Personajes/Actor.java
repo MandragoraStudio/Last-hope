@@ -7,6 +7,7 @@ package Personajes;
 
 import Graficos.Abotonador;
 import Graficos.Lienzo;
+import Principal.Globals;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -19,8 +20,15 @@ public abstract class Actor {
     protected Image imagen;
     public Vector2D posicion = new Vector2D(0,0);
     Abotonador boton;
+    float interval;
+    float elapsedTime;
+    int currentFrame;
+    int numFrames;
+    int width;
+    int height;
 
     public Actor(Image im,Vector2D posicion){
+        elapsedTime=0;
         if (posicion==null){
             posicion=Vector2D.zero;
         }
@@ -66,5 +74,14 @@ public abstract class Actor {
         }
     }
 
-    public abstract void update();
+    public void update(){
+        elapsedTime += Globals.elapsedTime;
+        if(elapsedTime>interval){
+            this.currentFrame++;
+        }
+        if(currentFrame>=numFrames){
+            currentFrame=0;
+        }
+
+    }
 }

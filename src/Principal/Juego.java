@@ -41,6 +41,7 @@ public class Juego {
         jugador = new Jugador(true);
         manejadorRaton = new MouseHandler(lienzo);
         //carga de las pantallas
+        Globals.elapsedTime =0;
         cargarPantallas();
     }
 
@@ -55,6 +56,7 @@ public class Juego {
     public void runGame(){
         //tomamos el tiempo en el que empieza la aplicacion
         startTime=System.currentTimeMillis();
+        long auxTime=0;
         //inicializamos previous time
         previousTime = startTime;
         //cargamos los modelos (solo una vez)
@@ -72,7 +74,9 @@ public class Juego {
                 }catch(Exception e){}
             }
             //actualizamos el valor de previous time
-            previousTime=System.currentTimeMillis();
+            auxTime= System.currentTimeMillis();
+            Globals.elapsedTime=auxTime-previousTime;
+            previousTime=auxTime;
         }
     }
     public void cargarModelos(){
