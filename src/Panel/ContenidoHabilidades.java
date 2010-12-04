@@ -33,9 +33,9 @@ public class ContenidoHabilidades extends Contenido {
     }
 
     public void cargar() throws Exception {
-        img4 = Lienzo.cargarImagen("imagenes/torrePanel.png");
+        img4 = Lienzo.cargarImagen("imagenes/centralEnergia.png");
         //cargamos los botones del contenido 3
-        addBotonPorDefecto(new BotonCreadorHabilidad(img4, img4, "creaTrap", calculaX(), calculaY(), img4.getWidth(null), img4.getHeight(null), new CentralEnergia(img4, Vector2D.zero)));
+        addBotonPorDefecto(new BotonCreadorHabilidad(img4, img4, "Central Energia", calculaX(), calculaY(), img4.getWidth(null), img4.getHeight(null), new CentralEnergia(img4, Vector2D.zero)));
 
     }
 
