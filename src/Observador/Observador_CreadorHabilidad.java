@@ -5,17 +5,16 @@
 
 package Observador;
 
-import Graficos.Boton;
-import Panel.BotonCreadorTorre;
+import Panel.BotonCreadorHabilidad;
 
 /**
  *
  * @author Jose
  */
-public class Observador_Creador implements IObservador{
-    private BotonCreadorTorre boton; //boton al que observa
+public class Observador_CreadorHabilidad implements IObservador{
+    private BotonCreadorHabilidad boton; //boton al que observa
 
-    public Observador_Creador(BotonCreadorTorre b) {
+    public Observador_CreadorHabilidad(BotonCreadorHabilidad b) {
         boton = b;//inicializa el boton
         boton.Atach(this); //le añadimos al boton el observador
     }
@@ -24,7 +23,7 @@ public class Observador_Creador implements IObservador{
         //switch de string
 
         if (comando.equals(boton.getNombre())) {
-            boton.creaTorre();
+            boton.creaHabilidad();
         }
     }
 }

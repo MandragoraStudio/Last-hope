@@ -8,7 +8,7 @@ import Graficos.Boton;
 import Graficos.Lienzo;
 import Mapa.Ventana_Mapa;
 import Panel.BotonCreadorTorre;
-import Panel.BotonCreadorTrap;
+import Panel.BotonCreadorHabilidad;
 import Panel.ContenidoEditor;
 import Panel.Ventana_Panel;
 import Principal.Juego;
@@ -46,8 +46,6 @@ public class Observador implements IObservador {
             Ventana_Panel.cambiaFondo("fondoEditor");
         } else if (comando.equals("trap")) {
             Ventana_Panel.cambiaFondo("fondoTraps");
-        } else if (comando.equals("creaTrap")) {
-            BotonCreadorTrap.creaTrap();
         } else if (comando.equals("creaBotonCreador")) {
             ContenidoEditor.creaBotonCreador();
         } else if (comando.equals("Nombre")) {
