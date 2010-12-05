@@ -92,13 +92,19 @@ public class Ventana_Informacion implements IVentana {
         g.drawString(""+Juego.jugador.getEnergia()+"/"+Juego.jugador.getEnergiaMax(), x+650, y+70);
         g.drawString("Oleada",x+750, y+40);
         g.drawString("??", x+750, y+70);
+
         //Barra informacion derecha (Informacion)
         if(ac==null){
             //TODO: esto hay que cambiarlo por una informacion vacia por defecto!!
-
-            ac=new EBasico(1, new Vector2D(-100,-100));
+            g.drawString("Vida: ---", x+875, y+40);
+            g.drawString("Armadura: ---", x+875, y+60);
+            g.drawString("Daño: ---", x+875, y+80);
+            g.drawString("?",x+985 ,y+55);
+            //ac=new EBasico(1, new Vector2D(-100,-100));
+        }else
+        {
+         g.drawImage(ac.getImagen(), x+965, y+30,null);
         }
-         g.drawImage(ac.getImagen(), x+967, y+40,null);
          if(ac instanceof Enemy){
             Enemy e =(Enemy)ac;
             g.drawString("Vida: "+(int)e.getVida(), x+875, y+40);
@@ -115,7 +121,7 @@ public class Ventana_Informacion implements IVentana {
             Tower t = (Tower)ac;
             g.drawString("Ataque: "+(int)t.getAtaque(), x+875, y+40);
             g.drawString("Alcance: "+(int)t.getRango(), x+875, y+60);
-            g.drawString("Velocidad: "+(int)t.getRecarga(), x+875, y+70);
+            g.drawString("Velocidad: "+(int)t.getRecarga(), x+875, y+80);
          }
         
     }

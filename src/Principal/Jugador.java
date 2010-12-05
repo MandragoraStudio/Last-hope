@@ -100,7 +100,10 @@ public class Jugador implements IJugador {
     }
 
     public void restaVida(int vida){
-        this.vida-=vida;
+        if(vida>this.vida)
+            this.vida=0;
+        else
+            this.vida-=vida;
     }
 
     public Integer getVidaMax() {
