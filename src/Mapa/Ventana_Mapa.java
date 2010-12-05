@@ -41,7 +41,7 @@ public class Ventana_Mapa implements IVentana {
     public static boolean construir = false;
     public static Tower torre = null;
     List<IObservador> observadores;
-    int nivel = 2;
+    public static int nivel = 2;
     public static boolean pausa = false;
 
     public Ventana_Mapa(int WIDTH, int HEIGHT, int x, int y, String imagenCamino, String imagenHierba) {
