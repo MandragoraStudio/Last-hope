@@ -89,7 +89,7 @@ public class Ventana_Informacion implements IVentana {
         g.drawString("Cromo",x+550, y+40);
         g.drawString(""+Juego.jugador.getRecursos().get("cromo"), x+550, y+70);
         g.drawString("Energia",x+650, y+40);
-        g.drawString(""+Juego.jugador.getEnergia()+"/"+Juego.jugador.getEnergiaMax(), x+650, y+70);
+        g.drawString(""+Juego.jugador.getRecursos().get("energia")+"/"+Juego.jugador.getEnergiaMax(), x+650, y+70);
         g.drawString("Oleada",x+750, y+40);
         g.drawString("??", x+750, y+70);
 
