@@ -156,7 +156,9 @@ public class Tower extends Actor {
     }
 
     public boolean estaAlAlcance(Vector2D destino) {
-        return destino.subs(posicion.add(new Vector2D(this.width/2.0f,this.height/2.0f))).modulo() < rango;
+        return destino.subs(posicion).modulo() < rango;
+
+        //return destino.subs(posicion.add(new Vector2D(this.width/2.0f,this.height/2.0f))).modulo() < rango;
     }
 
     public boolean isCargada() {
