@@ -55,7 +55,7 @@ public class Ventana_Mapa implements IVentana {
         agregar = new LinkedList<Actor>();
         this.x = x;
         this.y = y;
-        this.cargar();
+        this.cargar(null);
         observadores = new ArrayList<IObservador>();
         if (imagenCamino != null) {
             this.imagenCamino = Lienzo.cargarImagen(imagenCamino);
@@ -209,9 +209,9 @@ public class Ventana_Mapa implements IVentana {
         return dev;
     }
 
-    public void cargar() {
+    public void cargar(int[][] mapa) {
         //matriz del mapa
-        int[][] mapa = {
+        /*int[][] mapa = {
             {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
             {1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1},
@@ -222,7 +222,24 @@ public class Ventana_Mapa implements IVentana {
             {1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1},
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+        };*/
+
+        int[][] ma= {
+            {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+            {1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1},
+            {1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1},
+            {1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0},
+            {1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1},
+            {1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1},
+            {1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
         };
+        if(mapa==null){
+            mapa=ma;
+        }
+
         //calculo el tamaño de las casillas
         casillaHeight = HEIGHT / mapa.length;
         casillaWidth = WIDTH / mapa[0].length;
@@ -247,8 +264,32 @@ public class Ventana_Mapa implements IVentana {
 
     //pues eso, manda una oleada
     public void sendWave(int n) {
+        if(n%10==0){
+            actores.clear();
+            eliminar.clear();
+            agregar.clear();
+            int[][] a={
+            {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+            {1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1},
+            {1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1},
+            {1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0},
+            {1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1},
+            {1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1},
+            {1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1},
+            {1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+        };
+            cargar(a);
+        }
         for (int i = 0; i < 20; i++) {
             addEnemy(new EBasico(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
         }
+
+    }
+
+    public void cargar() {
+
+        cargar(null);
     }
 }

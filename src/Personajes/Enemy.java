@@ -134,6 +134,8 @@ public abstract class Enemy extends Actor {
         if(casilla>=Ventana_Mapa.map.camino.size()){
             casilla=0;
             posicion=new Vector2D(-Ventana_Mapa.casillaWidth,-Ventana_Mapa.casillaHeight);
+            //elimino al actor que lo dice jose
+                Ventana_Mapa.eliminaActor(this);
             Juego.jugador.restaVida(dano);
         }
         if(tModVelocidad<0){

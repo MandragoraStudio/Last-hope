@@ -17,7 +17,7 @@ import java.util.Map;
 public class Habilidad extends Actor{
     private Map<String, Integer> coste = new LinkedHashMap<String, Integer>();
     public Habilidad(Image im, Vector2D posicion) {
-        super(im, posicion);
+        super(im, posicion, null);
     }
 
     public Map<String, Integer> getCoste() {

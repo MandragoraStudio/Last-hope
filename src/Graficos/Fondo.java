@@ -16,9 +16,10 @@ import javax.imageio.ImageIO;
 public class Fondo extends Actor {
 
     public Fondo(String url,Vector2D posicion){
-        super(null,posicion);
+        super(null,posicion,600);
         try{
             super.setImagen(Lienzo.cargarImagen(url));
+            this.width=1024;
         }catch(Exception e){
             e.printStackTrace();
         }
