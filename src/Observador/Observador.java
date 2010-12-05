@@ -32,14 +32,29 @@ public class Observador implements IObservador {
         //switch de string
         if (comando.equals("start")) {
             Juego.changeScreen("Game");
+        } else if (comando.equals("start2")) {
+            int[][] mapa = {
+                {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1},
+                {1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0},
+                {1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1},
+                {1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1},
+                {1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1},
+                {1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1},
+                {1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1},
+                {1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+            };
+            Ventana_Mapa.cargar(mapa);
+            Juego.changeScreen("Game");
         } else if (comando.equals("exit")) {
             System.exit(0);
         } else if (comando.equals("Menu")) {
             Juego.changeScreen("Menu");
         } else if (comando.equals("Pausa")) {
-            Ventana_Mapa.pausa=true;
+            Ventana_Mapa.pausa = true;
         } else if (comando.equals("Play")) {
-            Ventana_Mapa.pausa=false;
+            Ventana_Mapa.pausa = false;
         } else if (comando.equals("torres")) {
             Ventana_Panel.cambiaFondo("fondoTorres");
         } else if (comando.equals("editor")) {
