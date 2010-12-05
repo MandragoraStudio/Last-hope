@@ -71,6 +71,16 @@ public class Jugador implements IJugador {
     public void setEnergia(Integer energia) {
         this.energia = energia;
     }
+    public Boolean restaEnergia(Integer energia){
+        Boolean energiaSuf = true;
+        if(energia>this.energia){
+            this.energia=0;
+            energiaSuf=false;
+        }
+        else
+            this.energia-=energia;
+        return energiaSuf;
+    }
 
     public Integer getEnergiaMax() {
         return energiaMax;
@@ -99,8 +109,15 @@ public class Jugador implements IJugador {
         this.vida = vida;
     }
 
-    public void restaVida(int vida){
-        this.vida-=vida;
+    public Boolean restaVida(int vida){
+        Boolean vivo = true;
+        if(vida>this.vida){
+            this.vida=0;
+            vivo=false;
+        }
+        else
+            this.vida-=vida;
+        return vivo;
     }
 
     public Integer getVidaMax() {
@@ -118,9 +135,15 @@ public class Jugador implements IJugador {
         this.energia-=r.get("energia");
     }
     
-    public static boolean suficientesRecursos(Map<String,Integer> r){
+    public boolean suficientesRecursos(Map<String,Integer> rec){
         boolean dev = true;
-        //TODO: un metodo que devuelva true si hay suficientes recursos y false en caso contrario
+        for (String s : rec.keySet()){
+            if(recursos.get(s)<rec.get(s))
+            {
+                dev=false;
+                break;
+            }
+        }
         return dev;
     }
 
