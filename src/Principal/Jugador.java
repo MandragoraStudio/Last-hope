@@ -121,9 +121,15 @@ public class Jugador implements IJugador {
         this.energia-=r.get("energia");
     }
     
-    public static boolean suficientesRecursos(Map<String,Integer> r){
+    public boolean suficientesRecursos(Map<String,Integer> rec){
         boolean dev = true;
-        //TODO: un metodo que devuelva true si hay suficientes recursos y false en caso contrario
+        for (String s : rec.keySet()){
+            if(recursos.get(s)<rec.get(s))
+            {
+                dev=false;
+                break;
+            }
+        }
         return dev;
     }
 
