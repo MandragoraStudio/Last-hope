@@ -43,8 +43,6 @@ public class Ventana_Mapa implements IVentana {
     List<IObservador> observadores;
     int nivel = 2;
     public static boolean pausa = false;
-    private Image imagenCamino;
-    private Image imagenHierba;
 
     public Ventana_Mapa(int WIDTH, int HEIGHT, int x, int y, String imagenCamino, String imagenHierba) {
         //los parametros magicos
@@ -58,10 +56,10 @@ public class Ventana_Mapa implements IVentana {
         this.cargar(null);
         observadores = new ArrayList<IObservador>();
         if (imagenCamino != null) {
-            this.imagenCamino = Lienzo.cargarImagen(imagenCamino);
+            map.fondo = Lienzo.cargarImagen(imagenCamino);
         }
         if (imagenHierba != null) {
-            this.imagenHierba = Lienzo.cargarImagen(imagenHierba);
+            map.hierba = Lienzo.cargarImagen(imagenHierba);
         }
         new Observador_Mapa(this);
     }
@@ -123,10 +121,10 @@ public class Ventana_Mapa implements IVentana {
 
                 if (map.getMapa()[i][j] > 0) {
                     g.fillRect(j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight);
-                    g.drawImage(imagenHierba, j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight, null);
+                    g.drawImage(map.hierba, j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight, null);
                 }else{
-                    if(imagenCamino!=null){
-                        g.drawImage(imagenCamino, j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight, null);
+                    if(map.fondo!=null){
+                        g.drawImage(map.fondo, j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight, null);
                     }
                 }
             }

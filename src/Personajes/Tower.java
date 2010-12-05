@@ -106,7 +106,7 @@ public class Tower extends Actor {
         for (Actor a : Ventana_Mapa.actores) {
             if (a instanceof Enemy) {
                 Enemy e = (Enemy) a;
-                if (estaAlAlcance(e.posicion)) {
+                if (estaAlAlcance(e.posicion.add(new Vector2D(e.width/2.0f,e.height/2.0f)))) {
                     dev.add(e);
                 }
             }
@@ -156,7 +156,7 @@ public class Tower extends Actor {
     }
 
     public boolean estaAlAlcance(Vector2D destino) {
-        return destino.subs(posicion).modulo() < rango;
+        return destino.subs(posicion.add(new Vector2D(this.width/2.0f,this.height/2.0f))).modulo() < rango;
     }
 
     public boolean isCargada() {
