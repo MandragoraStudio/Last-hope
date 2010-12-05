@@ -6,8 +6,15 @@
 package Panel;
 
 import Graficos.Boton;
+import Graficos.Lienzo;
+import Personajes.Tower;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,9 +24,43 @@ public class ContenidoTorres extends Contenido{
     
     public ContenidoTorres(String url, Vector2D posicion){
         super(url, posicion);
+        
+        try {
+            cargar();
+        } catch (Exception ex) {
+            Logger.getLogger(ContenidoTorres.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         }
+    public void cargar() throws Exception{
+        //cargamos el boton que lleva al menu
+            Image img1 = Lienzo.cargarImagen("imagenes/torrePanel.png");
+            Image img2 = Lienzo.cargarImagen("imagenes/torrePanel3.png");
+            Image img3 = Lienzo.cargarImagen("imagenes/torrePanel4.png");
+            Image img6 = Lienzo.cargarImagen("imagenes/imagenpro.png");
+            Image img7 = Lienzo.cargarImagen("imagenes/imagenpro2.png");
+            Image img8 = Lienzo.cargarImagen("imagenes/pausa.png");
+            Image img9 = Lienzo.cargarImagen("imagenes/pausapulsada.png");
+            Image img10 = Lienzo.cargarImagen("imagenes/play.png");
+            Image img11 = Lienzo.cargarImagen("imagenes/playpulsado.png");
+            addBoton(img6, img7, "Menu", getImagen().getWidth(null)-img6.getWidth(null), getImagen().getHeight(null)-img6.getHeight(null));
+            addBoton(img8, img9, "Pausa",60 ,450);
+            addBoton(img10, img11, "Play",20 ,450);
+            Map <String, Integer>coste = new LinkedHashMap<String, Integer>();
+            coste.put("uranio", 0);
+            coste.put("rodio", 30);
+            coste.put("grafeno", 50);
+            coste.put("radio", 0);
+            coste.put("cromo", 20);
+            coste.put("energia", 60);
+            BotonCreadorTorre b1 = new BotonCreadorTorre(img1, img1, "Torreta", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(20, 0, 50, 0, 0, 0, 12, 0, coste, Vector2D.fuera, img1));
+            addBotonPorDefecto(b1);
+            BotonCreadorTorre b2 = new BotonCreadorTorre(img2, img2, "Teminator", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(30, 10, 70, 5, 3, 2, 30, 0, coste, Vector2D.fuera, img2));
+            addBotonPorDefecto(b2);
+            BotonCreadorTorre b3 = new BotonCreadorTorre(img3, img3, "Frio y Veneno", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(2, 15, 100, 50, 0, 0, 50, 30, coste, Vector2D.fuera, img3));
+            addBotonPorDefecto(b3);
     }
-    
     @Override
+    //sobreescribimos el metodo para asegurarnos de que solo se creen 12 botones como máximo
     public void addBotonPorDefecto(Boton b) throws Exception{
         if(this.getBotonesPorDefecto().size()<12){
             
@@ -28,17 +69,20 @@ public class ContenidoTorres extends Contenido{
     }
     @Override
     public void draw(Graphics2D g){
+        //dibujamos el fondo
         g.drawImage(this.getImagen(), (int)posicion.x, (int)posicion.y, null);
-
+        // dibujamos los botones por defecto (los que crean torres)
         for(Boton b: this.getBotonesPorDefecto()){
             b.draw(g);
             g.drawString(b.getNombre(), b.getX(), b.getY()+b.getHeight()+12);
         }
+        //dibujamos el resto de botones
         for(Boton b: this.getBotones()){
             b.draw(g);
         }
     }
     @Override
+    //metodo que calcula la posicion X del proximo boton por defecto
     public int calculaX() {
         int pos = 0;
         int modulo = this.getBotonesPorDefecto().size() % 3;
@@ -51,6 +95,7 @@ public class ContenidoTorres extends Contenido{
     }
 
     @Override
+    //metodo que calcula la posicion Y del proximo boton por defecto
     public int calculaY() {
         int pos = 0;
         int cociente = this.getBotonesPorDefecto().size() / 3;

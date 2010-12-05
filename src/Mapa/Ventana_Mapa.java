@@ -9,13 +9,17 @@ import Personajes.Actor;
 import Personajes.Enemy;
 import Personajes.Tower;
 import Graficos.IVentana;
+import Graficos.Lienzo;
 import Observador.IObservador;
 import Observador.Observador_Mapa;
-import Principal.MouseHandler;
+import Personajes.Splash;
+import Handlers.MouseHandler;
 import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -32,19 +36,33 @@ public class Ventana_Mapa implements IVentana {
     public static int casillaWidth;
     public static Mapa map;
     public static List<Actor> actores;
+    public static List<Actor> eliminar;
+    public static List<Actor> agregar;
     public static boolean construir = false;
     public static Tower torre = null;
     List<IObservador> observadores;
+    int nivel = 2;
+    public static boolean pausa = false;
+    private Image imagenCamino;
+    private Image imagenHierba;
 
-    public Ventana_Mapa(int WIDTH, int HEIGHT, int x, int y) {
+    public Ventana_Mapa(int WIDTH, int HEIGHT, int x, int y, String imagenCamino, String imagenHierba) {
         //los parametros magicos
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
         actores = new ArrayList<Actor>();
+        eliminar = new LinkedList<Actor>();
+        agregar = new LinkedList<Actor>();
         this.x = x;
         this.y = y;
         this.cargar();
         observadores = new ArrayList<IObservador>();
+        if (imagenCamino != null) {
+            this.imagenCamino = Lienzo.cargarImagen(imagenCamino);
+        }
+        if (imagenHierba != null) {
+            this.imagenHierba = Lienzo.cargarImagen(imagenHierba);
+        }
         new Observador_Mapa(this);
     }
 
@@ -52,21 +70,35 @@ public class Ventana_Mapa implements IVentana {
         observadores.add(o);
     }
 
+    public static void eliminaActor(Actor a) {
+        eliminar.add(a);
+    }
+
     public static Vector2D getCasilla(int x1, int y1) {
         return new Vector2D((x1 - x) / casillaWidth, (y1 - y) / casillaHeight);
     }
 
+    //te da las coordenadas de la casilla en una posicion dada
     public Vector2D getCoordenadaCasilla(int x, int y) {
         return new Vector2D(((x - this.x) / casillaWidth) * casillaWidth, ((y - this.y) / casillaHeight) * casillaHeight);
     }
 
+    //te da las coordenadas de una casilla dada
     public Vector2D getCoordenada(int x, int y) {
         return new Vector2D(x * casillaWidth, y * casillaHeight);
     }
+
+    //te da las coordenadas del centro de una casilla dada
     public static Vector2D getCoordenadaCentro(int x, int y) {
-        return new Vector2D(x * casillaWidth + casillaWidth/2, y * casillaHeight + casillaHeight /2);
+        return new Vector2D(x * casillaWidth + casillaWidth / 2.0f, y * casillaHeight + casillaHeight / 2.0f);
     }
 
+    //similar al anterior, recibe un vector
+    public static Vector2D getCoordenadaCentro(Vector2D posicion) {
+        return new Vector2D(posicion.x * casillaWidth + casillaWidth / 2.0f, posicion.y * casillaHeight + casillaHeight / 2.0f);
+    }
+
+    //comprobamos si la casilla dada por las coordenadas del vector es valida para construir
     public boolean casillaValidaTorre(Vector2D casilla) {
         boolean dev;
         dev = map.getMapa()[(int) casilla.y][(int) casilla.x] > 0;
@@ -91,19 +123,31 @@ public class Ventana_Mapa implements IVentana {
 
                 if (map.getMapa()[i][j] > 0) {
                     g.fillRect(j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight);
+                    g.drawImage(imagenHierba, j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight, null);
+                }else{
+                    if(imagenCamino!=null){
+                        g.drawImage(imagenCamino, j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight, null);
+                    }
                 }
             }
         }
 
+        // cosas del suelo
+        for (Actor a : actores) {
+            if ((a instanceof Splash)) {
+                a.draw(g);
+            }
+        }
         //ahora pintariamos unas torres...
         //y ahora pintamos unos enemiguillos...
         for (Actor a : actores) {
-            a.draw(g);
+            if (!(a instanceof Splash)) {
+                a.draw(g);
+            }
         }
         //pintamos los proyectiles ahora?
 
         //aqui datos de debug
-
         pintaDatosDebug(g);
 
     }
@@ -117,14 +161,42 @@ public class Ventana_Mapa implements IVentana {
     }
 
     public void update() {
-        for (Actor a : actores) {
-            a.update();
+        if (!pausa) {
+            for (Actor a : agregar) {
+                actores.add(a);
+            }
+            agregar.clear();
+            for (Actor a : actores) {
+                a.update();
+            }
+            for (Actor a : eliminar) {
+                if (actores.contains(a)) {
+                    actores.remove(a);
+                }
+            }
+            eliminar.clear();
+        }
+
+        //si no quedan enemigos... algo habra uqe hacer ;-)
+        if (numeroEnemigos() == 0) {
+            sendWave(nivel++);
         }
         if (isPulsado()) {
             for (IObservador o : observadores) {
                 o.update("");
             }
         }
+    }
+
+    //devuelve el numero de enemigos en pantalla
+    public int numeroEnemigos() {
+        int dev = 0;
+        for (Actor a : actores) {
+            if (a instanceof Enemy) {
+                dev++;
+            }
+        }
+        return dev;
     }
 
     public boolean isPulsado() {
@@ -159,6 +231,7 @@ public class Ventana_Mapa implements IVentana {
         sendWave(1);
     }
 
+    //pintemos algunos datos utiles para nosotros que desarrollamos!! (si, claro, utiles)
     private void pintaDatosDebug(Graphics2D g) {
         Color c = g.getColor();
         g.setColor(Color.black);
@@ -172,9 +245,10 @@ public class Ventana_Mapa implements IVentana {
         g.setColor(c);
     }
 
+    //pues eso, manda una oleada
     public void sendWave(int n) {
-        for (int i = 0; i < 10; i++) {
-            addEnemy(new EBasico(1,new Vector2D(10, -Ventana_Mapa.casillaWidth*i)));
+        for (int i = 0; i < 20; i++) {
+            addEnemy(new EBasico(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
         }
     }
 }

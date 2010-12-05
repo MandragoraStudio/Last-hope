@@ -87,6 +87,10 @@ public class Jugador implements IJugador {
         this.puntuacion = puntuacion;
     }
 
+    public void agregaPuntos(int n){
+        puntuacion+=n;
+    }
+
     public Integer getVida() {
         return vida;
     }
@@ -95,11 +99,29 @@ public class Jugador implements IJugador {
         this.vida = vida;
     }
 
+    public void restaVida(int vida){
+        this.vida-=vida;
+    }
+
     public Integer getVidaMax() {
         return vidaMax;
     }
     public Map<String, Integer> getRecursos() {
         return recursos;
+    }
+    public void restaRecursos(Map<String,Integer> r){
+        recursos.put("uranio",recursos.get("uranio")-(r.containsKey("uranio")?r.get("uranio"):0));
+        recursos.put("rodio",recursos.get("rodio")-(r.containsKey("rodio")?r.get("rodio"):0));
+        recursos.put("grafeno",recursos.get("grafeno")-(r.containsKey("grafeno")?r.get("grafeno"):0));
+        recursos.put("radio",recursos.get("radio")-(r.containsKey("radio")?r.get("radio"):0));
+        recursos.put("cromo",recursos.get("cromo")-(r.containsKey("cromo")?r.get("cromo"):0));
+        this.energia-=r.get("energia");
+    }
+    
+    public static boolean suficientesRecursos(Map<String,Integer> r){
+        boolean dev = true;
+        //TODO: un metodo que devuelva true si hay suficientes recursos y false en caso contrario
+        return dev;
     }
 
     //Metodos

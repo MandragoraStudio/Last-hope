@@ -18,7 +18,7 @@ public class Fondo extends Actor {
     public Fondo(String url,Vector2D posicion){
         super(null,posicion);
         try{
-            super.setImagen(ImageIO.read(this.getClass().getClassLoader().getResource(url)));
+            super.setImagen(Lienzo.cargarImagen(url));
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -26,5 +26,4 @@ public class Fondo extends Actor {
     @Override
     public void update() {
     }
-
 }
