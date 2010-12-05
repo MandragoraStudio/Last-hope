@@ -132,12 +132,17 @@ public class Jugador implements IJugador {
         recursos.put("grafeno",recursos.get("grafeno")-(r.containsKey("grafeno")?r.get("grafeno"):0));
         recursos.put("radio",recursos.get("radio")-(r.containsKey("radio")?r.get("radio"):0));
         recursos.put("cromo",recursos.get("cromo")-(r.containsKey("cromo")?r.get("cromo"):0));
-        this.energia-=r.get("energia");
+      
+        restaEnergia(r.containsKey("energia")?r.get("energia"):0);
     }
     
     public boolean suficientesRecursos(Map<String,Integer> rec){
         boolean dev = true;
         for (String s : rec.keySet()){
+            if(s=="energia"){
+                dev=energia>rec.get(s);
+                continue;
+            }
             if(recursos.get(s)<rec.get(s))
             {
                 dev=false;
