@@ -28,8 +28,8 @@ import java.util.List;
  */
 public class Ventana_Mapa implements IVentana {
 
-    private int WIDTH;
-    private int HEIGHT;
+    private static int WIDTH;
+    private static int HEIGHT;
     private static int x;
     private static int y;
     public static int casillaHeight;
@@ -152,7 +152,7 @@ public class Ventana_Mapa implements IVentana {
 
     }
 
-    public void addEnemy(Enemy e) {
+    public static void addEnemy(Enemy e) {
         actores.add(e);
     }
 
@@ -209,7 +209,7 @@ public class Ventana_Mapa implements IVentana {
         return dev;
     }
 
-    public void cargar(int[][] mapa) {
+    public static void cargar(int[][] mapa) {
         //matriz del mapa
         /*int[][] mapa = {
             {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -263,7 +263,7 @@ public class Ventana_Mapa implements IVentana {
     }
 
     //pues eso, manda una oleada
-    public void sendWave(int n) {
+    public static void sendWave(int n) {
         if(n%10==0){
             actores.clear();
             eliminar.clear();
