@@ -48,14 +48,10 @@ public class Ventana_Informacion implements IVentana {
     }
 
     public void cargar() {
-<<<<<<< HEAD
-//       Lienzo.cargarImagen("a");
-=======
        infIzq = Lienzo.cargarImagen("imagenes/informacionIzq.png");
        infCtr = Lienzo.cargarImagen("imagenes/informacionCtr.png");
        infDr = Lienzo.cargarImagen("imagenes/informacionDr.png");
        brillo = Lienzo.cargarImagen("imagenes/brillo.png");
->>>>>>> origin/master
     }
 
 

@@ -26,7 +26,7 @@ public class BotonCreadorHabilidad extends Boton{
 
     }
 
-    public void setTorre(Habilidad h){
+    public void setHabilidad(Habilidad h){
         this.h=h;
     }
 

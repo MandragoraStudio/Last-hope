@@ -38,7 +38,7 @@ public class Lienzo extends Canvas {
 
         //inicializamos el panel
         panel = (JPanel) frame.getContentPane();
-        //
+        //implementamos la función de cerrar ventana
         frame.addWindowListener(new WindowAdapter() {
 
             @Override
