@@ -8,6 +8,7 @@ import Handlers.MouseHandler;
 import Screens.GamePlayScreen;
 import Screens.IScreen;
 import Graficos.Lienzo;
+import Screens.GameOverScreen;
 import Screens.MainMenuScreen;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -49,6 +50,8 @@ public class Juego {
         screens.put("Menu", new MainMenuScreen());
         //cargamos el game
         screens.put("Game", new GamePlayScreen());
+        //Cargamos el game Over
+        screens.put("GameOver", new GameOverScreen());
         //actualizamos el current Screen a menu
         currentScreen = screens.get("Menu");
     }

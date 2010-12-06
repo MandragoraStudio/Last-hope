@@ -28,8 +28,8 @@ import java.util.List;
  */
 public class Ventana_Mapa implements IVentana {
 
-    private int WIDTH;
-    private int HEIGHT;
+    private static int WIDTH;
+    private static int HEIGHT;
     private static int x;
     private static int y;
     public static int casillaHeight;
@@ -41,10 +41,8 @@ public class Ventana_Mapa implements IVentana {
     public static boolean construir = false;
     public static Tower torre = null;
     List<IObservador> observadores;
-    int nivel = 2;
+    public static int nivel = 2;
     public static boolean pausa = false;
-    private Image imagenCamino;
-    private Image imagenHierba;
 
     public Ventana_Mapa(int WIDTH, int HEIGHT, int x, int y, String imagenCamino, String imagenHierba) {
         //los parametros magicos
@@ -55,13 +53,13 @@ public class Ventana_Mapa implements IVentana {
         agregar = new LinkedList<Actor>();
         this.x = x;
         this.y = y;
-        this.cargar();
+        this.cargar(null);
         observadores = new ArrayList<IObservador>();
         if (imagenCamino != null) {
-            this.imagenCamino = Lienzo.cargarImagen(imagenCamino);
+            map.fondo = Lienzo.cargarImagen(imagenCamino);
         }
         if (imagenHierba != null) {
-            this.imagenHierba = Lienzo.cargarImagen(imagenHierba);
+            map.hierba = Lienzo.cargarImagen(imagenHierba);
         }
         new Observador_Mapa(this);
     }
@@ -123,10 +121,10 @@ public class Ventana_Mapa implements IVentana {
 
                 if (map.getMapa()[i][j] > 0) {
                     g.fillRect(j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight);
-                    g.drawImage(imagenHierba, j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight, null);
+                    g.drawImage(map.hierba, j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight, null);
                 }else{
-                    if(imagenCamino!=null){
-                        g.drawImage(imagenCamino, j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight, null);
+                    if(map.fondo!=null){
+                        g.drawImage(map.fondo, j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight, null);
                     }
                 }
             }
@@ -152,7 +150,7 @@ public class Ventana_Mapa implements IVentana {
 
     }
 
-    public void addEnemy(Enemy e) {
+    public static void addEnemy(Enemy e) {
         actores.add(e);
     }
 
@@ -209,9 +207,9 @@ public class Ventana_Mapa implements IVentana {
         return dev;
     }
 
-    public void cargar() {
+    public static void cargar(int[][] mapa) {
         //matriz del mapa
-        int[][] mapa = {
+        /*int[][] mapa = {
             {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
             {1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1},
@@ -222,7 +220,24 @@ public class Ventana_Mapa implements IVentana {
             {1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1},
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+        };*/
+
+        int[][] ma= {
+            {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+            {1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1},
+            {1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1},
+            {1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0},
+            {1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1},
+            {1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1},
+            {1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
         };
+        if(mapa==null){
+            mapa=ma;
+        }
+
         //calculo el tamaño de las casillas
         casillaHeight = HEIGHT / mapa.length;
         casillaWidth = WIDTH / mapa[0].length;
@@ -246,9 +261,33 @@ public class Ventana_Mapa implements IVentana {
     }
 
     //pues eso, manda una oleada
-    public void sendWave(int n) {
+    public static void sendWave(int n) {
+        if(n%10==0){
+            actores.clear();
+            eliminar.clear();
+            agregar.clear();
+            int[][] a={
+            {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+            {1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1},
+            {1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1},
+            {1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0},
+            {1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1},
+            {1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1},
+            {1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1},
+            {1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+        };
+            cargar(a);
+        }
         for (int i = 0; i < 20; i++) {
             addEnemy(new EBasico(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
         }
+
+    }
+
+    public void cargar() {
+
+        cargar(null);
     }
 }

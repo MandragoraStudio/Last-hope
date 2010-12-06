@@ -2,6 +2,7 @@
 package Mapa;
 
 import UtilMath.Vector2D;
+import java.awt.Image;
 import java.util.Vector;
 
 /**
@@ -12,6 +13,8 @@ public class Mapa {
 
     private int[][] mapa;
     public static Vector<Vector2D> camino;
+    public Image fondo;
+    public Image hierba;
 
     public Mapa(int[][] map) {
         camino = new Vector<Vector2D>();

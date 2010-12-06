@@ -35,7 +35,7 @@ public class Tower extends Actor {
     private Map<String, Integer> coste;
 
     public Tower(float ataque, float areaDeAtaque, float rango, float congelacion, float penetracion, float fuego, long recarga, float veneno, Map<String, Integer> coste, Vector2D posicion, Image ima) {
-        super(ima, posicion);
+        super(ima, posicion,null);
         this.ataque = ataque;
         this.areaDeAtaque = areaDeAtaque;
         this.rango = rango;
@@ -106,7 +106,7 @@ public class Tower extends Actor {
         for (Actor a : Ventana_Mapa.actores) {
             if (a instanceof Enemy) {
                 Enemy e = (Enemy) a;
-                if (estaAlAlcance(e.posicion)) {
+                if (estaAlAlcance(e.posicion.add(new Vector2D(e.width/2.0f,e.height/2.0f)))) {
                     dev.add(e);
                 }
             }
@@ -157,6 +157,8 @@ public class Tower extends Actor {
 
     public boolean estaAlAlcance(Vector2D destino) {
         return destino.subs(posicion).modulo() < rango;
+
+        //return destino.subs(posicion.add(new Vector2D(this.width/2.0f,this.height/2.0f))).modulo() < rango;
     }
 
     public boolean isCargada() {

@@ -7,6 +7,7 @@ package Informacion;
 import Enemigos.EBasico;
 import Graficos.IVentana;
 import Graficos.Lienzo;
+import Mapa.Ventana_Mapa;
 import Personajes.Actor;
 import Personajes.Enemy;
 import Personajes.Tower;
@@ -30,6 +31,10 @@ public class Ventana_Informacion implements IVentana {
     private Image infIzq;
     private Image infCtr;
     private Image infDr;
+    private Image health;
+    private Image atack;
+    private Image armor;
+    private Image speed;
     Image brillo;
 
     //private Actor ac;
@@ -51,6 +56,7 @@ public class Ventana_Informacion implements IVentana {
        infIzq = Lienzo.cargarImagen("imagenes/informacionIzq.png");
        infCtr = Lienzo.cargarImagen("imagenes/informacionCtr.png");
        infDr = Lienzo.cargarImagen("imagenes/informacionDr.png");
+       health = Lienzo.cargarImagen("imagenes/corazon.png");
        brillo = Lienzo.cargarImagen("imagenes/brillo.png");
     }
 
@@ -69,7 +75,7 @@ public class Ventana_Informacion implements IVentana {
         //Barra informacion imagenes de fondo
         g.drawImage(infIzq, x, y,null);
         g.drawImage(infCtr, x+100, y,null);
-        g.drawImage(infDr, WIDTH-150, y,null);
+        g.drawImage(infDr, WIDTH-175, y,null);
         //Barra informacion Izquierda
         g.setColor(Color.WHITE);
         g.drawString("Puntuacion", x+25, y+20);
@@ -89,21 +95,30 @@ public class Ventana_Informacion implements IVentana {
         g.drawString("Cromo",x+550, y+40);
         g.drawString(""+Juego.jugador.getRecursos().get("cromo"), x+550, y+70);
         g.drawString("Energia",x+650, y+40);
-        g.drawString(""+Juego.jugador.getEnergia()+"/"+Juego.jugador.getEnergiaMax(), x+650, y+70);
+        g.drawString(""+Juego.jugador.getRecursos().get("energia")+"/"+Juego.jugador.getEnergiaMax(), x+650, y+70);
         g.drawString("Oleada",x+750, y+40);
-        g.drawString("??", x+750, y+70);
+        g.drawString(""+Ventana_Mapa.nivel+"/10", x+750, y+70);
+
         //Barra informacion derecha (Informacion)
+
         if(ac==null){
             //TODO: esto hay que cambiarlo por una informacion vacia por defecto!!
-
-            ac=new EBasico(1, new Vector2D(-100,-100));
+            g.drawString("Vida: ---", x+860, y+40);
+            g.drawImage(health, x+940, y+28, 17, 15, null);
+            g.drawString("Armadura: ---", x+860, y+60);
+            g.drawString("Daño: ---", x+860, y+80);
+            g.drawString("?",x+985 ,y+55);
+            //ac=new EBasico(1, new Vector2D(-100,-100));
+        }else
+        {
+         g.drawImage(ac.getImagen(), x+965, y+30,null);
         }
-         g.drawImage(ac.getImagen(), x+967, y+40,null);
          if(ac instanceof Enemy){
             Enemy e =(Enemy)ac;
-            g.drawString("Vida: "+(int)e.getVida(), x+875, y+40);
-            g.drawString("Armadura: "+e.getArmadura(), x+875, y+60);
-            g.drawString("Daño: "+e.getDano(), x+875, y+80);
+            g.drawString("Vida: "+(int)e.getVida(), x+860, y+40);
+            g.drawImage(health, x+940, y+28, 17, 15, null);
+            g.drawString("Armadura: "+e.getArmadura(), x+860, y+60);
+            g.drawString("Daño: "+e.getDano(), x+860, y+80);
             //brillo al bicho
             //TODO: remarcar el bicho elegido
             g.drawImage(brillo,(int)ac.posicion.x-5, (int)ac.posicion.y-5,ac.getImagen().getWidth(null)+10,ac.getImagen().getHeight(null) +10,null);
@@ -113,9 +128,9 @@ public class Ventana_Informacion implements IVentana {
             }
          }else if (ac instanceof Tower){
             Tower t = (Tower)ac;
-            g.drawString("Ataque: "+(int)t.getAtaque(), x+875, y+40);
-            g.drawString("Alcance: "+(int)t.getRango(), x+875, y+60);
-            g.drawString("Velocidad: "+(int)t.getRecarga(), x+875, y+70);
+            g.drawString("Ataque: "+(int)t.getAtaque(), x+860, y+40);
+            g.drawString("Alcance: "+(int)t.getRango(), x+860, y+60);
+            g.drawString("Velocidad: "+(int)t.getRecarga(), x+860, y+80);
          }
         
     }
