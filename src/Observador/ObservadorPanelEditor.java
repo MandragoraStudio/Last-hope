@@ -34,7 +34,7 @@ public class ObservadorPanelEditor implements IObservador {
             try {
                 Float.parseFloat(nivel);
                 ContenidoEditor.inicializaAtributo("Daño", nivel);
-            } catch (NumberFormatException nfe) {
+            } catch (Exception nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
 
@@ -43,7 +43,7 @@ public class ObservadorPanelEditor implements IObservador {
             try {
                 Float.parseFloat(nivel);
                 ContenidoEditor.inicializaAtributo("Rango", nivel);
-            } catch (NumberFormatException nfe) {
+            } catch (Exception nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
         } else if (boton.getNombre().equals("Área de daño")) {
@@ -51,7 +51,7 @@ public class ObservadorPanelEditor implements IObservador {
             try {
                 Float.parseFloat(nivel);
                 ContenidoEditor.inicializaAtributo("Área de daño", nivel);
-            } catch (NumberFormatException nfe) {
+            } catch (Exception nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
         } else if (boton.getNombre().equals("Congelación")) {
@@ -59,7 +59,7 @@ public class ObservadorPanelEditor implements IObservador {
             try {
                 Float.parseFloat(nivel);
                 ContenidoEditor.inicializaAtributo("Congelación", nivel);
-            } catch (NumberFormatException nfe) {
+            } catch (Exception nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
         } else if (boton.getNombre().equals("Fuego")) {
@@ -67,7 +67,7 @@ public class ObservadorPanelEditor implements IObservador {
             try {
                 Float.parseFloat(nivel);
                 ContenidoEditor.inicializaAtributo("Fuego", nivel);
-            } catch (NumberFormatException nfe) {
+            } catch (Exception nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
         } else if (boton.getNombre().equals("Veneno")) {
@@ -75,7 +75,7 @@ public class ObservadorPanelEditor implements IObservador {
             try {
                 Float.parseFloat(nivel);
                 ContenidoEditor.inicializaAtributo("Veneno", nivel);
-            } catch (NumberFormatException nfe) {
+            } catch (Exception nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
         } else if (boton.getNombre().equals("Recarga")) {
@@ -83,7 +83,7 @@ public class ObservadorPanelEditor implements IObservador {
             try {
                 Float.parseFloat(nivel);
                 ContenidoEditor.inicializaAtributo("Recarga", nivel);
-            } catch (NumberFormatException nfe) {
+            } catch (Exception nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
         } else if (boton.getNombre().equals("Penetración")) {
@@ -91,7 +91,7 @@ public class ObservadorPanelEditor implements IObservador {
             try {
                 Float.parseFloat(nivel);
                 ContenidoEditor.inicializaAtributo("Penetración", nivel);
-            } catch (NumberFormatException nfe) {
+            } catch (Exception nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
         } else if (boton.getNombre().equals("cambiaImagen")) {

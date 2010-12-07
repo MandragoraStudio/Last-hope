@@ -8,6 +8,7 @@ package Screens;
 import Graficos.Boton;
 import Graficos.BotonGeneral;
 import Graficos.Lienzo;
+import Observador.ObservadorGameOver;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -43,7 +44,9 @@ public class GameOverScreen implements IScreen{
                 e.printStackTrace();
             }
         //añadimos los botones al menu
-        botones.add(new BotonGeneral(img, img2, "exit", 800, 450, img.getWidth(null), img.getHeight(null)));
+        Boton b =new BotonGeneral(img, img2, "Menu", 800, 450, img.getWidth(null), img.getHeight(null));
+        new ObservadorGameOver(b);
+        botones.add(b);
     }
 
     public void update() {
