@@ -17,8 +17,6 @@ public class Abotonador extends Boton {
         //inicializamos los atributos de Abotonador
         super(null, nombre,(int)sujeto.posicion.x,(int)sujeto.posicion.y,  width,  height);
         this.sujeto=sujeto;
-        //le quitamos el observador que trae por defecto
-        this.Detach(this.getObservadores().get(0));
         //le creamos un observador
         new Observador_Abotonados(this);
     }

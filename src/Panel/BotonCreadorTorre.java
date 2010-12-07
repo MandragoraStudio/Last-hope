@@ -22,7 +22,6 @@ public class BotonCreadorTorre extends BotonGeneral {
         //inicializamos atributos
         super(up, down, nombre, x, y, width, height);
         this.t = to;
-        this.Detach(this.getObservadores().get(0));
         new Observador_CreadorTorre(this);
     }
 

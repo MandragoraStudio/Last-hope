@@ -7,6 +7,7 @@ package Panel;
 
 import Graficos.Boton;
 import Graficos.Lienzo;
+import Observador.Observador_CreadorTorre;
 import Personajes.Tower;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
@@ -53,10 +54,13 @@ public class ContenidoTorres extends Contenido{
             coste.put("cromo", 20);
             coste.put("energia", 60);
             BotonCreadorTorre b1 = new BotonCreadorTorre(img1, img1, "Torreta", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(20, 0, 50, 0, 0, 0, 12, 0, coste, Vector2D.fuera, img1));
+            new Observador_CreadorTorre(b1);
             addBotonPorDefecto(b1);
             BotonCreadorTorre b2 = new BotonCreadorTorre(img2, img2, "Teminator", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(30, 10, 70, 5, 3, 2, 30, 0, coste, Vector2D.fuera, img2));
+            new Observador_CreadorTorre(b2);
             addBotonPorDefecto(b2);
             BotonCreadorTorre b3 = new BotonCreadorTorre(img3, img3, "Frio y Veneno", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(2, 15, 100, 50, 0, 0, 50, 30, coste, Vector2D.fuera, img3));
+            new Observador_CreadorTorre(b3);
             addBotonPorDefecto(b3);
     }
     @Override

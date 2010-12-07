@@ -6,6 +6,7 @@ package Panel;
 
 import Graficos.IVentana;
 import Graficos.Lienzo;
+import Observador.Observador;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -63,9 +64,15 @@ public class Ventana_Panel implements IVentana {
             Image img2 = Lienzo.cargarImagen("imagenes/editor.png");
             Image img3 = Lienzo.cargarImagen("imagenes/traps.png");
             //creamos y añadimos las pestañas a la lista
-            pestañas.add(new Pestaña(img, "torres", x, y, (WIDTH / 3), img.getHeight(null)));
-            pestañas.add(new Pestaña(img2, "editor", x + (WIDTH / 3), y, (WIDTH / 3), img.getHeight(null)));
-            pestañas.add(new Pestaña(img3, "trap", x + ((WIDTH / 3) * 2), y, (WIDTH / 3), img.getHeight(null)));
+            Pestaña p = new Pestaña(img, "torres", x, y, (WIDTH / 3), img.getHeight(null));
+            new Observador(p);
+            Pestaña p2 = new Pestaña(img2, "editor", x + (WIDTH / 3), y, (WIDTH / 3), img.getHeight(null));
+            new Observador(p2);
+            Pestaña p3 = new Pestaña(img3, "trap", x + ((WIDTH / 3) * 2), y, (WIDTH / 3), img.getHeight(null));
+            new Observador(p3);
+            pestañas.add(p);
+            pestañas.add(p2);
+            pestañas.add(p3);
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }

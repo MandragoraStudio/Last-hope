@@ -10,5 +10,5 @@ package Observador;
  * @author Thanar
  */
 public interface IObservador {
-    public void update(String comando);
+    public void update();
 }

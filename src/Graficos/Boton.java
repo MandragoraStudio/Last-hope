@@ -18,13 +18,13 @@ import java.util.List;
  */
 public class Boton {
 
-    List<IObservador> observadores; // lista de observadores que va a tener el boton
+    IObservador observador; // observador que va a tener el boton
     Image up; // imagen del boton
     String nombre; // nombre o identificador del boton
     int x, y, height, width; // posicion (x,y) y dimensiones (height, width)
     boolean pulsado; // variable que controla si el boton esta pulsado o no
 
-    public Boton(Image up, String nombre, int x, int y, int width, int height){
+    public Boton(Image up, String nombre, int x, int y, int width, int height) {
         //inicializacion de los atributos
         this.up = up;
         this.nombre = nombre;
@@ -32,23 +32,14 @@ public class Boton {
         this.y = y;
         this.height = height;
         this.width = width;
-        observadores = new ArrayList<IObservador>();
-        //añadimos un observador
-        new Observador(this);
     }
-    //metodo para añadir un observador
-    public void Atach(IObservador ob) {
-        observadores.add(ob);
-    }
-    //metodo para eliminar un observador
-    public void Detach(IObservador ob) {
-        observadores.remove(ob);
-    }
+
     //metodo para dibujar el boton en pantalla
     public void draw(Graphics2D g) {
         g.drawImage(up, x, y, width, height, null);
     }
     //update de boton para controlar la logica de boton
+
     public void update() {
         //miramos si se ha clicado el raton y si lo ha hecho dentro de los margenes de nuestro boton
         if (MouseHandler.isPulsado()) {
@@ -67,10 +58,8 @@ public class Boton {
     }
 
     public void presionado() {
-        // avisamos a nuestros observadores de que ha habido un cambio y deben actuar
-        for (IObservador ob : observadores) {
-            ob.update(nombre);
-        }
+        // avisamos a nuestro observador de que ha habido un cambio y deben actuar
+        observador.update();
     }
 
     public String getNombre() {
@@ -125,12 +114,12 @@ public class Boton {
         this.y = y;
     }
 
-    public List<IObservador> getObservadores() {
-        return observadores;
+    public IObservador getObservador() {
+        return observador;
     }
 
-    public void setObservadores(List<IObservador> observadores) {
-        this.observadores = observadores;
+    public void setObservador(IObservador observador) {
+        this.observador = observador;
     }
 
 }
