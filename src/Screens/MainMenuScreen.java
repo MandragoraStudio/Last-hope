@@ -9,7 +9,7 @@ import Graficos.Boton;
 import Graficos.BotonGeneral;
 import Graficos.Fondo;
 import Graficos.Lienzo;
-import Observador.Observador;
+import Observador.ObservadorMenu;
 import Personajes.Actor;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
@@ -52,11 +52,11 @@ List<Boton> botones; // botones del menu
             }
         //añadimos los botones al menu
         Boton b=new BotonGeneral(img, img2, "start", 100, 100, img.getWidth(null), img.getHeight(null));
-        new Observador(b);
+        new ObservadorMenu(b);
         Boton b2=new BotonGeneral(img, img2, "start2", 100, 300, img.getWidth(null), img.getHeight(null));
-        new Observador(b2);
+        new ObservadorMenu(b2);
         Boton b3=new BotonGeneral(img, img2, "exit", 800, 450, img.getWidth(null), img.getHeight(null));
-        new Observador(b3);
+        new ObservadorMenu(b3);
         botones.add(b);
         botones.add(b2);
         botones.add(b3);

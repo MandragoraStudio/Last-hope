@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Observador;
 
 import Panel.BotonCreadorHabilidad;
@@ -11,7 +10,8 @@ import Panel.BotonCreadorHabilidad;
  *
  * @author Jose
  */
-public class Observador_CreadorHabilidad implements IObservador{
+public class Observador_CreadorHabilidad implements IObservador {
+
     private BotonCreadorHabilidad boton; //boton al que observa
 
     public Observador_CreadorHabilidad(BotonCreadorHabilidad b) {
@@ -20,10 +20,6 @@ public class Observador_CreadorHabilidad implements IObservador{
     }
 
     public void update() {
-        //switch de string
-
-        if (boton.getNombre().equals(boton.getNombre())) {
-            boton.creaHabilidad();
-        }
+        boton.creaHabilidad();
     }
 }

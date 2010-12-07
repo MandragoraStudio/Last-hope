@@ -5,7 +5,7 @@
 package Graficos;
 
 import Observador.IObservador;
-import Observador.Observador;
+import Observador.ObservadorMenu;
 import Handlers.MouseHandler;
 import java.awt.Graphics2D;
 import java.awt.Image;

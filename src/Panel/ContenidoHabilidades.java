@@ -45,7 +45,6 @@ public class ContenidoHabilidades extends Contenido {
     @Override
     public void addBotonPorDefecto(Boton b) throws Exception {
         if (this.getBotonesPorDefecto().size() < 12) {
-
             this.getBotonesPorDefecto().add(b);
         }
     }

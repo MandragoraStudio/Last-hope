@@ -6,7 +6,9 @@
 package Panel;
 
 import Graficos.Boton;
+import Graficos.BotonGeneral;
 import Graficos.Lienzo;
+import Observador.ObservadorPanelTorre;
 import Observador.Observador_CreadorTorre;
 import Personajes.Tower;
 import UtilMath.Vector2D;
@@ -110,5 +112,10 @@ public class ContenidoTorres extends Contenido{
         }
         return pos;
     }
-
+    //addBoton añadirá un boton en la posicion relativa pasada por argumento
+    public void addBoton(Image up, Image down, String nombre, int x, int y) throws Exception {
+        Boton b = new BotonGeneral(up, down, nombre, (int) posicion.x + x, (int) posicion.y + y, up.getWidth(null), up.getHeight(null));
+        new ObservadorPanelTorre(b);
+        this.getBotones().add(b);
+    }
 }

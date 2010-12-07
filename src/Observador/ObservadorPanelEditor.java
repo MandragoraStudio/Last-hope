@@ -6,60 +6,25 @@ package Observador;
 
 import Graficos.Boton;
 import Graficos.Lienzo;
-import Mapa.Ventana_Mapa;
 import Panel.ContenidoEditor;
-import Panel.Ventana_Panel;
-import Principal.Juego;
 import java.awt.Image;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Thanar
+ * @author Jose
  */
-public class Observador implements IObservador {
+public class ObservadorPanelEditor implements IObservador {
 
     private Boton boton; //boton al que observa
 
-    public Observador(Boton b) {
+    public ObservadorPanelEditor(Boton b) {
         boton = b;//inicializa el boton
         boton.setObservador(this); //le añadimos al boton el observador
     }
 
     public void update() {
-        //switch de string
-        if (boton.getNombre().equals("start")) {
-            Juego.changeScreen("Game");
-        } else if (boton.getNombre().equals("start2")) {
-            int[][] mapa = {
-                {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1},
-                {1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0},
-                {1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1},
-                {1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1},
-                {1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1},
-                {1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1},
-                {1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1},
-                {1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-            };
-            Ventana_Mapa.cargar(mapa);
-            Juego.changeScreen("Game");
-        } else if (boton.getNombre().equals("exit")) {
-            System.exit(0);
-        } else if (boton.getNombre().equals("Menu")) {
-            Juego.changeScreen("Menu");
-        } else if (boton.getNombre().equals("Pausa")) {
-            Ventana_Mapa.pausa = true;
-        } else if (boton.getNombre().equals("Play")) {
-            Ventana_Mapa.pausa = false;
-        } else if (boton.getNombre().equals("torres")) {
-            Ventana_Panel.cambiaFondo("fondoTorres");
-        } else if (boton.getNombre().equals("editor")) {
-            Ventana_Panel.cambiaFondo("fondoEditor");
-        } else if (boton.getNombre().equals("trap")) {
-            Ventana_Panel.cambiaFondo("fondoTraps");
-        } else if (boton.getNombre().equals("creaBotonCreador")) {
+        if (boton.getNombre().equals("creaBotonCreador")) {
             ContenidoEditor.creaBotonCreador();
         } else if (boton.getNombre().equals("Nombre")) {
             String nombre = JOptionPane.showInputDialog(null, "Introduzca el Nombre de la torre:", "Nombre", JOptionPane.INFORMATION_MESSAGE);
