@@ -7,8 +7,6 @@ package Observador;
 import Graficos.Boton;
 import Graficos.Lienzo;
 import Mapa.Ventana_Mapa;
-import Panel.BotonCreadorTorre;
-import Panel.BotonCreadorHabilidad;
 import Panel.ContenidoEditor;
 import Panel.Ventana_Panel;
 import Principal.Juego;
@@ -25,14 +23,14 @@ public class Observador implements IObservador {
 
     public Observador(Boton b) {
         boton = b;//inicializa el boton
-        boton.Atach(this); //le añadimos al boton el observador
+        boton.setObservador(this); //le añadimos al boton el observador
     }
 
-    public void update(String comando) {
+    public void update() {
         //switch de string
-        if (comando.equals("start")) {
+        if (boton.getNombre().equals("start")) {
             Juego.changeScreen("Game");
-        } else if (comando.equals("start2")) {
+        } else if (boton.getNombre().equals("start2")) {
             int[][] mapa = {
                 {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                 {1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1},
@@ -47,26 +45,26 @@ public class Observador implements IObservador {
             };
             Ventana_Mapa.cargar(mapa);
             Juego.changeScreen("Game");
-        } else if (comando.equals("exit")) {
+        } else if (boton.getNombre().equals("exit")) {
             System.exit(0);
-        } else if (comando.equals("Menu")) {
+        } else if (boton.getNombre().equals("Menu")) {
             Juego.changeScreen("Menu");
-        } else if (comando.equals("Pausa")) {
+        } else if (boton.getNombre().equals("Pausa")) {
             Ventana_Mapa.pausa = true;
-        } else if (comando.equals("Play")) {
+        } else if (boton.getNombre().equals("Play")) {
             Ventana_Mapa.pausa = false;
-        } else if (comando.equals("torres")) {
+        } else if (boton.getNombre().equals("torres")) {
             Ventana_Panel.cambiaFondo("fondoTorres");
-        } else if (comando.equals("editor")) {
+        } else if (boton.getNombre().equals("editor")) {
             Ventana_Panel.cambiaFondo("fondoEditor");
-        } else if (comando.equals("trap")) {
+        } else if (boton.getNombre().equals("trap")) {
             Ventana_Panel.cambiaFondo("fondoTraps");
-        } else if (comando.equals("creaBotonCreador")) {
+        } else if (boton.getNombre().equals("creaBotonCreador")) {
             ContenidoEditor.creaBotonCreador();
-        } else if (comando.equals("Nombre")) {
+        } else if (boton.getNombre().equals("Nombre")) {
             String nombre = JOptionPane.showInputDialog(null, "Introduzca el Nombre de la torre:", "Nombre", JOptionPane.INFORMATION_MESSAGE);
             ContenidoEditor.inicializaAtributo("Nombre", nombre);
-        } else if (comando.equals("Daño")) {
+        } else if (boton.getNombre().equals("Daño")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de daño:", "Daño", JOptionPane.INFORMATION_MESSAGE);
             try {
                 Float.parseFloat(nivel);
@@ -75,7 +73,7 @@ public class Observador implements IObservador {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
 
-        } else if (comando.equals("Rango")) {
+        } else if (boton.getNombre().equals("Rango")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Rango:", "Rango", JOptionPane.INFORMATION_MESSAGE);
             try {
                 Float.parseFloat(nivel);
@@ -83,7 +81,7 @@ public class Observador implements IObservador {
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
-        } else if (comando.equals("Área de daño")) {
+        } else if (boton.getNombre().equals("Área de daño")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Área de daño:", "Área de daño", JOptionPane.INFORMATION_MESSAGE);
             try {
                 Float.parseFloat(nivel);
@@ -91,7 +89,7 @@ public class Observador implements IObservador {
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
-        } else if (comando.equals("Congelación")) {
+        } else if (boton.getNombre().equals("Congelación")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Congelación:", "Congelación", JOptionPane.INFORMATION_MESSAGE);
             try {
                 Float.parseFloat(nivel);
@@ -99,7 +97,7 @@ public class Observador implements IObservador {
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
-        } else if (comando.equals("Fuego")) {
+        } else if (boton.getNombre().equals("Fuego")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Fuego:", "Fuego", JOptionPane.INFORMATION_MESSAGE);
             try {
                 Float.parseFloat(nivel);
@@ -107,7 +105,7 @@ public class Observador implements IObservador {
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
-        } else if (comando.equals("Veneno")) {
+        } else if (boton.getNombre().equals("Veneno")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Veneno:", "Veneno", JOptionPane.INFORMATION_MESSAGE);
             try {
                 Float.parseFloat(nivel);
@@ -115,7 +113,7 @@ public class Observador implements IObservador {
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
-        } else if (comando.equals("Recarga")) {
+        } else if (boton.getNombre().equals("Recarga")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Recarga:", "Recarga", JOptionPane.INFORMATION_MESSAGE);
             try {
                 Float.parseFloat(nivel);
@@ -123,7 +121,7 @@ public class Observador implements IObservador {
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
-        } else if (comando.equals("Penetración")) {
+        } else if (boton.getNombre().equals("Penetración")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Penetración:", "Penetración", JOptionPane.INFORMATION_MESSAGE);
             try {
                 Float.parseFloat(nivel);
@@ -131,13 +129,13 @@ public class Observador implements IObservador {
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
-        } else if (comando.equals("cambiaImagen")) {
+        } else if (boton.getNombre().equals("cambiaImagen")) {
             ContenidoEditor.cambiaImagen("imagenes/torrePanel.png");
-        } else if (comando.equals("cambiaImagen2")) {
+        } else if (boton.getNombre().equals("cambiaImagen2")) {
             ContenidoEditor.cambiaImagen("imagenes/torrePanel2.png");
-        } else if (comando.equals("cambiaImagen3")) {
+        } else if (boton.getNombre().equals("cambiaImagen3")) {
             ContenidoEditor.cambiaImagen("imagenes/torrePanel3.png");
-        } else if (comando.equals("cambiaImagenPorTeclado")) {
+        } else if (boton.getNombre().equals("cambiaImagenPorTeclado")) {
             String cad = JOptionPane.showInputDialog(null, "Introduzca La ruta de la imagen:", "Imagen: ", JOptionPane.INFORMATION_MESSAGE);
 
             Image i = Lienzo.cargarImagen(cad);

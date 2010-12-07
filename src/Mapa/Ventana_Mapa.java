@@ -181,7 +181,7 @@ public class Ventana_Mapa implements IVentana {
         }
         if (isPulsado()) {
             for (IObservador o : observadores) {
-                o.update("");
+                o.update();
             }
         }
     }

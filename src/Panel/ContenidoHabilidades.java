@@ -6,6 +6,7 @@ package Panel;
 
 import Graficos.Boton;
 import Graficos.Lienzo;
+import Observador.Observador_CreadorHabilidad;
 import Personajes.CentralEnergia;
 import UtilMath.Vector2D;
 import UtilMath.Vector2D;
@@ -35,7 +36,9 @@ public class ContenidoHabilidades extends Contenido {
     public void cargar() throws Exception {
         img4 = Lienzo.cargarImagen("imagenes/centralEnergia.png");
         //cargamos los botones del contenido 3
-        addBotonPorDefecto(new BotonCreadorHabilidad(img4, img4, "Central Energia", calculaX(), calculaY(), img4.getWidth(null), img4.getHeight(null), new CentralEnergia(img4, Vector2D.zero)));
+        BotonCreadorHabilidad b =new BotonCreadorHabilidad(img4, img4, "Central Energia", calculaX(), calculaY(), img4.getWidth(null), img4.getHeight(null), new CentralEnergia(img4, Vector2D.zero));
+        new Observador_CreadorHabilidad(b);
+        addBotonPorDefecto(b);
 
     }
 

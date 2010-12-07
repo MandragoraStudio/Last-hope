@@ -16,13 +16,13 @@ public class Observador_CreadorHabilidad implements IObservador{
 
     public Observador_CreadorHabilidad(BotonCreadorHabilidad b) {
         boton = b;//inicializa el boton
-        boton.Atach(this); //le añadimos al boton el observador
+        boton.setObservador(this); //le añadimos al boton el observador
     }
 
-    public void update(String comando) {
+    public void update() {
         //switch de string
 
-        if (comando.equals(boton.getNombre())) {
+        if (boton.getNombre().equals(boton.getNombre())) {
             boton.creaHabilidad();
         }
     }

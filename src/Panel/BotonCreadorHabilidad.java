@@ -21,7 +21,6 @@ public class BotonCreadorHabilidad extends Boton{
     public BotonCreadorHabilidad(Image up, Image down, String nombre, int x, int y, int width, int height, Habilidad h) throws Exception {
         super(up, nombre, x, y, width, height);
         this.h=h;
-        this.Detach(this.getObservadores().get(0));
         new Observador_CreadorHabilidad(this);
 
     }

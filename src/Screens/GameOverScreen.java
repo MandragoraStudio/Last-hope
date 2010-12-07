@@ -8,7 +8,6 @@ package Screens;
 import Graficos.Boton;
 import Graficos.BotonGeneral;
 import Graficos.Lienzo;
-import Principal.Juego;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;

@@ -16,7 +16,7 @@ public Observador_Mapa(Ventana_Mapa m){
     mapa=m;
     mapa.attach(this);
 }
-    public void update(String comando) {
+    public void update() {
         if(mapa.construir){
             int x = MouseHandler.getX();
             int y = MouseHandler.getY();
