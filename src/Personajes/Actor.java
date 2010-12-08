@@ -19,7 +19,7 @@ import java.awt.geom.AffineTransform;
  */
 public abstract class Actor {
 
-    private Image imagen;
+    Image imagen;
     public Vector2D posicion = new Vector2D(0, 0);
     Abotonador boton;
     float interval = 300;

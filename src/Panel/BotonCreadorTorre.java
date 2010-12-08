@@ -29,8 +29,7 @@ public class BotonCreadorTorre extends BotonTorre {
     }
 
     public void creaTorre() {
-        Ventana_Mapa.construir = true;
-        Ventana_Mapa.torre = this.t;
+        Ventana_Mapa.creaTorre(t);
     }
 
     @Override

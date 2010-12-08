@@ -14,10 +14,10 @@ import Observador.IObservador;
 import Observador.Observador_Mapa;
 import Personajes.Splash;
 import Handlers.MouseHandler;
+import Personajes.Habilidad;
 import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,6 +40,8 @@ public class Ventana_Mapa implements IVentana {
     public static List<Actor> agregar;
     public static boolean construir = false;
     public static Tower torre = null; // Se usa tambien en Ventana informacion
+    public static boolean construirH = false;
+    public static Habilidad habilidad = null;
     List<IObservador> observadores;
     public static int nivel = 2;
     public static boolean pausa = false;
@@ -66,6 +68,16 @@ public class Ventana_Mapa implements IVentana {
 
     public void attach(IObservador o) {
         observadores.add(o);
+    }
+
+    public static void creaTorre(Tower t){
+        Ventana_Mapa.construir = true;
+        Ventana_Mapa.torre = t;
+    }
+
+    public static void creaHabilidad(Habilidad h){
+        Ventana_Mapa.construirH = true;
+        Ventana_Mapa.habilidad = h;
     }
 
     public static void eliminaActor(Actor a) {
@@ -97,7 +109,7 @@ public class Ventana_Mapa implements IVentana {
     }
 
     //comprobamos si la casilla dada por las coordenadas del vector es valida para construir
-    public boolean casillaValidaTorre(Vector2D casilla) {
+    public boolean casillaValidaConstruir(Vector2D casilla) {
         boolean dev;
         dev = map.getMapa()[(int) casilla.y][(int) casilla.x] > 0;
         for (Actor a : actores) {
@@ -151,11 +163,14 @@ public class Ventana_Mapa implements IVentana {
     }
 
     public static void addEnemy(Enemy e) {
-        actores.add(e);
+        agregar.add(e);
     }
 
     public void addTower(Tower t) {
-        actores.add(t);
+        agregar.add(t);
+    }
+    public void addHabilidad(Habilidad h) {
+        agregar.add(h);
     }
 
     public void update() {
@@ -252,8 +267,8 @@ public class Ventana_Mapa implements IVentana {
         g.setColor(Color.black);
 
 
-        g.drawString(torre == null ? "no hay torre" : "si hay torre", 10, 10);
-        g.drawString(construir ? "construir" : "no construir", 10, 30);
+        g.drawString(habilidad == null ? "no hay edificio" : "si hay edicifio", 10, 10);
+        g.drawString(construirH ? "construir" : "no construir", 10, 30);
         g.drawString("hay " + actores.size() + " actores", 10, 50);
 
 

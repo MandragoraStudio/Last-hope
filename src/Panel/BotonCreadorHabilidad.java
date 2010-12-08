@@ -6,6 +6,7 @@
 package Panel;
 
 import Graficos.Boton;
+import Mapa.Ventana_Mapa;
 import Observador.Observador_CreadorHabilidad;
 import Personajes.Habilidad;
 import java.awt.Image;
@@ -30,6 +31,6 @@ public class BotonCreadorHabilidad extends Boton{
     }
 
     public void creaHabilidad(){
-        
+        Ventana_Mapa.creaHabilidad(h);
     }
 }
