@@ -28,4 +28,12 @@ public class Habilidad extends Actor{
         this.coste = coste;
     }
 
+    public Habilidad clone() {
+        Habilidad dev;
+        Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
+        Image ima = imagen;
+        dev = new Habilidad(ima,posicion);
+        return dev;
+    }
+
 }

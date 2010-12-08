@@ -5,7 +5,6 @@
 
 package Enemigos;
 
-import Mapa.Ventana_Mapa;
 import Personajes.Enemy;
 import UtilMath.Vector2D;
 
