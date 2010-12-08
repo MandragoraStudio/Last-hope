@@ -4,7 +4,7 @@
  */
 package Panel;
 
-import Graficos.BotonTorre;
+import Graficos.BotonGeneral;
 import Handlers.MouseHandler;
 import Mapa.Ventana_Mapa;
 import Observador.Observador_CreadorTorre;
@@ -17,7 +17,7 @@ import java.awt.Image;
  *
  * @author Jose
  */
-public class BotonCreadorTorre extends BotonTorre {
+public class BotonCreadorTorre extends BotonGeneral {
 
     private Tower t; //torre que va a crear cuando se pulse el boton
 
