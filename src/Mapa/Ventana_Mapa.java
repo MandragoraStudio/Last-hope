@@ -4,7 +4,6 @@
  */
 package Mapa;
 
-import Enemigos.EBasico;
 import Personajes.Actor;
 import Personajes.Enemy;
 import Personajes.Tower;
@@ -14,6 +13,7 @@ import Observador.IObservador;
 import Observador.Observador_Mapa;
 import Personajes.Splash;
 import Handlers.MouseHandler;
+import Informacion.Ventana_Informacion;
 import Personajes.Habilidad;
 import UtilMath.Vector2D;
 import java.awt.Color;
@@ -44,7 +44,7 @@ public class Ventana_Mapa implements IVentana {
     public static boolean construirH = false;
     public static Habilidad habilidad = null;
     List<IObservador> observadores;
-    public static int nivel = 2;
+    public static int nivel = 1;
     public static boolean pausa = false;
 
     public Ventana_Mapa(int WIDTH, int HEIGHT, int x, int y, String imagenCamino, String imagenHierba) {
@@ -57,6 +57,7 @@ public class Ventana_Mapa implements IVentana {
         this.x = x;
         this.y = y;
         this.cargar(null);
+        nivel =1;
         observadores = new ArrayList<IObservador>();
         if (imagenCamino != null) {
             map.fondo = Lienzo.cargarImagen(imagenCamino);
@@ -163,14 +164,18 @@ public class Ventana_Mapa implements IVentana {
             }
         }
 
+        //pintado de cosas temporales
         //aqui hay unos offsets metidos a pelo de 25, es para que las torres se pinten en la casilla en la qeu van a construirse, no se por que no sale bien si no
         if(construir){
             torre.posicion=getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y-25));
             torre.draw(g);
+            g.drawImage(Ventana_Informacion.brillo,(int)(torre.posicion.x+(Ventana_Mapa.casillaWidth/2)-torre.getRango()), (int)(torre.posicion.y+(Ventana_Mapa.casillaHeight/2)-torre.getRango()), (int)(torre.getRango()*2),(int) (torre.getRango()*2), null);
         }else if(construirH){
             habilidad.posicion=getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y-25));
             habilidad.draw(g);
         }
+
+
         //pintamos los proyectiles ahora?
 
         //aqui datos de debug
@@ -274,6 +279,7 @@ public class Ventana_Mapa implements IVentana {
         casillaWidth = WIDTH / mapa[0].length;
         //y ya tenemos mapa!!!! ^^ ^^
         map = new Mapa(mapa);
+        nivel =1;
         sendWave(1);
     }
 
@@ -293,28 +299,8 @@ public class Ventana_Mapa implements IVentana {
 
     //pues eso, manda una oleada
     public static void sendWave(int n) {
-        if(n%10==0){
-            actores.clear();
-            eliminar.clear();
-            agregar.clear();
-            int[][] a={
-            {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
-            {1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1},
-            {1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1},
-            {1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0},
-            {1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1},
-            {1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1},
-            {1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1},
-            {1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        };
-            cargar(a);
-        }
-        for (int i = 0; i < 20; i++) {
-            addEnemy(new EBasico(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
-        }
-
+       
+        map.sendWave(n);
     }
 
     public void cargar() {

@@ -35,7 +35,7 @@ public class Ventana_Informacion implements IVentana {
     private Image atack;
     private Image armor;
     private Image speed;
-    Image brillo;
+    public static Image brillo;
 
     //private Actor ac;
     //creado de prueba
@@ -161,6 +161,11 @@ public class Ventana_Informacion implements IVentana {
             g.drawString("Ataque: "+(int)t.getAtaque(), x+860, y+40);
             g.drawString("Alcance: "+(int)t.getRango(), x+860, y+60);
             g.drawString("Recarga: "+(int)t.getRecarga(), x+860, y+80);
+
+            //brillo a la torre
+            //TODO: remarcar la torre y su alcance
+            g.drawImage(brillo,(int)(ac.posicion.x+(Ventana_Mapa.casillaWidth/2)-t.getRango()), (int)(ac.posicion.y+(Ventana_Mapa.casillaHeight/2)-t.getRango()), (int)(t.getRango()*2),(int) (t.getRango()*2), null);
+
          }
         
     }

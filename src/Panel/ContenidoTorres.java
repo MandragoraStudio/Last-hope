@@ -55,13 +55,13 @@ public class ContenidoTorres extends Contenido{
             coste.put("radio", 0);
             coste.put("cromo", 20);
             coste.put("energia", 60);
-            BotonCreadorTorre b1 = new BotonCreadorTorre(img1, img1, "Torreta", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(20, 0, 100, 0, 0, 0, 12, 0, coste, Vector2D.fuera, img1));
+            BotonCreadorTorre b1 = new BotonCreadorTorre(img1, img1, "Torreta", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(20, 0, 100, 0, 0, 0, 1200, 0, coste, Vector2D.fuera, img1));
             new Observador_CreadorTorre(b1);
             addBotonPorDefecto(b1);
-            BotonCreadorTorre b2 = new BotonCreadorTorre(img2, img2, "Teminator", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(30, 10, 120, 5, 3, 2, 30, 0, coste, Vector2D.fuera, img2));
+            BotonCreadorTorre b2 = new BotonCreadorTorre(img2, img2, "Teminator", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(30, 10, 120, 5, 3, 2, 2000, 0, coste, Vector2D.fuera, img2));
             new Observador_CreadorTorre(b2);
             addBotonPorDefecto(b2);
-            BotonCreadorTorre b3 = new BotonCreadorTorre(img3, img3, "Frio y Veneno", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(2, 15, 150, 50, 0, 0, 50, 30, coste, Vector2D.fuera, img3));
+            BotonCreadorTorre b3 = new BotonCreadorTorre(img3, img3, "Frio y Veneno", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(2, 15, 150, 50, 0, 0, 500, 30, coste, Vector2D.fuera, img3));
             new Observador_CreadorTorre(b3);
             addBotonPorDefecto(b3);
     }
