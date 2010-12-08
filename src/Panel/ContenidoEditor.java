@@ -2,7 +2,10 @@
 package Panel;
 
 import Graficos.Boton;
+import Graficos.BotonGeneral;
 import Graficos.Lienzo;
+import Observador.ObservadorPanelEditor;
+import Observador.Observador_CreadorTorre;
 import Personajes.Tower;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
@@ -68,7 +71,9 @@ public class ContenidoEditor extends Contenido {
         addBoton(img6, img6, "cambiaImagenPorTeclado", 20, 390);
 
         //añadimos el boton que crea botones en el contenidoTorres para que creen las torres
-        addBoton(img4, img5, "creaBotonCreador", getImagen().getWidth(null) - img4.getWidth(null), getImagen().getHeight(null) - img4.getHeight(null));
+        Boton b = new BotonGeneral(img4, img5, "creaBotonCreador", (int)posicion.x+getImagen().getWidth(null) - img4.getWidth(null), (int)posicion.y+getImagen().getHeight(null) - img4.getHeight(null), img4.getWidth(null), img4.getHeight(null));
+        new ObservadorPanelEditor(b);
+        addBoton(b);
         //inicializamos los atributos
         atributos.put("Nombre", "-Nombre aqui-");
         atributos.put("Daño", "0");
@@ -183,5 +188,22 @@ public class ContenidoEditor extends Contenido {
     public static void cambiaImagen(String cad) {
         imagenTorre = cad;
 
+    }
+    //addBotonPorDefecto añadirá un botón según el orden en que tienen que estar los botones por defecto
+    //dependiendo del contenido en el que estemos
+
+    @Override
+    public void addBotonPorDefecto(Image up, String nombre) {
+        Boton b = new Boton(up, nombre, this.calculaX(), this.calculaY(), up.getWidth(null), up.getHeight(null));
+        new ObservadorPanelEditor(b);
+        this.getBotonesPorDefecto().add(b);
+    }
+
+    //addBoton añadirá un boton en la posicion relativa pasada por argumento
+    @Override
+    public void addBoton(Image up, Image down, String nombre, int x, int y) throws Exception {
+        Boton b = new BotonGeneral(up, down, nombre, (int) posicion.x + x, (int) posicion.y + y, up.getWidth(null), up.getHeight(null));
+        new ObservadorPanelEditor(b);
+        this.getBotones().add(b);
     }
 }

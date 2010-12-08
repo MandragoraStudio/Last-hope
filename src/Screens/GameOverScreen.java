@@ -7,11 +7,9 @@ package Screens;
 
 import Graficos.Boton;
 import Graficos.BotonGeneral;
-import Graficos.Fondo;
 import Graficos.Lienzo;
-import Observador.ObservadorMenu;
-import Personajes.Actor;
-import UtilMath.Vector2D;
+import Observador.ObservadorGameOver;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -21,25 +19,20 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Thanar
+ * @author Arcangel
  */
-public class MainMenuScreen implements IScreen {
-Actor fondo; // el fondo del menu
-List<Boton> botones; // botones del menu
+public class GameOverScreen implements IScreen{
 
+    List<Boton> botones;
     public void cargarModelos() {
+        botones= new ArrayList<Boton>();
         try {
-            fondo = new Fondo("imagenes/fondo.png",Vector2D.zero);
-            botones = new ArrayList<Boton>();
-            
-            
-            //Aqui se crean todos los botones
             cargarBotones();
         } catch (Exception ex) {
-            ex.printStackTrace();
-            Logger.getLogger(MainMenuScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GameOverScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     private void cargarBotones() throws Exception{
         //cargamos las imagenes de los botones
         Image img = null;
@@ -51,28 +44,20 @@ List<Boton> botones; // botones del menu
                 e.printStackTrace();
             }
         //añadimos los botones al menu
-        Boton b=new BotonGeneral(img, img2, "start", 100, 100, img.getWidth(null), img.getHeight(null));
-        new ObservadorMenu(b);
-        Boton b2=new BotonGeneral(img, img2, "start2", 100, 300, img.getWidth(null), img.getHeight(null));
-        new ObservadorMenu(b2);
-        Boton b3=new BotonGeneral(img, img2, "exit", 800, 450, img.getWidth(null), img.getHeight(null));
-        new ObservadorMenu(b3);
+        Boton b =new BotonGeneral(img, img2, "Menu", 800, 450, img.getWidth(null), img.getHeight(null));
+        new ObservadorGameOver(b);
         botones.add(b);
-        botones.add(b2);
-        botones.add(b3);
     }
+
     public void update() {
-        //actualizamos todos los botones
         for(Boton b:botones){
             b.update();
         }
-        
     }
 
     public void draw(Graphics2D g) {
-        //dibujamos el fondo
-        fondo.draw(g);
-        //dibujamos todos los botones
+        g.setColor(Color.BLACK);
+        g.drawString("Game Over", 300, 300);
         for(Boton b:botones){
             b.draw(g);
         }

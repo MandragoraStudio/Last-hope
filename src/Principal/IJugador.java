@@ -13,8 +13,8 @@ import java.util.Map;
  */
 public interface IJugador {
    
-    public Integer getEnergia();
-    public void setEnergia(Integer energia);
+    //public Integer getEnergia();
+    //public void setEnergia(Integer energia);
     public Integer getEnergiaMax();
     public void setEnergiaMax(Integer energiaMax);
     public long getPuntuacion();

@@ -6,10 +6,16 @@
 package Panel;
 
 import Graficos.Boton;
+import Graficos.BotonGeneral;
 import Graficos.Lienzo;
+import Observador.ObservadorPanelTorre;
+import Observador.Observador_CreadorTorre;
+import Personajes.Tower;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,18 +27,44 @@ public class ContenidoTorres extends Contenido{
     
     public ContenidoTorres(String url, Vector2D posicion){
         super(url, posicion);
-        Image img6;
+        
         try {
-            //cargamos el boton que lleva al menu
-            img6 = Lienzo.cargarImagen("imagenes/imagenpro.png");
-            Image img7 = Lienzo.cargarImagen("imagenes/imagenpro2.png");
-            addBoton(img6, img7, "Menu", getImagen().getWidth(null)-img6.getWidth(null), getImagen().getHeight(null)-img6.getHeight(null));
-
+            cargar();
         } catch (Exception ex) {
             Logger.getLogger(ContenidoTorres.class.getName()).log(Level.SEVERE, null, ex);
         }
          }
-    
+    public void cargar() throws Exception{
+        //cargamos el boton que lleva al menu
+            Image img1 = Lienzo.cargarImagen("imagenes/torrePanel.png");
+            Image img2 = Lienzo.cargarImagen("imagenes/torrePanel3.png");
+            Image img3 = Lienzo.cargarImagen("imagenes/torrePanel4.png");
+            Image img6 = Lienzo.cargarImagen("imagenes/imagenpro.png");
+            Image img7 = Lienzo.cargarImagen("imagenes/imagenpro2.png");
+            Image img8 = Lienzo.cargarImagen("imagenes/pausa.png");
+            Image img9 = Lienzo.cargarImagen("imagenes/pausapulsada.png");
+            Image img10 = Lienzo.cargarImagen("imagenes/play.png");
+            Image img11 = Lienzo.cargarImagen("imagenes/playpulsado.png");
+            addBoton(img6, img7, "Menu", getImagen().getWidth(null)-img6.getWidth(null), getImagen().getHeight(null)-img6.getHeight(null));
+            addBoton(img8, img9, "Pausa",60 ,450);
+            addBoton(img10, img11, "Play",20 ,450);
+            Map <String, Integer>coste = new LinkedHashMap<String, Integer>();
+            coste.put("uranio", 0);
+            coste.put("rodio", 30);
+            coste.put("grafeno", 50);
+            coste.put("radio", 0);
+            coste.put("cromo", 20);
+            coste.put("energia", 60);
+            BotonCreadorTorre b1 = new BotonCreadorTorre(img1, img1, "Torreta", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(20, 0, 100, 0, 0, 0, 12, 0, coste, Vector2D.fuera, img1));
+            new Observador_CreadorTorre(b1);
+            addBotonPorDefecto(b1);
+            BotonCreadorTorre b2 = new BotonCreadorTorre(img2, img2, "Teminator", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(30, 10, 120, 5, 3, 2, 30, 0, coste, Vector2D.fuera, img2));
+            new Observador_CreadorTorre(b2);
+            addBotonPorDefecto(b2);
+            BotonCreadorTorre b3 = new BotonCreadorTorre(img3, img3, "Frio y Veneno", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(2, 15, 150, 50, 0, 0, 50, 30, coste, Vector2D.fuera, img3));
+            new Observador_CreadorTorre(b3);
+            addBotonPorDefecto(b3);
+    }
     @Override
     //sobreescribimos el metodo para asegurarnos de que solo se creen 12 botones como máximo
     public void addBotonPorDefecto(Boton b) throws Exception{
@@ -80,5 +112,10 @@ public class ContenidoTorres extends Contenido{
         }
         return pos;
     }
-
+    //addBoton añadirá un boton en la posicion relativa pasada por argumento
+    public void addBoton(Image up, Image down, String nombre, int x, int y) throws Exception {
+        Boton b = new BotonGeneral(up, down, nombre, (int) posicion.x + x, (int) posicion.y + y, up.getWidth(null), up.getHeight(null));
+        new ObservadorPanelTorre(b);
+        this.getBotones().add(b);
+    }
 }

@@ -6,6 +6,8 @@ package Panel;
 
 import Graficos.IVentana;
 import Graficos.Lienzo;
+import Observador.ObservadorIngame;
+import Observador.ObservadorMenu;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -63,9 +65,15 @@ public class Ventana_Panel implements IVentana {
             Image img2 = Lienzo.cargarImagen("imagenes/editor.png");
             Image img3 = Lienzo.cargarImagen("imagenes/traps.png");
             //creamos y añadimos las pestañas a la lista
-            pestañas.add(new Pestaña(img, "torres", x, y, (WIDTH / 3), img.getHeight(null)));
-            pestañas.add(new Pestaña(img2, "editor", x + (WIDTH / 3), y, (WIDTH / 3), img.getHeight(null)));
-            pestañas.add(new Pestaña(img3, "trap", x + ((WIDTH / 3) * 2), y, (WIDTH / 3), img.getHeight(null)));
+            Pestaña p = new Pestaña(img, "torres", x, y, (WIDTH / 3), img.getHeight(null));
+            new ObservadorIngame(p);
+            Pestaña p2 = new Pestaña(img2, "editor", x + (WIDTH / 3), y, (WIDTH / 3), img.getHeight(null));
+            new ObservadorIngame(p2);
+            Pestaña p3 = new Pestaña(img3, "trap", x + ((WIDTH / 3) * 2), y, (WIDTH / 3), img.getHeight(null));
+            new ObservadorIngame(p3);
+            pestañas.add(p);
+            pestañas.add(p2);
+            pestañas.add(p3);
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
@@ -75,7 +83,7 @@ public class Ventana_Panel implements IVentana {
             //cargamos los contenidos de las pestañas
             Contenido c = new ContenidoTorres("imagenes/fondoTorres.png", new Vector2D(this.x, this.y));
             Contenido c2 = new ContenidoEditor("imagenes/fondoEditor.png", new Vector2D(this.x, this.y));
-            Contenido c3 = new ContenidoTraps("imagenes/fondoTraps.png", new Vector2D(this.x, this.y));
+            Contenido c3 = new ContenidoHabilidades("imagenes/fondoTraps.png", new Vector2D(this.x, this.y));
             //metemos los contenidos en la lista de fondos
             contenidos.put("fondoTorres", c);
             contenidos.put("fondoEditor", c2);
