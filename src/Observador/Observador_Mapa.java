@@ -5,6 +5,7 @@ package Observador;
 import Mapa.Ventana_Mapa;
 import Principal.Juego;
 import Handlers.MouseHandler;
+import Informacion.Ventana_Informacion;
 
 /**
  *
@@ -17,6 +18,7 @@ public Observador_Mapa(Ventana_Mapa m){
     mapa.attach(this);
 }
     public void update() {
+        Ventana_Informacion.ac=null;
         if(mapa.construir){
             int x = MouseHandler.getX();
             int y = MouseHandler.getY();
