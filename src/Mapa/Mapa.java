@@ -1,6 +1,7 @@
 
 package Mapa;
 
+import Enemigos.EBasico;
 import UtilMath.Vector2D;
 import java.awt.Image;
 import java.util.Vector;
@@ -24,6 +25,31 @@ public class Mapa {
 
     public int[][] getMapa() {
         return mapa;
+    }
+
+    public static void sendWave(int n) {
+        if(n%10==0){
+            Ventana_Mapa.actores.clear();
+            Ventana_Mapa.eliminar.clear();
+            Ventana_Mapa.agregar.clear();
+            int[][] a={
+            {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+            {1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1},
+            {1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1},
+            {1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0},
+            {1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1},
+            {1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1},
+            {1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1},
+            {1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+        };
+           Ventana_Mapa.cargar(a);
+        }
+        for (int i = 0; i < 20; i++) {
+            Ventana_Mapa.addEnemy(new EBasico(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
+        }
+
     }
 
     //este metodo analiza el array bidimensional que es el mapa y te devuelve una lista con las casillas que forman el camino

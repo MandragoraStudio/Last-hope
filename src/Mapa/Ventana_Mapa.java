@@ -44,7 +44,7 @@ public class Ventana_Mapa implements IVentana {
     public static boolean construirH = false;
     public static Habilidad habilidad = null;
     List<IObservador> observadores;
-    public static int nivel = 2;
+    public static int nivel = 1;
     public static boolean pausa = false;
 
     public Ventana_Mapa(int WIDTH, int HEIGHT, int x, int y, String imagenCamino, String imagenHierba) {
@@ -57,6 +57,7 @@ public class Ventana_Mapa implements IVentana {
         this.x = x;
         this.y = y;
         this.cargar(null);
+        nivel =1;
         observadores = new ArrayList<IObservador>();
         if (imagenCamino != null) {
             map.fondo = Lienzo.cargarImagen(imagenCamino);
@@ -274,6 +275,7 @@ public class Ventana_Mapa implements IVentana {
         casillaWidth = WIDTH / mapa[0].length;
         //y ya tenemos mapa!!!! ^^ ^^
         map = new Mapa(mapa);
+        nivel =1;
         sendWave(1);
     }
 
@@ -293,28 +295,8 @@ public class Ventana_Mapa implements IVentana {
 
     //pues eso, manda una oleada
     public static void sendWave(int n) {
-        if(n%10==0){
-            actores.clear();
-            eliminar.clear();
-            agregar.clear();
-            int[][] a={
-            {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
-            {1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1},
-            {1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1},
-            {1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0},
-            {1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1},
-            {1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1},
-            {1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1},
-            {1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        };
-            cargar(a);
-        }
-        for (int i = 0; i < 20; i++) {
-            addEnemy(new EBasico(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
-        }
-
+       
+        map.sendWave(n);
     }
 
     public void cargar() {
