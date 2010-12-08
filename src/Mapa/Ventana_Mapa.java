@@ -18,6 +18,7 @@ import Personajes.Habilidad;
 import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.MouseInfo;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -92,6 +93,11 @@ public class Ventana_Mapa implements IVentana {
     public Vector2D getCoordenadaCasilla(int x, int y) {
         return new Vector2D(((x - this.x) / casillaWidth) * casillaWidth, ((y - this.y) / casillaHeight) * casillaHeight);
     }
+    public Vector2D getCoordenadaCasilla(Vector2D v) {
+        int x = (int)v.x;
+        int y = (int)v.y;
+        return new Vector2D(((x - this.x) / casillaWidth) * casillaWidth, ((y - this.y) / casillaHeight) * casillaHeight);
+    }
 
     //te da las coordenadas de una casilla dada
     public Vector2D getCoordenada(int x, int y) {
@@ -142,6 +148,7 @@ public class Ventana_Mapa implements IVentana {
             }
         }
 
+
         // cosas del suelo
         for (Actor a : actores) {
             if ((a instanceof Splash)) {
@@ -154,6 +161,15 @@ public class Ventana_Mapa implements IVentana {
             if (!(a instanceof Splash)) {
                 a.draw(g);
             }
+        }
+
+        //aqui hay unos offsets metidos a pelo de 25, es para que las torres se pinten en la casilla en la qeu van a construirse, no se por que no sale bien si no
+        if(construir){
+            torre.posicion=getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y-25));
+            torre.draw(g);
+        }else if(construirH){
+            habilidad.posicion=getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y-25));
+            habilidad.draw(g);
         }
         //pintamos los proyectiles ahora?
 
