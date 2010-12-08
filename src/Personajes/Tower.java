@@ -32,7 +32,7 @@ public class Tower extends Actor {
     private int atacando = 0;
     private long tRestante;
     private Enemy objetivo;
-    private Map<String, Integer> coste;
+    public Map<String, Integer> coste;
 
     public Tower(float ataque, float areaDeAtaque, float rango, float congelacion, float penetracion, float fuego, long recarga, float veneno, Map<String, Integer> coste, Vector2D posicion, Image ima) {
         super(ima, posicion,null);
