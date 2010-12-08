@@ -23,6 +23,7 @@ public class Boton {
     String nombre; // nombre o identificador del boton
     int x, y, height, width; // posicion (x,y) y dimensiones (height, width)
     boolean pulsado; // variable que controla si el boton esta pulsado o no
+    boolean encima;
 
     public Boton(Image up, String nombre, int x, int y, int width, int height) {
         //inicializacion de los atributos

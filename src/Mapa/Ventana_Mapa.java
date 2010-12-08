@@ -40,7 +40,7 @@ public class Ventana_Mapa implements IVentana {
     public static List<Actor> eliminar;
     public static List<Actor> agregar;
     public static boolean construir = false;
-    public static Tower torre = null;
+    public static Tower torre = null; // Se usa tambien en Ventana informacion
     public static boolean construirH = false;
     public static Habilidad habilidad = null;
     List<IObservador> observadores;
