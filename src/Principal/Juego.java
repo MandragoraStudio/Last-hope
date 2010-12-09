@@ -100,6 +100,12 @@ public class Juego {
         currentScreen.update();
     }
 
+    public static void restartGame() {
+        screens.remove("Game");
+        screens.put("Game", new GamePlayScreen());
+        screens.get("Game").cargarModelos();
+    }
+
     public void draw() {
         //ponemos un fondo verde siempre de ancho y alto igual que el de la ventana
         pincel.setColor(Color.GREEN);
