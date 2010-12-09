@@ -195,21 +195,22 @@ public class Ventana_Mapa implements IVentana {
     }
 
     public void update() {
-        if (!pausa) {
             for (Actor a : agregar) {
                 actores.add(a);
             }
             agregar.clear();
+
+        if (!pausa) {
             for (Actor a : actores) {
                 a.update();
-            }
+            }}
             for (Actor a : eliminar) {
                 if (actores.contains(a)) {
                     actores.remove(a);
                 }
             }
             eliminar.clear();
-        }
+        
 
         //si no quedan enemigos... algo habra uqe hacer ;-)
         if (numeroEnemigos() == 0) {
