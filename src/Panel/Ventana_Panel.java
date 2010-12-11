@@ -81,9 +81,9 @@ public class Ventana_Panel implements IVentana {
 
         try {
             //cargamos los contenidos de las pestañas
-            Contenido c = new ContenidoTorres("imagenes/fondoTorres.png", new Vector2D(this.x, this.y));
-            Contenido c2 = new ContenidoEditor("imagenes/fondoEditor.png", new Vector2D(this.x, this.y));
-            Contenido c3 = new ContenidoHabilidades("imagenes/fondoTraps.png", new Vector2D(this.x, this.y));
+            Contenido c = new ContenidoTorres("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));
+            Contenido c2 = new ContenidoEditor("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));
+            Contenido c3 = new ContenidoHabilidades("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));
             //metemos los contenidos en la lista de fondos
             contenidos.put("fondoTorres", c);
             contenidos.put("fondoEditor", c2);

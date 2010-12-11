@@ -53,7 +53,7 @@ public class Jugador implements IJugador {
             recursos.put("grafeno",maxRecursos);
             recursos.put("radio",maxRecursos);
             recursos.put("cromo",maxRecursos);
-            recursos.put("energia", energiaMax);
+            recursos.put("energia", 0);
         }else{
             energiaMax = 200;
             recursos.put("uranio",100);
@@ -114,7 +114,7 @@ public class Jugador implements IJugador {
 
     public Boolean restaVida(int vida){
         Boolean vivo = true;
-        if(vida>this.vida){
+        if(vida>=this.vida){
             this.vida=0;
             vivo=false;
         }
