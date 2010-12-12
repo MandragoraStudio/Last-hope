@@ -4,10 +4,12 @@
  */
 package Informacion;
 
-import Enemigos.EBasico;
+import Graficos.Boton;
+import Graficos.BotonGeneral;
 import Graficos.IVentana;
 import Graficos.Lienzo;
 import Mapa.Ventana_Mapa;
+import Observador.ObservadorMenu;
 import Personajes.Actor;
 import Personajes.Enemy;
 import Personajes.Tower;
@@ -35,6 +37,11 @@ public class Ventana_Informacion implements IVentana {
     private Image atack;
     private Image armor;
     private Image speed;
+    private Image dolar;
+    private Image aOjo;
+    private Image cOjo;
+    Boton vender;
+    Boton observa;
     public static Image brillo;
 
     //private Actor ac;
@@ -48,8 +55,16 @@ public class Ventana_Informacion implements IVentana {
         this.HEIGHT = HEIGHT;
         this.x=x;
         this.y=y;
-
         this.cargar();
+        try{
+        vender=new BotonGeneral(dolar, dolar, "sell", x+1000, y+50, dolar.getWidth(null), dolar.getHeight(null));
+        new ObservadorVentana_Informacion(vender);
+        //observa = new BotonGeneral(cOjo, cOjo, "look", x+100, y+50, cOjo.getWidth(null), cOjo.getHeight(null));
+        //new ObservadorVentana_Informacion(observa);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public void cargar() {
@@ -59,10 +74,15 @@ public class Ventana_Informacion implements IVentana {
        health = Lienzo.cargarImagen("imagenes/corazon.png");
        atack = Lienzo.cargarImagen("imagenes/ataque.png");
        brillo = Lienzo.cargarImagen("imagenes/brillo.png");
+       dolar = Lienzo.cargarImagen("imagenes/dolar.png");
+       //aOjo = Lienzo.cargarImagen("imagenes/oeje.png");
+       //cOjo = Lienzo.cargarImagen("imagenes/ceje.png");
+
     }
 
 
     public void update() {
+        vender.update();
     }
 
     public void obserbaActor(Actor ac){
@@ -161,6 +181,7 @@ public class Ventana_Informacion implements IVentana {
             g.drawString("Ataque: "+(int)t.getAtaque(), x+860, y+40);
             g.drawString("Alcance: "+(int)t.getRango(), x+860, y+60);
             g.drawString("Recarga: "+(int)t.getRecarga(), x+860, y+80);
+            vender.draw(g);
 
             //brillo a la torre
             //TODO: remarcar la torre y su alcance

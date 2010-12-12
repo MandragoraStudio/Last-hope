@@ -63,7 +63,7 @@ public class Ventana_Panel implements IVentana {
             //cargamos las imagenes de las pestañas
             Image img = Lienzo.cargarImagen("imagenes/torres.png");
             Image img2 = Lienzo.cargarImagen("imagenes/editor.png");
-            Image img3 = Lienzo.cargarImagen("imagenes/traps.png");
+            Image img3 = Lienzo.cargarImagen("imagenes/habilidades.png");
             //creamos y añadimos las pestañas a la lista
             Pestaña p = new Pestaña(img, "torres", x, y, (WIDTH / 3), img.getHeight(null));
             new ObservadorIngame(p);
@@ -81,9 +81,9 @@ public class Ventana_Panel implements IVentana {
 
         try {
             //cargamos los contenidos de las pestañas
-            Contenido c = new ContenidoTorres("imagenes/fondoTorres.png", new Vector2D(this.x, this.y));
-            Contenido c2 = new ContenidoEditor("imagenes/fondoEditor.png", new Vector2D(this.x, this.y));
-            Contenido c3 = new ContenidoHabilidades("imagenes/fondoTraps.png", new Vector2D(this.x, this.y));
+            Contenido c = new ContenidoTorres("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));
+            Contenido c2 = new ContenidoEditor("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));
+            Contenido c3 = new ContenidoHabilidades("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));
             //metemos los contenidos en la lista de fondos
             contenidos.put("fondoTorres", c);
             contenidos.put("fondoEditor", c2);

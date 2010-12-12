@@ -14,10 +14,12 @@ import java.util.Map;
  *
  * @author Jose
  */
-public class Habilidad extends Actor{
+public abstract class Habilidad extends Actor{
     private Map<String, Integer> coste = new LinkedHashMap<String, Integer>();
+    private String nombre;
     public Habilidad(Image im, Vector2D posicion) {
         super(im, posicion, null);
+        this.nombre="Habilidad";
     }
 
     public Map<String, Integer> getCoste() {
@@ -28,12 +30,13 @@ public class Habilidad extends Actor{
         this.coste = coste;
     }
 
-    public Habilidad clone() {
-        Habilidad dev;
-        Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
-        Image ima = imagen;
-        dev = new Habilidad(ima,posicion);
-        return dev;
+    public abstract Habilidad clone();
+
+    public String getNombre() {
+        return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }

@@ -14,7 +14,7 @@ import UtilMath.Vector2D;
 public class ETerminator extends Enemy {
 
     public ETerminator(int nivel, Vector2D posicion){
-        super(5, (float)(6+(0.6*nivel)), 150 + 150*nivel, 6+nivel,0,0,posicion, "imagenes/mounstrillo.png",50);
+        super(5, (float)(3+(0.2*nivel)), 150 + 150*nivel, 6,0,0,posicion, "imagenes/coolface.jpg",50);
     }
 
 }

@@ -8,7 +8,9 @@ import Graficos.Boton;
 import Graficos.Lienzo;
 import Observador.Observador_CreadorHabilidad;
 import Personajes.CentralEnergia;
-import UtilMath.Vector2D;
+import Personajes.Fuego;
+import Personajes.Lluvia;
+import Personajes.Veneno;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -21,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class ContenidoHabilidades extends Contenido {
 
-    Image img4;
+    
 
     public ContenidoHabilidades(String url, Vector2D posicion) {
         super(url, posicion);
@@ -34,11 +36,26 @@ public class ContenidoHabilidades extends Contenido {
     }
 
     public void cargar() throws Exception {
-        img4 = Lienzo.cargarImagen("imagenes/centralEnergia.png");
+        Image img4 = Lienzo.cargarImagen("imagenes/centralEnergia.png");
         //cargamos los botones del contenido 3
-        BotonCreadorHabilidad b =new BotonCreadorHabilidad(img4, img4, "Central Energia", calculaX(), calculaY(), img4.getWidth(null), img4.getHeight(null), new CentralEnergia(img4, Vector2D.zero));
+        BotonCreadorHabilidad b =new BotonCreadorHabilidad(img4, img4, "Central", calculaX(), calculaY(), img4.getWidth(null), img4.getHeight(null), new CentralEnergia(img4, Vector2D.zero));
         new Observador_CreadorHabilidad(b);
         addBotonPorDefecto(b);
+
+        Image img5 = Lienzo.cargarImagen("imagenes/Lluvia.png");
+        BotonCreadorHabilidad b2 =new BotonCreadorHabilidad(img5, img5, "Lluvia", calculaX(), calculaY(), img5.getWidth(null), img5.getHeight(null), new Lluvia(img5, Vector2D.zero));
+        new Observador_CreadorHabilidad(b2);
+        addBotonPorDefecto(b2);
+
+        Image img6 = Lienzo.cargarImagen("imagenes/Fuego.png");
+        BotonCreadorHabilidad b3 =new BotonCreadorHabilidad(img6, img6, "Fuego", calculaX(), calculaY(), img6.getWidth(null), img6.getHeight(null), new Fuego(img6, Vector2D.zero));
+        new Observador_CreadorHabilidad(b3);
+        addBotonPorDefecto(b3);
+
+        Image img7 = Lienzo.cargarImagen("imagenes/veneno.png");
+        BotonCreadorHabilidad b4 =new BotonCreadorHabilidad(img7, img7, "Veneno", calculaX(), calculaY(), img7.getWidth(null), img7.getHeight(null), new Veneno(img7, Vector2D.zero));
+        new Observador_CreadorHabilidad(b4);
+        addBotonPorDefecto(b4);
 
     }
 
