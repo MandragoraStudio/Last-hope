@@ -10,6 +10,7 @@ import Observador.Observador_CreadorHabilidad;
 import Personajes.CentralEnergia;
 import Personajes.Fuego;
 import Personajes.Lluvia;
+import Personajes.Veneno;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -50,6 +51,11 @@ public class ContenidoHabilidades extends Contenido {
         BotonCreadorHabilidad b3 =new BotonCreadorHabilidad(img6, img6, "Fuego", calculaX(), calculaY(), img6.getWidth(null), img6.getHeight(null), new Fuego(img6, Vector2D.zero));
         new Observador_CreadorHabilidad(b3);
         addBotonPorDefecto(b3);
+
+        Image img7 = Lienzo.cargarImagen("imagenes/veneno.png");
+        BotonCreadorHabilidad b4 =new BotonCreadorHabilidad(img7, img7, "Veneno", calculaX(), calculaY(), img7.getWidth(null), img7.getHeight(null), new Veneno(img7, Vector2D.zero));
+        new Observador_CreadorHabilidad(b4);
+        addBotonPorDefecto(b4);
 
     }
 
