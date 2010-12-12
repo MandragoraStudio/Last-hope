@@ -39,13 +39,13 @@ public class ContenidoTorres extends Contenido{
             Image img1 = Lienzo.cargarImagen("imagenes/torrePanel.png");
             Image img2 = Lienzo.cargarImagen("imagenes/torrePanel3.png");
             Image img3 = Lienzo.cargarImagen("imagenes/torrePanel4.png");
-            Image img6 = Lienzo.cargarImagen("imagenes/imagenpro.png");
-            Image img7 = Lienzo.cargarImagen("imagenes/imagenpro2.png");
+            Image img6 = Lienzo.cargarImagen("imagenes/exitGame.jpg");
+            Image img7 = Lienzo.cargarImagen("imagenes/exitHoverGame.png");
             Image img8 = Lienzo.cargarImagen("imagenes/pausa.png");
             Image img9 = Lienzo.cargarImagen("imagenes/pausapulsada.png");
             Image img10 = Lienzo.cargarImagen("imagenes/play.png");
             Image img11 = Lienzo.cargarImagen("imagenes/playpulsado.png");
-            addBoton(img6, img7, "Menu", getImagen().getWidth(null)-img6.getWidth(null), getImagen().getHeight(null)-img6.getHeight(null));
+            addBoton(img6, img7, "Menu", getImagen().getWidth(null)-img6.getWidth(null)-10, getImagen().getHeight(null)-img6.getHeight(null)-20);
             addBoton(img8, img9, "Pausa",60 ,450);
             addBoton(img10, img11, "Play",20 ,450);
             Map <String, Integer>coste = new LinkedHashMap<String, Integer>();
@@ -54,7 +54,7 @@ public class ContenidoTorres extends Contenido{
             coste.put("grafeno", 50);
             coste.put("radio", 0);
             coste.put("cromo", 20);
-            coste.put("energia", 60);
+            coste.put("energia", 20);
             BotonCreadorTorre b1 = new BotonCreadorTorre(img1, img1, "Torreta", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(20, 0, 100, 0, 0, 0, 1200, 0, coste, Vector2D.fuera, img1));
             new Observador_CreadorTorre(b1);
             addBotonPorDefecto(b1);

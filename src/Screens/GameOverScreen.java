@@ -43,8 +43,8 @@ public class GameOverScreen implements IScreen{
         Image img = null;
         Image img2 = null;
         try {
-                img = Lienzo.cargarImagen("imagenes/imagenpro.png");
-                img2 = Lienzo.cargarImagen("imagenes/imagenpro2.png");
+                img = Lienzo.cargarImagen("imagenes/playAgain.png");
+                img2 = Lienzo.cargarImagen("imagenes/playAgainHover.png");
             } catch (Exception e) {
                 e.printStackTrace();
             }
