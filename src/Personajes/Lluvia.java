@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Jose
  */
-public class Lluvia extends Accion{
+public class Lluvia extends Habilidad{
 
     private static float ralentizacion;
 
@@ -25,9 +25,14 @@ public class Lluvia extends Accion{
         this.setNombre("Lluvia");
         Lluvia.accionHabilidad();
     }
-
-
-
+    public Habilidad clone(){
+        Lluvia dev;
+        Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
+        Image ima = this.getImagen();
+        dev = new Lluvia(ima,posicion);
+        dev.setNombre(this.getNombre());
+        return dev;
+    }
     public float getRalentizacion() {
         return ralentizacion;
     }

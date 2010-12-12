@@ -9,6 +9,7 @@ import Graficos.Boton;
 import Mapa.Ventana_Mapa;
 import Observador.Observador_CreadorHabilidad;
 import Personajes.Habilidad;
+import Personajes.Lluvia;
 import java.awt.Image;
 
 /**
@@ -32,5 +33,8 @@ public class BotonCreadorHabilidad extends Boton{
 
     public void creaHabilidad(){
         Ventana_Mapa.creaHabilidad(h);
+        if(this.h instanceof Lluvia){
+            Lluvia.accionHabilidad();
+        }
     }
 }
