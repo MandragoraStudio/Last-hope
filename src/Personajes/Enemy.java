@@ -5,6 +5,7 @@
 package Personajes;
 
 import Graficos.Lienzo;
+import Informacion.Ventana_Informacion;
 import Mapa.Ventana_Mapa;
 import Principal.Juego;
 import UtilMath.Vector2D;
@@ -138,6 +139,7 @@ public abstract class Enemy extends Actor {
             //elimino al actor que lo dice jose
             Ventana_Mapa.eliminaActor(this);
             if (!Juego.jugador.restaVida(dano)) {
+                Ventana_Informacion.ac=null;
                 Juego.changeScreen("GameOver");
                 Juego.restartGame();
             }
