@@ -73,11 +73,13 @@ public class Ventana_Mapa implements IVentana {
     }
 
     public static void creaTorre(Tower t){
+        Ventana_Mapa.construirH=false;
         Ventana_Mapa.construir = true;
         Ventana_Mapa.torre = t;
     }
 
     public static void creaHabilidad(Habilidad h){
+        Ventana_Mapa.construir=false;
         Ventana_Mapa.construirH = true;
         Ventana_Mapa.habilidad = h;
     }
