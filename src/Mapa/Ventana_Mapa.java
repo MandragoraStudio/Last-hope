@@ -16,6 +16,7 @@ import Handlers.MouseHandler;
 import Informacion.Ventana_Informacion;
 import Personajes.CentralEnergia;
 import Personajes.Habilidad;
+import Personajes.Lluvia;
 import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -197,6 +198,8 @@ public class Ventana_Mapa implements IVentana {
         agregar.add(h);
         if(h.getNombre().equalsIgnoreCase("CentralEnergia")){
             CentralEnergia.accionHabilidad();
+        }else if(h.getNombre().equalsIgnoreCase("Lluvia")){
+            Lluvia.accionHabilidad(this.actores);
         }
         
     }

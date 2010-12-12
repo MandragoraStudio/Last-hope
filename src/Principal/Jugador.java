@@ -19,7 +19,7 @@ public class Jugador implements IJugador {
     private final Integer vidaMax =100;
     private Integer vida;
     //Energia
-    private Integer energiaMax;
+    private Integer energiaMax = 10000;
     //private Integer energia;
     //recursos
     private final Integer maxRecursos = 9999;
@@ -30,7 +30,6 @@ public class Jugador implements IJugador {
     {
         puntuacion=0;
         vida=vidaMax;
-        energiaMax = 200;
         //energia=energiaMax;
         recursos = new HashMap<String, Integer> ();
         recursos.put("uranio",100);
@@ -47,15 +46,13 @@ public class Jugador implements IJugador {
         vida=vidaMax;
         recursos = new HashMap<String, Integer> ();
         if(b){
-            energiaMax = 1000;
             recursos.put("uranio",maxRecursos);
             recursos.put("rodio",maxRecursos);
             recursos.put("grafeno",maxRecursos);
             recursos.put("radio",maxRecursos);
             recursos.put("cromo",maxRecursos);
-            recursos.put("energia", 0);
+            recursos.put("energia", energiaMax);
         }else{
-            energiaMax = 200;
             recursos.put("uranio",100);
             recursos.put("rodio",100);
             recursos.put("grafeno",100);
