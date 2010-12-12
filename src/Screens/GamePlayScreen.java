@@ -21,7 +21,7 @@ public class GamePlayScreen implements IScreen{
     IVentana informacion; // sub ventana del panel de informacion
     public void cargarModelos() {
         //inicializamos las sub ventanas con sus coordenadas y sus dimensiones
-        mapa = new Ventana_Mapa(750,500, 0, 0,null,"imagenes/hierba.png");
+        mapa = new Ventana_Mapa(750,500, 0, 0,null,"imagenes/grass.png");
         panel = new Ventana_Panel(274,500, 750, 0);
         informacion = new Ventana_Informacion(1024,100, 0, 500);
     }
