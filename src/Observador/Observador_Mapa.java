@@ -30,6 +30,7 @@ public Observador_Mapa(Ventana_Mapa m){
                 mapa.construir=false;
             }
         }else if(mapa.construirH){
+
             int x = MouseHandler.getX();
             int y = MouseHandler.getY();
             if(mapa.casillaValidaConstruir(mapa.getCasilla(x,y))&&Juego.jugador.suficientesRecursos(mapa.habilidad.getCoste())){

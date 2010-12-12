@@ -201,7 +201,7 @@ public class Ventana_Mapa implements IVentana {
         if(h.getNombre().equalsIgnoreCase("CentralEnergia")){
             CentralEnergia.accionHabilidad();
         }else if(h.getNombre().equalsIgnoreCase("Lluvia")){
-            Lluvia.accionHabilidad(this.actores);
+            Lluvia.accionHabilidad();
         }
         
     }
