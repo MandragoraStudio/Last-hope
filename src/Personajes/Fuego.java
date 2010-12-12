@@ -13,15 +13,15 @@ import java.util.List;
 
 /**
  *
- * @author Jose
+ * @author jose
  */
-public class Lluvia extends Habilidad{
+public class Fuego extends Habilidad{
 
-    private static float ralentizacion;
+    private static float fuego;
 
-    public Lluvia(Image im, Vector2D posicion) {
+    public Fuego(Image im, Vector2D posicion) {
         super(im, posicion);
-        ralentizacion = 0.2F;
+        fuego = 2F;
         this.getCoste().put("uranio", 100);
         this.getCoste().put("rodio", 30);
         this.getCoste().put("grafeno", 0);
@@ -29,22 +29,23 @@ public class Lluvia extends Habilidad{
         this.getCoste().put("cromo", 25);
         this.getCoste().put("energia", 0);
         this.setNombre("Lluvia");
-        Lluvia.accionHabilidad();
+        Fuego.accionHabilidad();
     }
     public Habilidad clone(){
-        Lluvia dev;
+        Fuego dev;
         Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
         Image ima = this.getImagen();
-        dev = new Lluvia(ima,posicion);
+        dev = new Fuego(ima,posicion);
         dev.setNombre(this.getNombre());
         return dev;
     }
-    public float getRalentizacion() {
-        return ralentizacion;
+
+    public static float getFuego() {
+        return fuego;
     }
 
-    public void setRalentizacion(float ralentizacion) {
-        this.ralentizacion = ralentizacion;
+    public static void setFuego(float fuego) {
+        Fuego.fuego = fuego;
     }
 
     public static void accionHabilidad() {
@@ -55,7 +56,8 @@ public class Lluvia extends Habilidad{
             }
         }
         for(Enemy e: enemigos){
-            e.congelar(ralentizacion, 200);
+            e.quemar(fuego, 200);
+            System.out.println("QUEMA!!!!");
         }
     }
     @Override

@@ -33,8 +33,5 @@ public class BotonCreadorHabilidad extends Boton{
 
     public void creaHabilidad(){
         Ventana_Mapa.creaHabilidad(h);
-        if(this.h instanceof Lluvia){
-            Lluvia.accionHabilidad();
-        }
     }
 }

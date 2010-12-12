@@ -58,7 +58,7 @@ List<Boton> botones; // botones del menu
         //añadimos los botones al menu
         Boton b=new BotonGeneral(img, img2, "start", 100, 100, 100, 500);
         new ObservadorMenu(b);
-        Boton b3=new BotonGeneral(img3, img4, "exit", 800, 450, img.getWidth(null), img.getHeight(null));
+        Boton b3=new BotonGeneral(img3, img4, "exit", 800, 450, img3.getWidth(null), img3.getHeight(null));
         new ObservadorMenu(b3);
         botones.add(b);
         botones.add(b3);
