@@ -14,7 +14,9 @@ import Observador.Observador_Mapa;
 import Personajes.Splash;
 import Handlers.MouseHandler;
 import Informacion.Ventana_Informacion;
+import Personajes.CentralEnergia;
 import Personajes.Habilidad;
+import Personajes.Lluvia;
 import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -57,7 +59,7 @@ public class Ventana_Mapa implements IVentana {
         this.x = x;
         this.y = y;
         this.cargar(null);
-        nivel =1;
+        nivel = 1;
         observadores = new ArrayList<IObservador>();
         if (imagenCamino != null) {
             map.fondo = Lienzo.cargarImagen(imagenCamino);
@@ -96,9 +98,10 @@ public class Ventana_Mapa implements IVentana {
     public Vector2D getCoordenadaCasilla(int x, int y) {
         return new Vector2D(((x - this.x) / casillaWidth) * casillaWidth, ((y - this.y) / casillaHeight) * casillaHeight);
     }
+
     public Vector2D getCoordenadaCasilla(Vector2D v) {
-        int x = (int)v.x;
-        int y = (int)v.y;
+        int x = (int) v.x;
+        int y = (int) v.y;
         return new Vector2D(((x - this.x) / casillaWidth) * casillaWidth, ((y - this.y) / casillaHeight) * casillaHeight);
     }
 
@@ -143,8 +146,8 @@ public class Ventana_Mapa implements IVentana {
                 if (map.getMapa()[i][j] > 0) {
                     g.fillRect(j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight);
                     g.drawImage(map.hierba, j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight, null);
-                }else{
-                    if(map.fondo!=null){
+                } else {
+                    if (map.fondo != null) {
                         g.drawImage(map.fondo, j * casillaWidth, i * casillaHeight, casillaWidth, casillaHeight, null);
                     }
                 }
@@ -168,12 +171,12 @@ public class Ventana_Mapa implements IVentana {
 
         //pintado de cosas temporales
         //aqui hay unos offsets metidos a pelo de 25, es para que las torres se pinten en la casilla en la qeu van a construirse, no se por que no sale bien si no
-        if(construir){
-            torre.posicion=getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y-25));
+        if (construir) {
+            torre.posicion = getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y - 25));
             torre.draw(g);
-            g.drawImage(Ventana_Informacion.brillo,(int)(torre.posicion.x+(Ventana_Mapa.casillaWidth/2)-torre.getRango()), (int)(torre.posicion.y+(Ventana_Mapa.casillaHeight/2)-torre.getRango()), (int)(torre.getRango()*2),(int) (torre.getRango()*2), null);
-        }else if(construirH){
-            habilidad.posicion=getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y-25));
+            g.drawImage(Ventana_Informacion.brillo, (int) (torre.posicion.x + (Ventana_Mapa.casillaWidth / 2) - torre.getRango()), (int) (torre.posicion.y + (Ventana_Mapa.casillaHeight / 2) - torre.getRango()), (int) (torre.getRango() * 2), (int) (torre.getRango() * 2), null);
+        } else if (construirH) {
+            habilidad.posicion = getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y - 25));
             habilidad.draw(g);
         }
 
@@ -192,26 +195,35 @@ public class Ventana_Mapa implements IVentana {
     public void addTower(Tower t) {
         agregar.add(t);
     }
+
     public void addHabilidad(Habilidad h) {
         agregar.add(h);
+        if(h.getNombre().equalsIgnoreCase("CentralEnergia")){
+            CentralEnergia.accionHabilidad();
+        }else if(h.getNombre().equalsIgnoreCase("Lluvia")){
+            Lluvia.accionHabilidad(this.actores);
+        }
+        
     }
 
     public void update() {
+        for (Actor a : agregar) {
+            actores.add(a);
+        }
+        agregar.clear();
+
         if (!pausa) {
-            for (Actor a : agregar) {
-                actores.add(a);
-            }
-            agregar.clear();
             for (Actor a : actores) {
                 a.update();
             }
-            for (Actor a : eliminar) {
-                if (actores.contains(a)) {
-                    actores.remove(a);
-                }
-            }
-            eliminar.clear();
         }
+        for (Actor a : eliminar) {
+            if (actores.contains(a)) {
+                actores.remove(a);
+            }
+        }
+        eliminar.clear();
+
 
         //si no quedan enemigos... algo habra uqe hacer ;-)
         if (numeroEnemigos() == 0) {
@@ -248,19 +260,19 @@ public class Ventana_Mapa implements IVentana {
     public static void cargar(int[][] mapa) {
         //matriz del mapa
         /*int[][] mapa = {
-            {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
-            {1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1},
-            {1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1},
-            {1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0},
-            {1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1},
-            {1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1},
-            {1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+        {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+        {1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
+        {1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1},
+        {1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1},
+        {1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0},
+        {1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1},
+        {1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1},
+        {1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1},
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
         };*/
 
-        int[][] ma= {
+        int[][] ma = {
             {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
             {1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1},
@@ -270,10 +282,9 @@ public class Ventana_Mapa implements IVentana {
             {1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1},
             {1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1},
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        };
-        if(mapa==null){
-            mapa=ma;
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},};
+        if (mapa == null) {
+            mapa = ma;
         }
 
         //calculo el tamaño de las casillas
@@ -281,7 +292,7 @@ public class Ventana_Mapa implements IVentana {
         casillaWidth = WIDTH / mapa[0].length;
         //y ya tenemos mapa!!!! ^^ ^^
         map = new Mapa(mapa);
-        nivel =1;
+        nivel = 1;
         sendWave(1);
     }
 
@@ -301,7 +312,7 @@ public class Ventana_Mapa implements IVentana {
 
     //pues eso, manda una oleada
     public static void sendWave(int n) {
-       
+
         map.sendWave(n);
     }
 

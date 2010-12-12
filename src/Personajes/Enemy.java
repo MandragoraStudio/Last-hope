@@ -153,6 +153,7 @@ public abstract class Enemy extends Actor {
             Ventana_Mapa.eliminaActor(this);
             if (!Juego.jugador.restaVida(dano)) {
                 Juego.changeScreen("GameOver");
+                Juego.restartGame();
             }
         }
         if (tModVelocidad < 0) {

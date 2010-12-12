@@ -29,6 +29,7 @@ public class ObservadorMenu implements IObservador {
     public void update() {
         //switch de string
         if (boton.getNombre().equals("start")) {
+            Juego.restartGame();
             Juego.changeScreen("Game");
         } else if (boton.getNombre().equals("start2")) {
             int[][] mapa = {
