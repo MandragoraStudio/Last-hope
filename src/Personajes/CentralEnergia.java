@@ -29,7 +29,14 @@ public class CentralEnergia extends Habilidad {
         this.getCoste().put("energia", 0);
         this.setNombre("CentralEnergia");
     }
-
+    public Habilidad clone() {
+        CentralEnergia dev;
+        Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
+        Image ima = this.getImagen();
+        dev = new CentralEnergia(ima,posicion);
+        dev.setNombre(this.getNombre());
+        return dev;
+    }
     public static void accionHabilidad() {
         Map<String, Integer> recursos = new HashMap();
         recursos.put("uranio", 0);

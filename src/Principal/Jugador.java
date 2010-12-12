@@ -108,7 +108,7 @@ public class Jugador implements IJugador {
 
     public Boolean restaVida(int vida) {
         Boolean vivo = true;
-        if (vida > this.vida) {
+        if (vida >= this.vida) {
             this.vida = 0;
             vivo = false;
         } else {

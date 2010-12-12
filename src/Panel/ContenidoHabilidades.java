@@ -41,7 +41,6 @@ public class ContenidoHabilidades extends Contenido {
         addBotonPorDefecto(b);
 
         Image img5 = Lienzo.cargarImagen("imagenes/Lluvia.png");
-        //cargamos los botones del contenido 3
         BotonCreadorHabilidad b2 =new BotonCreadorHabilidad(img5, img5, "Lluvia", calculaX(), calculaY(), img5.getWidth(null), img5.getHeight(null), new Lluvia(img5, Vector2D.zero));
         new Observador_CreadorHabilidad(b2);
         addBotonPorDefecto(b2);
