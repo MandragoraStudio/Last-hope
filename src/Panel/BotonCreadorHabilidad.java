@@ -9,7 +9,6 @@ import Graficos.Boton;
 import Mapa.Ventana_Mapa;
 import Observador.Observador_CreadorHabilidad;
 import Personajes.Habilidad;
-import Personajes.Lluvia;
 import java.awt.Image;
 
 /**
