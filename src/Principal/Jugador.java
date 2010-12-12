@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Principal;
 
 import java.util.HashMap;
@@ -16,27 +15,27 @@ public class Jugador implements IJugador {
 
     private long puntuacion;
     // Vida del Jugador
-    private final Integer vidaMax =100;
+    private final Integer vidaMax = 100;
     private Integer vida;
     //Energia
     private Integer energiaMax = 10000;
     //private Integer energia;
     //recursos
     private final Integer maxRecursos = 9999;
-    Map<String,Integer> recursos;
+    static Map<String, Integer> recursos;
 
     //Contructores;
-    public Jugador ()
-    {
-        puntuacion=0;
-        vida=vidaMax;
+    public Jugador() {
+        puntuacion = 0;
+        vida = vidaMax;
+        energiaMax = 200;
         //energia=energiaMax;
-        recursos = new HashMap<String, Integer> ();
-        recursos.put("uranio",100);
-        recursos.put("rodio",100);
-        recursos.put("grafeno",100);
-        recursos.put("radio",100);
-        recursos.put("cromo",100);
+        recursos = new HashMap<String, Integer>();
+        recursos.put("uranio", 100);
+        recursos.put("rodio", 100);
+        recursos.put("grafeno", 100);
+        recursos.put("radio", 100);
+        recursos.put("cromo", 100);
         recursos.put("energia", energiaMax);
     }
 
@@ -62,12 +61,10 @@ public class Jugador implements IJugador {
         }
     }
 
-
     //Getters & setters
     //public Integer getEnergia() {
     //    return energia;
     //}
-
     //public void setEnergia(Integer energia) {
     //    this.energia = energia;
     //}
@@ -81,7 +78,6 @@ public class Jugador implements IJugador {
     //        this.energia-=energia;
     //    return energiaSuf;
     //}
-
     public Integer getEnergiaMax() {
         return energiaMax;
     }
@@ -89,6 +85,7 @@ public class Jugador implements IJugador {
     public void setEnergiaMax(Integer energiaMax) {
         this.energiaMax = energiaMax;
     }
+
     public long getPuntuacion() {
         return puntuacion;
     }
@@ -97,8 +94,8 @@ public class Jugador implements IJugador {
         this.puntuacion = puntuacion;
     }
 
-    public void agregaPuntos(int n){
-        puntuacion+=n;
+    public void agregaPuntos(int n) {
+        puntuacion += n;
     }
 
     public Integer getVida() {
@@ -109,39 +106,55 @@ public class Jugador implements IJugador {
         this.vida = vida;
     }
 
-    public Boolean restaVida(int vida){
+    public Boolean restaVida(int vida) {
         Boolean vivo = true;
-        if(vida>=this.vida){
-            this.vida=0;
-            vivo=false;
+        if (vida >= this.vida) {
+            this.vida = 0;
+            vivo = false;
+        } else {
+            this.vida -= vida;
         }
-        else
-            this.vida-=vida;
         return vivo;
     }
 
     public Integer getVidaMax() {
         return vidaMax;
     }
+
     public Map<String, Integer> getRecursos() {
         return recursos;
     }
-    public Boolean restaRecursos(Map<String,Integer> rec){
+
+    //TODO: un metodo que añade recursos
+    public static boolean agregaRecursos(Map<String, Integer> rec) {
+        boolean dev = true;
+        if (dev) {
+            Integer aux = 0;
+            for (String s : rec.keySet()) {
+                aux = recursos.get(s);
+                aux = aux + rec.get(s);
+                recursos.remove(s);
+                recursos.put(s, aux);
+            }
+        }
+        return dev;
+    }
+
+    public Boolean restaRecursos(Map<String, Integer> rec) {
         Boolean dev = true;
-        for (String s : rec.keySet()){
-            if(recursos.get(s)<rec.get(s))
-            {
-                dev=false;
+        for (String s : rec.keySet()) {
+            if (recursos.get(s) < rec.get(s)) {
+                dev = false;
                 break;
             }
         }
-        if (dev){
+        if (dev) {
             Integer aux = 0;
-            for (String s : rec.keySet()){
-            aux = recursos.get(s);
-            aux= aux - rec.get(s);
-            recursos.remove(s);
-            recursos.put(s, aux);
+            for (String s : rec.keySet()) {
+                aux = recursos.get(s);
+                aux = aux - rec.get(s);
+                recursos.remove(s);
+                recursos.put(s, aux);
             }
         }
         //recursos.put("uranio",recursos.get("uranio")-(r.containsKey("uranio")?r.get("uranio"):0));
@@ -152,13 +165,12 @@ public class Jugador implements IJugador {
         //restaEnergia(r.containsKey("energia")?r.get("energia"):0);
         return dev;
     }
-    
-    public boolean suficientesRecursos(Map<String,Integer> rec){
+
+    public boolean suficientesRecursos(Map<String, Integer> rec) {
         boolean dev = true;
-        for (String s : rec.keySet()){
-            if(recursos.get(s)<rec.get(s))
-            {
-                dev=false;
+        for (String s : rec.keySet()) {
+            if (recursos.get(s) < rec.get(s)) {
+                dev = false;
                 break;
             }
         }
@@ -166,26 +178,26 @@ public class Jugador implements IJugador {
     }
 
     //Metodos
-
-    public void AñadirRecursos(Map<String,Integer> rec) {
+    public void AñadirRecursos(Map<String, Integer> rec) {
         Integer aux = 0;
-        for (String s : rec.keySet()){
+        for (String s : rec.keySet()) {
             aux = recursos.get(s);
-            aux= aux + rec.get(s);
-            if(s=="energia"){
-                if(aux>energiaMax)
-                    aux=energiaMax;
-            }else{
-                if(aux>maxRecursos)
-                    aux=maxRecursos;
+            aux = aux + rec.get(s);
+            if (s == "energia") {
+                if (aux > energiaMax) {
+                    aux = energiaMax;
+                }
+            } else {
+                if (aux > maxRecursos) {
+                    aux = maxRecursos;
+                }
             }
             recursos.remove(s);
             recursos.put(s, aux);
         }
     }
 
-     public void AñadirPuntuacion(Integer p){
-         setPuntuacion(getPuntuacion()+p);
-     }
-
+    public void AñadirPuntuacion(Integer p) {
+        setPuntuacion(getPuntuacion() + p);
+    }
 }

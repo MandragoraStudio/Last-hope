@@ -5,6 +5,7 @@
 
 package Personajes;
 
+import Mapa.Ventana_Mapa;
 import UtilMath.Vector2D;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -14,14 +15,15 @@ import java.util.List;
  *
  * @author Jose
  */
-public class Lluvia extends Habilidad{
+public class Lluvia extends Accion{
 
     private static float ralentizacion;
 
     public Lluvia(Image im, Vector2D posicion) {
         super(im, posicion);
-        ralentizacion = 0.5F;
+        ralentizacion = 0.2F;
         this.setNombre("Lluvia");
+        Lluvia.accionHabilidad();
     }
 
 
@@ -34,9 +36,9 @@ public class Lluvia extends Habilidad{
         this.ralentizacion = ralentizacion;
     }
 
-    public static void accionHabilidad(List <Actor> actores) {
+    public static void accionHabilidad() {
         List <Enemy> enemigos = new ArrayList();
-        for(Actor a: actores){
+        for(Actor a: Ventana_Mapa.actores){
             if (a instanceof Enemy) {
                 enemigos.add((Enemy)a);
             }

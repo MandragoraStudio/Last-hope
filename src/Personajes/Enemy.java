@@ -8,9 +8,10 @@ import Graficos.Lienzo;
 import Informacion.Ventana_Informacion;
 import Mapa.Ventana_Mapa;
 import Principal.Juego;
+import Principal.Jugador;
 import UtilMath.Vector2D;
-import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -119,15 +120,28 @@ public abstract class Enemy extends Actor {
         return new Vector2D(x, y);
     }
 
+    public void muere() {
+        Ventana_Mapa.eliminaActor(this);
+        Ventana_Mapa.agregar.add(new Splash(this.centro()));
+        Juego.jugador.agregaPuntos(this.dano);
+        //recursos que le vas a dar al jugador
+        //TODO: dar recursos al jugador en funcion de las caracteristicas del enemigo, de manera proporcionada
+        Map<String,Integer> recursos = new HashMap<String,Integer>();
+        recursos.put("uranio", (int)this.maxVida);
+        recursos.put("rodio", (int)this.regeneracion);
+        recursos.put("grafeno", (int)this.velocidad);
+        recursos.put("radio", (int)this.armadura+this.dano);
+        recursos.put("cromo", (int)this.armadura);
+        Jugador.agregaRecursos(recursos);
+    }
+
     @Override
     public void update() {
 
         boton.update();
         if (vida < 0) {
             //aqui el enemigo muere!!!
-            Ventana_Mapa.eliminaActor(this);
-            Ventana_Mapa.agregar.add(new Splash(this.centro()));
-            Juego.jugador.agregaPuntos(this.dano);
+            this.muere();
         }
         if (this.centro().subs(Ventana_Mapa.getCoordenadaCentro(Ventana_Mapa.map.camino.get(casilla))).modulo() <= this.velocidad) {
 

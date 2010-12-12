@@ -7,8 +7,11 @@ package Screens;
 
 import Graficos.Boton;
 import Graficos.BotonGeneral;
+import Graficos.Fondo;
 import Graficos.Lienzo;
 import Observador.ObservadorGameOver;
+import Personajes.Actor;
+import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -22,11 +25,13 @@ import java.util.logging.Logger;
  * @author Arcangel
  */
 public class GameOverScreen implements IScreen{
+    Actor fondo; // el fondo del menu
 
     List<Boton> botones;
     public void cargarModelos() {
         botones= new ArrayList<Boton>();
         try {
+            fondo = new Fondo("imagenes/gameOver.jpg",Vector2D.zero);
             cargarBotones();
         } catch (Exception ex) {
             Logger.getLogger(GameOverScreen.class.getName()).log(Level.SEVERE, null, ex);
@@ -56,8 +61,7 @@ public class GameOverScreen implements IScreen{
     }
 
     public void draw(Graphics2D g) {
-        g.setColor(Color.BLACK);
-        g.drawString("Game Over", 300, 300);
+        fondo.draw(g);
         for(Boton b:botones){
             b.draw(g);
         }

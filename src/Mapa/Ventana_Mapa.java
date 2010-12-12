@@ -74,12 +74,14 @@ public class Ventana_Mapa implements IVentana {
         observadores.add(o);
     }
 
-    public static void creaTorre(Tower t) {
+    public static void creaTorre(Tower t){
+        Ventana_Mapa.construirH=false;
         Ventana_Mapa.construir = true;
         Ventana_Mapa.torre = t;
     }
 
-    public static void creaHabilidad(Habilidad h) {
+    public static void creaHabilidad(Habilidad h){
+        Ventana_Mapa.construir=false;
         Ventana_Mapa.construirH = true;
         Ventana_Mapa.habilidad = h;
     }
@@ -199,7 +201,7 @@ public class Ventana_Mapa implements IVentana {
         if(h.getNombre().equalsIgnoreCase("CentralEnergia")){
             CentralEnergia.accionHabilidad();
         }else if(h.getNombre().equalsIgnoreCase("Lluvia")){
-            Lluvia.accionHabilidad(this.actores);
+            Lluvia.accionHabilidad();
         }
         
     }
