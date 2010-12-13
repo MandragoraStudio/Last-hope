@@ -103,12 +103,15 @@ public class ObservadorPanelEditor implements IObservador {
         } else if (boton.getNombre().equals("cambiaImagen3")) {
             ContenidoEditor.cambiaImagen("imagenes/torrePanel3.png");
         } else if (boton.getNombre().equals("cambiaImagenPorTeclado")) {
-            URL url =Buscador.busca();
-            Image i = Lienzo.cargarImagen(url);
+            URL url = Buscador.busca();
+            Image i = null;
+            i = Lienzo.cargarImagen(url);
+            i = i.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+            Lienzo.imagenes.remove(url.getFile());
             if (i != null) {
-                ContenidoEditor.cambiaImagen(url.getFile());
+                ContenidoEditor.cambiaImagen(i);
             } else {
-                JOptionPane.showMessageDialog(null, "Ruta incorrecta: " + i.toString());
+                JOptionPane.showMessageDialog(null, "Ruta incorrecta: " + url.getFile());
             }
 
         }

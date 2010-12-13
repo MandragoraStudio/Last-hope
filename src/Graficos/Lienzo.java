@@ -29,7 +29,7 @@ public class Lienzo extends Canvas {
     public BufferStrategy strategy;
     public JFrame frame; //ventana sobre la que pintaremos
     public JPanel panel; // subcontenido de la ventana
-    private static Map<String, Image> imagenes;
+    public static Map<String, Image> imagenes;
 
     public Lienzo(int width, int height) {
         //le ponemos un titulo a la ventana y la creamos

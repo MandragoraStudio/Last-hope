@@ -24,7 +24,7 @@ public class ContenidoEditor extends Contenido {
     Image img2; //opc2 de imagen al crear el diseño de una torre
     Image img3; //opc3 de imagen al crear el diseño de una torre
     private Image fondoAtributos; // imagen de los botones de los atributos de una torre
-    private static String imagenTorre; // url de la imagen que usaremos para crear la torre
+    private static Image imagenTorre; // imagen que usaremos para crear la torre
     private static Map<String, String> atributos; // valor de los atributos de la torre diseñada
 
     public ContenidoEditor(String url, Vector2D posicion) {
@@ -51,7 +51,7 @@ public class ContenidoEditor extends Contenido {
         Image img5 = Lienzo.cargarImagen("imagenes/imagenpro2.png");
         Image img6 = Lienzo.cargarImagen("imagenes/insertador.png");
         //inicializamos la imagen de la torre
-        imagenTorre = "imagenes/torrePanel.png";
+        imagenTorre = Lienzo.cargarImagen("imagenes/torrePanel.png");
         // añadimos los botones de los atributos
         addBotonPorDefecto(fondoAtributos, "Nombre");
         addBotonPorDefecto(fondoAtributos, "Daño");
@@ -123,10 +123,9 @@ public class ContenidoEditor extends Contenido {
 
     public static void creaBotonCreador() {
         try {
-            //cargamos la imagen que tenemos en imagen torre
-            Image im = Lienzo.cargarImagen(imagenTorre);
+            
             //creamos el boton en cointenido torres para que pueda crear una torre
-            Ventana_Panel.getFondo().get("fondoTorres").addBotonPorDefecto(new BotonCreadorTorre(im, im, ContenidoEditor.getAtributos().get("Nombre"), Ventana_Panel.getFondo().get("fondoTorres").calculaX(), Ventana_Panel.getFondo().get("fondoTorres").calculaY(), im.getWidth(null), im.getHeight(null),
+            Ventana_Panel.getFondo().get("fondoTorres").addBotonPorDefecto(new BotonCreadorTorre(imagenTorre, imagenTorre, ContenidoEditor.getAtributos().get("Nombre"), Ventana_Panel.getFondo().get("fondoTorres").calculaX(), Ventana_Panel.getFondo().get("fondoTorres").calculaY(), imagenTorre.getWidth(null), imagenTorre.getHeight(null),
                     //le pasamos la torre segun los atributos que hemos recogido en este contenido
                     new Tower(Float.parseFloat(ContenidoEditor.getAtributos().get("Daño")),
                     Float.parseFloat(ContenidoEditor.getAtributos().get("Área de daño")),
@@ -138,7 +137,7 @@ public class ContenidoEditor extends Contenido {
                     Float.parseFloat(ContenidoEditor.getAtributos().get("Veneno")),
                     calculaCosteProduccion(),
                     Vector2D.fuera,
-                    im)));
+                    imagenTorre)));
         } catch (Exception ex) {
             Logger.getLogger(ContenidoEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -186,8 +185,12 @@ public class ContenidoEditor extends Contenido {
     }
 
     public static void cambiaImagen(String cad) {
-        imagenTorre = cad;
+        //cargamos la imagen que tenemos en imagen torre
+        imagenTorre = Lienzo.cargarImagen(cad);
+    }
 
+    public static void cambiaImagen(Image imagen) {
+        imagenTorre=imagen;
     }
 
     //addBotonPorDefecto añadirá un botón según el orden en que tienen que estar los botones por defecto
