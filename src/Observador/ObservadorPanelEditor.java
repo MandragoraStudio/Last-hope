@@ -6,8 +6,10 @@ package Observador;
 
 import Graficos.Boton;
 import Graficos.Lienzo;
+import Handlers.Buscador;
 import Panel.ContenidoEditor;
 import java.awt.Image;
+import java.net.URL;
 import javax.swing.JOptionPane;
 
 /**
@@ -101,13 +103,12 @@ public class ObservadorPanelEditor implements IObservador {
         } else if (boton.getNombre().equals("cambiaImagen3")) {
             ContenidoEditor.cambiaImagen("imagenes/torrePanel3.png");
         } else if (boton.getNombre().equals("cambiaImagenPorTeclado")) {
-            String cad = JOptionPane.showInputDialog(null, "Introduzca La ruta de la imagen:", "Imagen: ", JOptionPane.INFORMATION_MESSAGE);
-
-            Image i = Lienzo.cargarImagen(cad);
+            URL url =Buscador.busca();
+            Image i = Lienzo.cargarImagen(url);
             if (i != null) {
-                ContenidoEditor.cambiaImagen(cad);
+                ContenidoEditor.cambiaImagen(url.getFile());
             } else {
-                JOptionPane.showMessageDialog(null, "Ruta incorrecta: " + cad);
+                JOptionPane.showMessageDialog(null, "Ruta incorrecta: " + i.toString());
             }
 
         }

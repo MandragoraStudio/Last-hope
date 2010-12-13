@@ -1,4 +1,3 @@
-
 package Panel;
 
 import Graficos.Boton;
@@ -70,7 +69,7 @@ public class ContenidoEditor extends Contenido {
         addBoton(img6, img6, "cambiaImagenPorTeclado", 20, 390);
 
         //añadimos el boton que crea botones en el contenidoTorres para que creen las torres
-        Boton b = new BotonGeneral(img4, img5, "creaBotonCreador", (int)posicion.x+getImagen().getWidth(null) - img4.getWidth(null), (int)posicion.y+getImagen().getHeight(null) - img4.getHeight(null), img4.getWidth(null), img4.getHeight(null));
+        Boton b = new BotonGeneral(img4, img5, "creaBotonCreador", (int) posicion.x + getImagen().getWidth(null) - img4.getWidth(null), (int) posicion.y + getImagen().getHeight(null) - img4.getHeight(null), img4.getWidth(null), img4.getHeight(null));
         new ObservadorPanelEditor(b);
         addBoton(b);
         //inicializamos los atributos
@@ -121,6 +120,7 @@ public class ContenidoEditor extends Contenido {
         return pos;
     }
     // crea un boton en Contenido Torres para que ese boton pueda crear torres
+
     public static void creaBotonCreador() {
         try {
             //cargamos la imagen que tenemos en imagen torre
@@ -144,6 +144,7 @@ public class ContenidoEditor extends Contenido {
         }
     }
     // metodo que calcula el coste que va a suponer crear esta torre en el mapa
+
     public static Map<String, Integer> calculaCosteProduccion() {
         Map<String, Integer> costeProduccion = new HashMap<String, Integer>();
 
@@ -188,9 +189,9 @@ public class ContenidoEditor extends Contenido {
         imagenTorre = cad;
 
     }
+
     //addBotonPorDefecto añadirá un botón según el orden en que tienen que estar los botones por defecto
     //dependiendo del contenido en el que estemos
-
     @Override
     public void addBotonPorDefecto(Image up, String nombre) {
         Boton b = new Boton(up, nombre, this.calculaX(), this.calculaY(), up.getWidth(null), up.getHeight(null));

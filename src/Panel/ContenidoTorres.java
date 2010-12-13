@@ -44,7 +44,7 @@ public class ContenidoTorres extends Contenido{
             Image img8 = Lienzo.cargarImagen("imagenes/pausa.png");
             Image img9 = Lienzo.cargarImagen("imagenes/pausapulsada.png");
             Image img10 = Lienzo.cargarImagen("imagenes/play.png");
-            Image img11 = Lienzo.cargarImagen("imagenes/playpulsado.png");
+            Image img11 = Lienzo.cargarImagen("imagenes/playPulsado.png");
             addBoton(img6, img7, "Menu", getImagen().getWidth(null)-img6.getWidth(null)-10, getImagen().getHeight(null)-img6.getHeight(null)-20);
             addBoton(img8, img9, "Pausa",60 ,450);
             addBoton(img10, img11, "Play",20 ,450);
@@ -79,7 +79,11 @@ public class ContenidoTorres extends Contenido{
         g.drawImage(this.getImagen(), (int)posicion.x, (int)posicion.y, null);
         // dibujamos los botones por defecto (los que crean torres)
         for(Boton b: this.getBotonesPorDefecto()){
-            b.draw(g);
+            if (b.getWidth() > 50 && b.getHeight() > 50) {
+                g.drawImage(b.getUp(), b.getX(), b.getY(), 50, 50, null);
+            } else {
+                b.draw(g);
+            }
             g.drawString(b.getNombre(), b.getX(), b.getY()+b.getHeight()+12);
         }
         //dibujamos el resto de botones

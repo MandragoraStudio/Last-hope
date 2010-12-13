@@ -16,7 +16,6 @@ import Handlers.MouseHandler;
 import Informacion.Ventana_Informacion;
 import Personajes.CentralEnergia;
 import Personajes.Habilidad;
-import Personajes.Lluvia;
 import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
