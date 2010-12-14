@@ -19,15 +19,15 @@ import java.util.logging.Logger;
  * @author Jose
  */
 public class ContenidoEditor extends Contenido {
-
+    private static ContenidoEditor contenidoEditor; //instancia del editor (singleton)
     Image img1; //opc1 de imagen al crear el diseño de una torre
     Image img2; //opc2 de imagen al crear el diseño de una torre
     Image img3; //opc3 de imagen al crear el diseño de una torre
     private Image fondoAtributos; // imagen de los botones de los atributos de una torre
-    private static Image imagenTorre; // imagen que usaremos para crear la torre
-    private static Map<String, String> atributos; // valor de los atributos de la torre diseñada
+    private Image imagenTorre; // imagen que usaremos para crear la torre
+    private Map<String, String> atributos; // valor de los atributos de la torre diseñada
 
-    public ContenidoEditor(String url, Vector2D posicion) {
+    private ContenidoEditor(String url, Vector2D posicion) {
         super(url, posicion);
         try {
             this.cargar();
@@ -35,6 +35,16 @@ public class ContenidoEditor extends Contenido {
             Logger.getLogger(ContenidoEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public static ContenidoEditor getContenidoEditor(String url, Vector2D posicion){
+        if(contenidoEditor==null){
+            contenidoEditor=new ContenidoEditor(url, posicion);
+        }
+        return contenidoEditor;
+    }
+    public static ContenidoEditor getContenidoEditor(){
+        return contenidoEditor;
     }
 
     public void cargar() throws Exception {
@@ -121,49 +131,49 @@ public class ContenidoEditor extends Contenido {
     }
     // crea un boton en Contenido Torres para que ese boton pueda crear torres
 
-    public static void creaBotonCreador() {
+    public void creaBotonCreador() {
         try {
             
             //creamos el boton en cointenido torres para que pueda crear una torre
-            Ventana_Panel.getFondo().get("fondoTorres").addBotonPorDefecto(new BotonCreadorTorre(imagenTorre, imagenTorre, ContenidoEditor.getAtributos().get("Nombre"), Ventana_Panel.getFondo().get("fondoTorres").calculaX(), Ventana_Panel.getFondo().get("fondoTorres").calculaY(), imagenTorre.getWidth(null), imagenTorre.getHeight(null),
+            Ventana_Panel.getVentanaPanel().getFondo().get("fondoTorres").addBotonPorDefecto(new BotonCreadorTorre(imagenTorre, imagenTorre, getAtributos().get("Nombre"), Ventana_Panel.getVentanaPanel().getFondo().get("fondoTorres").calculaX(), Ventana_Panel.getVentanaPanel().getFondo().get("fondoTorres").calculaY(), imagenTorre.getWidth(null), imagenTorre.getHeight(null),
                     //le pasamos la torre segun los atributos que hemos recogido en este contenido
-                    new Tower(Float.parseFloat(ContenidoEditor.getAtributos().get("Daño")),
-                    Float.parseFloat(ContenidoEditor.getAtributos().get("Área de daño")),
-                    Integer.parseInt(ContenidoEditor.getAtributos().get("Rango")),
-                    Float.parseFloat(ContenidoEditor.getAtributos().get("Congelación")),
-                    Float.parseFloat(ContenidoEditor.getAtributos().get("Penetración")),
-                    Float.parseFloat(ContenidoEditor.getAtributos().get("Fuego")),
-                    Long.parseLong(ContenidoEditor.getAtributos().get("Recarga")),
-                    Float.parseFloat(ContenidoEditor.getAtributos().get("Veneno")),
+                    new Tower(Float.parseFloat(getAtributos().get("Daño")),
+                    Float.parseFloat(getAtributos().get("Área de daño")),
+                    Integer.parseInt(getAtributos().get("Rango")),
+                    Float.parseFloat(getAtributos().get("Congelación")),
+                    Float.parseFloat(getAtributos().get("Penetración")),
+                    Float.parseFloat(getAtributos().get("Fuego")),
+                    Long.parseLong(getAtributos().get("Recarga")),
+                    Float.parseFloat(getAtributos().get("Veneno")),
                     calculaCosteProduccion(),
                     Vector2D.fuera,
-                    imagenTorre)));
+                    this.imagenTorre)));
         } catch (Exception ex) {
             Logger.getLogger(ContenidoEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     // metodo que calcula el coste que va a suponer crear esta torre en el mapa
 
-    public static Map<String, Integer> calculaCosteProduccion() {
+    public Map<String, Integer> calculaCosteProduccion() {
         Map<String, Integer> costeProduccion = new HashMap<String, Integer>();
 
 
         int c;
-        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Fuego")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 2;
+        c = Integer.parseInt(atributos.get("Daño")) * 2 + Integer.parseInt(atributos.get("Fuego")) * 2 + Integer.parseInt(atributos.get("Rango")) * 2;
         costeProduccion.put("uranio", c);
-        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Área de daño")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 2;
+        c = Integer.parseInt(atributos.get("Daño")) * 2 + Integer.parseInt(atributos.get("Área de daño")) * 2 + Integer.parseInt(atributos.get("Rango")) * 2;
         costeProduccion.put("rodio", c);
 
-        c = Integer.parseInt(ContenidoEditor.atributos.get("Recarga")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 2;
+        c = Integer.parseInt(atributos.get("Recarga")) * 2 + Integer.parseInt(atributos.get("Rango")) * 2;
         costeProduccion.put("grafeno", c);
 
-        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Congelación")) * 2;
+        c = Integer.parseInt(atributos.get("Daño")) * 2 + Integer.parseInt(atributos.get("Congelación")) * 2;
         costeProduccion.put("radio", c);
 
-        c = Integer.parseInt(ContenidoEditor.atributos.get("Rango")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Veneno")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Penetración")) * 2;
+        c = Integer.parseInt(atributos.get("Rango")) * 2 + Integer.parseInt(atributos.get("Veneno")) * 2 + Integer.parseInt(atributos.get("Penetración")) * 2;
         costeProduccion.put("cromo", c);
 
-        c = Integer.parseInt(ContenidoEditor.atributos.get("Daño")) * 2 + Integer.parseInt(ContenidoEditor.atributos.get("Fuego")) * 2;
+        c = Integer.parseInt(atributos.get("Daño")) * 2 + Integer.parseInt(atributos.get("Fuego")) * 2;
         costeProduccion.put("energia", c);
 
 
@@ -172,24 +182,22 @@ public class ContenidoEditor extends Contenido {
 
     }
 
-    public static void inicializaAtributo(String atributo, String nivel) {
-        ContenidoEditor.atributos.put(atributo, nivel);
-
-
+    public void inicializaAtributo(String atributo, String nivel) {
+        atributos.put(atributo, nivel);
     }
 
-    public static Map<String, String> getAtributos() {
+    public Map<String, String> getAtributos() {
         return atributos;
 
 
     }
 
-    public static void cambiaImagen(String cad) {
+    public void cambiaImagen(String cad) {
         //cargamos la imagen que tenemos en imagen torre
         imagenTorre = Lienzo.cargarImagen(cad);
     }
 
-    public static void cambiaImagen(Image imagen) {
+    public void cambiaImagen(Image imagen) {
         imagenTorre=imagen;
     }
 

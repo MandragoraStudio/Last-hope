@@ -24,7 +24,9 @@ import java.util.logging.Logger;
  */
 public class ContenidoTorres extends Contenido {
 
-    public ContenidoTorres(String url, Vector2D posicion) {
+    private static ContenidoTorres contenidoTorres; // instancia del contenido (singleton)
+
+    private ContenidoTorres(String url, Vector2D posicion) {
         super(url, posicion);
 
         try {
@@ -32,6 +34,13 @@ public class ContenidoTorres extends Contenido {
         } catch (Exception ex) {
             Logger.getLogger(ContenidoTorres.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public static ContenidoTorres getContenidoTorres(String url, Vector2D posicion){
+        if(contenidoTorres==null){
+            contenidoTorres = new ContenidoTorres(url, posicion);
+        }
+        return contenidoTorres;
     }
 
     public void cargar() throws Exception {

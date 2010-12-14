@@ -35,11 +35,8 @@ public class BotonCreadorTorre extends BotonGeneral {
     @Override
     public void draw(Graphics2D g) {
         super.draw(g);
-            if (MouseHandler.getX() > getX() && MouseHandler.getX() < getX() + getWidth() && MouseHandler.getY() > getY() && MouseHandler.getY() < getY() + getHeight()) {
             if (isPulsado()){
                 g.setColor(Color.BLACK);
-                //g.drawRect(MouseHandler.getX(), MouseHandler.getY(), 100, 200);
-                //g.fillRect(MouseHandler.getX(), MouseHandler.getY(), 100, 200);
                 g.fillRect(600, 0, 150, 150);
                 g.setColor(Color.green);
                 g.drawString("Nombre: "+this.getNombre(), 620, 20);
@@ -54,6 +51,6 @@ public class BotonCreadorTorre extends BotonGeneral {
                 
             }
          }
-    }
+    
 
 }

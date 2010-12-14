@@ -23,9 +23,9 @@ import java.util.logging.Logger;
  */
 public class ContenidoHabilidades extends Contenido {
 
-    
+    private static ContenidoHabilidades contenidoHabilidades; // instancia del contenido (singleton)
 
-    public ContenidoHabilidades(String url, Vector2D posicion) {
+    private ContenidoHabilidades(String url, Vector2D posicion) {
         super(url, posicion);
         try {
             this.cargar();
@@ -33,6 +33,13 @@ public class ContenidoHabilidades extends Contenido {
             Logger.getLogger(ContenidoHabilidades.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public static ContenidoHabilidades getContenidoHabilidades(String url, Vector2D posicion){
+        if(contenidoHabilidades==null){
+            contenidoHabilidades= new ContenidoHabilidades(url, posicion);
+        }
+        return contenidoHabilidades;
     }
 
     public void cargar() throws Exception {

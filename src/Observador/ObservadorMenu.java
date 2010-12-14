@@ -29,8 +29,8 @@ public class ObservadorMenu implements IObservador {
     public void update() {
         //switch de string
         if (boton.getNombre().equals("start")) {
-            Juego.restartGame();
-            Juego.changeScreen("Game");
+            Juego.getJuego().restartGame();
+            Juego.getJuego().changeScreen("Game");
         } else if (boton.getNombre().equals("start2")) {
             int[][] mapa = {
                 {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -45,7 +45,7 @@ public class ObservadorMenu implements IObservador {
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
             };
             Ventana_Mapa.cargar(mapa);
-            Juego.changeScreen("Game");
+            Juego.getJuego().changeScreen("Game");
         } else if (boton.getNombre().equals("exit")) {
             System.exit(0);
         } 

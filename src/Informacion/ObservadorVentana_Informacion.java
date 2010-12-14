@@ -42,7 +42,7 @@ class ObservadorVentana_Informacion implements IObservador {
               else
               rec.put(s, t.coste.get(s)/2);
           }
-          Juego.jugador.AñadirRecursos(rec);
+          Juego.getJuego().jugador.AñadirRecursos(rec);
           Ventana_Mapa.eliminar.add(Ventana_Informacion.ac);
           Ventana_Informacion.ac=null;
         }

@@ -102,45 +102,45 @@ public class Ventana_Informacion implements IVentana {
         g.drawString("Puntuacion", x+25, y+20);
         g.drawString("Vida", x+25, y+60);
         g.setColor(Color.BLACK);
-        g.drawString(""+Juego.jugador.getPuntuacion(), x+35, y+40);
-        g.drawString(""+Juego.jugador.getVida()+"/"+Juego.jugador.getVidaMax(), x+32, y+78);
+        g.drawString(""+Juego.getJuego().jugador.getPuntuacion(), x+35, y+40);
+        g.drawString(""+Juego.getJuego().jugador.getVida()+"/"+Juego.getJuego().jugador.getVidaMax(), x+32, y+78);
         //Barra informacion Centro (Atributos)
         Tower torre = Ventana_Mapa.torre;
         if(torre!=null)
         {
         g.drawString("Uranio",x+150, y+30);
-        g.drawString(""+Juego.jugador.getRecursos().get("uranio"), x+150, y+50);
+        g.drawString(""+Juego.getJuego().jugador.getRecursos().get("uranio"), x+150, y+50);
         g.drawString("Rodio",x+250, y+30);
-        g.drawString(""+Juego.jugador.getRecursos().get("rodio"), x+250, y+50);
+        g.drawString(""+Juego.getJuego().jugador.getRecursos().get("rodio"), x+250, y+50);
         g.drawString("Grafeno",x+350, y+30);
-        g.drawString(""+Juego.jugador.getRecursos().get("grafeno"), x+350, y+50);
+        g.drawString(""+Juego.getJuego().jugador.getRecursos().get("grafeno"), x+350, y+50);
         g.drawString("Radio",x+450, y+30);
-        g.drawString(""+Juego.jugador.getRecursos().get("radio"), x+450, y+50);
+        g.drawString(""+Juego.getJuego().jugador.getRecursos().get("radio"), x+450, y+50);
         g.drawString("Cromo",x+550, y+30);
-        g.drawString(""+Juego.jugador.getRecursos().get("cromo"), x+550, y+50);
+        g.drawString(""+Juego.getJuego().jugador.getRecursos().get("cromo"), x+550, y+50);
         g.drawString("Energia",x+650, y+30);
-        g.drawString(""+Juego.jugador.getRecursos().get("energia")+"/"+Juego.jugador.getEnergiaMax(), x+650, y+50);
+        g.drawString(""+Juego.getJuego().jugador.getRecursos().get("energia")+"/"+Juego.getJuego().jugador.getEnergiaMax(), x+650, y+50);
         g.setColor(Color.red);
         g.drawString("-"+torre.coste.get("uranio"), x+150, y+70);
         g.drawString("-"+torre.coste.get("rodio"), x+250, y+70);
         g.drawString("-"+torre.coste.get("grafeno"), x+350, y+70);
         g.drawString("-"+torre.coste.get("radio"), x+450, y+70);
         g.drawString("-"+torre.coste.get("cromo"), x+550, y+70);
-        g.drawString("-"+torre.coste.get("energia")+"/"+Juego.jugador.getEnergiaMax(), x+650, y+70);
+        g.drawString("-"+torre.coste.get("energia")+"/"+Juego.getJuego().jugador.getEnergiaMax(), x+650, y+70);
         g.setColor(Color.BLACK);
         }else{
         g.drawString("Uranio",x+150, y+40);
-        g.drawString(""+Juego.jugador.getRecursos().get("uranio"), x+150, y+70);
+        g.drawString(""+Juego.getJuego().jugador.getRecursos().get("uranio"), x+150, y+70);
         g.drawString("Rodio",x+250, y+40);
-        g.drawString(""+Juego.jugador.getRecursos().get("rodio"), x+250, y+70);
+        g.drawString(""+Juego.getJuego().jugador.getRecursos().get("rodio"), x+250, y+70);
         g.drawString("Grafeno",x+350, y+40);
-        g.drawString(""+Juego.jugador.getRecursos().get("grafeno"), x+350, y+70);
+        g.drawString(""+Juego.getJuego().jugador.getRecursos().get("grafeno"), x+350, y+70);
         g.drawString("Radio",x+450, y+40);
-        g.drawString(""+Juego.jugador.getRecursos().get("radio"), x+450, y+70);
+        g.drawString(""+Juego.getJuego().jugador.getRecursos().get("radio"), x+450, y+70);
         g.drawString("Cromo",x+550, y+40);
-        g.drawString(""+Juego.jugador.getRecursos().get("cromo"), x+550, y+70);
+        g.drawString(""+Juego.getJuego().jugador.getRecursos().get("cromo"), x+550, y+70);
         g.drawString("Energia",x+650, y+40);
-        g.drawString(""+Juego.jugador.getRecursos().get("energia")+"/"+Juego.jugador.getEnergiaMax(), x+650, y+70);
+        g.drawString(""+Juego.getJuego().jugador.getRecursos().get("energia")+"/"+Juego.getJuego().jugador.getEnergiaMax(), x+650, y+70);
         }
         g.drawString("Oleada",x+750, y+40);
         g.drawString(""+Ventana_Mapa.nivel+"/10", x+750, y+70);

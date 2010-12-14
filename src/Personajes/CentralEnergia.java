@@ -45,6 +45,6 @@ public class CentralEnergia extends Habilidad {
         recursos.put("radio", 0);
         recursos.put("cromo", 0);
         recursos.put("energia", energiaProducida);
-        Juego.jugador.AñadirRecursos(recursos);
+        Juego.getJuego().jugador.AñadirRecursos(recursos);
     }
 }

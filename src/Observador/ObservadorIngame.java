@@ -24,11 +24,11 @@ public class ObservadorIngame implements IObservador {
     public void update() {
 
         if (boton.getNombre().equals("torres")) {
-            Ventana_Panel.cambiaFondo("fondoTorres");
+            Ventana_Panel.getVentanaPanel().cambiaFondo("fondoTorres");
         } else if (boton.getNombre().equals("editor")) {
-            Ventana_Panel.cambiaFondo("fondoEditor");
+            Ventana_Panel.getVentanaPanel().cambiaFondo("fondoEditor");
         } else if (boton.getNombre().equals("trap")) {
-            Ventana_Panel.cambiaFondo("fondoTraps");
+            Ventana_Panel.getVentanaPanel().cambiaFondo("fondoTraps");
         }
 
     }
