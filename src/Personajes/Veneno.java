@@ -13,15 +13,15 @@ import java.util.List;
 
 /**
  *
- * @author Jose
+ * @author jose
  */
-public class Lluvia extends Habilidad{
+public class Veneno extends Habilidad{
 
-    private static float ralentizacion;
+    private static float veneno;
 
-    public Lluvia(Image im, Vector2D posicion) {
+    public Veneno(Image im, Vector2D posicion) {
         super(im, posicion);
-        ralentizacion = 0.2F;
+        veneno = 2F;
         this.getCoste().put("uranio", 100);
         this.getCoste().put("rodio", 30);
         this.getCoste().put("grafeno", 0);
@@ -29,26 +29,19 @@ public class Lluvia extends Habilidad{
         this.getCoste().put("cromo", 25);
         this.getCoste().put("energia", 0);
         this.setNombre("Lluvia");
-        Lluvia.accionHabilidad();
+        Veneno.accionHabilidad();
     }
     public Habilidad clone(){
-        Lluvia dev;
+        Veneno dev;
         Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
         Image ima = this.getImagen();
-        dev = new Lluvia(ima,posicion);
+        dev = new Veneno(ima,posicion);
         dev.setNombre(this.getNombre());
         return dev;
     }
-    public float getRalentizacion() {
-        return ralentizacion;
-    }
 
-    public void setRalentizacion(float ralentizacion) {
-        this.ralentizacion = ralentizacion;
-    }
 
     public static void accionHabilidad() {
-        lanzarActor();
         List <Enemy> enemigos = new ArrayList();
         for(Actor a: Ventana_Mapa.actores){
             if (a instanceof Enemy) {
@@ -56,7 +49,7 @@ public class Lluvia extends Habilidad{
             }
         }
         for(Enemy e: enemigos){
-            e.congelar(ralentizacion, 200);
+            e.envenenar(veneno, 200);
         }
     }
     @Override

@@ -23,11 +23,11 @@ public class ObservadorPanelTorre implements IObservador {
 
     public void update() {
         if (boton.getNombre().equals("Menu")) {
-            Juego.changeScreen("Menu");
+            Juego.getJuego().changeScreen("Menu");
         }else if (boton.getNombre().equals("Pausa")) {
-            Ventana_Mapa.pausa = true;
+            Ventana_Mapa.setPausa(true);
         } else if (boton.getNombre().equals("Play")) {
-            Ventana_Mapa.pausa = false;
+            Ventana_Mapa.setPausa(false);
         }
     }
 }

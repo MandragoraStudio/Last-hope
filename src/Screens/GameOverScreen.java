@@ -25,9 +25,20 @@ import java.util.logging.Logger;
  * @author Arcangel
  */
 public class GameOverScreen implements IScreen{
+    private static GameOverScreen gameOver=null; // instancia de game over (singleton)
     Actor fondo; // el fondo del menu
+    List<Boton> botones; // lista de botones del game over
 
-    List<Boton> botones;
+    private GameOverScreen() {
+    }
+
+    public static GameOverScreen getGameOver(){
+        if(gameOver==null){
+            gameOver=new GameOverScreen();
+        }
+        return gameOver;
+    }
+
     public void cargarModelos() {
         botones= new ArrayList<Boton>();
         try {
@@ -43,8 +54,8 @@ public class GameOverScreen implements IScreen{
         Image img = null;
         Image img2 = null;
         try {
-                img = Lienzo.cargarImagen("imagenes/imagenpro.png");
-                img2 = Lienzo.cargarImagen("imagenes/imagenpro2.png");
+                img = Lienzo.cargarImagen("imagenes/playAgain.png");
+                img2 = Lienzo.cargarImagen("imagenes/playAgainHover.png");
             } catch (Exception e) {
                 e.printStackTrace();
             }

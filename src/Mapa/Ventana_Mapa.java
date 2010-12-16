@@ -16,7 +16,6 @@ import Handlers.MouseHandler;
 import Informacion.Ventana_Informacion;
 import Personajes.CentralEnergia;
 import Personajes.Habilidad;
-import Personajes.Lluvia;
 import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -200,8 +199,6 @@ public class Ventana_Mapa implements IVentana {
         agregar.add(h);
         if(h.getNombre().equalsIgnoreCase("CentralEnergia")){
             CentralEnergia.accionHabilidad();
-        }else if(h.getNombre().equalsIgnoreCase("Lluvia")){
-            Lluvia.accionHabilidad();
         }
         
     }
@@ -320,4 +317,141 @@ public class Ventana_Mapa implements IVentana {
 
         cargar(null);
     }
+
+    public static int getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public static void setHEIGHT(int HEIGHT) {
+        Ventana_Mapa.HEIGHT = HEIGHT;
+    }
+
+    public static int getWIDTH() {
+        return WIDTH;
+    }
+
+    public static void setWIDTH(int WIDTH) {
+        Ventana_Mapa.WIDTH = WIDTH;
+    }
+
+    public static List<Actor> getActores() {
+        return actores;
+    }
+
+    public static void setActores(List<Actor> actores) {
+        Ventana_Mapa.actores = actores;
+    }
+
+    public static List<Actor> getAgregar() {
+        return agregar;
+    }
+
+    public static void setAgregar(List<Actor> agregar) {
+        Ventana_Mapa.agregar = agregar;
+    }
+
+    public static int getCasillaHeight() {
+        return casillaHeight;
+    }
+
+    public static void setCasillaHeight(int casillaHeight) {
+        Ventana_Mapa.casillaHeight = casillaHeight;
+    }
+
+    public static int getCasillaWidth() {
+        return casillaWidth;
+    }
+
+    public static void setCasillaWidth(int casillaWidth) {
+        Ventana_Mapa.casillaWidth = casillaWidth;
+    }
+
+    public static boolean isConstruir() {
+        return construir;
+    }
+
+    public static void setConstruir(boolean construir) {
+        Ventana_Mapa.construir = construir;
+    }
+
+    public static boolean isConstruirH() {
+        return construirH;
+    }
+
+    public static void setConstruirH(boolean construirH) {
+        Ventana_Mapa.construirH = construirH;
+    }
+
+    public static List<Actor> getEliminar() {
+        return eliminar;
+    }
+
+    public static void setEliminar(List<Actor> eliminar) {
+        Ventana_Mapa.eliminar = eliminar;
+    }
+
+    public static Habilidad getHabilidad() {
+        return habilidad;
+    }
+
+    public static void setHabilidad(Habilidad habilidad) {
+        Ventana_Mapa.habilidad = habilidad;
+    }
+
+    public static Mapa getMap() {
+        return map;
+    }
+
+    public static void setMap(Mapa map) {
+        Ventana_Mapa.map = map;
+    }
+
+    public static int getNivel() {
+        return nivel;
+    }
+
+    public static void setNivel(int nivel) {
+        Ventana_Mapa.nivel = nivel;
+    }
+
+    public List<IObservador> getObservadores() {
+        return observadores;
+    }
+
+    public void setObservadores(List<IObservador> observadores) {
+        this.observadores = observadores;
+    }
+
+    public static boolean isPausa() {
+        return pausa;
+    }
+
+    public static void setPausa(boolean pausa) {
+        Ventana_Mapa.pausa = pausa;
+    }
+
+    public static Tower getTorre() {
+        return torre;
+    }
+
+    public static void setTorre(Tower torre) {
+        Ventana_Mapa.torre = torre;
+    }
+
+    public static int getX() {
+        return x;
+    }
+
+    public static void setX(int x) {
+        Ventana_Mapa.x = x;
+    }
+
+    public static int getY() {
+        return y;
+    }
+
+    public static void setY(int y) {
+        Ventana_Mapa.y = y;
+    }
+    
 }

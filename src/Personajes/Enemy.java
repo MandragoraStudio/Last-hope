@@ -123,7 +123,7 @@ public abstract class Enemy extends Actor {
     public void muere() {
         Ventana_Mapa.eliminaActor(this);
         Ventana_Mapa.agregar.add(new Splash(this.centro()));
-        Juego.jugador.agregaPuntos(this.dano);
+        Juego.getJuego().jugador.agregaPuntos(this.dano);
         //recursos que le vas a dar al jugador
         //TODO: dar recursos al jugador en funcion de las caracteristicas del enemigo, de manera proporcionada
         Map<String,Integer> recursos = new HashMap<String,Integer>();
@@ -152,10 +152,10 @@ public abstract class Enemy extends Actor {
             posicion = new Vector2D(-Ventana_Mapa.casillaWidth, -Ventana_Mapa.casillaHeight);
             //elimino al actor que lo dice jose
             Ventana_Mapa.eliminaActor(this);
-            if (!Juego.jugador.restaVida(dano)) {
+            if (!Juego.getJuego().jugador.restaVida(dano)) {
                 Ventana_Informacion.ac=null;
-                Juego.changeScreen("GameOver");
-                Juego.restartGame();
+                Juego.getJuego().changeScreen("GameOver");
+                Juego.getJuego().restartGame();
             }
         }
         if (tModVelocidad < 0) {

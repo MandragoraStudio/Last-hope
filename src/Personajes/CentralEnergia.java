@@ -20,7 +20,7 @@ public class CentralEnergia extends Habilidad {
 
     public CentralEnergia(Image im, Vector2D posicion) {
         super(im, posicion);
-        this.energiaProducida = 20;
+        this.energiaProducida = 50;
         this.getCoste().put("uranio", 100);
         this.getCoste().put("rodio", 20);
         this.getCoste().put("grafeno", 20);
@@ -45,6 +45,6 @@ public class CentralEnergia extends Habilidad {
         recursos.put("radio", 0);
         recursos.put("cromo", 0);
         recursos.put("energia", energiaProducida);
-        Juego.jugador.AñadirRecursos(recursos);
+        Juego.getJuego().jugador.AñadirRecursos(recursos);
     }
 }

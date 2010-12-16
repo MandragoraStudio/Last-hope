@@ -24,7 +24,7 @@ public class ObservadorGameOver implements IObservador {
     public void update() {
 
         if (boton.getNombre().equals("Menu")) {
-            Juego.changeScreen("Menu");
+            Juego.getJuego().changeScreen("Menu");
         }
 
     }

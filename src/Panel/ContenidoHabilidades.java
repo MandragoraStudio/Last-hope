@@ -8,7 +8,9 @@ import Graficos.Boton;
 import Graficos.Lienzo;
 import Observador.Observador_CreadorHabilidad;
 import Personajes.CentralEnergia;
+import Personajes.Fuego;
 import Personajes.Lluvia;
+import Personajes.Veneno;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -21,9 +23,9 @@ import java.util.logging.Logger;
  */
 public class ContenidoHabilidades extends Contenido {
 
-    
+    private static ContenidoHabilidades contenidoHabilidades; // instancia del contenido (singleton)
 
-    public ContenidoHabilidades(String url, Vector2D posicion) {
+    private ContenidoHabilidades(String url, Vector2D posicion) {
         super(url, posicion);
         try {
             this.cargar();
@@ -33,6 +35,13 @@ public class ContenidoHabilidades extends Contenido {
 
     }
 
+    public static ContenidoHabilidades getContenidoHabilidades(String url, Vector2D posicion){
+        if(contenidoHabilidades==null){
+            contenidoHabilidades= new ContenidoHabilidades(url, posicion);
+        }
+        return contenidoHabilidades;
+    }
+
     public void cargar() throws Exception {
         Image img4 = Lienzo.cargarImagen("imagenes/centralEnergia.png");
         //cargamos los botones del contenido 3
@@ -40,10 +49,20 @@ public class ContenidoHabilidades extends Contenido {
         new Observador_CreadorHabilidad(b);
         addBotonPorDefecto(b);
 
-        Image img5 = Lienzo.cargarImagen("imagenes/Lluvia.png");
+        Image img5 = Lienzo.cargarImagen("imagenes/lluvia.png");
         BotonCreadorHabilidad b2 =new BotonCreadorHabilidad(img5, img5, "Lluvia", calculaX(), calculaY(), img5.getWidth(null), img5.getHeight(null), new Lluvia(img5, Vector2D.zero));
         new Observador_CreadorHabilidad(b2);
         addBotonPorDefecto(b2);
+
+        Image img6 = Lienzo.cargarImagen("imagenes/Fuego.png");
+        BotonCreadorHabilidad b3 =new BotonCreadorHabilidad(img6, img6, "Fuego", calculaX(), calculaY(), img6.getWidth(null), img6.getHeight(null), new Fuego(img6, Vector2D.zero));
+        new Observador_CreadorHabilidad(b3);
+        addBotonPorDefecto(b3);
+
+        Image img7 = Lienzo.cargarImagen("imagenes/veneno.png");
+        BotonCreadorHabilidad b4 =new BotonCreadorHabilidad(img7, img7, "Veneno", calculaX(), calculaY(), img7.getWidth(null), img7.getHeight(null), new Veneno(img7, Vector2D.zero));
+        new Observador_CreadorHabilidad(b4);
+        addBotonPorDefecto(b4);
 
     }
 

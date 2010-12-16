@@ -4,10 +4,11 @@
  */
 package Panel;
 
+import Graficos.Boton;
+import Graficos.BotonGeneral;
 import Graficos.IVentana;
 import Graficos.Lienzo;
 import Observador.ObservadorIngame;
-import Observador.ObservadorMenu;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -22,15 +23,16 @@ import java.util.Map;
  */
 public class Ventana_Panel implements IVentana {
 
+    private static Ventana_Panel ventanaPanel; // instancia de la ventana panel (singleton)
     private int WIDTH; // ancho de la ventana
     private int HEIGHT; // alto de la ventana
     private int x; //posicion  x de la ventana
     private int y; // posicion Y de la ventana
-    private static Map<String, Contenido> contenidos; // contenidos de la ventana (subpartes)
-    private static Contenido fondoActual; // contenido actual
-    private List<Pestaña> pestañas; // lista de pestañas (botones)
+    private Map<String, Contenido> contenidos; // contenidos de la ventana (subpartes)
+    private Contenido fondoActual; // contenido actual
+    private List<Boton> pestañas; // lista de pestañas (botones)
 
-    public Ventana_Panel(int WIDTH, int HEIGHT, int x, int y) {
+    private Ventana_Panel(int WIDTH, int HEIGHT, int x, int y) {
         //inicializamos los atributos
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
@@ -42,10 +44,20 @@ public class Ventana_Panel implements IVentana {
         this.cargar();
     }
 
+    public static Ventana_Panel getVentanaPanel(int WIDTH, int HEIGHT, int x, int y){
+        if(ventanaPanel==null){
+            ventanaPanel= new Ventana_Panel(WIDTH, HEIGHT, x, y);
+        }
+        return ventanaPanel;
+    }
+    public static Ventana_Panel getVentanaPanel(){
+        return ventanaPanel;
+    }
+
     public void draw(Graphics2D g) {
         fondoActual.draw(g);
 
-        for (Pestaña p : pestañas) {
+        for (Boton p : pestañas) {
             p.draw(g);
         }
     }
@@ -53,7 +65,7 @@ public class Ventana_Panel implements IVentana {
     public void update() {
         fondoActual.update();
 
-        for (Pestaña p : pestañas) {
+        for (Boton p : pestañas) {
             p.update();
         }
     }
@@ -62,14 +74,17 @@ public class Ventana_Panel implements IVentana {
         try {
             //cargamos las imagenes de las pestañas
             Image img = Lienzo.cargarImagen("imagenes/torres.png");
-            Image img2 = Lienzo.cargarImagen("imagenes/editor.png");
-            Image img3 = Lienzo.cargarImagen("imagenes/traps.png");
+            Image img2 = Lienzo.cargarImagen("imagenes/torres2.png");
+            Image img3 = Lienzo.cargarImagen("imagenes/editor.png");
+            Image img4 = Lienzo.cargarImagen("imagenes/editor2.png");
+            Image img5 = Lienzo.cargarImagen("imagenes/habilidades.png");
+            Image img6 = Lienzo.cargarImagen("imagenes/habilidades2.png");
             //creamos y añadimos las pestañas a la lista
-            Pestaña p = new Pestaña(img, "torres", x, y, (WIDTH / 3), img.getHeight(null));
+            Boton p = new BotonGeneral(img, img2, "torres", x, y, (WIDTH / 3), img.getHeight(null));
             new ObservadorIngame(p);
-            Pestaña p2 = new Pestaña(img2, "editor", x + (WIDTH / 3), y, (WIDTH / 3), img.getHeight(null));
+            Boton p2 = new BotonGeneral(img3, img4, "editor", x + (WIDTH / 3), y, (WIDTH / 3), img.getHeight(null));
             new ObservadorIngame(p2);
-            Pestaña p3 = new Pestaña(img3, "trap", x + ((WIDTH / 3) * 2), y, (WIDTH / 3), img.getHeight(null));
+            Boton p3 = new BotonGeneral(img5, img6, "trap", x + ((WIDTH / 3) * 2), y, (WIDTH / 3), img.getHeight(null));
             new ObservadorIngame(p3);
             pestañas.add(p);
             pestañas.add(p2);
@@ -81,9 +96,9 @@ public class Ventana_Panel implements IVentana {
 
         try {
             //cargamos los contenidos de las pestañas
-            Contenido c = new ContenidoTorres("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));
-            Contenido c2 = new ContenidoEditor("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));
-            Contenido c3 = new ContenidoHabilidades("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));
+            Contenido c = ContenidoTorres.getContenidoTorres("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));
+            Contenido c2 = ContenidoEditor.getContenidoEditor("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));
+            Contenido c3 = ContenidoHabilidades.getContenidoHabilidades("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));
             //metemos los contenidos en la lista de fondos
             contenidos.put("fondoTorres", c);
             contenidos.put("fondoEditor", c2);
@@ -96,11 +111,11 @@ public class Ventana_Panel implements IVentana {
 
     }
 
-    public static void cambiaFondo(String nombre) {
-        Ventana_Panel.fondoActual = Ventana_Panel.contenidos.get(nombre);
+    public void cambiaFondo(String nombre) {
+        fondoActual = contenidos.get(nombre);
     }
 
-    public static Map<String, Contenido> getFondo() {
+    public Map<String, Contenido> getFondo() {
         return contenidos;
     }
 }

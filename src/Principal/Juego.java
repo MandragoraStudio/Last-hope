@@ -8,6 +8,7 @@ import Handlers.MouseHandler;
 import Screens.GamePlayScreen;
 import Screens.IScreen;
 import Graficos.Lienzo;
+import Mapa.Ventana_Mapa;
 import Screens.GameOverScreen;
 import Screens.MainMenuScreen;
 import java.awt.Color;
@@ -21,37 +22,44 @@ import java.util.Map;
  */
 public class Juego {
 
-    Lienzo lienzo;//objeto en el que vamos a digujar
-    long startTime; //tiempo en el que empieza la aplicacion
-    long previousTime; // tiempo de la ultima vez que se hizo un bucle completo
-    boolean salir = false; // controla si debemos salir o no de la aplicacion
-    Graphics2D pincel; // objeto con el que pintaremos en el lienzo
-    static final int WIDTH = 1024; //ancho de la pantalla
-    static final int HEIGHT = 600; //alto de la pantalla
-    private static Map<String, IScreen> screens; // ventanas del juego (menu, gameplay, ...)
-    private static IScreen currentScreen; //ventana que se está mostrando actualmente
-    public static Jugador jugador; // objeto del jugador
-    MouseHandler manejadorRaton; // objeto que controla la actividad del raton
+    private static Juego juego = null; //instancia privada del juego (patrón singleton)
+    private Lienzo lienzo;//objeto en el que vamos a digujar
+    private long startTime; //tiempo en el que empieza la aplicacion
+    private long previousTime; // tiempo de la ultima vez que se hizo un bucle completo
+    private boolean salir = false; // controla si debemos salir o no de la aplicacion
+    private Graphics2D pincel; // objeto con el que pintaremos en el lienzo
+    private final int WIDTH = 1024; //ancho de la pantalla
+    private final int HEIGHT = 600; //alto de la pantalla
+    private Map<String, IScreen> screens; // ventanas del juego (menu, gameplay, ...)
+    private IScreen currentScreen; //ventana que se está mostrando actualmente
+    public Jugador jugador; // objeto del jugador
+    private MouseHandler manejadorRaton; // objeto que controla la actividad del raton
 
-    public Juego() {
+    private Juego() {
         //inicializacion de las variables
         lienzo = new Lienzo(WIDTH, HEIGHT);
         pincel = (Graphics2D) lienzo.strategy.getDrawGraphics();
         screens = new HashMap<String, IScreen>();
-        jugador = new Jugador(true);
         manejadorRaton = new MouseHandler(lienzo);
         //carga de las pantallas
         Globals.elapsedTime = 0;
         cargarPantallas();
     }
 
+    public static Juego getJuego(){
+        if(juego==null){
+            juego=new Juego();
+        }
+        return juego;
+    }
     private void cargarPantallas() {
+
         //cargamos el menu
-        screens.put("Menu", new MainMenuScreen());
+        screens.put("Menu", MainMenuScreen.getMenu());
         //cargamos el game
         screens.put("Game", new GamePlayScreen());
         //Cargamos el game Over
-        screens.put("GameOver", new GameOverScreen());
+        screens.put("GameOver", GameOverScreen.getGameOver());
         //actualizamos el current Screen a menu
         currentScreen = screens.get("Menu");
     }
@@ -100,13 +108,15 @@ public class Juego {
         currentScreen.update();
     }
 
-    public static void restartGame() {
+    public void restartGame() {
         screens.remove("Game");
         screens.put("Game", new GamePlayScreen());
         screens.get("Game").cargarModelos();
+        jugador = new Jugador(true);
     }
 
     public void draw() {
+
         //ponemos un fondo verde siempre de ancho y alto igual que el de la ventana
         pincel.setColor(Color.GREEN);
         pincel.fillRect(0, 0, WIDTH, HEIGHT);
@@ -116,7 +126,7 @@ public class Juego {
     }
     //metodo estatico para cambiar la ventana
 
-    public static void changeScreen(String screen) {
+    public void changeScreen(String screen) {
 
         currentScreen = screens.get(screen);
     }

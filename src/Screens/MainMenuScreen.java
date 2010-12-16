@@ -24,8 +24,19 @@ import java.util.logging.Logger;
  * @author Thanar
  */
 public class MainMenuScreen implements IScreen {
-Actor fondo; // el fondo del menu
-List<Boton> botones; // botones del menu
+private static MainMenuScreen menu=null; // instancia privada del menu (singleton)
+private Actor fondo; // el fondo del menu
+private List<Boton> botones; // botones del menu
+
+    private MainMenuScreen() {
+    }
+
+    public static MainMenuScreen getMenu(){
+        if(menu==null){
+            menu=new MainMenuScreen();
+        }
+        return menu;
+    }
 
     public void cargarModelos() {
         try {
@@ -58,7 +69,7 @@ List<Boton> botones; // botones del menu
         //añadimos los botones al menu
         Boton b=new BotonGeneral(img, img2, "start", 100, 100, 100, 500);
         new ObservadorMenu(b);
-        Boton b3=new BotonGeneral(img3, img4, "exit", 800, 450, img.getWidth(null), img.getHeight(null));
+        Boton b3=new BotonGeneral(img3, img4, "exit", 800, 450, img3.getWidth(null), img3.getHeight(null));
         new ObservadorMenu(b3);
         botones.add(b);
         botones.add(b3);
