@@ -89,7 +89,7 @@ public abstract class Enemy extends Actor {
     }
 
     public Enemy(int id, float velocidad, float vida, int dano, float armadura, float regeneracion, Vector2D posicion, String imagen, int width) {
-        super(Lienzo.cargarImagen(imagen), posicion, width);
+        super(Lienzo.cargarImagen(imagen), posicion, width, 50);
         this.id = id;
         this.velocidad = velocidad;
         this.vida = vida;
