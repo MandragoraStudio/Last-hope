@@ -5,6 +5,7 @@
 
 package Personajes;
 
+import Mapa.Ventana_Mapa;
 import UtilMath.Vector2D;
 import java.awt.Image;
 import java.util.LinkedHashMap;
@@ -28,6 +29,11 @@ public abstract class Habilidad extends Actor{
 
     public void setCoste(Map<String, Integer> coste) {
         this.coste = coste;
+    }
+
+    public static void lanzarActor(){
+        Ventana_Mapa.agregar.add(new ActorHabilidad());
+        
     }
 
     public abstract Habilidad clone();

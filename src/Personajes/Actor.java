@@ -119,7 +119,7 @@ public abstract class Actor {
                 try {
                     AffineTransform temp = g.getTransform();
                     at = new AffineTransform();
-                    at.rotate(-rotation, posicion.x + sWidth / 2, posicion.y + height / 2);
+                    at.rotate(-rotation, posicion.x + this.width / 2, posicion.y + height / 2);
 
                     g.setTransform(at);
                     g.drawImage(imagen, (int) posicion.x, (int) posicion.y, (int) posicion.x + width, (int) posicion.y + height, currentFrame * sWidth, 0, currentFrame * sWidth + sWidth, sHeight, null);

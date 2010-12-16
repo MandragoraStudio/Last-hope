@@ -30,8 +30,8 @@ import java.util.List;
  */
 public class Ventana_Mapa implements IVentana {
 
-    private static int WIDTH;
-    private static int HEIGHT;
+    public static int WIDTH;
+    public static int HEIGHT;
     private static int x;
     private static int y;
     public static int casillaHeight;

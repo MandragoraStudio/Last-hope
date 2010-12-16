@@ -48,6 +48,7 @@ public class Lluvia extends Habilidad{
     }
 
     public static void accionHabilidad() {
+        lanzarActor();
         List <Enemy> enemigos = new ArrayList();
         for(Actor a: Ventana_Mapa.actores){
             if (a instanceof Enemy) {
