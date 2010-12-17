@@ -4,7 +4,6 @@
  */
 package Observador;
 
-import Graficos.Boton;
 import Panel.BotonCreadorTorre;
 
 /**
