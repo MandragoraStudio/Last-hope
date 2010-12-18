@@ -137,7 +137,7 @@ public abstract class Enemy extends Actor {
 
     @Override
     public void update() {
-
+        super.update();
         boton.update();
         if (vida < 0) {
             //aqui el enemigo muere!!!
