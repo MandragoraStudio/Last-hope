@@ -15,11 +15,11 @@ import java.util.List;
  *
  * @author jose
  */
-public class Veneno extends Habilidad{
+public class Acido extends Habilidad{
 
     private static float veneno;
 
-    public Veneno(Image im, Vector2D posicion) {
+    public Acido(Image im, Vector2D posicion) {
         super(im, posicion);
         veneno = 2F;
         this.getCoste().put("uranio", 100);
@@ -28,14 +28,14 @@ public class Veneno extends Habilidad{
         this.getCoste().put("radio", 50);
         this.getCoste().put("cromo", 25);
         this.getCoste().put("energia", 0);
-        this.setNombre("Lluvia");
-        Veneno.accionHabilidad();
+        this.setNombre("Acido");
+        Acido.accionHabilidad();
     }
     public Habilidad clone(){
-        Veneno dev;
+        Acido dev;
         Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
         Image ima = this.getImagen();
-        dev = new Veneno(ima,posicion);
+        dev = new Acido(ima,posicion);
         dev.setNombre(this.getNombre());
         return dev;
     }

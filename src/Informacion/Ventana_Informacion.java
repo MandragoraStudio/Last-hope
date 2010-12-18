@@ -9,12 +9,10 @@ import Graficos.BotonGeneral;
 import Graficos.IVentana;
 import Graficos.Lienzo;
 import Mapa.Ventana_Mapa;
-import Observador.ObservadorMenu;
 import Personajes.Actor;
 import Personajes.Enemy;
 import Personajes.Tower;
 import Principal.Juego;
-import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -38,6 +36,7 @@ public class Ventana_Informacion implements IVentana {
     private Image armor;
     private Image speed;
     private Image dolar;
+    private Image dolar2;
     private Image aOjo;
     private Image cOjo;
     Boton vender;
@@ -57,7 +56,7 @@ public class Ventana_Informacion implements IVentana {
         this.y=y;
         this.cargar();
         try{
-        vender=new BotonGeneral(dolar, dolar, "sell", x+1000, y+50, dolar.getWidth(null), dolar.getHeight(null));
+        vender=new BotonGeneral(dolar, dolar2, "sell", x+1005, y+65, dolar.getWidth(null), dolar.getHeight(null));
         new ObservadorVentana_Informacion(vender);
         //observa = new BotonGeneral(cOjo, cOjo, "look", x+100, y+50, cOjo.getWidth(null), cOjo.getHeight(null));
         //new ObservadorVentana_Informacion(observa);
@@ -74,7 +73,8 @@ public class Ventana_Informacion implements IVentana {
        health = Lienzo.cargarImagen("imagenes/corazon.png");
        atack = Lienzo.cargarImagen("imagenes/ataque.png");
        brillo = Lienzo.cargarImagen("imagenes/brillo.png");
-       dolar = Lienzo.cargarImagen("imagenes/dolar.png");
+       dolar = Lienzo.cargarImagen("imagenes/Sell.png");
+       dolar2 = Lienzo.cargarImagen("imagenes/Sell2.png");
        //aOjo = Lienzo.cargarImagen("imagenes/oeje.png");
        //cOjo = Lienzo.cargarImagen("imagenes/ceje.png");
 

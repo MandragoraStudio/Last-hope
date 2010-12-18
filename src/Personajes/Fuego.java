@@ -28,7 +28,7 @@ public class Fuego extends Habilidad{
         this.getCoste().put("radio", 50);
         this.getCoste().put("cromo", 25);
         this.getCoste().put("energia", 0);
-        this.setNombre("Lluvia");
+        this.setNombre("Fuego");
         Fuego.accionHabilidad();
     }
     public Habilidad clone(){

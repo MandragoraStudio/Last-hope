@@ -5,8 +5,17 @@
 package Observador;
 
 import Graficos.Boton;
+import Graficos.Lienzo;
 import Mapa.Ventana_Mapa;
+import Panel.BotonCreadorTorre;
+import Panel.ContenidoTorres;
+import Personajes.Tower;
 import Principal.Juego;
+import UtilMath.Vector2D;
+import java.awt.Image;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *

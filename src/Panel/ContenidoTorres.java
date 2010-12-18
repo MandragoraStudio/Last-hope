@@ -7,13 +7,16 @@ package Panel;
 import Graficos.Boton;
 import Graficos.BotonGeneral;
 import Graficos.Lienzo;
+import Mapa.Ventana_Mapa;
 import Observador.ObservadorPanelTorre;
 import Observador.Observador_CreadorTorre;
 import Personajes.Tower;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,16 +31,16 @@ public class ContenidoTorres extends Contenido {
 
     private ContenidoTorres(String url, Vector2D posicion) {
         super(url, posicion);
-
         try {
+
             cargar();
         } catch (Exception ex) {
             Logger.getLogger(ContenidoTorres.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public static ContenidoTorres getContenidoTorres(String url, Vector2D posicion){
-        if(contenidoTorres==null){
+    public static ContenidoTorres getContenidoTorres(String url, Vector2D posicion) {
+        if (contenidoTorres == null) {
             contenidoTorres = new ContenidoTorres(url, posicion);
         }
         return contenidoTorres;
@@ -55,8 +58,8 @@ public class ContenidoTorres extends Contenido {
         Image img10 = Lienzo.cargarImagen("imagenes/play.png");
         Image img11 = Lienzo.cargarImagen("imagenes/playPulsado.png");
         addBoton(img6, img7, "Menu", getImagen().getWidth(null) - img6.getWidth(null) - 10, getImagen().getHeight(null) - img6.getHeight(null) - 20);
-        addBoton(img8, img9, "Pausa", 60, 450);
-        addBoton(img10, img11, "Play", 20, 450);
+        addBoton(img8, img9, "Pausa", 70, 440);
+        addBoton(img10, img11, "Play", 30, 440);
         Map<String, Integer> coste = new LinkedHashMap<String, Integer>();
         coste.put("uranio", 0);
         coste.put("rodio", 30);
@@ -64,13 +67,13 @@ public class ContenidoTorres extends Contenido {
         coste.put("radio", 0);
         coste.put("cromo", 20);
         coste.put("energia", 20);
-        BotonCreadorTorre b1 = new BotonCreadorTorre(img1, img1, "Torreta", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(20, 0, 100, 0, 0, 0, 1200, 0, coste, Vector2D.fuera, img1));
+        BotonCreadorTorre b1 = new BotonCreadorTorre(img1, img1, "Torreta", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower("Torreta",20, 0, 100, 0, 0, 0, 1200, 0, coste, Vector2D.fuera, img1));
         new Observador_CreadorTorre(b1);
         addBotonPorDefecto(b1);
-        BotonCreadorTorre b2 = new BotonCreadorTorre(img2, img2, "Teminator", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(30, 10, 120, 5, 3, 2, 2000, 0, coste, Vector2D.fuera, img2));
+        BotonCreadorTorre b2 = new BotonCreadorTorre(img2, img2, "Teminator", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower("Teminator",30, 10, 120, 5, 3, 2, 2000, 0, coste, Vector2D.fuera, img2));
         new Observador_CreadorTorre(b2);
         addBotonPorDefecto(b2);
-        BotonCreadorTorre b3 = new BotonCreadorTorre(img3, img3, "Frio y Veneno", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower(2, 15, 150, 50, 0, 0, 500, 30, coste, Vector2D.fuera, img3));
+        BotonCreadorTorre b3 = new BotonCreadorTorre(img3, img3, "Frio y Veneno", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower("Frio y Veneno", 2, 15, 150, 50, 0, 0, 500, 30, coste, Vector2D.fuera, img3));
         new Observador_CreadorTorre(b3);
         addBotonPorDefecto(b3);
     }
@@ -95,7 +98,7 @@ public class ContenidoTorres extends Contenido {
         }
         //dibujamos el resto de botones
         for (Boton b : this.getBotones()) {
-            b.draw(g);
+                b.draw(g);
         }
     }
 

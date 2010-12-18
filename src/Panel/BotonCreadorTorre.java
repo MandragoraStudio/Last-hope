@@ -51,6 +51,10 @@ public class BotonCreadorTorre extends BotonGeneral {
                 
             }
          }
+
+    public Tower getT() {
+        return t;
+    }
     
 
 }

@@ -20,6 +20,7 @@ import java.util.Map;
  */
 public class Tower extends Actor {
 
+    private String nombre;
     private float ataque;
     private float areaDeAtaque;
     private float rango;
@@ -34,8 +35,9 @@ public class Tower extends Actor {
     private Enemy objetivo;
     public Map<String, Integer> coste;
 
-    public Tower(float ataque, float areaDeAtaque, float rango, float congelacion, float penetracion, float fuego, long recarga, float veneno, Map<String, Integer> coste, Vector2D posicion, Image ima) {
-        super(ima, posicion,null);
+    public Tower(String nombre, float ataque, float areaDeAtaque, float rango, float congelacion, float penetracion, float fuego, long recarga, float veneno, Map<String, Integer> coste, Vector2D posicion, Image ima) {
+        super(ima, posicion, null);
+        this.nombre = nombre;
         this.ataque = ataque;
         this.areaDeAtaque = areaDeAtaque;
         this.rango = rango;
@@ -54,7 +56,7 @@ public class Tower extends Actor {
         boton.update();
         if (tRestante >= 0) {
             tRestante -= Globals.elapsedTime;
-            
+
         }
         if (enemigoATiro() && isCargada()) {
             ataca(eligeEnemigo(enemigosATiro()), true);
@@ -65,7 +67,7 @@ public class Tower extends Actor {
 
 
             }
-            
+
         }
     }
 
@@ -106,7 +108,7 @@ public class Tower extends Actor {
         for (Actor a : Ventana_Mapa.actores) {
             if (a instanceof Enemy) {
                 Enemy e = (Enemy) a;
-                if (estaAlAlcance(e.posicion.add(new Vector2D(e.width/2.0f,e.height/2.0f)))) {
+                if (estaAlAlcance(e.posicion.add(new Vector2D(e.width / 2.0f, e.height / 2.0f)))) {
                     dev.add(e);
                 }
             }
@@ -271,6 +273,14 @@ public class Tower extends Actor {
         this.veneno = veneno;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public void dispara() {
     }
 
@@ -278,7 +288,7 @@ public class Tower extends Actor {
         Tower dev;
         Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
         Image ima = im;
-        dev = new Tower(ataque, areaDeAtaque, rango, congelacion, penetracion, fuego, recarga, veneno, coste, posicion, ima);
+        dev = new Tower(nombre, ataque, areaDeAtaque, rango, congelacion, penetracion, fuego, recarga, veneno, coste, posicion, ima);
         return dev;
     }
 

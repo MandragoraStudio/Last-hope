@@ -8,7 +8,6 @@ import Handlers.MouseHandler;
 import Screens.GamePlayScreen;
 import Screens.IScreen;
 import Graficos.Lienzo;
-import Mapa.Ventana_Mapa;
 import Screens.GameOverScreen;
 import Screens.MainMenuScreen;
 import java.awt.Color;

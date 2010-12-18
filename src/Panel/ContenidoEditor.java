@@ -57,8 +57,8 @@ public class ContenidoEditor extends Contenido {
         img1 = Lienzo.cargarImagen("imagenes/torrePanel.png");
         img2 = Lienzo.cargarImagen("imagenes/torrePanel2.png");
         img3 = Lienzo.cargarImagen("imagenes/torrePanel3.png");
-        Image img4 = Lienzo.cargarImagen("imagenes/imagenpro.png");
-        Image img5 = Lienzo.cargarImagen("imagenes/imagenpro2.png");
+        Image img4 = Lienzo.cargarImagen("imagenes/crear.png");
+        Image img5 = Lienzo.cargarImagen("imagenes/crearPulsado.png");
         Image img6 = Lienzo.cargarImagen("imagenes/insertador.png");
         //inicializamos la imagen de la torre
         imagenTorre = Lienzo.cargarImagen("imagenes/torrePanel.png");
@@ -79,7 +79,7 @@ public class ContenidoEditor extends Contenido {
         addBoton(img6, img6, "cambiaImagenPorTeclado", 20, 390);
 
         //añadimos el boton que crea botones en el contenidoTorres para que creen las torres
-        Boton b = new BotonGeneral(img4, img5, "creaBotonCreador", (int) posicion.x + getImagen().getWidth(null) - img4.getWidth(null), (int) posicion.y + getImagen().getHeight(null) - img4.getHeight(null), img4.getWidth(null), img4.getHeight(null));
+        Boton b = new BotonGeneral(img4, img5, "creaBotonCreador", (int) posicion.x + getImagen().getWidth(null) - img4.getWidth(null)-12, (int) posicion.y + getImagen().getHeight(null) - img4.getHeight(null)-20, img4.getWidth(null), img4.getHeight(null));
         new ObservadorPanelEditor(b);
         addBoton(b);
         //inicializamos los atributos
@@ -137,7 +137,7 @@ public class ContenidoEditor extends Contenido {
             //creamos el boton en cointenido torres para que pueda crear una torre
             Ventana_Panel.getVentanaPanel().getFondo().get("fondoTorres").addBotonPorDefecto(new BotonCreadorTorre(imagenTorre, imagenTorre, getAtributos().get("Nombre"), Ventana_Panel.getVentanaPanel().getFondo().get("fondoTorres").calculaX(), Ventana_Panel.getVentanaPanel().getFondo().get("fondoTorres").calculaY(), imagenTorre.getWidth(null), imagenTorre.getHeight(null),
                     //le pasamos la torre segun los atributos que hemos recogido en este contenido
-                    new Tower(Float.parseFloat(getAtributos().get("Daño")),
+                    new Tower(getAtributos().get("Nombre"),Float.parseFloat(getAtributos().get("Daño")),
                     Float.parseFloat(getAtributos().get("Área de daño")),
                     Integer.parseInt(getAtributos().get("Rango")),
                     Float.parseFloat(getAtributos().get("Congelación")),

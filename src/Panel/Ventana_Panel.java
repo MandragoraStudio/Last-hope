@@ -33,6 +33,7 @@ public class Ventana_Panel implements IVentana {
     private List<Boton> pestañas; // lista de pestañas (botones)
 
     private Ventana_Panel(int WIDTH, int HEIGHT, int x, int y) {
+
         //inicializamos los atributos
         this.WIDTH = WIDTH;
         this.HEIGHT = HEIGHT;
