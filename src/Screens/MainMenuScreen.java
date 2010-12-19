@@ -57,12 +57,16 @@ private List<Boton> botones; // botones del menu
         Image img2 = null;
         Image img3 = null;
         Image img4 = null;
+        Image img5 = null;
+        Image img6 = null;
 
         try {
                 img = Lienzo.cargarImagen("imagenes/start.png");
                 img2 = Lienzo.cargarImagen("imagenes/startHover.png");
                 img3 = Lienzo.cargarImagen("imagenes/exit.png");
                 img4 = Lienzo.cargarImagen("imagenes/exitHover.png");
+                img5 = Lienzo.cargarImagen("imagenes/bcreditos.png");
+                img6 = Lienzo.cargarImagen("imagenes/bcreditos2.png");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -71,7 +75,7 @@ private List<Boton> botones; // botones del menu
         new ObservadorMenu(b);
         Boton b3=new BotonGeneral(img3, img4, "exit", 800, 450, img3.getWidth(null), img3.getHeight(null));
         new ObservadorMenu(b3);
-        Boton a1 = new BotonGeneral(img, img2, "Credits", 200, 200, 100, 500);
+        Boton a1 = new BotonGeneral(img5, img6, "Credits", 200, 200, 100, 500);
         new ObservadorMenu(a1);
         botones.add(a1);
         botones.add(b);
