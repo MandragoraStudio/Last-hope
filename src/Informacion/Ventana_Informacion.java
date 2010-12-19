@@ -103,11 +103,11 @@ public class Ventana_Informacion implements IVentana {
         g.drawImage(infDr, WIDTH - 175, y, null);
         //Barra informacion Izquierda
         g.setColor(Color.WHITE);
-        g.drawString("Puntuacion", x + 25, y + 20);
-        g.drawString("Vida", x + 25, y + 60);
+        g.drawString("Puntuacion", x+25, y+17);
+        g.drawString("Vida", x+25, y+57);
         g.setColor(Color.BLACK);
-        g.drawString("" + Juego.getJuego().jugador.getPuntuacion(), x + 35, y + 40);
-        g.drawString("" + Juego.getJuego().jugador.getVida() + "/" + Juego.getJuego().jugador.getVidaMax(), x + 32, y + 78);
+        g.drawString(""+Juego.getJuego().jugador.getPuntuacion(), x+35, y+37);
+        g.drawString(""+Juego.getJuego().jugador.getVida()+"/"+Juego.getJuego().jugador.getVidaMax(), x+31, y+75);
         //Barra informacion Centro (Atributos)
         Tower torre = Ventana_Mapa.torre;
         Habilidad hab = Ventana_Mapa.habilidad;

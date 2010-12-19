@@ -8,6 +8,7 @@ import Handlers.MouseHandler;
 import Screens.GamePlayScreen;
 import Screens.IScreen;
 import Graficos.Lienzo;
+import Screens.CreditsScreen;
 import Screens.GameOverScreen;
 import Screens.LoadingScreen;
 import Screens.MainMenuScreen;
@@ -46,7 +47,13 @@ public class Juego {
         Globals.elapsedTime = 0;
         cargarPantallas();
     }
-
+    
+    public int getWidth(){
+            return WIDTH;
+    }
+    public int getHeight(){
+            return HEIGHT;
+    }
     public static Juego getJuego(){
         if(juego==null){
             juego=new Juego();
@@ -61,6 +68,8 @@ public class Juego {
         screens.put("Game", new GamePlayScreen());
         //Cargamos el game Over
         screens.put("GameOver", GameOverScreen.getGameOver());
+        //Cargamos los creditos
+        screens.put("Credits", new CreditsScreen());
         //Cargamos el Loading...
         screens.put("Loading",LoadingScreen.getLoadingScreen());
         //Cargamos el Presentacion
@@ -136,4 +145,5 @@ public class Juego {
 
         currentScreen = screens.get(screen);
     }
+
 }
