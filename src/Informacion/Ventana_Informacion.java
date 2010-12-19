@@ -10,9 +10,12 @@ import Graficos.IVentana;
 import Graficos.Lienzo;
 import Mapa.Ventana_Mapa;
 import Personajes.Actor;
+import Personajes.CentralEnergia;
 import Personajes.Enemy;
+import Personajes.Habilidad;
 import Personajes.Tower;
 import Principal.Juego;
+import Principal.Jugador;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -56,7 +59,7 @@ public class Ventana_Informacion implements IVentana {
         this.y=y;
         this.cargar();
         try{
-        vender=new BotonGeneral(dolar, dolar2, "sell", x+1005, y+65, dolar.getWidth(null), dolar.getHeight(null));
+        vender=new BotonGeneral(dolar, dolar2, "sell", x+1000, y+83, dolar.getWidth(null), dolar.getHeight(null));
         new ObservadorVentana_Informacion(vender);
         //observa = new BotonGeneral(cOjo, cOjo, "look", x+100, y+50, cOjo.getWidth(null), cOjo.getHeight(null));
         //new ObservadorVentana_Informacion(observa);
@@ -82,6 +85,7 @@ public class Ventana_Informacion implements IVentana {
 
 
     public void update() {
+
         vender.update();
     }
 
@@ -106,7 +110,8 @@ public class Ventana_Informacion implements IVentana {
         g.drawString(""+Juego.getJuego().jugador.getVida()+"/"+Juego.getJuego().jugador.getVidaMax(), x+32, y+78);
         //Barra informacion Centro (Atributos)
         Tower torre = Ventana_Mapa.torre;
-        if(torre!=null)
+        Habilidad hab = Ventana_Mapa.habilidad;
+        if(torre!=null||hab!=null)
         {
         g.drawString("Uranio",x+150, y+30);
         g.drawString(""+Juego.getJuego().jugador.getRecursos().get("uranio"), x+150, y+50);
@@ -121,12 +126,25 @@ public class Ventana_Informacion implements IVentana {
         g.drawString("Energia",x+650, y+30);
         g.drawString(""+Juego.getJuego().jugador.getRecursos().get("energia")+"/"+Juego.getJuego().jugador.getEnergiaMax(), x+650, y+50);
         g.setColor(Color.red);
+        if(torre!=null){
         g.drawString("-"+torre.coste.get("uranio"), x+150, y+70);
         g.drawString("-"+torre.coste.get("rodio"), x+250, y+70);
         g.drawString("-"+torre.coste.get("grafeno"), x+350, y+70);
         g.drawString("-"+torre.coste.get("radio"), x+450, y+70);
         g.drawString("-"+torre.coste.get("cromo"), x+550, y+70);
         g.drawString("-"+torre.coste.get("energia")+"/"+Juego.getJuego().jugador.getEnergiaMax(), x+650, y+70);
+        }else{
+            g.drawString("-"+hab.getCoste().get("uranio"), x+150, y+70);
+            g.drawString("-"+hab.getCoste().get("rodio"), x+250, y+70);
+            g.drawString("-"+hab.getCoste().get("grafeno"), x+350, y+70);
+            g.drawString("-"+hab.getCoste().get("radio"), x+450, y+70);
+            g.drawString("-"+hab.getCoste().get("cromo"), x+550, y+70);
+            if(hab instanceof CentralEnergia){
+                g.setColor(Color.GREEN);
+                g.drawString("+"+50+"/"+(Juego.getJuego().jugador.getEnergiaMax()+50), x+650, y+70);
+            } else
+                g.drawString("-"+hab.getCoste().get("energia")+"/"+Juego.getJuego().jugador.getEnergiaMax(), x+650, y+70);
+        }
         g.setColor(Color.BLACK);
         }else{
         g.drawString("Uranio",x+150, y+40);

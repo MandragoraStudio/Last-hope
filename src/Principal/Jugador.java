@@ -4,6 +4,9 @@
  */
 package Principal;
 
+import Mapa.Ventana_Mapa;
+import Personajes.Actor;
+import Personajes.CentralEnergia;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,12 +34,12 @@ public class Jugador implements IJugador {
         energiaMax = 200;
         //energia=energiaMax;
         recursos = new HashMap<String, Integer>();
-        recursos.put("uranio", 100);
-        recursos.put("rodio", 100);
-        recursos.put("grafeno", 100);
-        recursos.put("radio", 100);
-        recursos.put("cromo", 100);
-        recursos.put("energia", energiaMax);
+        recursos.put("uranio", 200);
+        recursos.put("rodio", 200);
+        recursos.put("grafeno", 200);
+        recursos.put("radio", 200);
+        recursos.put("cromo", 200);
+        recursos.put("energia", getEnergiaMax());
     }
 
     public Jugador (boolean b)
@@ -50,14 +53,14 @@ public class Jugador implements IJugador {
             recursos.put("grafeno",maxRecursos);
             recursos.put("radio",maxRecursos);
             recursos.put("cromo",maxRecursos);
-            recursos.put("energia", energiaMax);
+            recursos.put("energia", getEnergiaMax());
         }else{
-            recursos.put("uranio",100);
-            recursos.put("rodio",100);
-            recursos.put("grafeno",100);
-            recursos.put("radio",100);
-            recursos.put("cromo",100);
-            recursos.put("energia", energiaMax);
+            recursos.put("uranio",200);
+            recursos.put("rodio",200);
+            recursos.put("grafeno",200);
+            recursos.put("radio",200);
+            recursos.put("cromo",200);
+            recursos.put("energia", getEnergiaMax());
         }
     }
 
@@ -79,11 +82,14 @@ public class Jugador implements IJugador {
     //    return energiaSuf;
     //}
     public Integer getEnergiaMax() {
-        return energiaMax;
-    }
-
-    public void setEnergiaMax(Integer energiaMax) {
-        this.energiaMax = energiaMax;
+        int aux=0;
+            for(Actor ac : Ventana_Mapa.actores)
+            {
+                if(ac instanceof CentralEnergia){
+                    aux++;
+                }
+            }
+        return energiaMax+(aux*50);
     }
 
     public long getPuntuacion() {
@@ -184,8 +190,8 @@ public class Jugador implements IJugador {
             aux = recursos.get(s);
             aux = aux + rec.get(s);
             if (s == "energia") {
-                if (aux > energiaMax) {
-                    aux = energiaMax;
+                if (aux >= getEnergiaMax()) {
+                    aux = getEnergiaMax();
                 }
             } else {
                 if (aux > maxRecursos) {
