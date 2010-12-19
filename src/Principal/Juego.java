@@ -8,6 +8,7 @@ import Handlers.MouseHandler;
 import Screens.GamePlayScreen;
 import Screens.IScreen;
 import Graficos.Lienzo;
+import Screens.CreditsScreen;
 import Screens.GameOverScreen;
 import Screens.MainMenuScreen;
 import java.awt.Color;
@@ -44,7 +45,13 @@ public class Juego {
         Globals.elapsedTime = 0;
         cargarPantallas();
     }
-
+    
+    public int getWidth(){
+            return WIDTH;
+    }
+    public int getHeight(){
+            return HEIGHT;
+    }
     public static Juego getJuego(){
         if(juego==null){
             juego=new Juego();
@@ -59,6 +66,8 @@ public class Juego {
         screens.put("Game", new GamePlayScreen());
         //Cargamos el game Over
         screens.put("GameOver", GameOverScreen.getGameOver());
+        //Cargamos los creditos
+        screens.put("Credits", new CreditsScreen());
         //actualizamos el current Screen a menu
         currentScreen = screens.get("Menu");
     }
@@ -129,4 +138,5 @@ public class Juego {
 
         currentScreen = screens.get(screen);
     }
+
 }

@@ -5,13 +5,8 @@
 package Observador;
 
 import Graficos.Boton;
-import Graficos.Lienzo;
 import Mapa.Ventana_Mapa;
-import Panel.ContenidoEditor;
-import Panel.Ventana_Panel;
 import Principal.Juego;
-import java.awt.Image;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,6 +43,8 @@ public class ObservadorMenu implements IObservador {
             Juego.getJuego().changeScreen("Game");
         } else if (boton.getNombre().equals("exit")) {
             System.exit(0);
-        } 
+        } else if (boton.getNombre().equals("Credits")){
+            Juego.getJuego().changeScreen("Credits");
+        }
     }
 }
