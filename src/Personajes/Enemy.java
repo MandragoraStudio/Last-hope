@@ -8,7 +8,6 @@ import Graficos.Lienzo;
 import Informacion.Ventana_Informacion;
 import Mapa.Ventana_Mapa;
 import Principal.Juego;
-import Principal.Jugador;
 import UtilMath.Vector2D;
 import java.util.HashMap;
 import java.util.Map;
@@ -132,7 +131,10 @@ public abstract class Enemy extends Actor {
         recursos.put("grafeno", (int)this.velocidad);
         recursos.put("radio", (int)this.armadura+this.dano);
         recursos.put("cromo", (int)this.armadura);
-        Jugador.agregaRecursos(recursos);
+        //Jugador.agregaRecursos(recursos);
+        Ventana_Mapa.agregar.add(new CajaRecurso(posicion,recursos,new Vector2D((float)(posicion.x+Math.random()*50-25),(float)(posicion.y+Math.random()*50-25))));
+
+
     }
 
     @Override
@@ -180,6 +182,10 @@ public abstract class Enemy extends Actor {
         } else {
             //no me puedo regenear
             tNoRegenerar--;
+        }
+        if(tFuego>0){
+            tFuego--;
+            vida-=fuerzaFuego;
         }
         destino = Ventana_Mapa.map.camino.get(casilla);
         direccion = Ventana_Mapa.getCoordenadaCentro((int) destino.x, (int) destino.y).subs(centro());

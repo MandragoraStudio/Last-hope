@@ -171,11 +171,11 @@ public class Ventana_Mapa implements IVentana {
         //pintado de cosas temporales
         //aqui hay unos offsets metidos a pelo de 25, es para que las torres se pinten en la casilla en la qeu van a construirse, no se por que no sale bien si no
         if (construir) {
-            torre.posicion = getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y - 25));
+            torre.posicion = getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x - Lienzo.frame.getX(), MouseInfo.getPointerInfo().getLocation().y-25- Lienzo.frame.getY()));
             torre.draw(g);
             g.drawImage(Ventana_Informacion.brillo, (int) (torre.posicion.x + (Ventana_Mapa.casillaWidth / 2) - torre.getRango()), (int) (torre.posicion.y + (Ventana_Mapa.casillaHeight / 2) - torre.getRango()), (int) (torre.getRango() * 2), (int) (torre.getRango() * 2), null);
         } else if (construirH) {
-            habilidad.posicion = getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo().getLocation().y - 25));
+            habilidad.posicion = getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x-Lienzo.frame.getX(), MouseInfo.getPointerInfo().getLocation().y -25-  Lienzo.frame.getY()));
             habilidad.draw(g);
         }
 

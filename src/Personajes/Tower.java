@@ -44,7 +44,7 @@ public class Tower extends Actor {
         this.congelacion = congelacion;
         this.penetracion = penetracion;
         this.fuego = fuego;
-        this.recarga = recarga;
+        this.recarga = Math.max(1,10000/recarga);
         this.veneno = veneno;
         this.im = ima;
         this.coste = coste;
@@ -178,7 +178,7 @@ public class Tower extends Actor {
         if (atacando > 0 && estaAlAlcance(objetivo.posicion)) {
             g.setColor(Color.red);
 
-            g.drawLine((int) objetivo.posicion.x + objetivo.getImagen().getWidth(null) / 2, (int) objetivo.posicion.y + objetivo.getImagen().getHeight(null) / 2, (int) posicion.x + Ventana_Mapa.casillaWidth / 2, (int) posicion.y + Ventana_Mapa.casillaHeight / 2);
+            g.drawLine((int) objetivo.posicion.x + objetivo.width / 2, (int) objetivo.posicion.y + objetivo.getImagen().getHeight(null) / 2, (int) posicion.x + Ventana_Mapa.casillaWidth / 2, (int) posicion.y + Ventana_Mapa.casillaHeight / 2);
             atacando--;
         }
         g.setColor(Color.black);
@@ -288,7 +288,7 @@ public class Tower extends Actor {
         Tower dev;
         Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
         Image ima = im;
-        dev = new Tower(nombre, ataque, areaDeAtaque, rango, congelacion, penetracion, fuego, recarga, veneno, coste, posicion, ima);
+        dev = new Tower(nombre, ataque, areaDeAtaque, rango, congelacion, penetracion, fuego, recarga*10, veneno, coste, posicion, ima);
         return dev;
     }
 

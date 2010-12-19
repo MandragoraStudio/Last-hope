@@ -27,7 +27,7 @@ public class Lienzo extends Canvas {
     //adoptamos la estrategia del doble buffer para que no se vean los saltos
 
     public BufferStrategy strategy;
-    public JFrame frame; //ventana sobre la que pintaremos
+    public static JFrame frame; //ventana sobre la que pintaremos
     public JPanel panel; // subcontenido de la ventana
     public static Map<String, Image> imagenes;
 
