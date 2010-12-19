@@ -288,7 +288,7 @@ public class Tower extends Actor {
         Tower dev;
         Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
         Image ima = im;
-        dev = new Tower(nombre, ataque, areaDeAtaque, rango, congelacion, penetracion, fuego, recarga*10, veneno, coste, posicion, ima);
+        dev = new Tower(nombre, ataque, areaDeAtaque, rango, congelacion, penetracion, fuego, 10000/recarga, veneno, coste, posicion, ima);
         return dev;
     }
 
