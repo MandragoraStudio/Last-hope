@@ -48,7 +48,7 @@ public class Mapa {
         Ventana_Mapa.cargar(a);
         }*/
         if (n % 10 == 0) {
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < 10; i++) {
                     Ventana_Mapa.addEnemy(new EGod(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
                 }
         } else {
@@ -66,6 +66,7 @@ public class Mapa {
                 }
             }
         }
+        
 
     }
 

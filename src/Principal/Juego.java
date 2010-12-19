@@ -10,7 +10,9 @@ import Screens.IScreen;
 import Graficos.Lienzo;
 import Screens.CreditsScreen;
 import Screens.GameOverScreen;
+import Screens.LoadingScreen;
 import Screens.MainMenuScreen;
+import Screens.Presentacion;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.HashMap;
@@ -28,8 +30,8 @@ public class Juego {
     private long previousTime; // tiempo de la ultima vez que se hizo un bucle completo
     private boolean salir = false; // controla si debemos salir o no de la aplicacion
     private Graphics2D pincel; // objeto con el que pintaremos en el lienzo
-    private final int WIDTH = 1024; //ancho de la pantalla
-    private final int HEIGHT = 600; //alto de la pantalla
+    public final int WIDTH = 1024; //ancho de la pantalla
+    public final int HEIGHT = 600; //alto de la pantalla
     private Map<String, IScreen> screens; // ventanas del juego (menu, gameplay, ...)
     private IScreen currentScreen; //ventana que se está mostrando actualmente
     public Jugador jugador; // objeto del jugador
@@ -68,8 +70,12 @@ public class Juego {
         screens.put("GameOver", GameOverScreen.getGameOver());
         //Cargamos los creditos
         screens.put("Credits", new CreditsScreen());
+        //Cargamos el Loading...
+        screens.put("Loading",LoadingScreen.getLoadingScreen());
+        //Cargamos el Presentacion
+        screens.put("Presentacion",Presentacion.getPresentacion());
         //actualizamos el current Screen a menu
-        currentScreen = screens.get("Menu");
+        currentScreen = screens.get("Loading");
     }
 
     public void runGame() {
@@ -79,6 +85,7 @@ public class Juego {
         //inicializamos previous time
         previousTime = startTime;
         //cargamos los modelos (solo una vez)
+        draw();
         cargarModelos();
         //bucle principal
         while (!salir) {
@@ -120,7 +127,7 @@ public class Juego {
         screens.remove("Game");
         screens.put("Game", new GamePlayScreen());
         screens.get("Game").cargarModelos();
-        jugador = new Jugador(true);
+        jugador = new Jugador(false);
     }
 
     public void draw() {
