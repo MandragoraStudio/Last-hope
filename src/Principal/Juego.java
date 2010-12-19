@@ -71,11 +71,11 @@ public class Juego {
         //Cargamos los creditos
         screens.put("Credits", new CreditsScreen());
         //Cargamos el Loading...
-        screens.put("Loading",LoadingScreen.getLoadingScreen());
+        //screens.put("Loading",LoadingScreen.getLoadingScreen());
         //Cargamos el Presentacion
-        screens.put("Presentacion",Presentacion.getPresentacion());
+        //screens.put("Presentacion",Presentacion.getPresentacion());
         //actualizamos el current Screen a menu
-        currentScreen = screens.get("Loading");
+        currentScreen = screens.get("Menu");
     }
 
     public void runGame() {
@@ -85,8 +85,8 @@ public class Juego {
         //inicializamos previous time
         previousTime = startTime;
         //cargamos los modelos (solo una vez)
-        draw();
         cargarModelos();
+        draw();
         //bucle principal
         while (!salir) {
             //update principal para actualizar el estado del juego

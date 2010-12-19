@@ -79,7 +79,7 @@ public class ContenidoEditor extends Contenido {
         addBoton(img6, img6, "cambiaImagenPorTeclado", 20, 390);
 
         //añadimos el boton que crea botones en el contenidoTorres para que creen las torres
-        Boton b = new BotonGeneral(img4, img5, "creaBotonCreador", (int) posicion.x + getImagen().getWidth(null) - img4.getWidth(null)-12, (int) posicion.y + getImagen().getHeight(null) - img4.getHeight(null)-20, img4.getWidth(null), img4.getHeight(null));
+        Boton b = new BotonGeneral(img4, img4, "creaBotonCreador", (int) posicion.x + getImagen().getWidth(null) - img4.getWidth(null)-12, (int) posicion.y + getImagen().getHeight(null) - img4.getHeight(null)-20, img4.getWidth(null), img4.getHeight(null));
         new ObservadorPanelEditor(b);
         addBoton(b);
         //inicializamos los atributos
