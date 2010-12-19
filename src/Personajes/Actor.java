@@ -58,7 +58,7 @@ public abstract class Actor {
         }
         this.posicion = posicion;
         try {
-            boton = new Abotonador("Actor", imagen.getHeight(null), imagen.getWidth(null), this);
+            boton = new Abotonador("Actor", imagen.getHeight(null), width, this);
         } catch (Exception e) {
             e.printStackTrace();
         }
