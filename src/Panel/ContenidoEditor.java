@@ -6,6 +6,7 @@ import Graficos.Lienzo;
 import Observador.ObservadorPanelEditor;
 import Personajes.Tower;
 import UtilMath.Vector2D;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.HashMap;
@@ -96,12 +97,13 @@ public class ContenidoEditor extends Contenido {
 
     @Override
     public void draw(Graphics2D g) {
+        g.setColor(Color.black);
         //dibujamos el fondo
         g.drawImage(this.getImagen(), (int) posicion.x, (int) posicion.y, null);
         // dibujamos los botones por defecto
         for (Boton b : this.getBotonesPorDefecto()) {
             b.draw(g);
-            g.drawString(b.getNombre(), b.getX(), b.getY() + 12);
+            g.drawString(b.getNombre(), b.getX()+10, b.getY() + 15);
         }
         //dibujamos el resto de botones
         for (Boton b : getBotones()) {

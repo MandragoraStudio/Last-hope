@@ -71,11 +71,11 @@ public class Juego {
         //Cargamos los creditos
         screens.put("Credits", new CreditsScreen());
         //Cargamos el Loading...
-        //screens.put("Loading",LoadingScreen.getLoadingScreen());
+        screens.put("Loading",LoadingScreen.getLoadingScreen());
         //Cargamos el Presentacion
-        //screens.put("Presentacion",Presentacion.getPresentacion());
+        screens.put("Presentacion",Presentacion.getPresentacion());
         //actualizamos el current Screen a menu
-        currentScreen = screens.get("Menu");
+        currentScreen = screens.get("Loading");
     }
 
     public void runGame() {
