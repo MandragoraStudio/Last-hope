@@ -40,7 +40,7 @@ private List<Boton> botones; // botones del menu
 
     public void cargarModelos() {
         try {
-            fondo = new Fondo("imagenes/Inicio.jpg",Vector2D.zero);
+            fondo = new Fondo("imagenes/imenu.jpg",Vector2D.zero);
             botones = new ArrayList<Boton>();
             
             
@@ -61,21 +61,21 @@ private List<Boton> botones; // botones del menu
         Image img6 = null;
 
         try {
-                img = Lienzo.cargarImagen("imagenes/start.png");
-                img2 = Lienzo.cargarImagen("imagenes/startHover.png");
-                img3 = Lienzo.cargarImagen("imagenes/exit.png");
-                img4 = Lienzo.cargarImagen("imagenes/exitHover.png");
-                img5 = Lienzo.cargarImagen("imagenes/bcreditos.png");
-                img6 = Lienzo.cargarImagen("imagenes/bcreditos2.png");
+                img = Lienzo.cargarImagen("imagenes/iplay.png");
+                img2 = Lienzo.cargarImagen("imagenes/iplay.png");
+                img3 = Lienzo.cargarImagen("imagenes/iexit.png");
+                img4 = Lienzo.cargarImagen("imagenes/iexit.png");
+                img5 = Lienzo.cargarImagen("imagenes/icredits.png");
+                img6 = Lienzo.cargarImagen("imagenes/icredits.png");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         //añadimos los botones al menu
-        Boton b=new BotonGeneral(img, img2, "start", 100, 100, 100, 500);
+        Boton b=new BotonGeneral(img, img2, "start", 70, 32, img.getWidth(null), img.getHeight(null));
         new ObservadorMenu(b);
-        Boton b3=new BotonGeneral(img3, img4, "exit", 800, 450, img3.getWidth(null), img3.getHeight(null));
+        Boton b3=new BotonGeneral(img3, img4, "exit", 64, 218, img3.getWidth(null), img3.getHeight(null));
         new ObservadorMenu(b3);
-        Boton a1 = new BotonGeneral(img5, img6, "Credits", 200, 200, 100, 500);
+        Boton a1 = new BotonGeneral(img5, img6, "Credits", 65, 410, img5.getWidth(null), img5.getHeight(null));
         new ObservadorMenu(a1);
         botones.add(a1);
         botones.add(b);

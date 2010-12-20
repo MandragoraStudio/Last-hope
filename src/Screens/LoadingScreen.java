@@ -23,7 +23,7 @@ public class LoadingScreen implements IScreen{
     private Image oscuridad;
 
     public LoadingScreen(){
-        im=Lienzo.cargarImagen("imagenes/Mandragora.jpg");
+        im=Lienzo.cargarImagen("imagenes/Pantalla inicial.png");
         oscuridad=Lienzo.cargarImagen("imagenes/Opacidad.png");
         ReproduceAudio.reproduceAudio("C:/Users/Jose/Documents/NetBeansProjects/LastHope/src/Sonidos/BSO.wav");
     }
@@ -49,7 +49,7 @@ public class LoadingScreen implements IScreen{
     public void draw(Graphics2D g) {
         g.setColor(Color.white);
         g.fillRect(0,0,Juego.getJuego().WIDTH,Juego.getJuego().HEIGHT);
-        g.drawImage(im, (Juego.getJuego().WIDTH- Juego.getJuego().HEIGHT)/2,0,Juego.getJuego().HEIGHT,Juego.getJuego().HEIGHT, null);
+        g.drawImage(im,0,0,Juego.getJuego().WIDTH,Juego.getJuego().HEIGHT, null);
         if(time<30){
             for(int i = time; i<30;i++){
                 g.drawImage(oscuridad,0,0,Juego.getJuego().WIDTH,Juego.getJuego().HEIGHT, null);

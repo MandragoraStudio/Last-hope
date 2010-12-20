@@ -102,6 +102,7 @@ public class Lienzo extends Canvas {
         if (imagenes == null) {
             imagenes = new HashMap<String, Image>();
         }
+
         if (imagenes.containsKey(url.getFile())) {
             i = imagenes.get(url.getFile());
         } else {

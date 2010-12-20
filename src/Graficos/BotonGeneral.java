@@ -30,6 +30,7 @@ public class BotonGeneral extends Boton{
     public void draw(Graphics2D g) {
         //dibujamos el boton segun si esta pulsado o no
         Image im = pulsado ? down : up;
-        g.drawImage(im, this.getX(), this.getY(), null);
+        //g.drawImage(im, this.getX(), this.getY(), null);
+        g.drawImage(im, x, y,null);
     }
 }

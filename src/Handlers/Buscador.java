@@ -7,6 +7,8 @@ package Handlers;
 import java.net.MalformedURLException;
 
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFileChooser;
 
@@ -22,17 +24,14 @@ public class Buscador {
         filechoser = new JFileChooser();
         int resul = filechoser.showOpenDialog(null);
         if (resul == JFileChooser.APPROVE_OPTION) {
-
-
-
             try {
-                mediaURL = filechoser.getSelectedFile().toURL();
-
-            } catch (MalformedURLException malforme) {
-
-                System.err.println("Error. No hay URL");
-
+                mediaURL = filechoser.getSelectedFile().toURI().toURL();
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
+
+            
 
         }
        // String ruta=mediaURL.getFile();
