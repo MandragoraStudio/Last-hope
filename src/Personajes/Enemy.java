@@ -128,9 +128,9 @@ public abstract class Enemy extends Actor {
         Map<String,Integer> recursos = new HashMap<String,Integer>();
         recursos.put("uranio", (int)this.maxVida/100);
         recursos.put("rodio", (int)this.regeneracion+this.dano);
-        recursos.put("grafeno", (int)this.velocidad);
+        recursos.put("grafeno", (int)this.velocidad+this.dano);
         recursos.put("radio", (int)this.armadura+this.dano);
-        recursos.put("cromo", (int)this.armadura);
+        recursos.put("cromo", (int)this.armadura+this.dano);
         //Jugador.agregaRecursos(recursos);
         Ventana_Mapa.agregar.add(new CajaRecurso(posicion,recursos,new Vector2D((float)(posicion.x+Math.random()*50-25),(float)(posicion.y+Math.random()*50-25))));
 
