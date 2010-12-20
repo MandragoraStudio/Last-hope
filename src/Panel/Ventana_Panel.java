@@ -77,15 +77,15 @@ public class Ventana_Panel implements IVentana {
             Image img = Lienzo.cargarImagen("imagenes/torres.png");
             Image img2 = Lienzo.cargarImagen("imagenes/torres2.png");
             Image img3 = Lienzo.cargarImagen("imagenes/editor.jpg");
-            Image img4 = Lienzo.cargarImagen("imagenes/editor2.jpg");
+            Image img4 = Lienzo.cargarImagen("imagenes/editor2.png");
             Image img5 = Lienzo.cargarImagen("imagenes/habilidades.png");
             Image img6 = Lienzo.cargarImagen("imagenes/habilidades2.png");
             //creamos y añadimos las pestañas a la lista
-            Boton p = new BotonGeneral(img, img2, "torres", x, y, (WIDTH / 3), img.getHeight(null));
+            Boton p = new BotonGeneral(img, img2, "torres", x, y, img.getWidth(null), img.getHeight(null));
             new ObservadorIngame(p);
-            Boton p2 = new BotonGeneral(img3, img4, "editor", x + (WIDTH / 3), y, (WIDTH / 3), img3.getHeight(null));
+            Boton p2 = new BotonGeneral(img3, img4, "editor", x + (WIDTH / 3), y, img3.getWidth(null), img3.getHeight(null));
             new ObservadorIngame(p2);
-            Boton p3 = new BotonGeneral(img5, img6, "trap", x + ((WIDTH / 3) * 2), y, (WIDTH / 3), img5.getHeight(null));
+            Boton p3 = new BotonGeneral(img5, img6, "trap", x + ((WIDTH / 3) * 2), y, img5.getWidth(null), img5.getHeight(null));
             new ObservadorIngame(p3);
             pestañas.add(p);
             pestañas.add(p2);

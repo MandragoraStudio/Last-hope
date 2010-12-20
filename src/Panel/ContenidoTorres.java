@@ -7,16 +7,14 @@ package Panel;
 import Graficos.Boton;
 import Graficos.BotonGeneral;
 import Graficos.Lienzo;
-import Mapa.Ventana_Mapa;
 import Observador.ObservadorPanelTorre;
 import Observador.Observador_CreadorTorre;
 import Personajes.Tower;
 import UtilMath.Vector2D;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -89,6 +87,7 @@ public class ContenidoTorres extends Contenido {
 
     @Override
     public void draw(Graphics2D g) {
+        g.setColor(Color.black);
         //dibujamos el fondo
         g.drawImage(this.getImagen(), (int) posicion.x, (int) posicion.y, null);
         // dibujamos los botones por defecto (los que crean torres)

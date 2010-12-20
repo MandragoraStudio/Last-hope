@@ -12,6 +12,7 @@ import Personajes.Fuego;
 import Personajes.Lluvia;
 import Personajes.Acido;
 import UtilMath.Vector2D;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.logging.Level;
@@ -75,6 +76,7 @@ public class ContenidoHabilidades extends Contenido {
 
     @Override
     public void draw(Graphics2D g) {
+        g.setColor(Color.black);
         g.drawImage(this.getImagen(), (int) posicion.x, (int) posicion.y, null);
 
         for (Boton b : this.getBotonesPorDefecto()) {

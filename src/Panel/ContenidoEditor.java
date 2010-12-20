@@ -6,6 +6,7 @@ import Graficos.Lienzo;
 import Observador.ObservadorPanelEditor;
 import Personajes.Tower;
 import UtilMath.Vector2D;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.HashMap;
@@ -80,7 +81,7 @@ public class ContenidoEditor extends Contenido {
         addBoton(img6, img7, "cambiaImagenPorTeclado", 20, 390);
 
         //añadimos el boton que crea botones en el contenidoTorres para que creen las torres
-        Boton b = new BotonGeneral(img4, img5, "creaBotonCreador", (int) posicion.x + getImagen().getWidth(null) - img4.getWidth(null)-12, (int) posicion.y + getImagen().getHeight(null) - img4.getHeight(null)-20, img4.getWidth(null), img4.getHeight(null));
+        Boton b = new BotonGeneral(img4, img4, "creaBotonCreador", (int) posicion.x + getImagen().getWidth(null) - img4.getWidth(null)-12, (int) posicion.y + getImagen().getHeight(null) - img4.getHeight(null)-20, img4.getWidth(null), img4.getHeight(null));
         new ObservadorPanelEditor(b);
         addBoton(b);
         //inicializamos los atributos
@@ -97,12 +98,13 @@ public class ContenidoEditor extends Contenido {
 
     @Override
     public void draw(Graphics2D g) {
+        g.setColor(Color.black);
         //dibujamos el fondo
         g.drawImage(this.getImagen(), (int) posicion.x, (int) posicion.y, null);
         // dibujamos los botones por defecto
         for (Boton b : this.getBotonesPorDefecto()) {
             b.draw(g);
-            g.drawString(b.getNombre(), b.getX(), b.getY() + 12);
+            g.drawString(b.getNombre(), b.getX()+10, b.getY() + 15);
         }
         //dibujamos el resto de botones
         for (Boton b : getBotones()) {

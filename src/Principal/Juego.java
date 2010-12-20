@@ -85,8 +85,8 @@ public class Juego {
         //inicializamos previous time
         previousTime = startTime;
         //cargamos los modelos (solo una vez)
-        draw();
         cargarModelos();
+        draw();
         //bucle principal
         while (!salir) {
             //update principal para actualizar el estado del juego
