@@ -183,7 +183,7 @@ public class Ventana_Mapa implements IVentana {
         //pintamos los proyectiles ahora?
 
         //aqui datos de debug
-        pintaDatosDebug(g);
+        //pintaDatosDebug(g);
 
     }
 

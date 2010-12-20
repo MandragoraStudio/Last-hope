@@ -7,6 +7,7 @@ package Observador;
 import Graficos.Boton;
 import Graficos.Lienzo;
 import Handlers.Buscador;
+import Mapa.Ventana_Mapa;
 import Panel.ContenidoEditor;
 import UtilMath.Vector2D;
 import java.awt.Image;
@@ -107,7 +108,7 @@ public class ObservadorPanelEditor implements IObservador {
             URL url = Buscador.busca();
             Image i = null;
             i = Lienzo.cargarImagen(url);
-            i = i.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+            i = i.getScaledInstance(Ventana_Mapa.getCasillaWidth(), Ventana_Mapa.getCasillaHeight(), Image.SCALE_DEFAULT);
             Lienzo.imagenes.remove(url.getFile());
             if (i != null) {
                 ContenidoEditor.getContenidoEditor().cambiaImagen(i);

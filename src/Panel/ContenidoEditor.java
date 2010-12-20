@@ -60,6 +60,7 @@ public class ContenidoEditor extends Contenido {
         Image img4 = Lienzo.cargarImagen("imagenes/crear.png");
         Image img5 = Lienzo.cargarImagen("imagenes/crearPulsado.png");
         Image img6 = Lienzo.cargarImagen("imagenes/insertador.png");
+        Image img7 = Lienzo.cargarImagen("imagenes/insertador2.png");
         //inicializamos la imagen de la torre
         imagenTorre = Lienzo.cargarImagen("imagenes/torrePanel.png");
         // añadimos los botones de los atributos
@@ -76,7 +77,7 @@ public class ContenidoEditor extends Contenido {
         addBoton(img1, img1, "cambiaImagen", 20, 320);
         addBoton(img2, img2, "cambiaImagen2", 120, 320);
         addBoton(img3, img3, "cambiaImagen3", 220, 320);
-        addBoton(img6, img6, "cambiaImagenPorTeclado", 20, 390);
+        addBoton(img6, img7, "cambiaImagenPorTeclado", 20, 390);
 
         //añadimos el boton que crea botones en el contenidoTorres para que creen las torres
         Boton b = new BotonGeneral(img4, img5, "creaBotonCreador", (int) posicion.x + getImagen().getWidth(null) - img4.getWidth(null)-12, (int) posicion.y + getImagen().getHeight(null) - img4.getHeight(null)-20, img4.getWidth(null), img4.getHeight(null));
