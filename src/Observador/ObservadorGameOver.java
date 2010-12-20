@@ -4,8 +4,8 @@
  */
 package Observador;
 
+import GestorSonido.ReproduceAudio;
 import Graficos.Boton;
-import Panel.Ventana_Panel;
 import Principal.Juego;
 
 /**
@@ -24,6 +24,7 @@ public class ObservadorGameOver implements IObservador {
     public void update() {
 
         if (boton.getNombre().equals("Menu")) {
+            ReproduceAudio.changeAudio("C:/Users/Jose/Documents/NetBeansProjects/LastHope/src/Sonidos/BSO.wav");
             Juego.getJuego().changeScreen("Menu");
         }
 

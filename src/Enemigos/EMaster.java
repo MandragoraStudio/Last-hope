@@ -15,7 +15,7 @@ import UtilMath.Vector2D;
 public class EMaster extends Enemy {
 
     public EMaster(int nivel, Vector2D posicion){
-        super(7, (float)(8+(0.8*nivel)), 200 + 200*nivel, 8+nivel,0,0,posicion, "imagenes/mounstrillo.png",50);
+        super(7, (float)(8+(0.8*nivel)), 200 + 200*nivel, 8+nivel,0,0,posicion, "imagenes/tankamarillo.png",50);
     }
 
 }

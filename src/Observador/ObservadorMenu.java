@@ -4,6 +4,7 @@
  */
 package Observador;
 
+import GestorSonido.ReproduceAudio;
 import Graficos.Boton;
 import Mapa.Ventana_Mapa;
 import Principal.Juego;
@@ -26,6 +27,8 @@ public class ObservadorMenu implements IObservador {
         if (boton.getNombre().equals("start")) {
             Juego.getJuego().restartGame();
             Juego.getJuego().changeScreen("Game");
+            ReproduceAudio.changeAudio("C:/Users/Jose/Documents/NetBeansProjects/LastHope/src/Sonidos/ingame.wav");
+
         } else if (boton.getNombre().equals("start2")) {
             int[][] mapa = {
                 {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},

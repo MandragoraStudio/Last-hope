@@ -4,6 +4,7 @@
  */
 package Principal;
 
+import GestorSonido.ReproduceAudio;
 import Handlers.MouseHandler;
 import Screens.GamePlayScreen;
 import Screens.IScreen;
@@ -61,7 +62,11 @@ public class Juego {
         return juego;
     }
     private void cargarPantallas() {
-
+        //Cargamos el Loading...
+        screens.put("Loading",LoadingScreen.getLoadingScreen());
+        //Cargamos el Presentacion
+        screens.put("Presentacion",Presentacion.getPresentacion());
+        //actualizamos el current Screen a menu
         //cargamos el menu
         screens.put("Menu", MainMenuScreen.getMenu());
         //cargamos el game
@@ -70,11 +75,7 @@ public class Juego {
         screens.put("GameOver", GameOverScreen.getGameOver());
         //Cargamos los creditos
         screens.put("Credits", new CreditsScreen());
-        //Cargamos el Loading...
-        screens.put("Loading",LoadingScreen.getLoadingScreen());
-        //Cargamos el Presentacion
-        screens.put("Presentacion",Presentacion.getPresentacion());
-        //actualizamos el current Screen a menu
+        
         currentScreen = screens.get("Loading");
     }
 
@@ -128,7 +129,7 @@ public class Juego {
         screens.put("Game", new GamePlayScreen());
         screens.get("Game").cargarModelos();
         jugador = new Jugador(false);
-    }
+        }
 
     public void draw() {
 
@@ -142,6 +143,9 @@ public class Juego {
     //metodo estatico para cambiar la ventana
 
     public void changeScreen(String screen) {
+        if(screen.equals("GameOver")){
+            ReproduceAudio.changeAudio("C:/Users/Jose/Documents/NetBeansProjects/LastHope/src/Sonidos/Last Hope.wav");
+        }
 
         currentScreen = screens.get(screen);
     }

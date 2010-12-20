@@ -24,7 +24,7 @@ public class CajaRecurso extends Actor {
 
 
     public CajaRecurso(Vector2D posicion, Map recursos, Vector2D destino){
-        super(Lienzo.cargarImagen("imagenes/caja.png"),  posicion, 40, 40);
+        super(Lienzo.cargarImagen("imagenes/Recursos.png"),  posicion, 40, 40);
         this.recursos=recursos;
         this.destino = destino;
         try {

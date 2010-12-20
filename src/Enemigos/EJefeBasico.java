@@ -17,7 +17,7 @@ public class EJefeBasico extends Enemy {
      *
      */
     public EJefeBasico (int nivel, Vector2D posicion){
-       super(2, (float) (1+0.1*nivel),100 + 100*nivel,7+nivel,2,1,posicion,"imagenes/EBasico.png",50);
+       super(2, (float) (1+0.1*nivel),100 + 100*nivel,7+nivel,2,1,posicion,"imagenes/Driller_St2.png",50);
     }
 }
 

@@ -29,6 +29,10 @@ public class Mapa {
         return mapa;
     }
 
+    public void setMapa(int[][] mapa) {
+        this.mapa = mapa;
+    }
+
     public static void sendWave(int n) {
         /*if (n % 10 == 0) {
         Ventana_Mapa.actores.clear();
@@ -110,4 +114,5 @@ public class Mapa {
         }
         return dev;
     }
+
 }

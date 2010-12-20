@@ -5,6 +5,7 @@
 
 package Screens;
 
+import GestorSonido.ReproduceAudio;
 import Graficos.Boton;
 import Graficos.BotonGeneral;
 import Graficos.Fondo;
@@ -12,7 +13,6 @@ import Graficos.Lienzo;
 import Observador.ObservadorGameOver;
 import Personajes.Actor;
 import UtilMath.Vector2D;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -30,6 +30,7 @@ public class GameOverScreen implements IScreen{
     List<Boton> botones; // lista de botones del game over
 
     private GameOverScreen() {
+        
     }
 
     public static GameOverScreen getGameOver(){

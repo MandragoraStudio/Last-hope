@@ -5,6 +5,7 @@
 
 package Screens;
 
+import GestorSonido.ReproduceAudio;
 import Graficos.Lienzo;
 import Principal.Juego;
 import java.awt.Color;
@@ -24,6 +25,7 @@ public class LoadingScreen implements IScreen{
     public LoadingScreen(){
         im=Lienzo.cargarImagen("imagenes/Mandragora.jpg");
         oscuridad=Lienzo.cargarImagen("imagenes/Opacidad.png");
+        ReproduceAudio.reproduceAudio("C:/Users/Jose/Documents/NetBeansProjects/LastHope/src/Sonidos/BSO.wav");
     }
 
     public static LoadingScreen getLoadingScreen(){

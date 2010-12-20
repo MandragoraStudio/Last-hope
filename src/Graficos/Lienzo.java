@@ -35,7 +35,7 @@ public class Lienzo extends Canvas {
         //le ponemos un titulo a la ventana y la creamos
         frame = new JFrame("Last Hope");
         //le creamos un icono
-        frame.setIconImage(Lienzo.cargarImagen("imagenes/mounstrillo.png"));
+        frame.setIconImage(Lienzo.cargarImagen("imagenes/torrePanel.png"));
 
         //inicializamos el panel
         panel = (JPanel) frame.getContentPane();
