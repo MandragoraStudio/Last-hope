@@ -92,6 +92,8 @@ public class Lienzo extends Canvas {
                 imagenes.put(url, i);
             } catch (Exception e) {
                 e.printStackTrace();
+                System.out.println("");
+                System.out.println("LA URL ERRONEA ES: "+url);
             }
         }
         return i;

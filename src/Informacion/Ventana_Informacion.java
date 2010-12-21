@@ -88,7 +88,7 @@ public class Ventana_Informacion implements IVentana {
         iGrafeno=Lienzo.cargarImagen("imagenes/Grafeno.png");
         iRodio = Lienzo.cargarImagen("imagenes/rodio.png");
         iRadio = Lienzo.cargarImagen("imagenes/radio.png");
-        iCromo = Lienzo.cargarImagen("imagenes/Cromo.png");
+        iCromo = Lienzo.cargarImagen("imagenes/cromo.png");
 
     }
 
