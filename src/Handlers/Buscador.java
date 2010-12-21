@@ -4,47 +4,58 @@
  */
 package Handlers;
 
-import Graficos.Lienzo;
+import java.io.File;
+import java.net.MalformedURLException;
 
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
  * @author Jose
  */
 public class Buscador {
+
     public JFileChooser filechoser;
     public URL mediaURL = null;
     public static Buscador b;
-    private Buscador(){
 
+    private Buscador() {
     }
 
-    public static Buscador getBuscador(){
-        if(b==null){
-            b=new Buscador();
+    public static Buscador getBuscador() {
+        if (b == null) {
+            b = new Buscador();
         }
         return b;
     }
+
     public URL busca() {
+        System.gc();
         filechoser = new JFileChooser();
-        int resul = filechoser.showOpenDialog(Lienzo.frame);
-        if (resul == JFileChooser.APPROVE_OPTION) {
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter(".jpg & .gif & .png", "jpg", "gif", "png");
+        filechoser.setFileFilter(filtro);
+        filechoser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        int returnVal = filechoser.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+                File file = filechoser.getSelectedFile();
             try {
-                mediaURL = filechoser.getSelectedFile().toURI().toURL();
-            } catch (Exception ex) {
+                mediaURL = file.toURI().toURL();
+            } catch (MalformedURLException ex) {
                 Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
-                ex.printStackTrace();
             }
-
-            
-
-        }
+                //This is where a real application would open the file.
+                System.out.println("Opening: " + file.getName());
+            } else {
+                mediaURL=null;
+                System.out.println("Open command cancelled by user.");
+            }
         return mediaURL;
     }
-
 }

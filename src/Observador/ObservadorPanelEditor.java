@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 public class ObservadorPanelEditor implements IObservador {
 
     private Boton boton; //boton al que observa
+    private int cont = 0;
 
     public ObservadorPanelEditor(Boton b) {
         boton = b;//inicializa el boton
@@ -108,13 +109,31 @@ public class ObservadorPanelEditor implements IObservador {
         } else if (boton.getNombre().equals("cambiaImagen3")) {
             ContenidoEditor.getContenidoEditor().cambiaImagen("imagenes/Gatling.png");
         } else if (boton.getNombre().equals("cambiaImagenPorTeclado")) {
+            cont++;
+            if (cont <= 1) {
+                URL url = null;
+                url = Buscador.getBuscador().busca();
+                if (url != null) {
+                    Image i = null;
+                    i = Lienzo.cargarImagen(url);
+                    i = i.getScaledInstance(Ventana_Mapa.getCasillaWidth(), Ventana_Mapa.getCasillaHeight(), Image.SCALE_DEFAULT);
+                    Lienzo.imagenes.remove(url.getPath());
+                    if (i != null) {
+                        ContenidoEditor.getContenidoEditor().cambiaImagen(i);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ruta incorrecta");
+                    }
+                }
+            }
+        }
+        if (cont > 1) {
             URL url = null;
             url = Buscador.getBuscador().busca();
             if (url != null) {
                 Image i = null;
                 i = Lienzo.cargarImagen(url);
                 i = i.getScaledInstance(Ventana_Mapa.getCasillaWidth(), Ventana_Mapa.getCasillaHeight(), Image.SCALE_DEFAULT);
-                Lienzo.imagenes.remove(url.getFile());
+                Lienzo.imagenes.remove(url.getPath());
                 if (i != null) {
                     ContenidoEditor.getContenidoEditor().cambiaImagen(i);
                 } else {
@@ -124,3 +143,5 @@ public class ObservadorPanelEditor implements IObservador {
         }
     }
 }
+
+

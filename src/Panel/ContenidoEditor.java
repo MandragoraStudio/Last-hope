@@ -60,8 +60,8 @@ public class ContenidoEditor extends Contenido {
         img1 = Lienzo.cargarImagen("imagenes/Misiles.png");
         img2 = Lienzo.cargarImagen("imagenes/torrePanel2.png");
         img3 = Lienzo.cargarImagen("imagenes/Gatling.png");
-        Image img4 = Lienzo.cargarImagen("imagenes/crear.png");
-        Image img5 = Lienzo.cargarImagen("imagenes/crearPulsado.png");
+        Image img4 = Lienzo.cargarImagen("imagenes/Crear.png");
+        Image img5 = Lienzo.cargarImagen("imagenes/CrearPulsado.png");
         Image img6 = Lienzo.cargarImagen("imagenes/insertador.png");
         Image img7 = Lienzo.cargarImagen("imagenes/insertador2.png");
         img8 = new Fondo("imagenes/fondoTorre.png", new Vector2D(50,50));
