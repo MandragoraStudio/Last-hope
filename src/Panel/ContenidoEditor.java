@@ -5,7 +5,6 @@ import Graficos.BotonGeneral;
 import Graficos.Fondo;
 import Graficos.Lienzo;
 import Observador.ObservadorPanelEditor;
-import Personajes.Actor;
 import Personajes.Tower;
 import UtilMath.Vector2D;
 import java.awt.Color;

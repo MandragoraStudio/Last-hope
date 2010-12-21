@@ -24,7 +24,8 @@ public class ObservadorGameOver implements IObservador {
     public void update() {
 
         if (boton.getNombre().equals("Menu")) {
-            ReproduceAudio.changeAudio("C:/Users/Jose/Documents/NetBeansProjects/LastHope/src/Sonidos/BSO.wav");
+            ReproduceAudio r = ReproduceAudio.getReproductor();
+            r.changeAudio("BSO.wav");
             Juego.getJuego().changeScreen("Menu");
         }
 

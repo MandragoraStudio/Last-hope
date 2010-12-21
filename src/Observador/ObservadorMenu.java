@@ -27,7 +27,8 @@ public class ObservadorMenu implements IObservador {
         if (boton.getNombre().equals("start")) {
             Juego.getJuego().restartGame();
             Juego.getJuego().changeScreen("Game");
-            ReproduceAudio.changeAudio("C:/Users/Jose/Documents/NetBeansProjects/LastHope/src/Sonidos/ingame.wav");
+            ReproduceAudio r = ReproduceAudio.getReproductor();
+            r.changeAudio("ingame.wav");
 
         } else if (boton.getNombre().equals("start2")) {
             int[][] mapa = {

@@ -4,7 +4,7 @@
  */
 package Handlers;
 
-import java.net.MalformedURLException;
+import Graficos.Lienzo;
 
 import java.net.URL;
 import java.util.logging.Level;
@@ -17,16 +17,26 @@ import javax.swing.JFileChooser;
  * @author Jose
  */
 public class Buscador {
-    public static JFileChooser filechoser;
-    public static URL mediaURL = null;
+    public JFileChooser filechoser;
+    public URL mediaURL = null;
+    public static Buscador b;
+    private Buscador(){
 
-    public static URL busca() {
+    }
+
+    public static Buscador getBuscador(){
+        if(b==null){
+            b=new Buscador();
+        }
+        return b;
+    }
+    public URL busca() {
         filechoser = new JFileChooser();
-        int resul = filechoser.showOpenDialog(null);
+        int resul = filechoser.showOpenDialog(Lienzo.frame);
         if (resul == JFileChooser.APPROVE_OPTION) {
             try {
                 mediaURL = filechoser.getSelectedFile().toURI().toURL();
-            } catch (MalformedURLException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
                 ex.printStackTrace();
             }
@@ -34,7 +44,6 @@ public class Buscador {
             
 
         }
-       // String ruta=mediaURL.getFile();
         return mediaURL;
     }
 

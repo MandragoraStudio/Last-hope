@@ -144,7 +144,8 @@ public class Juego {
 
     public void changeScreen(String screen) {
         if(screen.equals("GameOver")){
-            ReproduceAudio.changeAudio("C:/Users/Jose/Documents/NetBeansProjects/LastHope/src/Sonidos/Last Hope.wav");
+            ReproduceAudio r = ReproduceAudio.getReproductor();
+            r.changeAudio("LastHope.wav");
         }
 
         currentScreen = screens.get(screen);

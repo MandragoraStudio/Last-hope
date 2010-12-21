@@ -25,7 +25,8 @@ public class LoadingScreen implements IScreen{
     public LoadingScreen(){
         im=Lienzo.cargarImagen("imagenes/Pantalla inicial.png");
         oscuridad=Lienzo.cargarImagen("imagenes/Opacidad.png");
-        ReproduceAudio.reproduceAudio("C:/Users/Jose/Documents/NetBeansProjects/LastHope/src/Sonidos/BSO.wav");
+        ReproduceAudio r = ReproduceAudio.getReproductor();
+        r.reproduceAudio("BSO.wav");
     }
 
     public static LoadingScreen getLoadingScreen(){
