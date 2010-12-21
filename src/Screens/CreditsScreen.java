@@ -29,6 +29,7 @@ public class CreditsScreen implements IScreen {
     Actor fondo; // el fondo del menu
     Actor creditos1;
     Actor creditos2;
+    Actor creditos3;
     List<Boton> botones; // lista de botones del game over
 
     public CreditsScreen()
@@ -42,6 +43,7 @@ public class CreditsScreen implements IScreen {
             fondo = new Fondo("imagenes/FondoCreditos.png",Vector2D.zero);
             creditos1 = new Fondo("imagenes/Creditos1.png",new Vector2D(0, 600));
             creditos2 = new Fondo("imagenes/Creditos2.png",new Vector2D(0, 1200));
+            creditos3 = new Fondo("imagenes/Creditos3.png",new Vector2D(0, 1780));
             cargarBotones();
         } catch (Exception ex) {
             Logger.getLogger(CreditsScreen.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,11 +67,14 @@ public class CreditsScreen implements IScreen {
 
     public void update() {
         creditos1.posicion.y=creditos1.posicion.y-2;
-        if(creditos1.posicion.y<=-1200)
+        if(creditos1.posicion.y<=-1300)
             creditos1.posicion.y=600;
         creditos2.posicion.y=creditos2.posicion.y-2;
-        if(creditos2.posicion.y<=-600)
+        if(creditos2.posicion.y<=-700)
             creditos2.posicion.y=1200;
+        creditos3.posicion.y=creditos3.posicion.y-2;
+        if(creditos3.posicion.y<=-150)
+            creditos3.posicion.y=1730;
         for(Boton b:botones){
             b.update();
         }
@@ -79,6 +84,7 @@ public class CreditsScreen implements IScreen {
         fondo.draw(g);
         creditos1.draw(g);
         creditos2.draw(g);
+        creditos3.draw(g);
         for(Boton b:botones){
             b.draw(g);
         }
