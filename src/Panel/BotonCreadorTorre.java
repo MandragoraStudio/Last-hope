@@ -5,7 +5,6 @@
 package Panel;
 
 import Graficos.BotonGeneral;
-import Handlers.MouseHandler;
 import Mapa.Ventana_Mapa;
 import Observador.Observador_CreadorTorre;
 import Personajes.Tower;
