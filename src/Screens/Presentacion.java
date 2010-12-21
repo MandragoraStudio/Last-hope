@@ -5,6 +5,7 @@
 package Screens;
 
 import Graficos.Lienzo;
+import Principal.Globals;
 import Principal.Juego;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -34,13 +35,12 @@ public class Presentacion implements IScreen {
         }
         return presentacion;
     }
-
     public void cargarModelos() {
         //aqui no se puede meter NADA
     }
 
     public void update() {
-        time--;
+        time-= Globals.elapsedTime/1000.0f*30;
         if (time < 0) {
             Juego.getJuego().changeScreen("Menu");
         }

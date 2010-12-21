@@ -29,6 +29,9 @@ public class Observador_Mapa implements IObservador {
                 mapa.addTower(mapa.getTorre().clone());
                 mapa.setTorre(null);
                 mapa.setConstruir(false);
+            }else{
+                mapa.construir=false;
+                mapa.torre=null;
             }
         } else if (mapa.isConstruirH()) {
                 int x = MouseHandler.getX();
@@ -39,6 +42,9 @@ public class Observador_Mapa implements IObservador {
                     mapa.addHabilidad(mapa.getHabilidad().clone());
                     mapa.setHabilidad(null);
                     mapa.setConstruirH(false);
+                }else{
+                    mapa.construirH=false;
+                    mapa.habilidad=null;
                 }
         }
 
