@@ -99,11 +99,11 @@ public class ObservadorPanelEditor implements IObservador {
                 JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
             }
         } else if (boton.getNombre().equals("cambiaImagen")) {
-            ContenidoEditor.getContenidoEditor().cambiaImagen("imagenes/torrePanel.png");
+            ContenidoEditor.getContenidoEditor().cambiaImagen("imagenes/Misiles.png");
         } else if (boton.getNombre().equals("cambiaImagen2")) {
             ContenidoEditor.getContenidoEditor().cambiaImagen("imagenes/torrePanel2.png");
         } else if (boton.getNombre().equals("cambiaImagen3")) {
-            ContenidoEditor.getContenidoEditor().cambiaImagen("imagenes/torrePanel3.png");
+            ContenidoEditor.getContenidoEditor().cambiaImagen("imagenes/Gatling.png");
         } else if (boton.getNombre().equals("cambiaImagenPorTeclado")) {
             URL url = Buscador.busca();
             Image i = null;

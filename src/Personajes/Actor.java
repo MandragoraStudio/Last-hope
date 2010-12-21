@@ -31,7 +31,7 @@ public abstract class Actor {
     int sHeight;
     //ancho del actor en pantalla
     public int width;
-    int height;
+    public int height;
     float rotation = 0;
     AffineTransform at;
 

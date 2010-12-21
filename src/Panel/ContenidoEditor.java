@@ -2,8 +2,10 @@ package Panel;
 
 import Graficos.Boton;
 import Graficos.BotonGeneral;
+import Graficos.Fondo;
 import Graficos.Lienzo;
 import Observador.ObservadorPanelEditor;
+import Personajes.Actor;
 import Personajes.Tower;
 import UtilMath.Vector2D;
 import java.awt.Color;
@@ -24,6 +26,7 @@ public class ContenidoEditor extends Contenido {
     Image img1; //opc1 de imagen al crear el diseño de una torre
     Image img2; //opc2 de imagen al crear el diseño de una torre
     Image img3; //opc3 de imagen al crear el diseño de una torre
+    Fondo img8;
     private Image fondoAtributos; // imagen de los botones de los atributos de una torre
     private Image imagenTorre; // imagen que usaremos para crear la torre
     private Map<String, String> atributos; // valor de los atributos de la torre diseñada
@@ -55,13 +58,14 @@ public class ContenidoEditor extends Contenido {
         //introducimos los atributos
         atributos = new LinkedHashMap();
         //cargamos las imagenes
-        img1 = Lienzo.cargarImagen("imagenes/torrePanel.png");
+        img1 = Lienzo.cargarImagen("imagenes/Misiles.png");
         img2 = Lienzo.cargarImagen("imagenes/torrePanel2.png");
-        img3 = Lienzo.cargarImagen("imagenes/torrePanel3.png");
+        img3 = Lienzo.cargarImagen("imagenes/Gatling.png");
         Image img4 = Lienzo.cargarImagen("imagenes/crear.png");
         Image img5 = Lienzo.cargarImagen("imagenes/crearPulsado.png");
         Image img6 = Lienzo.cargarImagen("imagenes/insertador.png");
         Image img7 = Lienzo.cargarImagen("imagenes/insertador2.png");
+        img8 = new Fondo("imagenes/fondoTorre.png", new Vector2D(50,50));
         //inicializamos la imagen de la torre
         imagenTorre = Lienzo.cargarImagen("imagenes/torrePanel.png");
         // añadimos los botones de los atributos
@@ -81,7 +85,7 @@ public class ContenidoEditor extends Contenido {
         addBoton(img6, img7, "cambiaImagenPorTeclado", 20, 390);
 
         //añadimos el boton que crea botones en el contenidoTorres para que creen las torres
-        Boton b = new BotonGeneral(img4, img4, "creaBotonCreador", (int) posicion.x + getImagen().getWidth(null) - img4.getWidth(null)-12, (int) posicion.y + getImagen().getHeight(null) - img4.getHeight(null)-20, img4.getWidth(null), img4.getHeight(null));
+        Boton b = new BotonGeneral(img4, img5, "creaBotonCreador", (int) posicion.x + getImagen().getWidth(null) - img4.getWidth(null)-12, (int) posicion.y + getImagen().getHeight(null) - img4.getHeight(null)-20, img4.getWidth(null), img4.getHeight(null));
         new ObservadorPanelEditor(b);
         addBoton(b);
         //inicializamos los atributos
@@ -101,6 +105,7 @@ public class ContenidoEditor extends Contenido {
         g.setColor(Color.black);
         //dibujamos el fondo
         g.drawImage(this.getImagen(), (int) posicion.x, (int) posicion.y, null);
+        this.dibujaFondoTorre(g);
         // dibujamos los botones por defecto
         for (Boton b : this.getBotonesPorDefecto()) {
             b.draw(g);
@@ -115,6 +120,23 @@ public class ContenidoEditor extends Contenido {
         for (String element : atributos.values()) {
             g.drawString(element, x, y);
             y += 30;
+        }
+    }
+
+    public void dibujaFondoTorre(Graphics2D g){
+        boolean enc=false;
+        Boton b1 = new Boton(null,null,0,0,0,0);
+        for(Boton b : this.getBotones()){
+            if(b.getUp().equals(this.imagenTorre)){
+                enc=true;
+                b1=b;
+            }
+        }
+        if(enc){
+            this.img8.width=50;
+            this.img8.height=50;
+            this.img8.setPosicion(new Vector2D(b1.getX(), b1.getY()));
+            this.img8.draw(g);
         }
     }
 
