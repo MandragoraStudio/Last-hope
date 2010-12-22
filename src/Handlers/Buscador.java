@@ -50,11 +50,8 @@ public class Buscador {
             } catch (MalformedURLException ex) {
                 Logger.getLogger(Buscador.class.getName()).log(Level.SEVERE, null, ex);
             }
-                //This is where a real application would open the file.
-                System.out.println("Opening: " + file.getName());
             } else {
                 mediaURL=null;
-                System.out.println("Open command cancelled by user.");
             }
         return mediaURL;
     }

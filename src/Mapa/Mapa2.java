@@ -29,8 +29,8 @@ public class Mapa2 extends Mapa{
             {1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},};
 
-    public Mapa2(int[][] map) {
-        super(map);
+    public Mapa2(int m[][]) {
+        super(m);
         this.setMapa(a);
     }
     public static void sendWave(int n) {

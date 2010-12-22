@@ -101,7 +101,7 @@ public class ContenidoEditor extends Contenido {
 
     @Override
     public void draw(Graphics2D g) {
-        g.setColor(Color.black);
+        g.setColor(Color.WHITE);
         //dibujamos el fondo
         g.drawImage(this.getImagen(), (int) posicion.x, (int) posicion.y, null);
         this.dibujaFondoTorre(g);

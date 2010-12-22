@@ -61,12 +61,12 @@ private List<Boton> botones; // botones del menu
         Image img6 = null;
 
         try {
-                img = Lienzo.cargarImagen("imagenes/iplay.png");
-                img2 = Lienzo.cargarImagen("imagenes/iplay.png");
+                img = Lienzo.cargarImagen("imagenes/play-pulsado.png");
+                img2 = Lienzo.cargarImagen("imagenes/play-sobre.png");
                 img3 = Lienzo.cargarImagen("imagenes/iexit.png");
-                img4 = Lienzo.cargarImagen("imagenes/iexit.png");
-                img5 = Lienzo.cargarImagen("imagenes/icredits.png");
-                img6 = Lienzo.cargarImagen("imagenes/icredits.png");
+                img4 = Lienzo.cargarImagen("imagenes/exit-pulsado.png");
+                img5 = Lienzo.cargarImagen("imagenes/credits-sobre.png");
+                img6 = Lienzo.cargarImagen("imagenes/credits-pulsado.png");
             } catch (Exception e) {
                 e.printStackTrace();
             }
