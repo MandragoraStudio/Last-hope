@@ -11,7 +11,6 @@ import Graficos.Fondo;
 import Graficos.Lienzo;
 import Observador.ObservadorCredits;
 import Personajes.Actor;
-import Principal.Juego;
 import UtilMath.Vector2D;
 import java.awt.Graphics2D;
 import java.awt.Image;
