@@ -4,18 +4,10 @@
  */
 package Observador;
 
+import GestorSonido.ReproduceAudio;
 import Graficos.Boton;
-import Graficos.Lienzo;
 import Mapa.Ventana_Mapa;
-import Panel.BotonCreadorTorre;
-import Panel.ContenidoTorres;
-import Personajes.Tower;
 import Principal.Juego;
-import UtilMath.Vector2D;
-import java.awt.Image;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -32,6 +24,7 @@ public class ObservadorPanelTorre implements IObservador {
 
     public void update() {
         if (boton.getNombre().equals("Menu")) {
+            ReproduceAudio.getReproductor().changeAudio("BSO.wav");
             Juego.getJuego().changeScreen("Menu");
         }else if (boton.getNombre().equals("Pausa")) {
             Ventana_Mapa.setPausa(true);

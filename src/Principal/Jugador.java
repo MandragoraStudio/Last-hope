@@ -60,7 +60,7 @@ public class Jugador implements IJugador {
             recursos.put("grafeno",200);
             recursos.put("radio",200);
             recursos.put("cromo",200);
-            recursos.put("energia", getEnergiaMax());
+            recursos.put("energia", 0);
         }
     }
 

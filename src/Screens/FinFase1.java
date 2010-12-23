@@ -7,7 +7,7 @@ package Screens;
 
 import Graficos.Boton;
 import Graficos.Lienzo;
-import Observador.ObservadorCredits;
+import Observador.ObservadorTransicionFase;
 import Principal.Globals;
 import Principal.Juego;
 import java.awt.Color;
@@ -38,8 +38,8 @@ public class FinFase1 implements IScreen{
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        skip = new Boton(img, "Menu", 900, 550, img.getWidth(null), img.getHeight(null));
-        new ObservadorCredits(skip);
+        skip = new Boton(img, "skip", 900, 550, img.getWidth(null), img.getHeight(null));
+        new ObservadorTransicionFase(skip);
     }
 
     public static FinFase1 getFinFase1() {
@@ -54,9 +54,9 @@ public class FinFase1 implements IScreen{
 
     public void update() {
         lTime += Globals.elapsedTime;
-        time=(int)( 120-((lTime/1000.0f)*30));
+        time=(int)( 120-((lTime/1000.0f)*100000));
         if (time < 0) {
-            Juego.getJuego().changeScreen("Menu");
+            Juego.getJuego().changeScreen("Game");
         }
         skip.update();
     }

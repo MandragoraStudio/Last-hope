@@ -164,6 +164,9 @@ public class Juego {
         }else if (screen.equals("FinFase2")) {
             ReproduceAudio r = ReproduceAudio.getReproductor();
             r.changeAudio("finFase.wav");
+        }else if (screen.equals("Game")) {
+            ReproduceAudio r = ReproduceAudio.getReproductor();
+            r.changeAudio("ingame.wav");
         }
 
         currentScreen = screens.get(screen);

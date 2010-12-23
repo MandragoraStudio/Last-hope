@@ -26,9 +26,9 @@ public class ObservadorMenu implements IObservador {
         //switch de string
         if (boton.getNombre().equals("start")) {
             Juego.getJuego().restartGame();
-            Juego.getJuego().changeScreen("Game");
+            Juego.getJuego().changeScreen("InicioFase1");
             ReproduceAudio r = ReproduceAudio.getReproductor();
-            r.changeAudio("ingame.wav");
+            r.changeAudio("finFase.wav");
             
         } else if (boton.getNombre().equals("exit")) {
             System.exit(0);
