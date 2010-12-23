@@ -30,22 +30,6 @@ public class ObservadorMenu implements IObservador {
             ReproduceAudio r = ReproduceAudio.getReproductor();
             r.changeAudio("ingame.wav");
             
-
-        } else if (boton.getNombre().equals("start2")) {
-            int[][] mapa = {
-                {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1},
-                {1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0},
-                {1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1},
-                {1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1},
-                {1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1},
-                {1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1},
-                {1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1},
-                {1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-            };
-            Ventana_Mapa.cargar(mapa);
-            Juego.getJuego().changeScreen("Game");
         } else if (boton.getNombre().equals("exit")) {
             System.exit(0);
         } else if (boton.getNombre().equals("Credits")){

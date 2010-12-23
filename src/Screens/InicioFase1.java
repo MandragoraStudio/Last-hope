@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Screens;
 
 import Graficos.Boton;
@@ -15,11 +16,11 @@ import java.awt.Image;
 
 /**
  *
- * @author Thanar
+ * @author Jose
  */
-public class Presentacion implements IScreen {
+public class InicioFase1 implements IScreen{
 
-    private static Presentacion presentacion;
+    private static InicioFase1 iniciofase1;
     public static long lTime =0;
     public static int time = 120;
     private Image im;
@@ -27,8 +28,8 @@ public class Presentacion implements IScreen {
     private Image lasthope;
     private Boton skip;
 
-    private Presentacion() {
-        im = Lienzo.cargarImagen("imagenes/tower2.jpg");
+    private InicioFase1() {
+        im = Lienzo.cargarImagen("imagenes/inicioFase1.jpg");
         oscuridad = Lienzo.cargarImagen("imagenes/Opacidad.png");
         lasthope = Lienzo.cargarImagen("imagenes/Last Hope.png");
         Image img = null;
@@ -41,11 +42,11 @@ public class Presentacion implements IScreen {
         new ObservadorCredits(skip);
     }
 
-    public static Presentacion getPresentacion() {
-        if (presentacion == null) {
-            presentacion = new Presentacion();
+    public static InicioFase1 getInicioFase1() {
+        if (iniciofase1 == null) {
+            iniciofase1 = new InicioFase1();
         }
-        return presentacion;
+        return iniciofase1;
     }
     public void cargarModelos() {
         //aqui no se puede meter NADA

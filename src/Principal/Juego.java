@@ -10,7 +10,10 @@ import Screens.GamePlayScreen;
 import Screens.IScreen;
 import Graficos.Lienzo;
 import Screens.CreditsScreen;
+import Screens.FinFase1;
+import Screens.FinFase2;
 import Screens.GameOverScreen;
+import Screens.InicioFase1;
 import Screens.LoadingScreen;
 import Screens.MainMenuScreen;
 import Screens.Presentacion;
@@ -65,11 +68,17 @@ public class Juego {
     }
 
     private void cargarPantallas() {
+        //Cargamos el FinFase1
+        screens.put("FinFase1", FinFase1.getFinFase1());
+        //Cargamos el FinFase2
+        screens.put("FinFase2", FinFase2.getFinFase2());
+        //Cargamos el FinFase3
+        screens.put("InicioFase1", InicioFase1.getInicioFase1());
         //Cargamos el Loading...
         screens.put("Loading", LoadingScreen.getLoadingScreen());
         //Cargamos el Presentacion
         screens.put("Presentacion", Presentacion.getPresentacion());
-        //actualizamos el current Screen a menu
+
         //cargamos el menu
         screens.put("Menu", MainMenuScreen.getMenu());
         //cargamos el game
@@ -78,7 +87,7 @@ public class Juego {
         screens.put("GameOver", GameOverScreen.getGameOver());
         //Cargamos los creditos
         screens.put("Credits", new CreditsScreen());
-
+        //actualizamos el current Screen a Loading
         currentScreen = screens.get("Loading");
     }
 
@@ -149,7 +158,12 @@ public class Juego {
         if (screen.equals("GameOver")) {
             ReproduceAudio r = ReproduceAudio.getReproductor();
             r.changeAudio("LastHope.wav");
-            
+        }else if (screen.equals("FinFase1")) {
+            ReproduceAudio r = ReproduceAudio.getReproductor();
+            r.changeAudio("finFase.wav");
+        }else if (screen.equals("FinFase2")) {
+            ReproduceAudio r = ReproduceAudio.getReproductor();
+            r.changeAudio("finFase.wav");
         }
 
         currentScreen = screens.get(screen);

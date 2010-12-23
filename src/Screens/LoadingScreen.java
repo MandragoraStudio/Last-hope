@@ -22,7 +22,7 @@ public class LoadingScreen implements IScreen{
     private Image im;
     private Image oscuridad;
 
-    public LoadingScreen(){
+    private LoadingScreen(){
         im=Lienzo.cargarImagen("imagenes/Pantalla inicial.png");
         oscuridad=Lienzo.cargarImagen("imagenes/Opacidad.png");
         ReproduceAudio r = ReproduceAudio.getReproductor();

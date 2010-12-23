@@ -51,15 +51,13 @@ public class CreditsScreen implements IScreen {
         private void cargarBotones() throws Exception{
         //cargamos las imagenes de los botones
         Image img = null;
-        Image img2 = null;
         try {
                 img = Lienzo.cargarImagen("imagenes/skip.png");
-                //img2 = Lienzo.cargarImagen("imagenes/skipHover.png");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         //añadimos los botones al menu
-        Boton b =new BotonGeneral(img, img, "Menu", 900, 550, img.getWidth(null), img.getHeight(null));
+        Boton b =new Boton(img, "Menu", 900, 550, img.getWidth(null), img.getHeight(null));
         new ObservadorCredits(b);
         botones.add(b);
     }
