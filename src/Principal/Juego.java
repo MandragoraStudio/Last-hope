@@ -4,7 +4,7 @@
  */
 package Principal;
 
-import GestorSonido.ReproduceAudio;
+import GestorSonido.HiloMusical;
 import Handlers.MouseHandler;
 import Screens.GamePlayScreen;
 import Screens.IScreen;
@@ -48,24 +48,27 @@ public class Juego {
         Globals.elapsedTime = 0;
         cargarPantallas();
     }
-    
-    public int getWidth(){
-            return WIDTH;
+
+    public int getWidth() {
+        return WIDTH;
     }
-    public int getHeight(){
-            return HEIGHT;
+
+    public int getHeight() {
+        return HEIGHT;
     }
-    public static Juego getJuego(){
-        if(juego==null){
-            juego=new Juego();
+
+    public static Juego getJuego() {
+        if (juego == null) {
+            juego = new Juego();
         }
         return juego;
     }
+
     private void cargarPantallas() {
         //Cargamos el Loading...
-        screens.put("Loading",LoadingScreen.getLoadingScreen());
+        screens.put("Loading", LoadingScreen.getLoadingScreen());
         //Cargamos el Presentacion
-        screens.put("Presentacion",Presentacion.getPresentacion());
+        screens.put("Presentacion", Presentacion.getPresentacion());
         //actualizamos el current Screen a menu
         //cargamos el menu
         screens.put("Menu", MainMenuScreen.getMenu());
@@ -75,7 +78,7 @@ public class Juego {
         screens.put("GameOver", GameOverScreen.getGameOver());
         //Cargamos los creditos
         screens.put("Credits", new CreditsScreen());
-        
+
         currentScreen = screens.get("Loading");
     }
 
@@ -129,7 +132,7 @@ public class Juego {
         screens.put("Game", new GamePlayScreen());
         screens.get("Game").cargarModelos();
         jugador = new Jugador(false);
-        }
+    }
 
     public void draw() {
 
@@ -143,12 +146,11 @@ public class Juego {
     //metodo estatico para cambiar la ventana
 
     public void changeScreen(String screen) {
-        if(screen.equals("GameOver")){
-            ReproduceAudio r = ReproduceAudio.getReproductor();
-            r.changeAudio("LastHope.wav");
+        if (screen.equals("GameOver")) {
+            HiloMusical h = HiloMusical.getHiloMusical("LastHope.wav");
+            h.start();
         }
 
         currentScreen = screens.get(screen);
     }
-
 }

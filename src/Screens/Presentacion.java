@@ -18,6 +18,7 @@ import java.awt.Image;
 public class Presentacion implements IScreen {
 
     private static Presentacion presentacion;
+    public static long lTime =0;
     public static int time = 120;
     private Image im;
     private Image oscuridad;
@@ -40,7 +41,8 @@ public class Presentacion implements IScreen {
     }
 
     public void update() {
-        time-= Globals.elapsedTime/1000.0f*30;
+        lTime += Globals.elapsedTime;
+        time=(int)( 120-((lTime/1000.0f)*30));
         if (time < 0) {
             Juego.getJuego().changeScreen("Menu");
         }
