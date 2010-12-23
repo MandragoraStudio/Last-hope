@@ -4,7 +4,7 @@
  */
 package Principal;
 
-import GestorSonido.HiloMusical;
+import GestorSonido.ReproduceAudio;
 import Handlers.MouseHandler;
 import Screens.GamePlayScreen;
 import Screens.IScreen;
@@ -147,8 +147,9 @@ public class Juego {
 
     public void changeScreen(String screen) {
         if (screen.equals("GameOver")) {
-            HiloMusical h = HiloMusical.getHiloMusical("LastHope.wav");
-            h.start();
+            ReproduceAudio r = ReproduceAudio.getReproductor();
+            r.changeAudio("LastHope.wav");
+            
         }
 
         currentScreen = screens.get(screen);

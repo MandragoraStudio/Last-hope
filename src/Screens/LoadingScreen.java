@@ -5,7 +5,6 @@
 
 package Screens;
 
-import GestorSonido.HiloMusical;
 import GestorSonido.ReproduceAudio;
 import Graficos.Lienzo;
 import Principal.Juego;
@@ -26,8 +25,8 @@ public class LoadingScreen implements IScreen{
     public LoadingScreen(){
         im=Lienzo.cargarImagen("imagenes/Pantalla inicial.png");
         oscuridad=Lienzo.cargarImagen("imagenes/Opacidad.png");
-        HiloMusical h = HiloMusical.getHiloMusical("BSO.wav");
-        h.start();
+        ReproduceAudio r = ReproduceAudio.getReproductor();
+        r.changeAudio("BSO.wav");
     }
 
     public static LoadingScreen getLoadingScreen(){

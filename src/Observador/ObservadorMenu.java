@@ -4,7 +4,7 @@
  */
 package Observador;
 
-import GestorSonido.HiloMusical;
+import GestorSonido.ReproduceAudio;
 import Graficos.Boton;
 import Mapa.Ventana_Mapa;
 import Principal.Juego;
@@ -27,8 +27,9 @@ public class ObservadorMenu implements IObservador {
         if (boton.getNombre().equals("start")) {
             Juego.getJuego().restartGame();
             Juego.getJuego().changeScreen("Game");
-            HiloMusical h = HiloMusical.getHiloMusical("BSO.wav");
-            h.start();
+            ReproduceAudio r = ReproduceAudio.getReproductor();
+            r.changeAudio("ingame.wav");
+            
 
         } else if (boton.getNombre().equals("start2")) {
             int[][] mapa = {
