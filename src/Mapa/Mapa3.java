@@ -22,37 +22,35 @@ public class Mapa3 extends Mapa {
         super(m);
         this.fondo = Lienzo.cargarImagen("imagenes/gravilla.png");
         this.hierba = Lienzo.cargarImagen("imagenes/grass.png");
+        this.id=3;
     }
 
     public void sendWave(int n) {
-        if (n % 10 == 0) {
-            if (n % 1 == 0) {
-                for (int i = 0; i < 10; i++) {
-                    Ventana_Mapa.addEnemy(new EJefeBasico3(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
-                }
-            }
-            if (n % 2 == 0) {
-                for (int i = 0; i < 10; i++) {
-                    Ventana_Mapa.addEnemy(new EJefeRapido(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
-                }
-            }
-            if (n % 3 == 0) {
-                for (int i = 0; i < 10; i++) {
-                    Ventana_Mapa.addEnemy(new EJefeMaster(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
-                }
-            }
-            if (n % 4 == 0) {
-                for (int i = 0; i < 10; i++) {
-                    Ventana_Mapa.addEnemy(new EJefeTerminator(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
-                }
-            }
-            if (n % 5 == 0) {
-                for (int i = 0; i < 5; i++) {
-                    Ventana_Mapa.addEnemy(new EGod(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
-                }
+
+        if (n % 1 == 0) {
+            for (int i = 0; i < 10; i++) {
+                Ventana_Mapa.addEnemy(new EJefeBasico3(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
             }
         }
-
-
+        if (n % 2 == 0) {
+            for (int i = 0; i < 10; i++) {
+                Ventana_Mapa.addEnemy(new EJefeRapido(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
+            }
+        }
+        if (n % 3 == 0) {
+            for (int i = 0; i < 10; i++) {
+                Ventana_Mapa.addEnemy(new EJefeMaster(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
+            }
+        }
+        if (n % 4 == 0) {
+            for (int i = 0; i < 10; i++) {
+                Ventana_Mapa.addEnemy(new EJefeTerminator(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
+            }
+        }
+        if (n % 5 == 0) {
+            for (int i = 0; i < 5; i++) {
+                Ventana_Mapa.addEnemy(new EGod(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
+            }
+        }
     }
 }

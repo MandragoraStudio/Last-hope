@@ -183,27 +183,25 @@ public class ContenidoEditor extends Contenido {
 
 
         int c;
-        c = Integer.parseInt(atributos.get("Daño")) * 2 + Integer.parseInt(atributos.get("Fuego")) * 2 + Integer.parseInt(atributos.get("Rango")) * 2;
+        c = 0;
         costeProduccion.put("uranio", c);
-        c = Integer.parseInt(atributos.get("Daño")) * 2 + Integer.parseInt(atributos.get("Área de daño")) * 2 + Integer.parseInt(atributos.get("Rango")) * 2;
+        c = Integer.parseInt(atributos.get("Daño")) * 5 + Integer.parseInt(atributos.get("Área de daño")) * 8 + Integer.parseInt(atributos.get("Rango"))/2;
         costeProduccion.put("rodio", c);
 
-        c = Integer.parseInt(atributos.get("Recarga")) * 2 + Integer.parseInt(atributos.get("Rango")) * 2;
+        c = Integer.parseInt(atributos.get("Recarga"))/10 + Integer.parseInt(atributos.get("Rango"))/2;
         costeProduccion.put("grafeno", c);
 
-        c = Integer.parseInt(atributos.get("Daño")) * 2 + Integer.parseInt(atributos.get("Congelación")) * 2;
+        c = Integer.parseInt(atributos.get("Daño"))*5 + Integer.parseInt(atributos.get("Congelación")) * 10;
         costeProduccion.put("radio", c);
 
-        c = Integer.parseInt(atributos.get("Rango")) * 2 + Integer.parseInt(atributos.get("Veneno")) * 2 + Integer.parseInt(atributos.get("Penetración")) * 2;
+        c = Integer.parseInt(atributos.get("Rango"))/2 + Integer.parseInt(atributos.get("Veneno"))*6 + Integer.parseInt(atributos.get("Penetración")) * 8;
         costeProduccion.put("cromo", c);
 
-        c = Integer.parseInt(atributos.get("Daño")) * 2 + Integer.parseInt(atributos.get("Fuego")) * 2;
+        c = Integer.parseInt(atributos.get("Daño")) + Integer.parseInt(atributos.get("Fuego"))+ Integer.parseInt(atributos.get("Rango"))/2+ Integer.parseInt(atributos.get("Congelación")) + Integer.parseInt(atributos.get("Área de daño")) + Integer.parseInt(atributos.get("Veneno"));
         costeProduccion.put("energia", c);
 
 
         return costeProduccion;
-
-
     }
 
     public void inicializaAtributo(String atributo, String nivel) {

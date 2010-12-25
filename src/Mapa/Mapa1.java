@@ -19,6 +19,7 @@ public class Mapa1 extends Mapa {
 
     public Mapa1(int[][] map) {
         super(map);
+        this.id=1;
     }
 
     public void sendWave(int n) {
@@ -52,7 +53,7 @@ public class Mapa1 extends Mapa {
             recursos.put("radio", 500);
             recursos.put("cromo", 500);
             recursos.put("energia", 0);
-            Jugador.agregaRecursos(recursos);
+            Juego.getJuego().jugador.agregaRecursos(recursos);
             int a[][] = {
                 {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},

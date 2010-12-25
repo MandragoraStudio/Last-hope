@@ -16,6 +16,7 @@ import Handlers.MouseHandler;
 import Informacion.Ventana_Informacion;
 import Personajes.CentralEnergia;
 import Personajes.Habilidad;
+import Principal.Juego;
 import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -415,7 +416,9 @@ public class Ventana_Mapa implements IVentana {
     public static void setMap(Mapa map) {
         Ventana_Mapa.map = map;
         Ventana_Mapa.eliminaTodo();
-        Ventana_Mapa.setNivel(1);
+        Ventana_Mapa.setNivel(0);
+        Juego.getJuego().jugador.getRecursos().remove("energia");
+        Juego.getJuego().jugador.getRecursos().put("energia", 0);
     }
 
     public static int getNivel() {

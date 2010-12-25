@@ -15,7 +15,6 @@ import Personajes.Enemy;
 import Personajes.Habilidad;
 import Personajes.Tower;
 import Principal.Juego;
-import Principal.Jugador;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -189,8 +188,11 @@ public class Ventana_Informacion implements IVentana {
             g.drawString("" + Juego.getJuego().jugador.getRecursos().get("energia") + "/" + Juego.getJuego().jugador.getEnergiaMax(), x + 650, y + 70);
         }
         g.drawString("Oleada", x + 750, y + 40);
-        g.drawString("" + Ventana_Mapa.nivel + "/10", x + 750, y + 70);
-
+        if(Ventana_Mapa.map.getId()<3){
+            g.drawString("" + Ventana_Mapa.nivel + "/10", x + 750, y + 70);
+        }else{
+            g.drawString("" + Ventana_Mapa.nivel + "/*", x + 750, y + 70);
+        }
         //Barra informacion derecha (Informacion)
 
         if (ac == null) {

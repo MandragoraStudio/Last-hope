@@ -58,7 +58,6 @@ public class Fuego extends Habilidad{
         }
         for(Enemy e: enemigos){
             e.quemar(fuego, 200);
-            System.out.println("QUEMA!!!!");
         }
     }
     @Override

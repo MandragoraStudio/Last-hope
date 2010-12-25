@@ -14,6 +14,7 @@ public abstract class Mapa {
     public static Vector<Vector2D> camino;
     public Image fondo;
     public Image hierba;
+    public int id;
 
     public Mapa(int[][] map) {
         camino = new Vector<Vector2D>();
@@ -71,4 +72,14 @@ public abstract class Mapa {
         }
         return dev;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
 }
