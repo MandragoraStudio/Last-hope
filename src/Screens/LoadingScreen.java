@@ -7,6 +7,7 @@ package Screens;
 
 import GestorSonido.ReproduceAudio;
 import Graficos.Lienzo;
+import Principal.Globals;
 import Principal.Juego;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -18,6 +19,7 @@ import java.awt.Image;
  */
 public class LoadingScreen implements IScreen{
     private static LoadingScreen loading;
+    public static long lTime =0;
     public static int time = 60;
     private Image im;
     private Image oscuridad;
@@ -41,7 +43,8 @@ public class LoadingScreen implements IScreen{
     }
 
     public void update() {
-        time--;
+        lTime += Globals.elapsedTime;
+        time=(int)( 120-((lTime/1000.0f)*30));
         if(time<0){
             Juego.getJuego().changeScreen("Presentacion");
         }

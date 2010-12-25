@@ -20,8 +20,8 @@ public class Mapa3 extends Mapa {
 
     public Mapa3(int m[][]) {
         super(m);
-        this.fondo = Lienzo.cargarImagen("imagenes/gravilla.png");
-        this.hierba = Lienzo.cargarImagen("imagenes/grass.png");
+        this.fondo = Lienzo.cargarImagen("imagenes/Tiles/hormigon3.jpg");
+        this.hierba = Lienzo.cargarImagen("imagenes/Tiles/cuevaNieve3.png");
         this.id=3;
     }
 
