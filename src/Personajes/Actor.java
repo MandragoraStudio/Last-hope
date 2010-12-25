@@ -21,7 +21,7 @@ public abstract class Actor {
 
     Image imagen;
     public Vector2D posicion = new Vector2D(0, 0);
-    Abotonador boton;
+    public Abotonador boton;
     float interval = 300;
     float elapsedTime;
     int currentFrame = 0;

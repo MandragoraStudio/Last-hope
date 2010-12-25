@@ -73,14 +73,14 @@ public class Ventana_Mapa implements IVentana {
         observadores.add(o);
     }
 
-    public static void creaTorre(Tower t){
-        Ventana_Mapa.construirH=false;
+    public static void creaTorre(Tower t) {
+        Ventana_Mapa.construirH = false;
         Ventana_Mapa.construir = true;
         Ventana_Mapa.torre = t;
     }
 
-    public static void creaHabilidad(Habilidad h){
-        Ventana_Mapa.construir=false;
+    public static void creaHabilidad(Habilidad h) {
+        Ventana_Mapa.construir = false;
         Ventana_Mapa.construirH = true;
         Ventana_Mapa.habilidad = h;
     }
@@ -171,11 +171,11 @@ public class Ventana_Mapa implements IVentana {
         //pintado de cosas temporales
         //aqui hay unos offsets metidos a pelo de 25, es para que las torres se pinten en la casilla en la qeu van a construirse, no se por que no sale bien si no
         if (construir) {
-            torre.posicion = getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x - Lienzo.frame.getX(), MouseInfo.getPointerInfo().getLocation().y-25- Lienzo.frame.getY()));
+            torre.posicion = getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x - Lienzo.frame.getX(), MouseInfo.getPointerInfo().getLocation().y - 25 - Lienzo.frame.getY()));
             torre.draw(g);
             g.drawImage(Ventana_Informacion.brillo, (int) (torre.posicion.x + (Ventana_Mapa.casillaWidth / 2) - torre.getRango()), (int) (torre.posicion.y + (Ventana_Mapa.casillaHeight / 2) - torre.getRango()), (int) (torre.getRango() * 2), (int) (torre.getRango() * 2), null);
         } else if (construirH) {
-            habilidad.posicion = getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x-Lienzo.frame.getX(), MouseInfo.getPointerInfo().getLocation().y -25-  Lienzo.frame.getY()));
+            habilidad.posicion = getCoordenadaCasilla(new Vector2D(MouseInfo.getPointerInfo().getLocation().x - Lienzo.frame.getX(), MouseInfo.getPointerInfo().getLocation().y - 25 - Lienzo.frame.getY()));
             habilidad.draw(g);
         }
 
@@ -197,10 +197,19 @@ public class Ventana_Mapa implements IVentana {
 
     public void addHabilidad(Habilidad h) {
         agregar.add(h);
-        if(h.getNombre().equalsIgnoreCase("CentralEnergia")){
+        if (h.getNombre().equalsIgnoreCase("CentralEnergia")) {
             CentralEnergia.accionHabilidad();
         }
-        
+
+    }
+
+    public static void eliminaTodo() {
+        for (Actor a : actores) {
+            eliminar.add(a);
+        }
+        for (Actor a : agregar) {
+            eliminar.add(a);
+        }
     }
 
     public void update() {
@@ -224,7 +233,8 @@ public class Ventana_Mapa implements IVentana {
 
         //si no quedan enemigos... algo habra uqe hacer ;-)
         if (numeroEnemigos() == 0) {
-            sendWave(nivel++);
+            nivel++;
+            sendWave(nivel);
         }
         if (isPulsado()) {
             for (IObservador o : observadores) {
@@ -288,7 +298,7 @@ public class Ventana_Mapa implements IVentana {
         casillaHeight = HEIGHT / mapa.length;
         casillaWidth = WIDTH / mapa[0].length;
         //y ya tenemos mapa!!!! ^^ ^^
-        map = new Mapa(mapa);
+        map = new Mapa1(mapa);
         nivel = 1;
         sendWave(1);
     }
@@ -404,6 +414,8 @@ public class Ventana_Mapa implements IVentana {
 
     public static void setMap(Mapa map) {
         Ventana_Mapa.map = map;
+        Ventana_Mapa.eliminaTodo();
+        Ventana_Mapa.setNivel(1);
     }
 
     public static int getNivel() {
@@ -453,5 +465,4 @@ public class Ventana_Mapa implements IVentana {
     public static void setY(int y) {
         Ventana_Mapa.y = y;
     }
-    
 }

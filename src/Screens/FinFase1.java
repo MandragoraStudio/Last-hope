@@ -54,7 +54,7 @@ public class FinFase1 implements IScreen{
 
     public void update() {
         lTime += Globals.elapsedTime;
-        time=(int)( 120-((lTime/1000.0f)*100000));
+        time=(int)( 120-((lTime/1000.0f)*30));
         if (time < 0) {
             Juego.getJuego().changeScreen("Game");
         }

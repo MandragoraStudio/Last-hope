@@ -4,7 +4,6 @@
  */
 package Observador;
 
-import GestorSonido.ReproduceAudio;
 import Graficos.Boton;
 import Principal.Juego;
 
@@ -24,7 +23,6 @@ public class ObservadorTransicionFase implements IObservador {
     public void update() {
         //switch de string
         if (boton.getNombre().equals("skip")) {
-            Juego.getJuego().restartGame();
             Juego.getJuego().changeScreen("Game");
         }
     }

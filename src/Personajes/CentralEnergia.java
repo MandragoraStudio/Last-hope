@@ -21,7 +21,7 @@ public class CentralEnergia extends Habilidad {
     public CentralEnergia(Image im, Vector2D posicion) {
         super(im, posicion);
         this.energiaProducida = 50;
-        this.getCoste().put("uranio", 100);
+        this.getCoste().put("uranio", 75);
         this.getCoste().put("rodio", 20);
         this.getCoste().put("grafeno", 20);
         this.getCoste().put("radio", 0);

@@ -126,7 +126,7 @@ public abstract class Enemy extends Actor {
         //recursos que le vas a dar al jugador
         //TODO: dar recursos al jugador en funcion de las caracteristicas del enemigo, de manera proporcionada
         Map<String,Integer> recursos = new HashMap<String,Integer>();
-        recursos.put("uranio", (int)this.maxVida/100);
+        recursos.put("uranio", (int)this.maxVida/10);
         recursos.put("rodio", (int)this.regeneracion+this.dano);
         recursos.put("grafeno", (int)this.velocidad+this.dano);
         recursos.put("radio", (int)this.armadura+this.dano);
@@ -141,7 +141,7 @@ public abstract class Enemy extends Actor {
     public void update() {
         super.update();
         boton.update();
-        if (vida < 0) {
+        if (vida <= 0) {
             //aqui el enemigo muere!!!
             this.muere();
         }

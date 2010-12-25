@@ -1,22 +1,14 @@
 package Mapa;
 
-import Enemigos.EBasico;
-import Enemigos.EGod;
-import Enemigos.ERapido;
-import Enemigos.ETerminator;
-import Principal.Juego;
-import Principal.Jugador;
 import UtilMath.Vector2D;
 import java.awt.Image;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 
 /**
  *
  * @author Thanar
  */
-public class Mapa {
+public abstract class Mapa {
 
     private int[][] mapa;
     public static Vector<Vector2D> camino;
@@ -37,71 +29,7 @@ public class Mapa {
         this.mapa = mapa;
     }
 
-    public static void sendWave(int n) {
-        /*if (n % 10 == 0) {
-        Ventana_Mapa.actores.clear();
-        Ventana_Mapa.eliminar.clear();
-        Ventana_Mapa.agregar.clear();
-        int[][] a = {
-        {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1},
-        {1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1},
-        {1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1},
-        {1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0},
-        {1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1},
-        {1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1},
-        {1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1},
-        {1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},};
-        Ventana_Mapa.cargar(a);
-        }*/
-        if (n + 1 <= 2) {
-            if (n % 10 == 0) {
-                for (int i = 0; i < 10; i++) {
-                    Ventana_Mapa.addEnemy(new EGod(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
-                }
-            } else {
-                if (n % 3 == 0) {
-                    for (int i = 0; i < 20; i++) {
-                        Ventana_Mapa.addEnemy(new EBasico(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
-                    }
-                } else if (n % 3 == 1) {
-                    for (int i = 0; i < 20; i++) {
-                        Ventana_Mapa.addEnemy(new ERapido(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
-                    }
-                } else {
-                    for (int i = 0; i < 15; i++) {
-                        Ventana_Mapa.addEnemy(new ETerminator(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
-                    }
-                }
-            }
-
-        } else {
-            Map recursos = new HashMap<String, Integer>();
-            recursos.put("uranio", 500);
-            recursos.put("rodio", 500);
-            recursos.put("grafeno", 500);
-            recursos.put("radio", 500);
-            recursos.put("cromo", 500);
-            recursos.put("energia", 0);
-            Jugador.agregaRecursos(recursos);
-            int a[][]={
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1},
-            {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-            {1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1},
-            {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1},
-            {1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},};
-            Mapa2 m = new Mapa2(a);
-            Ventana_Mapa.cargar(m.getMapa());
-            Ventana_Mapa.setMap(m);
-            Juego.getJuego().changeScreen("FinFase1");
-        }
-    }
+    public abstract void sendWave(int n);
 
     //este metodo analiza el array bidimensional que es el mapa y te devuelve una lista con las casillas que forman el camino
     public Vector<Vector2D> analizaMapa() {

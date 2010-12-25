@@ -20,9 +20,6 @@ public class Jugador implements IJugador {
     // Vida del Jugador
     private final Integer vidaMax = 100;
     private Integer vida;
-    //Energia
-    private Integer energiaMax = 10000;
-    //private Integer energia;
     //recursos
     private final Integer maxRecursos = 9999;
     static Map<String, Integer> recursos;
@@ -31,7 +28,6 @@ public class Jugador implements IJugador {
     public Jugador() {
         puntuacion = 0;
         vida = vidaMax;
-        energiaMax = 200;
         //energia=energiaMax;
         recursos = new HashMap<String, Integer>();
         recursos.put("uranio", 200);
@@ -89,7 +85,7 @@ public class Jugador implements IJugador {
                     aux++;
                 }
             }
-        return energiaMax+(aux*50);
+        return (aux*50);
     }
 
     public long getPuntuacion() {
