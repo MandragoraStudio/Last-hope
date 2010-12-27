@@ -47,7 +47,7 @@ public class Ventana_Mapa implements IVentana {
     public static Habilidad habilidad = null;
     List<IObservador> observadores;
     public static int nivel = 1;
-    public static boolean pausa = false;
+    public static boolean pausa = true;
 
     public Ventana_Mapa(int WIDTH, int HEIGHT, int x, int y, String imagenCamino, String imagenHierba) {
         //los parametros magicos
@@ -415,6 +415,7 @@ public class Ventana_Mapa implements IVentana {
 
     public static void setMap(Mapa map) {
         Ventana_Mapa.map = map;
+        Ventana_Mapa.pausa = true;
         Ventana_Mapa.eliminaTodo();
         Ventana_Mapa.setNivel(0);
         Juego.getJuego().jugador.getRecursos().remove("energia");

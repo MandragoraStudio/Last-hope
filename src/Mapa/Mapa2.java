@@ -25,7 +25,7 @@ public class Mapa2 extends Mapa {
     public Mapa2(int m[][]) {
         super(m);
         this.fondo = Lienzo.cargarImagen("imagenes/Tiles/arena4.jpg");
-        this.hierba = Lienzo.cargarImagen("imagenes/Tiles/desierto.png");
+        this.hierba = Lienzo.cargarImagen("imagenes/Tiles/desierto camino.png");
         this.id=2;
     }
 
