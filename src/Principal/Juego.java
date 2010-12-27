@@ -97,9 +97,9 @@ public class Juego {
         long auxTime = 0;
         //inicializamos previous time
         previousTime = startTime;
+        draw();
         //cargamos los modelos (solo una vez)
         cargarModelos();
-        draw();
         //bucle principal
         while (!salir) {
             //update principal para actualizar el estado del juego
@@ -107,7 +107,12 @@ public class Juego {
             // draw principal para dibujar todo lo dibujable
             draw();
             //nos aseguramos que como minimo cada bucle tarde 33 milisegundos
-            if (System.currentTimeMillis() - previousTime < 33) {
+            if(System.currentTimeMillis() - previousTime > 33){
+                Globals.isRunningSlowly=true;
+            }else{
+                Globals.isRunningSlowly=false;
+            }
+            if (System.currentTimeMillis() - previousTime < 33 && Globals.limitFrames) {
                 try {
                     Thread.sleep(33 - (System.currentTimeMillis() - previousTime));
                 } catch (Exception e) {
@@ -150,6 +155,10 @@ public class Juego {
         pincel.fillRect(0, 0, WIDTH, HEIGHT);
         // dibujamos solo la ventana actual con el pincel
         currentScreen.draw(pincel);
+        if(Globals.debug){
+            pincel.setColor(Color.yellow);
+            pincel.drawString(Globals.isRunningSlowly?"LENTO":"NORMAL", 10, 10);
+        }
         lienzo.strategy.show();
     }
     //metodo estatico para cambiar la ventana

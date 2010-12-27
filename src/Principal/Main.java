@@ -13,7 +13,9 @@ public class Main {
 
     public static void main(String[] args) {
         Juego juego = Juego.getJuego();
-        juego.runGame();
+        Threader hilo = new Threader(juego);
+        hilo.run();
+        //juego.runGame();
     }
 
 }
