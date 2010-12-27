@@ -35,6 +35,7 @@ public abstract class Enemy extends Actor {
     private int dano;
     private int casilla;
     Vector2D destino;
+    public boolean eliminado = false;
 
     public void envenenar(float fuerza, float tiempo) {
         fuerzaVeneno = fuerza;
@@ -125,14 +126,14 @@ public abstract class Enemy extends Actor {
         Juego.getJuego().jugador.agregaPuntos(this.dano);
         //recursos que le vas a dar al jugador
         //TODO: dar recursos al jugador en funcion de las caracteristicas del enemigo, de manera proporcionada
-        Map<String,Integer> recursos = new HashMap<String,Integer>();
-        recursos.put("uranio", (int)this.maxVida/10);
-        recursos.put("rodio", (int)this.regeneracion+this.dano);
-        recursos.put("grafeno", (int)this.velocidad+this.dano);
-        recursos.put("radio", (int)this.armadura+this.dano);
-        recursos.put("cromo", (int)this.armadura+this.dano);
+        Map<String, Integer> recursos = new HashMap<String, Integer>();
+        recursos.put("uranio", (int) this.maxVida / 10);
+        recursos.put("rodio", (int) this.regeneracion + this.dano);
+        recursos.put("grafeno", (int) this.velocidad + this.dano);
+        recursos.put("radio", (int) this.armadura + this.dano);
+        recursos.put("cromo", (int) this.armadura + this.dano);
         //Jugador.agregaRecursos(recursos);
-        Ventana_Mapa.agregar.add(new CajaRecurso(posicion,recursos,new Vector2D((float)(posicion.x+Math.random()*50-25),(float)(posicion.y+Math.random()*50-25))));
+        Ventana_Mapa.agregar.add(new CajaRecurso(posicion, recursos, new Vector2D((float) (posicion.x + Math.random() * 50 - 25), (float) (posicion.y + Math.random() * 50 - 25))));
 
 
     }
@@ -141,23 +142,33 @@ public abstract class Enemy extends Actor {
     public void update() {
         super.update();
         boton.update();
-        if(Juego.getJuego().jugador.getVida()<=0)
+        if (Juego.getJuego().jugador.getVida() <= 0) {
             return;
+        }
+        if (eliminado) {
+            return;
+        }
         if (vida <= 0) {
             //aqui el enemigo muere!!!
             this.muere();
         }
-        if (this.centro().subs(Ventana_Mapa.getCoordenadaCentro(Ventana_Mapa.map.camino.get(casilla))).modulo() <= this.velocidad) {
+        try {
+            if (this.centro().subs(Ventana_Mapa.getCoordenadaCentro(Ventana_Mapa.map.camino.get(casilla))).modulo() <= this.velocidad) {
 
-            casilla++;
+                casilla++;
+                casilla = casilla % Ventana_Mapa.map.camino.size();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         if (casilla >= Ventana_Mapa.map.camino.size()) {
             casilla = 0;
             posicion = new Vector2D(-Ventana_Mapa.casillaWidth, -Ventana_Mapa.casillaHeight);
             //elimino al actor que lo dice jose
             Ventana_Mapa.eliminaActor(this);
+            eliminado = true;
             if (!Juego.getJuego().jugador.restaVida(dano)) {
-                Ventana_Informacion.ac=null;
+                Ventana_Informacion.ac = null;
                 Juego.getJuego().changeScreen("GameOver");
                 Juego.getJuego().restartGame();
             }
@@ -185,9 +196,9 @@ public abstract class Enemy extends Actor {
             //no me puedo regenear
             tNoRegenerar--;
         }
-        if(tFuego>0){
+        if (tFuego > 0) {
             tFuego--;
-            vida-=fuerzaFuego;
+            vida -= fuerzaFuego;
         }
         destino = Ventana_Mapa.map.camino.get(casilla);
         direccion = Ventana_Mapa.getCoordenadaCentro((int) destino.x, (int) destino.y).subs(centro());
