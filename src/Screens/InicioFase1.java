@@ -25,7 +25,7 @@ public class InicioFase1 implements IScreen{
     private Boton skip;
 
     private InicioFase1() {
-        im = Lienzo.cargarImagen("imagenes/inicioFase1.jpg");
+        im = Lienzo.cargarImagen("imagenes/inicioFase1.png");
         Image img = null;
         try {
                 img = Lienzo.cargarImagen("imagenes/skip.png");

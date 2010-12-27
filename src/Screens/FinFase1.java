@@ -29,7 +29,7 @@ public class FinFase1 implements IScreen{
     private Boton skip;
 
     private FinFase1() {
-        im = Lienzo.cargarImagen("imagenes/FinFase1.jpg");
+        im = Lienzo.cargarImagen("imagenes/FinFase1.png");
         oscuridad = Lienzo.cargarImagen("imagenes/Opacidad.png");
         lasthope = Lienzo.cargarImagen("imagenes/Last Hope.png");
         Image img = null;
