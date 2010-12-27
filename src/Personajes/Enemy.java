@@ -141,6 +141,8 @@ public abstract class Enemy extends Actor {
     public void update() {
         super.update();
         boton.update();
+        if(Juego.getJuego().jugador.getVida()<=0)
+            return;
         if (vida <= 0) {
             //aqui el enemigo muere!!!
             this.muere();
