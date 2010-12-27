@@ -157,7 +157,7 @@ public class Juego {
         currentScreen.draw(pincel);
         if(Globals.debug){
             pincel.setColor(Color.yellow);
-            pincel.drawString(Globals.isRunningSlowly?"LENTO":"NORMAL", 10, 10);
+            pincel.drawString((Globals.isRunningSlowly?"LENTO":"NORMAL")+ " :"+(1001/(Globals.elapsedTime+1))+" FPS", 10, 10);
         }
         lienzo.strategy.show();
     }
