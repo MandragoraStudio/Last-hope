@@ -143,7 +143,10 @@ public abstract class Enemy extends Actor {
         super.update();
         boton.update();
         if (Juego.getJuego().jugador.getVida() <= 0) {
-            return;
+            Ventana_Informacion.ac = null;
+            Juego.getJuego().changeScreen("GameOver");
+            Juego.getJuego().restartGame();
+            eliminado = true;
         }
         if (eliminado) {
             return;
@@ -156,7 +159,7 @@ public abstract class Enemy extends Actor {
             if (this.centro().subs(Ventana_Mapa.getCoordenadaCentro(Ventana_Mapa.map.camino.get(casilla))).modulo() <= this.velocidad) {
 
                 casilla++;
-                casilla = casilla % Ventana_Mapa.map.camino.size();
+                //casilla = casilla % (Ventana_Mapa.map.camino.size() + 1);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -173,6 +176,7 @@ public abstract class Enemy extends Actor {
                 Juego.getJuego().restartGame();
             }
         }
+        
         if (tModVelocidad < 0) {
             //aqui ya no me ralentizo
             modVelocidad = 1;
