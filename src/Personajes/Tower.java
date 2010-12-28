@@ -44,7 +44,7 @@ public class Tower extends Actor {
         this.congelacion = congelacion;
         this.penetracion = penetracion;
         this.fuego = fuego;
-        this.recarga = Math.max(1,10000/recarga);
+        this.recarga = Math.max(1, 10000 / recarga);
         this.acido = acido;
         this.im = ima;
         this.coste = coste;
@@ -54,24 +54,27 @@ public class Tower extends Actor {
     @Override
     public void update() {
         boton.update();
-        if (tRestante >= 0) {
-            tRestante -= Globals.elapsedTime;
-
-        }
-        if (enemigoATiro() && isCargada()) {
-            ataca(eligeEnemigo(enemigosATiro()), true);
-        }
-        if (objetivo != null) {
-            if (this.estaAlAlcance(objetivo.posicion)) {
-                rotation = posicion.subs(objetivo.posicion).getAngle();
-
+        if (!Ventana_Mapa.pausa) {
+            if (tRestante >= 0) {
+                tRestante -= Globals.elapsedTime;
 
             }
+            if (enemigoATiro() && isCargada()) {
+                ataca(eligeEnemigo(enemigosATiro()), true);
+            }
+            if (objetivo != null) {
+                if (this.estaAlAlcance(objetivo.posicion)) {
+                    rotation = posicion.subs(objetivo.posicion).getAngle();
 
+
+                }
+
+            }
         }
     }
 
     public void ataca(Enemy e, boolean extenderAtaque) {
+
         if (e == null) {
             return;
         }
@@ -92,7 +95,7 @@ public class Tower extends Actor {
             e.envenenar(acido / 60, 60);
         }
         if (fuego > 0) {
-            e.envenenar(acido / 60, 60);
+            e.quemar(fuego / 60, 60);
         }
         if (extenderAtaque && this.areaDeAtaque > 0) {
             for (Enemy enemigo : enemigosAfectados(e)) {
@@ -288,7 +291,7 @@ public class Tower extends Actor {
         Tower dev;
         Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
         Image ima = im;
-        dev = new Tower(nombre, ataque, areaDeAtaque, rango, congelacion, penetracion, fuego, 10000/recarga, acido, coste, posicion, ima);
+        dev = new Tower(nombre, ataque, areaDeAtaque, rango, congelacion, penetracion, fuego, 10000 / recarga, acido, coste, posicion, ima);
         return dev;
     }
 

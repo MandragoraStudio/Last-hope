@@ -51,11 +51,11 @@ public class Jugador implements IJugador {
             recursos.put("cromo",maxRecursos);
             recursos.put("energia", getEnergiaMax());
         }else{
-            recursos.put("uranio",200);
-            recursos.put("rodio",200);
-            recursos.put("grafeno",200);
-            recursos.put("radio",200);
-            recursos.put("cromo",200);
+            recursos.put("uranio",300);
+            recursos.put("rodio",300);
+            recursos.put("grafeno",300);
+            recursos.put("radio",300);
+            recursos.put("cromo",300);
             recursos.put("energia", 0);
         }
     }

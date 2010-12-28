@@ -15,7 +15,7 @@ import UtilMath.Vector2D;
 public class EBasico extends Enemy {
     
     public EBasico(int nivel, Vector2D posicion){
-        super(1, (float)(1+(0.2*nivel)), 20 + 50*nivel, 2+nivel,0,0, posicion, "imagenes/EBasico.png",50);
+        super(1, (float)(2+(0.5*nivel)), 20+15+nivel, 2+nivel,0,0, posicion, "imagenes/EBasico.png",50);
     }
 
 }

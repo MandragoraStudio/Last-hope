@@ -198,7 +198,7 @@ public class ContenidoEditor extends Contenido {
         c = Integer.parseInt(atributos.get("Rango"))/2 + Integer.parseInt(atributos.get("Fuego"))/2 + Integer.parseInt(atributos.get("Ácido"))*6 + Integer.parseInt(atributos.get("Penetración")) * 8;
         costeProduccion.put("cromo", c);
 
-        c = Integer.parseInt(atributos.get("Daño")) + Integer.parseInt(atributos.get("Recarga"))/10 + Integer.parseInt(atributos.get("Fuego"))/2+ Integer.parseInt(atributos.get("Rango"))/2+ Integer.parseInt(atributos.get("Congelación")) + Integer.parseInt(atributos.get("Área de daño")) + Integer.parseInt(atributos.get("Ácido"));
+        c = Integer.parseInt(atributos.get("Daño"))/5 + Integer.parseInt(atributos.get("Recarga"))/10 + Integer.parseInt(atributos.get("Fuego"))/5+ Integer.parseInt(atributos.get("Rango"))/5+ Integer.parseInt(atributos.get("Congelación"))/5 + Integer.parseInt(atributos.get("Área de daño"))/10 + Integer.parseInt(atributos.get("Ácido"))/5;
         costeProduccion.put("energia", c);
 
 

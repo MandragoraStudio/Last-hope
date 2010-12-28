@@ -15,7 +15,7 @@ import UtilMath.Vector2D;
 public class EJefeRapido extends Enemy {
 
     public EJefeRapido (int nivel, Vector2D posicion){
-       super(4, (float) (2+0.2*nivel),200 + 200*nivel,14+nivel,3,2,posicion,"imagenes/Spliter.arana2.png",50);
+       super(4, (float) (4+0.2*nivel),20 + 10+nivel,8+nivel,0,0,posicion,"imagenes/Spliter.arana2.png",50);
     }
 }
 
