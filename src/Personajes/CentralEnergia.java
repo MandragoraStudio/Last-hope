@@ -16,11 +16,11 @@ import java.util.Map;
  */
 public class CentralEnergia extends Habilidad {
 
-    private static int energiaProducida;
+    public static int energiaProducida;
 
     public CentralEnergia(Image im, Vector2D posicion) {
         super(im, posicion);
-        this.energiaProducida = 50;
+        this.energiaProducida = 100;
         this.getCoste().put("uranio", 75);
         this.getCoste().put("rodio", 20);
         this.getCoste().put("grafeno", 20);

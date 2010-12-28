@@ -11,6 +11,7 @@ import Principal.Juego;
 import UtilMath.Vector2D;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  *
@@ -36,6 +37,7 @@ public abstract class Enemy extends Actor {
     private int casilla;
     Vector2D destino;
     public boolean eliminado = false;
+    private Random r;
 
     public void envenenar(float fuerza, float tiempo) {
         fuerzaVeneno = fuerza;
@@ -101,6 +103,7 @@ public abstract class Enemy extends Actor {
         this.modVelocidad = 1;
         this.tModVelocidad = 0;
         this.tNoRegenerar = -1;
+        this.r= new Random();
     }
 
     public int getCasilla() {
@@ -120,21 +123,26 @@ public abstract class Enemy extends Actor {
         return new Vector2D(x, y);
     }
 
+    public boolean saleCaja() {
+        return r.nextBoolean();
+    }
+
     public void muere() {
         Ventana_Mapa.eliminaActor(this);
         Ventana_Mapa.agregar.add(new Splash(this.centro()));
         Juego.getJuego().jugador.agregaPuntos(this.dano);
         //recursos que le vas a dar al jugador
         //TODO: dar recursos al jugador en funcion de las caracteristicas del enemigo, de manera proporcionada
-        Map<String, Integer> recursos = new HashMap<String, Integer>();
-        recursos.put("uranio", (int) this.maxVida / 10);
-        recursos.put("rodio", (int) this.regeneracion + this.dano);
-        recursos.put("grafeno", (int) this.velocidad + this.dano);
-        recursos.put("radio", (int) this.armadura + this.dano);
-        recursos.put("cromo", (int) this.armadura + this.dano);
-        //Jugador.agregaRecursos(recursos);
-        Ventana_Mapa.agregar.add(new CajaRecurso(posicion, recursos, new Vector2D((float) (posicion.x + Math.random() * 50 - 25), (float) (posicion.y + Math.random() * 50 - 25))));
-
+        if (saleCaja()) {
+            Map<String, Integer> recursos = new HashMap<String, Integer>();
+            recursos.put("uranio", (int) this.maxVida / 10);
+            recursos.put("rodio", (int) this.regeneracion + this.dano);
+            recursos.put("grafeno", (int) this.velocidad + this.dano);
+            recursos.put("radio", (int) this.armadura + this.dano);
+            recursos.put("cromo", (int) this.armadura + this.dano);
+            //Jugador.agregaRecursos(recursos);
+            Ventana_Mapa.agregar.add(new CajaRecurso(posicion, recursos, new Vector2D((float) (posicion.x + Math.random() * 50 - 25), (float) (posicion.y + Math.random() * 50 - 25))));
+        }
 
     }
 

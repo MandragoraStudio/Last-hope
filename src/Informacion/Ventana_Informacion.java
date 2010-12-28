@@ -166,7 +166,7 @@ public class Ventana_Informacion implements IVentana {
                 g.drawString("-" + hab.getCoste().get("cromo"), x + 550, y + 70);
                 if (hab instanceof CentralEnergia) {
                     g.setColor(Color.GREEN);
-                    g.drawString("+" + 50 + "/" + (Juego.getJuego().jugador.getEnergiaMax() + 50), x + 650, y + 70);
+                    g.drawString("+" + CentralEnergia.energiaProducida + "/" + (Juego.getJuego().jugador.getEnergiaMax() + CentralEnergia.energiaProducida), x + 650, y + 70);
                 } else {
                     g.drawString("-" + hab.getCoste().get("energia") + "/" + Juego.getJuego().jugador.getEnergiaMax(), x + 650, y + 70);
                 }

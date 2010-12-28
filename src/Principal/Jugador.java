@@ -85,7 +85,7 @@ public class Jugador implements IJugador {
                     aux++;
                 }
             }
-        return (aux*50);
+        return (aux*CentralEnergia.energiaProducida);
     }
 
     public long getPuntuacion() {
