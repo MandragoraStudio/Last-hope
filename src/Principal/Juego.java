@@ -17,6 +17,7 @@ import Screens.InicioFase1;
 import Screens.LoadingScreen;
 import Screens.MainMenuScreen;
 import Screens.Presentacion;
+import Screens.Tutorial;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.HashMap;
@@ -74,6 +75,8 @@ public class Juego {
         screens.put("FinFase2", FinFase2.getFinFase2());
         //Cargamos el FinFase3
         screens.put("InicioFase1", InicioFase1.getInicioFase1());
+        //cargamos el tutorial
+        screens.put("Tutorial", Tutorial.getTutorial());
         //Cargamos el Loading...
         screens.put("Loading", LoadingScreen.getLoadingScreen());
         //Cargamos el Presentacion
@@ -102,6 +105,7 @@ public class Juego {
         cargarModelos();
         //bucle principal
         while (!salir) {
+            System.gc();
             //update principal para actualizar el estado del juego
             update();
             // draw principal para dibujar todo lo dibujable

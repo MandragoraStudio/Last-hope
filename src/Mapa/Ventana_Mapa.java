@@ -17,9 +17,9 @@ import Informacion.Ventana_Informacion;
 import Personajes.CentralEnergia;
 import Personajes.Habilidad;
 import Principal.Juego;
-import Screens.GamePlayScreen;
 import UtilMath.Vector2D;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.MouseInfo;
 import java.util.ArrayList;
@@ -48,7 +48,7 @@ public class Ventana_Mapa implements IVentana {
     public static Habilidad habilidad = null;
     List<IObservador> observadores;
     public static int nivel = 1;
-    public static boolean pausa = false;
+    public static boolean pausa = true;
 
     public Ventana_Mapa(int WIDTH, int HEIGHT, int x, int y, String imagenCamino, String imagenHierba) {
         //los parametros magicos
@@ -135,6 +135,7 @@ public class Ventana_Mapa implements IVentana {
     }
 
     public void draw(Graphics2D g) {
+
         //limpio la pantalla con un color arenilla
         g.setColor(new Color(0xEBC053));
         g.fillRect(0, 0, WIDTH, HEIGHT);
@@ -186,7 +187,12 @@ public class Ventana_Mapa implements IVentana {
 
         //aqui datos de debug
         //pintaDatosDebug(g);
-
+        if (Ventana_Mapa.pausa) {
+            g.setColor(Color.red);
+            g.setFont(new Font("SansSerif", Font.BOLD, 40));
+            g.drawString("PAUSA", 350, 250);
+            g.setFont(new Font("SansSerif", Font.BOLD, 12));
+        }
     }
 
     public static void addEnemy(Enemy e) {
@@ -416,6 +422,7 @@ public class Ventana_Mapa implements IVentana {
 
     public static void setMap(Mapa map) {
         Ventana_Mapa.map = map;
+        Ventana_Mapa.pausa = true;
         Ventana_Mapa.eliminaTodo();
         Ventana_Mapa.setNivel(0);
         Juego.getJuego().jugador.getRecursos().remove("energia");
