@@ -75,7 +75,7 @@ public class ContenidoTorres extends Contenido {
         coste2.put("radio", 50);
         coste2.put("cromo", 25);
         coste2.put("energia", 40);
-        BotonCreadorTorre b2 = new BotonCreadorTorre(img2, img2, "Teminator", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower("Teminator",30, 10, 120, 5, 3, 2, 5, 0, coste2, Vector2D.fuera, img2));
+        BotonCreadorTorre b2 = new BotonCreadorTorre(img2, img2, "Teminator", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower("Teminator",30, 10, 120, 0, 5, 0, 5, 0, coste2, Vector2D.fuera, img2));
         new Observador_CreadorTorre(b2);
         addBotonPorDefecto(b2);
         Map<String, Integer> coste3 = new LinkedHashMap<String, Integer>();
