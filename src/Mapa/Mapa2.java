@@ -30,7 +30,7 @@ public class Mapa2 extends Mapa {
     }
 
     public void sendWave(int n) {
-        if (n + 1 <= 2) {
+        if (n + 1 <= 10) {
             if (n%1==0) {
                 for (int i = 0; i < 10; i++) {
                     Ventana_Mapa.addEnemy(new EMaster(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));

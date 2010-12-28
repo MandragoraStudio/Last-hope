@@ -50,10 +50,8 @@ public class FinFase2 implements IScreen{
         skip.update();
     }
 
-    public void draw(Graphics2D g) {
-        
+    public void draw(Graphics2D g) {   
         g.drawImage(im, 0, 0, Juego.getJuego().WIDTH, Juego.getJuego().HEIGHT, null);
-        
         skip.draw(g);
     }
 }

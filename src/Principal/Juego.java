@@ -107,12 +107,7 @@ public class Juego {
             // draw principal para dibujar todo lo dibujable
             draw();
             //nos aseguramos que como minimo cada bucle tarde 33 milisegundos
-            if(System.currentTimeMillis() - previousTime > 33){
-                Globals.isRunningSlowly=true;
-            }else{
-                Globals.isRunningSlowly=false;
-            }
-            if (System.currentTimeMillis() - previousTime < 33 && Globals.limitFrames) {
+            if (System.currentTimeMillis() - previousTime < 33) {
                 try {
                     Thread.sleep(33 - (System.currentTimeMillis() - previousTime));
                 } catch (Exception e) {
@@ -155,10 +150,6 @@ public class Juego {
         pincel.fillRect(0, 0, WIDTH, HEIGHT);
         // dibujamos solo la ventana actual con el pincel
         currentScreen.draw(pincel);
-        if(Globals.debug){
-            pincel.setColor(Color.yellow);
-            pincel.drawString((Globals.isRunningSlowly?"LENTO":"NORMAL")+ " :"+(1001/(Globals.elapsedTime+1))+" FPS", 10, 10);
-        }
         lienzo.strategy.show();
     }
     //metodo estatico para cambiar la ventana

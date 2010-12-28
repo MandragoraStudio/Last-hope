@@ -22,11 +22,11 @@ public class Lluvia extends Habilidad{
     public Lluvia(Image im, Vector2D posicion) {
         super(im, posicion);
         ralentizacion = 0.2F;
-        this.getCoste().put("uranio", 40);
-        this.getCoste().put("rodio", 30);
-        this.getCoste().put("grafeno", 20);
-        this.getCoste().put("radio", 30);
-        this.getCoste().put("cromo", 50);
+        this.getCoste().put("uranio", 100);
+        this.getCoste().put("rodio", 100);
+        this.getCoste().put("grafeno", 100);
+        this.getCoste().put("radio", 100);
+        this.getCoste().put("cromo", 100);
         this.getCoste().put("energia", 0);
         this.setNombre("Lluvia");
         Lluvia.accionHabilidad();

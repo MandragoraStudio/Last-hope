@@ -22,11 +22,11 @@ public class Fuego extends Habilidad{
     public Fuego(Image im, Vector2D posicion) {
         super(im, posicion);
         fuego = 2F;
-        this.getCoste().put("uranio", 100);
-        this.getCoste().put("rodio", 30);
-        this.getCoste().put("grafeno", 0);
-        this.getCoste().put("radio", 50);
-        this.getCoste().put("cromo", 25);
+        this.getCoste().put("uranio", 500);
+        this.getCoste().put("rodio", 500);
+        this.getCoste().put("grafeno", 500);
+        this.getCoste().put("radio", 500);
+        this.getCoste().put("cromo", 500);
         this.getCoste().put("energia", 0);
         this.setNombre("Fuego");
         Fuego.accionHabilidad();
