@@ -222,7 +222,8 @@ public class Ventana_Informacion implements IVentana {
 
             //brillo al bicho
             //TODO: remarcar el bicho elegido
-            g.drawImage(brillo, (int) ac.posicion.x - 5, (int) ac.posicion.y - 5, ac.width + 10, ac.getImagen().getHeight(null) + 10, null);
+            double offset = ac.height* Math.tan(45);
+            g.drawImage(brillo, (int) (ac.posicion.x - ((offset-ac.height)/2)), (int)( ac.posicion.y - ((offset-ac.height)/2)), (int)(ac.width + (offset/2)), (int)(ac.getImagen().getHeight(null) + (offset/2)), null);
             if (e.getVida() < 0) {
                 ac = null;
 
