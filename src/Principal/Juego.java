@@ -171,4 +171,9 @@ public class Juego {
 
         currentScreen = screens.get(screen);
     }
+
+    public IScreen getCurrentScreen() {
+        return currentScreen;
+    }
+
 }

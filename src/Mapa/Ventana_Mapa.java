@@ -17,6 +17,7 @@ import Informacion.Ventana_Informacion;
 import Personajes.CentralEnergia;
 import Personajes.Habilidad;
 import Principal.Juego;
+import Screens.GamePlayScreen;
 import UtilMath.Vector2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -219,11 +220,11 @@ public class Ventana_Mapa implements IVentana {
         }
         agregar.clear();
 
-        if (!pausa) {
-            for (Actor a : actores) {
-                a.update();
-            }
+
+        for (Actor a : actores) {
+            a.update();
         }
+
         for (Actor a : eliminar) {
             if (actores.contains(a)) {
                 actores.remove(a);
