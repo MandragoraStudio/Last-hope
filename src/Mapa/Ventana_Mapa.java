@@ -425,6 +425,7 @@ public class Ventana_Mapa implements IVentana {
         Ventana_Mapa.pausa = true;
         Ventana_Mapa.eliminaTodo();
         Ventana_Mapa.setNivel(0);
+        Juego.getJuego().jugador.setVida(100);
         Juego.getJuego().jugador.getRecursos().remove("energia");
         Juego.getJuego().jugador.getRecursos().put("energia", 0);
     }

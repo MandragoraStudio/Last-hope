@@ -44,9 +44,9 @@ public class LoadingScreen implements IScreen{
 
     public void update() {
         lTime += Globals.elapsedTime;
-        time=(int)( 0-((lTime/1000.0f)*30));
+        time=(int)( 90-((lTime/1000.0f)*30));
         if (time < 0) {
-            Juego.getJuego().changeScreen("Menu");
+            Juego.getJuego().changeScreen("Presentacion");
         }
     }
 

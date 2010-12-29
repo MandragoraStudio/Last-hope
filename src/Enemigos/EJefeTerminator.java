@@ -14,7 +14,7 @@ import UtilMath.Vector2D;
 public class EJefeTerminator extends Enemy {
 
     public EJefeTerminator (int nivel, Vector2D posicion){
-       super(10, (float) (0.5),500 + 50+nivel,50+nivel,10,0,posicion,"imagenes/tank-1-01.png",50);
+       super(10, (float) (0.5),500 + 45+nivel,50+nivel,5,0,posicion,"imagenes/tank-1-01.png",50);
     }
 }
 

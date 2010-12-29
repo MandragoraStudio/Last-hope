@@ -30,7 +30,7 @@ public class Mapa2 extends Mapa {
     }
 
     public void sendWave(int n) {
-        if (n + 1 <= 11) {
+        if (n + 1 <= 2) {
             if (n%1==0) {
                 for (int i = 0; i < 10; i++) {
                     Ventana_Mapa.addEnemy(new EMaster(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
@@ -54,11 +54,11 @@ public class Mapa2 extends Mapa {
             }
         }else{
             Map recursos = new HashMap<String, Integer>();
-            recursos.put("uranio", 1000);
-            recursos.put("rodio", 1000);
-            recursos.put("grafeno", 1000);
-            recursos.put("radio", 1000);
-            recursos.put("cromo", 1000);
+            recursos.put("uranio", 500);
+            recursos.put("rodio", 500);
+            recursos.put("grafeno", 500);
+            recursos.put("radio", 500);
+            recursos.put("cromo", 500);
             recursos.put("energia", 0);
             Jugador.agregaRecursos(recursos);
             int a[][]={

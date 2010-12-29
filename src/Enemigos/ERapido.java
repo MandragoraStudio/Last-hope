@@ -15,6 +15,6 @@ import UtilMath.Vector2D;
 public class ERapido extends Enemy {
 
     public ERapido(int nivel, Vector2D posicion){
-        super(3, (float)(4+(0.2)), 10 + 10+nivel, 1,0,0,posicion, "imagenes/ERapido.png",50);
+        super(3, (float)(4+(0.2)), 10 +nivel, 1,0,0,posicion, "imagenes/ERapido.png",50);
     }
 }
