@@ -28,14 +28,14 @@ public class Tower extends Actor {
     private float penetracion;
     private float fuego;
     private long recarga;
-    private float veneno;
+    private float acido;
     private Image im;
     private int atacando = 0;
     private long tRestante;
     private Enemy objetivo;
     public Map<String, Integer> coste;
 
-    public Tower(String nombre, float ataque, float areaDeAtaque, float rango, float congelacion, float penetracion, float fuego, long recarga, float veneno, Map<String, Integer> coste, Vector2D posicion, Image ima) {
+    public Tower(String nombre, float ataque, float areaDeAtaque, float rango, float congelacion, float penetracion, float fuego, long recarga, float acido, Map<String, Integer> coste, Vector2D posicion, Image ima) {
         super(ima, posicion, null);
         this.nombre = nombre;
         this.ataque = ataque;
@@ -44,8 +44,8 @@ public class Tower extends Actor {
         this.congelacion = congelacion;
         this.penetracion = penetracion;
         this.fuego = fuego;
-        this.recarga = Math.max(1,10000/recarga);
-        this.veneno = veneno;
+        this.recarga = Math.max(1, 10000 / recarga);
+        this.acido = acido;
         this.im = ima;
         this.coste = coste;
         tRestante = 0;
@@ -54,24 +54,27 @@ public class Tower extends Actor {
     @Override
     public void update() {
         boton.update();
-        if (tRestante >= 0) {
-            tRestante -= Globals.elapsedTime;
-
-        }
-        if (enemigoATiro() && isCargada()) {
-            ataca(eligeEnemigo(enemigosATiro()), true);
-        }
-        if (objetivo != null) {
-            if (this.estaAlAlcance(objetivo.posicion)) {
-                rotation = posicion.subs(objetivo.posicion).getAngle();
-
+        if (!Ventana_Mapa.pausa) {
+            if (tRestante >= 0) {
+                tRestante -= Globals.elapsedTime;
 
             }
+            if (enemigoATiro() && isCargada()) {
+                ataca(eligeEnemigo(enemigosATiro()), true);
+            }
+            if (objetivo != null) {
+                if (this.estaAlAlcance(objetivo.posicion)) {
+                    rotation = posicion.subs(objetivo.posicion).getAngle();
 
+
+                }
+
+            }
         }
     }
 
     public void ataca(Enemy e, boolean extenderAtaque) {
+
         if (e == null) {
             return;
         }
@@ -88,11 +91,11 @@ public class Tower extends Actor {
         if (congelacion > 0) {
             e.congelar(10 / (congelacion + 10), 45);
         }
-        if (veneno > 0) {
-            e.envenenar(veneno / 60, 60);
+        if (acido > 0) {
+            e.envenenar(acido / 60, 60);
         }
         if (fuego > 0) {
-            e.envenenar(veneno / 60, 60);
+            e.quemar(fuego / 60, 60);
         }
         if (extenderAtaque && this.areaDeAtaque > 0) {
             for (Enemy enemigo : enemigosAfectados(e)) {
@@ -229,8 +232,8 @@ public class Tower extends Actor {
         return recarga;
     }
 
-    public float getVeneno() {
-        return veneno;
+    public float getAcido() {
+        return acido;
     }
 
     public void setAreaDeAtaque(float areaDeAtaque) {
@@ -269,8 +272,8 @@ public class Tower extends Actor {
         this.recarga = recarga;
     }
 
-    public void setVeneno(float veneno) {
-        this.veneno = veneno;
+    public void setAcido(float acido) {
+        this.acido = acido;
     }
 
     public String getNombre() {
@@ -288,7 +291,7 @@ public class Tower extends Actor {
         Tower dev;
         Vector2D posicion = new Vector2D(this.posicion.x, this.posicion.y);
         Image ima = im;
-        dev = new Tower(nombre, ataque, areaDeAtaque, rango, congelacion, penetracion, fuego, 10000/recarga, veneno, coste, posicion, ima);
+        dev = new Tower(nombre, ataque, areaDeAtaque, rango, congelacion, penetracion, fuego, 10000 / recarga, acido, coste, posicion, ima);
         return dev;
     }
 

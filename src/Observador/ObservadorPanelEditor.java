@@ -40,67 +40,92 @@ public class ObservadorPanelEditor implements IObservador {
         } else if (boton.getNombre().equals("Daño")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de daño:", "Daño", JOptionPane.INFORMATION_MESSAGE);
             try {
-                Float.parseFloat(nivel);
-                ContenidoEditor.getContenidoEditor().inicializaAtributo("Daño", nivel);
+
+                if (Float.parseFloat(nivel) >= 0 && Float.parseFloat(nivel) <= 999) {
+                    ContenidoEditor.getContenidoEditor().inicializaAtributo("Daño", nivel);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
+                }
             } catch (Exception nfe) {
-                JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
+                JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
             }
 
         } else if (boton.getNombre().equals("Rango")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Rango:", "Rango", JOptionPane.INFORMATION_MESSAGE);
             try {
-                Float.parseFloat(nivel);
-                ContenidoEditor.getContenidoEditor().inicializaAtributo("Rango", nivel);
+                if (Float.parseFloat(nivel) >= 0 && Float.parseFloat(nivel) <= 999) {
+                    ContenidoEditor.getContenidoEditor().inicializaAtributo("Rango", nivel);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
+                }
             } catch (Exception nfe) {
-                JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
+                JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
             }
         } else if (boton.getNombre().equals("Área de daño")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Área de daño:", "Área de daño", JOptionPane.INFORMATION_MESSAGE);
             try {
-                Float.parseFloat(nivel);
-                ContenidoEditor.getContenidoEditor().inicializaAtributo("Área de daño", nivel);
+                if (Float.parseFloat(nivel) >= 0 && Float.parseFloat(nivel) <= 999) {
+                    ContenidoEditor.getContenidoEditor().inicializaAtributo("Área de daño", nivel);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
+                }
             } catch (Exception nfe) {
-                JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
+                JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
             }
         } else if (boton.getNombre().equals("Congelación")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Congelación:", "Congelación", JOptionPane.INFORMATION_MESSAGE);
             try {
-                Float.parseFloat(nivel);
-                ContenidoEditor.getContenidoEditor().inicializaAtributo("Congelación", nivel);
+                if (Float.parseFloat(nivel) >= 0 && Float.parseFloat(nivel) <= 999) {
+                    ContenidoEditor.getContenidoEditor().inicializaAtributo("Congelación", nivel);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
+                }
             } catch (Exception nfe) {
-                JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
+                JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
             }
         } else if (boton.getNombre().equals("Fuego")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Fuego:", "Fuego", JOptionPane.INFORMATION_MESSAGE);
             try {
-                Float.parseFloat(nivel);
-                ContenidoEditor.getContenidoEditor().inicializaAtributo("Fuego", nivel);
+                if (Float.parseFloat(nivel) >= 0 && Float.parseFloat(nivel) <= 999) {
+                    ContenidoEditor.getContenidoEditor().inicializaAtributo("Fuego", nivel);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
+                }
             } catch (Exception nfe) {
-                JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
+                JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
             }
-        } else if (boton.getNombre().equals("Veneno")) {
-            String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Veneno:", "Veneno", JOptionPane.INFORMATION_MESSAGE);
+        } else if (boton.getNombre().equals("Ácido")) {
+            String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Ácido:", "Ácido", JOptionPane.INFORMATION_MESSAGE);
             try {
-                Float.parseFloat(nivel);
-                ContenidoEditor.getContenidoEditor().inicializaAtributo("Veneno", nivel);
+                if (Float.parseFloat(nivel) >= 0 && Float.parseFloat(nivel) <= 999) {
+                    ContenidoEditor.getContenidoEditor().inicializaAtributo("Ácido", nivel);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
+                }
             } catch (Exception nfe) {
-                JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
+                JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
             }
         } else if (boton.getNombre().equals("Recarga")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Recarga:", "Recarga", JOptionPane.INFORMATION_MESSAGE);
             try {
-                Float.parseFloat(nivel);
-                ContenidoEditor.getContenidoEditor().inicializaAtributo("Recarga", nivel);
+                if (Float.parseFloat(nivel) >= 0 && Float.parseFloat(nivel) <= 999) {
+                    ContenidoEditor.getContenidoEditor().inicializaAtributo("Recarga", nivel);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
+                }
             } catch (Exception nfe) {
-                JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
+                JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 99");
             }
         } else if (boton.getNombre().equals("Penetración")) {
             String nivel = JOptionPane.showInputDialog(null, "Introduzca el nivel de Penetración:", "Penetración", JOptionPane.INFORMATION_MESSAGE);
             try {
-                Float.parseFloat(nivel);
-                ContenidoEditor.getContenidoEditor().inicializaAtributo("Penetración", nivel);
+                if (Float.parseFloat(nivel) >= 0 && Float.parseFloat(nivel) <= 999) {
+                    ContenidoEditor.getContenidoEditor().inicializaAtributo("Penetración", nivel);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
+                }
             } catch (Exception nfe) {
-                JOptionPane.showMessageDialog(null, "Debe Introducir un numero");
+                JOptionPane.showMessageDialog(null, "Debe Introducir un numero entre 0 y 999");
             }
         } else if (boton.getNombre().equals("cambiaImagen")) {
             ContenidoEditor.getContenidoEditor().cambiaImagen("imagenes/Misiles.png");

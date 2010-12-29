@@ -34,6 +34,9 @@ public class ObservadorMenu implements IObservador {
             System.exit(0);
         } else if (boton.getNombre().equals("Credits")){
             Juego.getJuego().changeScreen("Credits");
+
+        }else if (boton.getNombre().equals("Tutorial")){
+            Juego.getJuego().changeScreen("Tutorial");
         }
     }
 }

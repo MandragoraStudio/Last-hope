@@ -6,6 +6,7 @@
 package Screens;
 
 import Graficos.Boton;
+import Graficos.BotonGeneral;
 import Graficos.Lienzo;
 import Observador.ObservadorTransicionFase;
 import Principal.Juego;
@@ -26,9 +27,10 @@ public class FinFase2 implements IScreen{
 
     private FinFase2() {
         im = Lienzo.cargarImagen("imagenes/FinFase2.png");
-        Image img = null;
+        Image img = Lienzo.cargarImagen("imagenes/skip.png");
+        Image img2 = Lienzo.cargarImagen("imagenes/skip-pulsado.png");
         try {
-                img = Lienzo.cargarImagen("imagenes/skip.png");
+            skip = new BotonGeneral(img, img2, "skip", 900, 550, img.getWidth(null), img.getHeight(null));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -50,10 +52,8 @@ public class FinFase2 implements IScreen{
         skip.update();
     }
 
-    public void draw(Graphics2D g) {
-        
+    public void draw(Graphics2D g) {   
         g.drawImage(im, 0, 0, Juego.getJuego().WIDTH, Juego.getJuego().HEIGHT, null);
-        
         skip.draw(g);
     }
 }

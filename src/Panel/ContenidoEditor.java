@@ -74,14 +74,14 @@ public class ContenidoEditor extends Contenido {
         addBotonPorDefecto(fondoAtributos, "Área de daño");
         addBotonPorDefecto(fondoAtributos, "Congelación");
         addBotonPorDefecto(fondoAtributos, "Fuego");
-        addBotonPorDefecto(fondoAtributos, "Veneno");
+        addBotonPorDefecto(fondoAtributos, "Ácido");
         addBotonPorDefecto(fondoAtributos, "Recarga");
         addBotonPorDefecto(fondoAtributos, "Penetración");
         // añadimos los botones que seleccionan la imagen para la torre
         addBoton(img1, img1, "cambiaImagen", 20, 320);
         addBoton(img2, img2, "cambiaImagen2", 120, 320);
         addBoton(img3, img3, "cambiaImagen3", 220, 320);
-        addBoton(img6, img7, "cambiaImagenPorTeclado", 20, 390);
+        addBoton(img6, img7, "cambiaImagenPorTeclado", 35, 390);
 
         //añadimos el boton que crea botones en el contenidoTorres para que creen las torres
         Boton b = new BotonGeneral(img4, img5, "creaBotonCreador", (int) posicion.x + getImagen().getWidth(null) - img4.getWidth(null)-12, (int) posicion.y + getImagen().getHeight(null) - img4.getHeight(null)-20, img4.getWidth(null), img4.getHeight(null));
@@ -94,7 +94,7 @@ public class ContenidoEditor extends Contenido {
         atributos.put("Área de daño", "0");
         atributos.put("Congelación", "0");
         atributos.put("Fuego", "0");
-        atributos.put("Veneno", "0");
+        atributos.put("Ácido", "0");
         atributos.put("Recarga", "0");
         atributos.put("Penetración", "0");
     }
@@ -168,7 +168,7 @@ public class ContenidoEditor extends Contenido {
                     Float.parseFloat(getAtributos().get("Penetración")),
                     Float.parseFloat(getAtributos().get("Fuego")),
                     Long.parseLong(getAtributos().get("Recarga")),
-                    Float.parseFloat(getAtributos().get("Veneno")),
+                    Float.parseFloat(getAtributos().get("Ácido")),
                     calculaCosteProduccion(),
                     Vector2D.fuera,
                     this.imagenTorre)));
@@ -185,19 +185,22 @@ public class ContenidoEditor extends Contenido {
         int c;
         c = 0;
         costeProduccion.put("uranio", c);
+        
         c = Integer.parseInt(atributos.get("Daño")) * 5 + Integer.parseInt(atributos.get("Área de daño")) * 8 + Integer.parseInt(atributos.get("Rango"))/2 + Integer.parseInt(atributos.get("Fuego"));
+
         costeProduccion.put("rodio", c);
 
-        c = Integer.parseInt(atributos.get("Recarga"))/10 + Integer.parseInt(atributos.get("Rango"))/2;
+        c = Integer.parseInt(atributos.get("Recarga"))/10 + Integer.parseInt(atributos.get("Fuego"))/2 + Integer.parseInt(atributos.get("Rango"))/2;
         costeProduccion.put("grafeno", c);
 
         c = Integer.parseInt(atributos.get("Daño"))*5 + Integer.parseInt(atributos.get("Congelación")) * 10 + Integer.parseInt(atributos.get("Fuego"));
         costeProduccion.put("radio", c);
 
-        c = Integer.parseInt(atributos.get("Rango"))/2 + Integer.parseInt(atributos.get("Veneno"))*6 + Integer.parseInt(atributos.get("Penetración")) * 8;
+        c = Integer.parseInt(atributos.get("Rango"))/2 + Integer.parseInt(atributos.get("Fuego"))/2 + Integer.parseInt(atributos.get("Ácido"))*6 + Integer.parseInt(atributos.get("Penetración")) * 8;
         costeProduccion.put("cromo", c);
 
-        c = Integer.parseInt(atributos.get("Daño") + Integer.parseInt(atributos.get("Fuego"))+ Integer.parseInt(atributos.get("Rango"))/2+ Integer.parseInt(atributos.get("Congelación")) + Integer.parseInt(atributos.get("Área de daño")) + Integer.parseInt(atributos.get("Veneno") + atributos.get("Recarga"))/10);
+        c = Integer.parseInt(atributos.get("Daño"))/5 + Integer.parseInt(atributos.get("Recarga"))/10 + Integer.parseInt(atributos.get("Fuego"))/5+ Integer.parseInt(atributos.get("Rango"))/5+ Integer.parseInt(atributos.get("Congelación"))/5 + Integer.parseInt(atributos.get("Área de daño"))/10 + Integer.parseInt(atributos.get("Ácido"))/5;
+
         costeProduccion.put("energia", c);
 
 

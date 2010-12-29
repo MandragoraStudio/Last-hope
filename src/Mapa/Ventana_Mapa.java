@@ -19,6 +19,7 @@ import Personajes.Habilidad;
 import Principal.Juego;
 import UtilMath.Vector2D;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.MouseInfo;
 import java.util.ArrayList;
@@ -134,6 +135,7 @@ public class Ventana_Mapa implements IVentana {
     }
 
     public void draw(Graphics2D g) {
+
         //limpio la pantalla con un color arenilla
         g.setColor(new Color(0xEBC053));
         g.fillRect(0, 0, WIDTH, HEIGHT);
@@ -185,7 +187,12 @@ public class Ventana_Mapa implements IVentana {
 
         //aqui datos de debug
         //pintaDatosDebug(g);
-
+        if (Ventana_Mapa.pausa) {
+            g.setColor(Color.red);
+            g.setFont(new Font("SansSerif", Font.BOLD, 40));
+            g.drawString("PAUSA", 350, 250);
+            g.setFont(new Font("SansSerif", Font.BOLD, 12));
+        }
     }
 
     public static void addEnemy(Enemy e) {
@@ -219,11 +226,11 @@ public class Ventana_Mapa implements IVentana {
         }
         agregar.clear();
 
-        if (!pausa) {
-            for (Actor a : actores) {
-                a.update();
-            }
+
+        for (Actor a : actores) {
+            a.update();
         }
+
         for (Actor a : eliminar) {
             if (actores.contains(a)) {
                 actores.remove(a);

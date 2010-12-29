@@ -97,7 +97,7 @@ public class Ventana_Informacion implements IVentana {
     }
 
     public void obserbaActor(Actor ac) {
-        this.ac = ac;
+        Ventana_Informacion.ac = ac;
     }
 
     public void draw(Graphics2D g) {
@@ -157,7 +157,8 @@ public class Ventana_Informacion implements IVentana {
                 g.drawString("-" + torre.coste.get("radio"), x + 450, y + 70);
                 g.drawString("-" + torre.coste.get("cromo"), x + 550, y + 70);
                 g.drawString("-" + torre.coste.get("energia") + "/" + Juego.getJuego().jugador.getEnergiaMax(), x + 650, y + 70);
-            } else {
+            }
+            if(hab!=null){
                 g.drawString("-" + hab.getCoste().get("uranio"), x + 150, y + 70);
                 g.drawString("-" + hab.getCoste().get("rodio"), x + 250, y + 70);
                 g.drawString("-" + hab.getCoste().get("grafeno"), x + 350, y + 70);
@@ -165,7 +166,7 @@ public class Ventana_Informacion implements IVentana {
                 g.drawString("-" + hab.getCoste().get("cromo"), x + 550, y + 70);
                 if (hab instanceof CentralEnergia) {
                     g.setColor(Color.GREEN);
-                    g.drawString("+" + 50 + "/" + (Juego.getJuego().jugador.getEnergiaMax() + 50), x + 650, y + 70);
+                    g.drawString("+" + CentralEnergia.energiaProducida + "/" + (Juego.getJuego().jugador.getEnergiaMax() + CentralEnergia.energiaProducida), x + 650, y + 70);
                 } else {
                     g.drawString("-" + hab.getCoste().get("energia") + "/" + Juego.getJuego().jugador.getEnergiaMax(), x + 650, y + 70);
                 }
@@ -197,29 +198,32 @@ public class Ventana_Informacion implements IVentana {
 
         if (ac == null) {
             //TODO: esto hay que cambiarlo por una informacion vacia por defecto!!
-            g.drawImage(health, x + 940, y + 28, 17, 15, null);
-            g.drawImage(armor, x + 940, y + 48, 17, 15, null);
-            g.drawImage(atack, x + 940, y + 68, 17, 15, null);
-            g.drawString("Vida: ---", x + 860, y + 40);
-            g.drawString("Armadura: ---", x + 860, y + 60);
-            g.drawString("Daño: ---", x + 860, y + 80);
+            g.drawImage(health, x + 940, y + 13, 17, 15, null);
+            g.drawImage(armor, x + 940, y + 33, 17, 15, null);
+            g.drawImage(atack, x + 940, y + 53, 17, 15, null);
+            g.drawString("Vida: ---", x + 860, y + 20);
+            g.drawString("Armadura: ---", x + 860, y + 45);
+            g.drawString("Daño: ---", x + 860, y + 65);
+            g.drawString("Regeneración: ---", x + 860, y + 85);
             g.drawString("?", x + 985, y + 55);
             //ac=new EBasico(1, new Vector2D(-100,-100));
         } else {
-            g.drawImage(ac.getImagen(), x + 965, y + 30, null);
+            g.drawImage(ac.getImagen(), x + 965, y + 25, ac.getImagen().getWidth(null)+10, ac.getImagen().getHeight(null), null);
         }
         if (ac instanceof Enemy) {
             Enemy e = (Enemy) ac;
-            g.drawImage(health, x + 940, y + 28, 17, 15, null);
-            g.drawImage(armor, x + 940, y + 48, 17, 15, null);
-            g.drawImage(atack, x + 940, y + 68, 17, 15, null);
-            g.drawString("Vida: " + (int) e.getVida(), x + 860, y + 40);
-            g.drawString("Armadura: " + e.getArmadura(), x + 860, y + 60);
-            g.drawString("Daño: " + e.getDano(), x + 860, y + 80);
+            g.drawImage(health, x + 940, y + 13, 17, 15, null);
+            g.drawImage(armor, x + 940, y + 33, 17, 15, null);
+            g.drawImage(atack, x + 940, y + 53, 17, 15, null);
+            g.drawString("Vida: " + (int) e.getVida(), x + 860, y + 25);
+            g.drawString("Armadura: " + e.getArmadura(), x + 860, y + 45);
+            g.drawString("Daño: " + e.getDano(), x + 860, y + 65);
+            g.drawString("Regeneración: " + e.getRegeneracion(), x + 860, y + 85);
 
             //brillo al bicho
             //TODO: remarcar el bicho elegido
-            g.drawImage(brillo, (int) ac.posicion.x - 5, (int) ac.posicion.y - 5, ac.width + 10, ac.getImagen().getHeight(null) + 10, null);
+            double offset = ac.height* Math.tan(45);
+            g.drawImage(brillo, (int) (ac.posicion.x - ((offset-ac.height)/2)), (int)( ac.posicion.y - ((offset-ac.height)/2)), (int)(ac.width + (offset/2)), (int)(ac.getImagen().getHeight(null) + (offset/2)), null);
             if (e.getVida() < 0) {
                 ac = null;
 

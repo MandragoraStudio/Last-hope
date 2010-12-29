@@ -32,5 +32,6 @@ public class BotonCreadorHabilidad extends Boton{
 
     public void creaHabilidad(){
         Ventana_Mapa.creaHabilidad(h);
+        Ventana_Mapa.torre=null;
     }
 }

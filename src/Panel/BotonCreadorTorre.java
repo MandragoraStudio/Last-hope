@@ -29,6 +29,7 @@ public class BotonCreadorTorre extends BotonGeneral {
 
     public void creaTorre() {
         Ventana_Mapa.creaTorre(t);
+        Ventana_Mapa.habilidad=null;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class BotonCreadorTorre extends BotonGeneral {
                 g.drawString("Area de daño: "+t.getAreaDeAtaque(), 620, 65);
                 g.drawString("Congelacion: "+t.getCongelacion(), 620, 80);
                 g.drawString("Fuego: "+t.getFuego(), 620, 95);
-                g.drawString("Veneno: "+t.getVeneno(), 620, 110);
+                g.drawString("Ácido: "+t.getAcido(), 620, 110);
                 g.drawString("Recarga: "+t.getRecarga(), 620, 125);
                 g.drawString("Penetracion: "+t.getPenetracion(), 620, 140);
                 

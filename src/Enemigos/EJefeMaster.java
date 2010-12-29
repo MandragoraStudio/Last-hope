@@ -14,7 +14,7 @@ import UtilMath.Vector2D;
 public class EJefeMaster extends Enemy {
 
     public EJefeMaster (int nivel, Vector2D posicion){
-       super(8, (float) (8+0.8*nivel),300 + 300*nivel,28+nivel,5,4,posicion,"imagenes/EBlindado.png",50);
+       super(8, (float) (1+0.4),60 + 30*nivel,15+nivel,6,4,posicion,"imagenes/EBlindado.png",50);
     }
 }
 

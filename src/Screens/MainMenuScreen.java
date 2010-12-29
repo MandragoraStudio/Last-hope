@@ -59,7 +59,8 @@ private List<Boton> botones; // botones del menu
         Image img4 = null;
         Image img5 = null;
         Image img6 = null;
-
+        Image img7 = null;
+        Image img8 = null;
         try {
                 img = Lienzo.cargarImagen("imagenes/iplay.png");
                 img2 = Lienzo.cargarImagen("imagenes/iplay-pulsado.png");
@@ -67,19 +68,24 @@ private List<Boton> botones; // botones del menu
                 img4 = Lienzo.cargarImagen("imagenes/iexit-pulsado.png");
                 img5 = Lienzo.cargarImagen("imagenes/icredits.png");
                 img6 = Lienzo.cargarImagen("imagenes/icredits-pulsado.png");
+                img7 = Lienzo.cargarImagen("imagenes/tutorial.png");
+                img8 = Lienzo.cargarImagen("imagenes/tutorial-pulsado.png");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         //añadimos los botones al menu
         Boton b=new BotonGeneral(img, img2, "start", 70, 32, img.getWidth(null), img.getHeight(null));
         new ObservadorMenu(b);
-        Boton b3=new BotonGeneral(img3, img4, "exit", 64, 404, img3.getWidth(null), img3.getHeight(null));
+        Boton b3=new BotonGeneral(img3, img4, "exit", 65, 404, img3.getWidth(null), img3.getHeight(null));
         new ObservadorMenu(b3);
-        Boton a1 = new BotonGeneral(img5, img6, "Credits", 65, 218, img5.getWidth(null), img5.getHeight(null));
+        Boton a1 = new BotonGeneral(img5, img6, "Credits", 67, 218, img5.getWidth(null), img5.getHeight(null));
         new ObservadorMenu(a1);
+        Boton a2 = new BotonGeneral(img7, img8, "Tutorial", 890, 515, img7.getWidth(null), img7.getHeight(null));
+        new ObservadorMenu(a2);
         botones.add(a1);
         botones.add(b);
         botones.add(b3);
+        botones.add(a2);
     }
     public void update() {
         //actualizamos todos los botones

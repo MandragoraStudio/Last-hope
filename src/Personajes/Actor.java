@@ -27,7 +27,7 @@ public abstract class Actor {
     int currentFrame = 0;
     int numFrames;
     //ancho del fotograma en al textura
-    int sWidth;
+    public int sWidth;
     int sHeight;
     //ancho del actor en pantalla
     public int width;
