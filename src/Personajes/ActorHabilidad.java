@@ -24,11 +24,13 @@ public class ActorHabilidad extends Actor {
 
     @Override
     public void update(){
+        if(!Ventana_Mapa.pausa){
         this.posicion= this.posicion.add(velocidad);
         if(posicion.y<-500){
             Ventana_Mapa.eliminar.add(this);
         }
         super.update();
+        }
     }
 
 }

@@ -54,7 +54,7 @@ public class ContenidoTorres extends Contenido {
         Image img8 = Lienzo.cargarImagen("imagenes/pausa.png");
         Image img9 = Lienzo.cargarImagen("imagenes/pausapulsada.png");
         Image img10 = Lienzo.cargarImagen("imagenes/play.png");
-        Image img11 = Lienzo.cargarImagen("imagenes/playpulsado.png");
+        Image img11 = Lienzo.cargarImagen("imagenes/playPulsado.png");
         addBoton(img6, img7, "Menu", getImagen().getWidth(null) - img6.getWidth(null) - 10, getImagen().getHeight(null) - img6.getHeight(null) - 20);
         addBoton(img8, img9, "Pausa", 70, 440);
         addBoton(img10, img11, "Play", 30, 440);
@@ -65,7 +65,7 @@ public class ContenidoTorres extends Contenido {
         coste.put("radio", 40);
         coste.put("cromo", 0);
         coste.put("energia", 20);
-        BotonCreadorTorre b1 = new BotonCreadorTorre(img1, img1, "Torreta", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower("Torreta",20, 0, 100, 0, 0, 0, 7, 0, coste, Vector2D.fuera, img1));
+        BotonCreadorTorre b1 = new BotonCreadorTorre(img1, img1, "Torreta", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower("Torreta",10, 0, 100, 0, 0, 0, 7, 0, coste, Vector2D.fuera, img1));
         new Observador_CreadorTorre(b1);
         addBotonPorDefecto(b1);
         Map<String, Integer> coste2 = new LinkedHashMap<String, Integer>();
@@ -75,7 +75,7 @@ public class ContenidoTorres extends Contenido {
         coste2.put("radio", 50);
         coste2.put("cromo", 25);
         coste2.put("energia", 40);
-        BotonCreadorTorre b2 = new BotonCreadorTorre(img2, img2, "Teminator", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower("Teminator",30, 10, 120, 0, 5, 0, 5, 0, coste2, Vector2D.fuera, img2));
+        BotonCreadorTorre b2 = new BotonCreadorTorre(img2, img2, "Teminator", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower("Teminator",15, 0, 120, 0, 5, 0, 5, 0, coste2, Vector2D.fuera, img2));
         new Observador_CreadorTorre(b2);
         addBotonPorDefecto(b2);
         Map<String, Integer> coste3 = new LinkedHashMap<String, Integer>();
@@ -85,7 +85,7 @@ public class ContenidoTorres extends Contenido {
         coste3.put("radio", 60);
         coste3.put("cromo", 0);
         coste3.put("energia", 50);
-        BotonCreadorTorre b3 = new BotonCreadorTorre(img3, img3, "Frio y Veneno", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower("Frio y Veneno", 2, 15, 150, 50, 0, 0, 20, 30, coste3, Vector2D.fuera, img3));
+        BotonCreadorTorre b3 = new BotonCreadorTorre(img3, img3, "Frio y Veneno", this.calculaX(), this.calculaY(), img1.getWidth(null), img1.getHeight(null), new Tower("Frio y Veneno", 2, 0, 150, 50, 0, 0, 7, 5, coste3, Vector2D.fuera, img3));
         new Observador_CreadorTorre(b3);
         addBotonPorDefecto(b3);
     }

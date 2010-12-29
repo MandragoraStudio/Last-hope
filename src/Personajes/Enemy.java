@@ -123,17 +123,13 @@ public abstract class Enemy extends Actor {
         return new Vector2D(x, y);
     }
 
-    public boolean saleCaja() {
-        return r.nextBoolean();
-    }
-
     public void muere() {
         Ventana_Mapa.eliminaActor(this);
         Ventana_Mapa.agregar.add(new Splash(this.centro()));
         Juego.getJuego().jugador.agregaPuntos(this.dano);
         //recursos que le vas a dar al jugador
         //TODO: dar recursos al jugador en funcion de las caracteristicas del enemigo, de manera proporcionada
-        if (saleCaja()) {
+        
             Map<String, Integer> recursos = new HashMap<String, Integer>();
             recursos.put("uranio", (int) this.maxVida / 10);
             recursos.put("rodio", (int) this.regeneracion + this.dano);
@@ -142,7 +138,7 @@ public abstract class Enemy extends Actor {
             recursos.put("cromo", (int) this.armadura + this.dano);
             //Jugador.agregaRecursos(recursos);
             Ventana_Mapa.agregar.add(new CajaRecurso(posicion, recursos, new Vector2D((float) (posicion.x + Math.random() * 50 - 25), (float) (posicion.y + Math.random() * 50 - 25))));
-        }
+        
 
     }
 

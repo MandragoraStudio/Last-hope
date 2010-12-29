@@ -25,12 +25,12 @@ public class Mapa2 extends Mapa {
     public Mapa2(int m[][]) {
         super(m);
         this.fondo = Lienzo.cargarImagen("imagenes/Tiles/arena4.jpg");
-        this.hierba = Lienzo.cargarImagen("imagenes/Tiles/desierto camino.png");
+        this.hierba = Lienzo.cargarImagen("imagenes/Tiles/desierto.png");
         this.id=2;
     }
 
     public void sendWave(int n) {
-        if (n + 1 <= 2) {
+        if (n + 1 <= 11) {
             if (n%1==0) {
                 for (int i = 0; i < 10; i++) {
                     Ventana_Mapa.addEnemy(new EMaster(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));

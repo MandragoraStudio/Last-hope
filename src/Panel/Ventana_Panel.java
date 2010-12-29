@@ -75,7 +75,7 @@ public class Ventana_Panel implements IVentana {
         try {
             //cargamos las imagenes de las pestañas
             Image img = Lienzo.cargarImagen("imagenes/torres.png");
-            Image img2 = Lienzo.cargarImagen("imagenes/Torres2.png");
+            Image img2 = Lienzo.cargarImagen("imagenes/torres2.png");
             Image img3 = Lienzo.cargarImagen("imagenes/editor.jpg");
             Image img4 = Lienzo.cargarImagen("imagenes/editor2.png");
             Image img5 = Lienzo.cargarImagen("imagenes/habilidades.png");

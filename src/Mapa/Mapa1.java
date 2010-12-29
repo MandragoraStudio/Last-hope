@@ -6,7 +6,6 @@ import Enemigos.EMaster;
 import Enemigos.ERapido;
 import Enemigos.ETerminator;
 import Principal.Juego;
-import Principal.Jugador;
 import UtilMath.Vector2D;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +22,7 @@ public class Mapa1 extends Mapa {
     }
 
     public void sendWave(int n) {
-        if (n + 1 <= 2) {
+        if (n + 1 <= 11) {
             if (n%1==0) {
                 for (int i = 0; i < 10; i++) {
                     Ventana_Mapa.addEnemy(new EBasico(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));

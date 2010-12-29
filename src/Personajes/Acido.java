@@ -22,11 +22,11 @@ public class Acido extends Habilidad{
     public Acido(Image im, Vector2D posicion) {
         super(im, posicion);
         veneno = 2F;
-        this.getCoste().put("uranio", 300);
-        this.getCoste().put("rodio", 300);
-        this.getCoste().put("grafeno", 300);
-        this.getCoste().put("radio", 300);
-        this.getCoste().put("cromo", 300);
+        this.getCoste().put("uranio", 1500);
+        this.getCoste().put("rodio", 1500);
+        this.getCoste().put("grafeno", 1500);
+        this.getCoste().put("radio", 1500);
+        this.getCoste().put("cromo", 1500);
         this.getCoste().put("energia", 0);
         this.setNombre("Ácido");
         Acido.accionHabilidad();

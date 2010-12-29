@@ -90,12 +90,12 @@ public class ContenidoEditor extends Contenido {
         //inicializamos los atributos
         atributos.put("Nombre", "-Nombre aqui-");
         atributos.put("Daño", "0");
-        atributos.put("Rango", "0");
+        atributos.put("Rango", "100");
         atributos.put("Área de daño", "0");
         atributos.put("Congelación", "0");
         atributos.put("Fuego", "0");
         atributos.put("Ácido", "0");
-        atributos.put("Recarga", "0");
+        atributos.put("Recarga", "1");
         atributos.put("Penetración", "0");
     }
 
@@ -186,20 +186,20 @@ public class ContenidoEditor extends Contenido {
         c = 0;
         costeProduccion.put("uranio", c);
         
-        c = Integer.parseInt(atributos.get("Daño")) * 5 + Integer.parseInt(atributos.get("Área de daño")) * 8 + Integer.parseInt(atributos.get("Rango"))/2 + Integer.parseInt(atributos.get("Fuego"));
+        c = Integer.parseInt(atributos.get("Daño")) * 5 + Integer.parseInt(atributos.get("Área de daño")) * 8 + Integer.parseInt(atributos.get("Rango"))/2 + Integer.parseInt(atributos.get("Fuego"))*3;
 
         costeProduccion.put("rodio", c);
 
-        c = Integer.parseInt(atributos.get("Recarga"))/10 + Integer.parseInt(atributos.get("Fuego"))/2 + Integer.parseInt(atributos.get("Rango"))/2;
+        c = Integer.parseInt(atributos.get("Recarga"))*5 + Integer.parseInt(atributos.get("Fuego"))*3 + Integer.parseInt(atributos.get("Rango"))/2;
         costeProduccion.put("grafeno", c);
 
-        c = Integer.parseInt(atributos.get("Daño"))*5 + Integer.parseInt(atributos.get("Congelación")) * 10 + Integer.parseInt(atributos.get("Fuego"));
+        c = Integer.parseInt(atributos.get("Daño"))*5 + Integer.parseInt(atributos.get("Congelación")) * 3 + Integer.parseInt(atributos.get("Fuego"))*3;
         costeProduccion.put("radio", c);
 
-        c = Integer.parseInt(atributos.get("Rango"))/2 + Integer.parseInt(atributos.get("Fuego"))/2 + Integer.parseInt(atributos.get("Ácido"))*6 + Integer.parseInt(atributos.get("Penetración")) * 8;
+        c = Integer.parseInt(atributos.get("Rango"))/2 + Integer.parseInt(atributos.get("Fuego"))*3 + Integer.parseInt(atributos.get("Ácido"))*3 + Integer.parseInt(atributos.get("Penetración")) * 5;
         costeProduccion.put("cromo", c);
 
-        c = Integer.parseInt(atributos.get("Daño"))/5 + Integer.parseInt(atributos.get("Recarga"))/10 + Integer.parseInt(atributos.get("Fuego"))/5+ Integer.parseInt(atributos.get("Rango"))/5+ Integer.parseInt(atributos.get("Congelación"))/5 + Integer.parseInt(atributos.get("Área de daño"))/10 + Integer.parseInt(atributos.get("Ácido"))/5;
+        c = Integer.parseInt(atributos.get("Daño"))/5 + Integer.parseInt(atributos.get("Recarga"))/2 + Integer.parseInt(atributos.get("Fuego"))/5+ Integer.parseInt(atributos.get("Rango"))/5+ Integer.parseInt(atributos.get("Congelación"))/5 + Integer.parseInt(atributos.get("Área de daño"))/2 + Integer.parseInt(atributos.get("Ácido"))/5;
 
         costeProduccion.put("energia", c);
 

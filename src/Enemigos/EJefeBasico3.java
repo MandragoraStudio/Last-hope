@@ -14,7 +14,7 @@ import UtilMath.Vector2D;
 public class EJefeBasico3 extends Enemy {
 
     public EJefeBasico3 (int nivel, Vector2D posicion){
-       super(6, (float) (3+(0.4)),50 + 50*nivel,10+nivel,4,2,posicion,"imagenes/tank-2-01.png",50);
+       super(6, (float) (3+(0.4)),50 + 50+nivel,10+nivel,4,2,posicion,"imagenes/tank-2-01.png",50);
     }
 }
 
