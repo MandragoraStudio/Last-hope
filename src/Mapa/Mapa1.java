@@ -22,7 +22,7 @@ public class Mapa1 extends Mapa {
     }
 
     public void sendWave(int n) {
-        if (n + 1 <= 11) {
+        if (n + 1 <= 6) {
             if (n%1==0) {
                 for (int i = 0; i < 10; i++) {
                     Ventana_Mapa.addEnemy(new EBasico(n, new Vector2D(10, (int) (-Ventana_Mapa.casillaWidth * 1.3 * i))));
@@ -46,11 +46,11 @@ public class Mapa1 extends Mapa {
             }
         } else {
             Map recursos = new HashMap<String, Integer>();
-            recursos.put("uranio", 500);
-            recursos.put("rodio", 500);
-            recursos.put("grafeno", 500);
-            recursos.put("radio", 500);
-            recursos.put("cromo", 500);
+            recursos.put("uranio", 100);
+            recursos.put("rodio", 100);
+            recursos.put("grafeno", 100);
+            recursos.put("radio", 100);
+            recursos.put("cromo", 100);
             recursos.put("energia", 0);
             Juego.getJuego().jugador.agregaRecursos(recursos);
             int a[][] = {

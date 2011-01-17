@@ -4,7 +4,7 @@
  */
 package Observador;
 
-import GestorSonido.ReproduceAudio;
+import GestorSonido.ReproductorMp3;
 import Graficos.Boton;
 import Principal.Juego;
 
@@ -24,8 +24,9 @@ public class ObservadorGameOver implements IObservador {
     public void update() {
 
         if (boton.getNombre().equals("Menu")) {
-            ReproduceAudio r = ReproduceAudio.getReproductor();
-            r.changeAudio("BSO.wav");
+            ReproductorMp3.cambiaMusica("Sonidos/BSO.mp3");
+            ReproductorMp3 r = new ReproductorMp3("");
+            r.start();
 
             Juego.getJuego().changeScreen("Menu");
         }

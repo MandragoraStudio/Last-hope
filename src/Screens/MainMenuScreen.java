@@ -12,7 +12,6 @@ import Graficos.Lienzo;
 import Observador.ObservadorMenu;
 import Personajes.Actor;
 import UtilMath.Vector2D;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;

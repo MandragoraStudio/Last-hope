@@ -30,7 +30,7 @@ public class Ventana_Panel implements IVentana {
     private int y; // posicion Y de la ventana
     private Map<String, Contenido> contenidos; // contenidos de la ventana (subpartes)
     private Contenido fondoActual; // contenido actual
-    private List<Boton> pestañas; // lista de pestañas (botones)
+    private List<Boton> pestañas; // lista de pesta�as (botones)
 
     private Ventana_Panel(int WIDTH, int HEIGHT, int x, int y) {
 
@@ -73,14 +73,14 @@ public class Ventana_Panel implements IVentana {
 
     public void cargar() {
         try {
-            //cargamos las imagenes de las pestañas
+            //cargamos las imagenes de las pesta�as
             Image img = Lienzo.cargarImagen("imagenes/torres.png");
             Image img2 = Lienzo.cargarImagen("imagenes/Torres2.png");
             Image img3 = Lienzo.cargarImagen("imagenes/editor.jpg");
             Image img4 = Lienzo.cargarImagen("imagenes/editor2.png");
             Image img5 = Lienzo.cargarImagen("imagenes/habilidades.png");
             Image img6 = Lienzo.cargarImagen("imagenes/habilidades2.png");
-            //creamos y añadimos las pestañas a la lista
+            //creamos y a�adimos las pesta�as a la lista
             Boton p = new BotonGeneral(img, img2, "torres", x, y, img.getWidth(null), img.getHeight(null));
             new ObservadorIngame(p);
             Boton p2 = new BotonGeneral(img3, img4, "editor", x + (WIDTH / 3), y, img3.getWidth(null), img3.getHeight(null));
@@ -96,7 +96,7 @@ public class Ventana_Panel implements IVentana {
 
 
         try {
-            //cargamos los contenidos de las pestañas
+            //cargamos los contenidos de las pesta�as
             Contenido c = ContenidoTorres.getContenidoTorres("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));
             Contenido c2 = ContenidoEditor.getContenidoEditor("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));
             Contenido c3 = ContenidoHabilidades.getContenidoHabilidades("imagenes/fondoPanel.png", new Vector2D(this.x, this.y));

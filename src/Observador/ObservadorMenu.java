@@ -4,9 +4,7 @@
  */
 package Observador;
 
-import GestorSonido.ReproduceAudio;
 import Graficos.Boton;
-import Mapa.Ventana_Mapa;
 import Principal.Juego;
 
 /**
@@ -27,8 +25,6 @@ public class ObservadorMenu implements IObservador {
         if (boton.getNombre().equals("start")) {
             Juego.getJuego().restartGame();
             Juego.getJuego().changeScreen("InicioFase1");
-            ReproduceAudio r = ReproduceAudio.getReproductor();
-            r.changeAudio("finFase.wav");
             
         } else if (boton.getNombre().equals("exit")) {
             System.exit(0);

@@ -190,7 +190,7 @@ public class Ventana_Informacion implements IVentana {
         }
         g.drawString("Oleada", x + 750, y + 40);
         if(Ventana_Mapa.map.getId()<3){
-            g.drawString("" + Ventana_Mapa.nivel + "/10", x + 750, y + 70);
+            g.drawString("" + Ventana_Mapa.nivel + "/5", x + 750, y + 70);
         }else{
             g.drawString("" + Ventana_Mapa.nivel + "/*", x + 750, y + 70);
         }

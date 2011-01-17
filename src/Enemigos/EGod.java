@@ -15,7 +15,7 @@ import UtilMath.Vector2D;
 public class EGod extends Enemy {
 
     public EGod(int nivel, Vector2D posicion){
-        super(9, (float)(0+(0.5)), 500 + 50+nivel, 50+nivel,10,0,posicion, "imagenes/Tank rojo.png",50);
+        super(9, (float)(0+(0.5)), 550+nivel, 50+nivel,10,0,posicion, "imagenes/Tank rojo.png",50);
     }
 
 }

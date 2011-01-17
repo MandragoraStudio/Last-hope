@@ -4,7 +4,7 @@
  */
 package Observador;
 
-import GestorSonido.ReproduceAudio;
+import GestorSonido.ReproductorMp3;
 import Graficos.Boton;
 import Mapa.Ventana_Mapa;
 import Principal.Juego;
@@ -24,7 +24,9 @@ public class ObservadorPanelTorre implements IObservador {
 
     public void update() {
         if (boton.getNombre().equals("Menu")) {
-            ReproduceAudio.getReproductor().changeAudio("BSO.wav");
+            ReproductorMp3.cambiaMusica("Sonidos/BSO.mp3");
+            ReproductorMp3 r = new ReproductorMp3("");
+            r.start();
             Juego.getJuego().changeScreen("Menu");
         }else if (boton.getNombre().equals("Pausa")) {
             Ventana_Mapa.setPausa(true);

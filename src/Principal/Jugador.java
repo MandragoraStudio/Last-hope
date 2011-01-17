@@ -127,7 +127,7 @@ public class Jugador implements IJugador {
         return recursos;
     }
 
-    //TODO: un metodo que añade recursos
+    //TODO: un metodo que a�ade recursos
     public static boolean agregaRecursos(Map<String, Integer> rec) {
         boolean dev = true;
         if (dev) {

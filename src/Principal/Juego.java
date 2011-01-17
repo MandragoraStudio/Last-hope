@@ -4,24 +4,26 @@
  */
 package Principal;
 
-import GestorSonido.ReproduceAudio;
-import Handlers.MouseHandler;
-import Screens.GamePlayScreen;
-import Screens.IScreen;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.util.HashMap;
+import java.util.Map;
+
+import GestorSonido.ReproductorMp3;
 import Graficos.Lienzo;
+import Handlers.MouseHandler;
 import Screens.CreditsScreen;
 import Screens.FinFase1;
 import Screens.FinFase2;
 import Screens.GameOverScreen;
+import Screens.GamePlayScreen;
+import Screens.IScreen;
 import Screens.InicioFase1;
 import Screens.LoadingScreen;
 import Screens.MainMenuScreen;
 import Screens.Presentacion;
 import Screens.Tutorial;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.util.HashMap;
-import java.util.Map;
+import java.net.URL;
 
 /**
  *
@@ -160,17 +162,17 @@ public class Juego {
 
     public void changeScreen(String screen) {
         if (screen.equals("GameOver")) {
-            ReproduceAudio r = ReproduceAudio.getReproductor();
-            r.changeAudio("LastHope.wav");
-        }else if (screen.equals("FinFase1")) {
-            ReproduceAudio r = ReproduceAudio.getReproductor();
-            r.changeAudio("finFase.wav");
-        }else if (screen.equals("FinFase2")) {
-            ReproduceAudio r = ReproduceAudio.getReproductor();
-            r.changeAudio("finFase.wav");
-        }else if (screen.equals("Game")) {
-            ReproduceAudio r = ReproduceAudio.getReproductor();
-            r.changeAudio("ingame.wav");
+            ReproductorMp3.cambiaMusica("Sonidos/LastHope.mp3");
+            ReproductorMp3 r = new ReproductorMp3("");
+            r.start();
+        } else if (screen.equals("InicioFase1")||screen.equals("FinFase1")||screen.equals("FinFase2")) {
+            ReproductorMp3.cambiaMusica("Sonidos/finFase.mp3");
+            ReproductorMp3 r = new ReproductorMp3("");
+            r.start();
+        } else if (screen.equals("Game")) {
+            ReproductorMp3.cambiaMusica("Sonidos/ingame.mp3");
+            ReproductorMp3 r = new ReproductorMp3("");
+            r.start();
         }
 
         currentScreen = screens.get(screen);
@@ -179,5 +181,4 @@ public class Juego {
     public IScreen getCurrentScreen() {
         return currentScreen;
     }
-
 }
