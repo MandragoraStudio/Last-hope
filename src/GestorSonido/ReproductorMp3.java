@@ -44,7 +44,7 @@ public class ReproductorMp3 extends Thread {
     }
 
     public static void reproduceMusica(String nombreFichero) {
-        
+        while (sigue) {
             try {
                 File file = new File(nombreFichero);
                 AudioInputStream in = AudioSystem.getAudioInputStream(file);
@@ -83,7 +83,7 @@ public class ReproductorMp3 extends Thread {
                     } catch (IOException e) {
                     }
                 }
-            
+            }
         }
     }
 }
